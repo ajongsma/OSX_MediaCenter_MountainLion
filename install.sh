@@ -1,12 +1,67 @@
+#!/bin/bash
+
+bold	= 'tput bold'
+black	= 'tput setaf 0' #   0  Black
+red	= 'tput setaf 1'  # 	1	Red
+green	= 'tput setaf 2'  # 	2	Green
+yellow	= 'tput setaf 3'  # 	3	Yellow
+blue	= 'tput setaf 4'  # 	4	Blue
+magenta	= 'tput setaf 5'  # 	5	Magenta
+cyan	= 'tput setaf 6'  # 	6	Cyan
+white	= 'tput setaf 7'  # 	7	White
+reset	= 'tput sgr0'
+ 
+echo $bold$blue"  [color] Weee!!!"$reset
+
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   os="Mac"
   app_file="chrome-mac.zip"
   app_path="/Applications"
   echo "OS X Detected								[OK]"
 else
-  echo "Linux unsupported (for now)."
+  echo "Linux unsupported."
   exit 1
 fi
+
+
+#------------------------------------------------------------------------------
+# Keep-alive: update existing sudo time stamp until finished
+#------------------------------------------------------------------------------
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+#------------------------------------------------------------------------------
+# Read input
+#------------------------------------------------------------------------------
+
+echo -e "Please enter computer name"
+read COMPUTER_NAME
+
+echo -e "Please enter Full Name for GIT"
+read GIT_FULL_NAME
+
+echo -e "Please enter e-mail address for GIT"
+read GIT_EMAIL
+
+echo -e "Please enter the MySQL Password"
+read MYSQL_PASSWORD
+
+echo "Please enter the required role name: postgres"
+read POSTGRESQL_USER
+
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+sudo scutil --set ComputerName "$COMPUTER_NAME"
+sudo scutil --set HostName "$COMPUTER_NAME"
+sudo scutil --set LocalHostName "$COMPUTER_NAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
@@ -113,10 +168,30 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/pgAdmin3.app ] ; then
+    echo "pgAdmin not installed, please install..."
+    open http://www.pgadmin.org/download/macosx.php
+    while ( [ ! -e /Applications/pgAdmin3.app ] )
+    do
+        echo "Waiting for pgAdmin to be installed..."
+        sleep 15
+    done
+else
+    echo "pgAdmin found                                [OK]"
+fi
+
+
+#------------------------------------------------------------------------------
 # Git config
 #------------------------------------------------------------------------------
-git config --global user.name "Andries Jongsma"
-git config --global user.email "a.jongsma@gmail.com"
+#git config --global user.name "Andries Jongsma"
+#git config --global user.email "a.jongsma@gmail.com"
+
+git config --global user.name "$GIT_FULL_NAME"
+git config --global user.email "$GIT_EMAIL"
+
 
 #------------------------------------------------------------------------------
 # Check for install HomeBrew (http://mxcl.github.com/homebrew/)
@@ -202,6 +277,8 @@ brew install bash
 # Install Ruby
 #------------------------------------------------------------------------------
 #cd ~/Github/
+
+# -- Try 1 --
 #git clone git://github.com/sstephenson/rbenv.git .rbenv
 #?echo 'eval "$(rbenv init -)"' >> ~/.extra
 #?source ~/.bashrc
@@ -213,39 +290,54 @@ brew install bash
 #ERR: cat "rbenv global 1.9.3-p194" >> .extra
 #ruby -v
 
+# -- Try 2 --
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#mkdir -p ~/.rbenv/plugins
+#cd ~/.rbenv/plugins
+#git clone git://github.com/sstephenson/ruby-build.git
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#rbenv rehash
+#rbenv install 1.9.3-p194
+#rbenv rehash
+#rbenv global 1.9.3-p194
+
+
 #------------------------------------------------------------------------------
 # Install MySQL
 #------------------------------------------------------------------------------
-#/usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
-#/usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
-#
-#Alternatively you can run:
-#/usr/local/opt/mysql/bin/mysql_secure_installation
-#
-#You can start the MySQL daemon with:
-#cd /usr/local/opt/mysql ; /usr/local/opt/mysql/bin/mysqld_safe &
-#
-#You can test the MySQL daemon with mysql-test-run.pl
-#cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
+## /usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
+## /usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
+##
+## Alternatively you can run:
+## /usr/local/opt/mysql/bin/mysql_secure_installation
+##
+## You can start the MySQL daemon with:
+## cd /usr/local/opt/mysql ; /usr/local/opt/mysql/bin/mysqld_safe &
+##
+## You can test the MySQL daemon with mysql-test-run.pl
+## cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
 
-#if [ ! -e /opt/local/lib/mysql55 ] ; then
-#	echo "MySQL not found, installing..."
-#    sudo port install mysql55 mysql55-server
-#    sudo port clean --all
+if [ ! -e /usr/local/Cellar/mysql ] ; then
+    echo "MySQL not found, installing..."
+    #sudo port install mysql55 mysql55-server
+    #sudo port clean --all
+
+    brew install mysql
+    unset TMPDIR
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+    mkdir -p ~/Library/LaunchAgents
+    cp /usr/local/Cellar/mysql/5.5.29/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
+    #/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
+    /usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
+
+    mysql.server start
+    #mysql -u root -p
 #else
 #    echo "MySQL found								[OK]"
 #fi
 
-brew install mysql
-unset TMPDIR
-mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
-mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/mysql/5.5.29/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-/usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
-#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
-mysql.server start
-#mysql -u root -p
 
 #------------------------------------------------------------------------------
 # Install Postgresql
@@ -256,34 +348,20 @@ mysql.server start
 #    pg_ctl -D /usr/local/var/postgres -l logfile start
 
 brew install postgresql --without-ossp-uuid
-#?? brew install -dv postgresql
 initdb --locale=en_US.UTF-8 --encoding=UTF8 /usr/local/var/postgres
-#mkdir -p ~/Library/LaunchAgents
+mkdir -p ~/Library/LaunchAgents
 cp /usr/local/Cellar/postgresql/9.2.2/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 sudo mkdir /var/pgsql_socket/
 ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
-echo "Enter the required role name: postgres"
-createuser -s -U $USER
+#echo "Enter the required role name: postgres"
+#createuser -s -U $USER
+createuser -s -U $POSTGRESQL_USER
 
 #psqlstart
 ##psqlstop
 
-#------------------------------------------------------------------------------
-# Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
-#------------------------------------------------------------------------------
-if [ ! -e /Applications/pgAdmin3.app ] ; then
-    echo "pgAdmin not installed, please install..."
-    open http://www.pgadmin.org/download/macosx.php
-    while ( [ ! -e /Applications/pgAdmin3.app ] )
-    do
-        echo "Waiting for pgAdmin to be installed..."
-        sleep 15
-    done
-else
-    echo "pgAdmin found                                [OK]"
-fi
 
 #------------------------------------------------------------------------------
 # Install PHP
