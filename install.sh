@@ -38,7 +38,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #------------------------------------------------------------------------------
 # Read input
 #------------------------------------------------------------------------------
-
 echo -e "Please enter computer name"
 read COMPUTER_NAME
 
@@ -53,6 +52,7 @@ read MYSQL_PASSWORD
 
 echo "Please enter the required role name: postgres"
 read POSTGRESQL_USER
+
 
 #------------------------------------------------------------------------------
 # Set computer name (as done via System Preferences → Sharing)
@@ -69,6 +69,11 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 # run software update and reboot
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
+
+#------------------------------------------------------------------------------
+# Show the ~/Library folder
+#------------------------------------------------------------------------------
+chflags nohidden ~/Library
 
 #------------------------------------------------------------------------------
 # Checking existance mandatory directories
