@@ -76,6 +76,21 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Check for OS X Server 2.0
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/Server.app ] ; then
+    echo "OS X Server not installed, please install..."
+    open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
+	while ( [ ! -e /Applications/Server.app ] )
+	do
+    	echo "Waiting for OS X Server to be installed..."
+		sleep 15
+	done
+else
+    echo "OS X Server found							[OK]"
+fi
+
+#------------------------------------------------------------------------------
 # Check for Sublime Text
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
