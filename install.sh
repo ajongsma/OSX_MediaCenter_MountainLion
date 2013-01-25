@@ -53,6 +53,11 @@ read MYSQL_PASSWORD
 echo "Please enter the required role name: postgres"
 read POSTGRESQL_USER
 
+#------------------------------------------------------------------------------
+# Variables
+#------------------------------------------------------------------------------
+SYSTEM_WEB_ROOT = /Library/WebServer/Documents/
+
 
 #------------------------------------------------------------------------------
 # Set computer name (as done via System Preferences → Sharing)
@@ -283,7 +288,7 @@ brew install bash
 #------------------------------------------------------------------------------
 #cd ~/Github/
 
-# -- Try 1 --
+## -- Try 1 --
 #git clone git://github.com/sstephenson/rbenv.git .rbenv
 #?echo 'eval "$(rbenv init -)"' >> ~/.extra
 #?source ~/.bashrc
@@ -295,7 +300,7 @@ brew install bash
 #ERR: cat "rbenv global 1.9.3-p194" >> .extra
 #ruby -v
 
-# -- Try 2 --
+## -- Try 2 --
 #git clone git://github.com/sstephenson/rbenv.git .rbenv
 #mkdir -p ~/.rbenv/plugins
 #cd ~/.rbenv/plugins
@@ -455,13 +460,6 @@ sudo mv /tmp/phpinfo.php /Library/WebServer/Documents/
 open http://localhost/phpinfo.php
 
 #------------------------------------------------------------------------------
-# Create and open phpinfo.php
-#------------------------------------------------------------------------------
-cd /Library/WebServer/Documents/
-sudo git clone https://github.com/spotweb/spotweb.git
-subl /Library/WebServer/Documents/dbsettings.inc.php
-
-#------------------------------------------------------------------------------
 # Install Spotweb
 #------------------------------------------------------------------------------
 #export PATH=$PATH:/usr/local/opt/postgresql/bin
@@ -469,7 +467,7 @@ sudo -u andries psql postgres -c "create database spotweb_db"
 sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
 
-## Not used, postgresql used instead of MySQL
+## Not used, postgresql instead of MySQL
 #echo "-----------------------------------------------------------"
 #echo "Enter the following in MySQL:"
 #echo "CREATE DATABASE spotweb;"
@@ -479,17 +477,43 @@ sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to
 #echo "quit"
 #echo "-----------------------------------------------------------"
 
-cd /Library/WebServer/Documents/
-git clone https://github.com/spotweb/spotweb.git
-echo "Usenet Server     : XsNews"
-echo "User Name         : 105764"
+#cd /Library/WebServer/Documents/
+#sudo git clone https://github.com/spotweb/spotweb.git
+#subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
+
+cd $SYSTEM_WEB_ROOT/
+sudo git clone https://github.com/spotweb/spotweb.git
+subl $SYSTEM_WEB_ROOT/spotweb/dbsettings.inc.php
+
+echo $bold$blue
+echo "-----------------------------------------------------------"
+echo "| Paste the information as seen in the installer:"
+echo "| Usenet Server     : XsNews"
+echo "| User Name         : 105764"
+echo "-----------------------------------------------------------"
+echo $reset
+
 open http://localhost/spotweb/install.php
 
-echo "Paste the information as seen in the installer"
 sudo touch /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 sudo subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 
-php /Library/WebServer/Documents/spotweb/retrieve.php
+#/Library/WebServer/Documents/spotweb/retrieve.php
+#sh php /Library/WebServer/Documents/spotweb/retrieve.php
+#/bin/bash php /Library/WebServer/Documents/spotweb/retrieve.php
+
+osascript -e 'tell app "Terminal"
+    do script "php /Library/WebServer/Documents/spotweb/retrieve.php"
+end tell'
+
+
+
+
+
+### FORCED QUIT ####
+exit 1
+
+
 
 
 #------------------------------------------------------------------------------
