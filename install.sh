@@ -159,24 +159,42 @@ brew tap homebrew/dupes
 brew upgrade
 brew doctor
 
+# Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew install findutils
+# Install Bash 4
+brew install bash
+
+# Remove outdated versions from the cellar
+brew cleanup
+
 #------------------------------------------------------------------------------
 # Install Bash Completion
 #------------------------------------------------------------------------------
-brew install git bash-completion git
+brew install bash-completion git
 
 #Add the following lines to your ~/.bash_profile:
 #  if [ -f $(brew --prefix)/etc/bash_completion ]; then
 #    . $(brew --prefix)/etc/bash_completion
 #  fi
 
+ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
+
 cat >> ~/.bash_profile << EOF
 if [ -f 'brew --prefix'/etc/bash_completion ]; then
     . 'brew --prefix'/etc/bash_completion
 fi
 EOF
-ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
 
-subl ~/.bash_profile
+#subl ~/.bash_profile
+
+# Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew install findutils
+# Install Bash 4
+brew install bash
 
 
 #### ERROR ######
