@@ -779,7 +779,54 @@ php update_binaries.php
 php update_releases.php
 
 
+#------------------------------------------------------------------------------
+# Install Sphinx
+#------------------------------------------------------------------------------
+## http://newznab.readthedocs.org/en/latest/misc/sphinx/
 
+echo "Download latest Sphinx from http://sphinxsearch.com"
+open http://sphinxsearch.com/
+
+cd /Users/Newznab/Sites/newznab/misc/update_scripts
+./nnindexer.php generate
+
+echo "-----------------------------------------------------------"
+echo "| Configure Sphinx:"
+echo "| Use Sphinx                 : Yes"
+echo "| "Sphinx Configuration Path : <full path to sphinx.conf>"
+echo "| "Sphinx Binaries Path : <full path to Sphinx binaries>"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin
+
+./nnindexer.php daemon
+./nnindexer.php index full all
+./nnindexer.php index delta all
+./nnindexer.php daemon --stop
+./nnindexer.php daemon
+
+## ./nnindexer.php search --index releases "some search term"
+
+## -- TODO --
+#------------------------------------------------------------------------------
+# Install Unrar
+#------------------------------------------------------------------------------
+##
+
+## ?? brew install unrar
+
+## http://www.rarlab.com/download.htm
+
+## ?? (1)
+## sudo mv unrar /usr/local/bin
+
+## ?? (2)
+## sudo mv unrar /usr/bin
+
+## ?? (3)
+## tar xvzf rar
+## cd rar
+## sudo install -c -o yourusername unrar /bin
+## which unrar
 
 
 #------------------------------------------------------------------------------
