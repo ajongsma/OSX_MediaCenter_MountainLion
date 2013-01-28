@@ -1,18 +1,17 @@
 #!/bin/bash
 
-bold	= 'tput bold'
-black	= 'tput setaf 0' #   0  Black
-red	= 'tput setaf 1'  # 	1	Red
-green	= 'tput setaf 2'  # 	2	Green
-yellow	= 'tput setaf 3'  # 	3	Yellow
-blue	= 'tput setaf 4'  # 	4	Blue
-magenta	= 'tput setaf 5'  # 	5	Magenta
-cyan	= 'tput setaf 6'  # 	6	Cyan
-white	= 'tput setaf 7'  # 	7	White
-reset	= 'tput sgr0'
+#bold=`tput bold`
+#black=`tput setaf 0` #   0  Black
+#red=`tput setaf 1`  # 	1	Red
+#green=`tput setaf 2`  # 	2	Green
+#yellow=`tput setaf 3`  # 	3	Yellow
+#blue=`tput setaf 4`  # 	4	Blue
+#magenta=`tput setaf 5`  # 	5	Magenta
+#cyan=`tput setaf 6`  # 	6	Cyan
+#white=`tput setaf 7`  # 	7	White
+#reset=`tput sgr0`
  
-echo $bold$blue"  [color] Weee!!!"$reset
-
+#echo $bold$blue"  [color] Weee!!!"$reset
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   os="Mac"
@@ -29,44 +28,37 @@ fi
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
 # Ask for the administrator password upfront
+echo -e "Please enter root password"
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-
 #------------------------------------------------------------------------------
 # Read input
 #------------------------------------------------------------------------------
-echo -e "Please enter computer name"
-read COMPUTER_NAME
+#echo -e "Please enter computer name"
+#read COMPUTER_NAME
 
-echo -e "Please enter Full Name for GIT"
-read GIT_FULL_NAME
+#echo -e "Please enter Full Name for GIT"
+#read GIT_FULL_NAME
 
-echo -e "Please enter e-mail address for GIT"
-read GIT_EMAIL
+#echo -e "Please enter e-mail address for GIT"
+#read GIT_EMAIL
 
-echo -e "Please enter the MySQL Password"
-read MYSQL_PASSWORD
+#echo -e "Please enter the MySQL Password"
+#read MYSQL_PASSWORD
 
-echo "Please enter the required role name: postgres"
-read POSTGRESQL_USER
+#echo "Please enter the required role name: postgres"
+#read POSTGRESQL_USER
 
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
-SYSTEM_WEB_ROOT = /Library/WebServer/Documents/
+#APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
+GIT_FULL_NAME='Andries Jongsma'
+GIT_EMAIL='a.jongsma@gmail.com'
 
-
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "$COMPUTER_NAME"
-sudo scutil --set HostName "$COMPUTER_NAME"
-sudo scutil --set LocalHostName "$COMPUTER_NAME"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
@@ -76,25 +68,16 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 #sudo softwareupdate --install --all
 
 #------------------------------------------------------------------------------
-# Show the ~/Library folder
+# Checking system directories
 #------------------------------------------------------------------------------
-chflags nohidden ~/Library
+#if [ ! -e /var/log/devicemgr/ ] ; then
+#    echo "Creating directory: Sites"
+#    sudo mkdir -p /var/log/devicemgr/
+#else
+#    echo "Directory /var/log/devicemgr/                    [OK]"
+#fi
 
-#------------------------------------------------------------------------------
-# Checking existance mandatory directories
-#------------------------------------------------------------------------------
-if [ ! -e ~/Sites/ ] ; then
-    echo "Creating directory: Sites"
-    mkdir -p ~/Sites/
-else
-    echo "Directory ~/Sites/ 	    				[OK]"
-fi
-if [ ! -e ~/Github/ ] ; then
-    echo "Creating directory: Github"
-    mkdir -p ~/Github/
-else
-    echo "Directory ~/Github/ 	    				[OK]"
-fi
+
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode
@@ -113,7 +96,7 @@ else
 fi
 
 #------------------------------------------------------------------------------
-# Check for Command Line Tools via GCC
+# Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/gcc ] ; then
     echo "GCC not installed, please install..."
@@ -171,10 +154,86 @@ else
 fi
 if [ ! -e /usr/local/bin/subl ] ; then
 	echo "Creating link to Sublime Text..."
-	mkdir /usr/local/bin/
-	ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+	sudo mkdir -p /usr/local/bin/ 
+	sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 else
     echo "Sublime Text link found						[OK]"
+fi
+
+#------------------------------------------------------------------------------
+# Check for iTerm
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/iTerm.app ] ; then
+    echo "iTerm not installed, please install..."
+    open http://http://www.iterm2.com
+    while ( [ ! -e /Applications/iTerm.app ] )
+    do
+        echo "Waiting for iTerm to be installed..."
+        sleep 15
+    done
+else
+    echo "iTerm found                            [OK]"
+fi
+
+#------------------------------------------------------------------------------
+# Colourize terminal
+#------------------------------------------------------------------------------
+http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
+if [ ! -e ~/.bash_profile ] ; then
+    echo "Creating default .bash_profile..."
+cat >> ~/.bash_profile <<'EOF'
+# Tell ls to be colourful
+export CLICOLOR=1
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+EOF
+else
+    echo ".bash_profile found, please add the following:"
+
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
+    subl ~/.bash_profile
+fi
+
+#------------------------------------------------------------------------------
+# Check for Xlog
+#------------------------------------------------------------------------------
+#https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
+if [ ! -e /Applications/Xlog.app ] ; then
+    echo "Xlog not installed, please install..."
+    open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
+    while ( [ ! -e /Applications/Xlog.app ] )
+    do
+        echo "Waiting for Xlog to be installed..."
+        sleep 15
+    done
+else
+    echo "Xlog found                         [OK]"
+fi
+
+#------------------------------------------------------------------------------
+# Show the ~/Library folder
+#------------------------------------------------------------------------------
+chflags nohidden ~/Library
+
+#------------------------------------------------------------------------------
+# Checking existance custom user directories
+#------------------------------------------------------------------------------
+if [ ! -e ~/Sites/ ] ; then
+    echo "Creating directory: Sites"
+    mkdir -p ~/Sites/
+else
+    echo "Directory ~/Sites/                        [OK]"
+fi
+if [ ! -e ~/Github/ ] ; then
+    echo "Creating directory: Github"
+    mkdir -p ~/Github/
+else
+    echo "Directory ~/Github/                       [OK]"
 fi
 
 #------------------------------------------------------------------------------
@@ -192,7 +251,6 @@ else
     echo "pgAdmin found                                [OK]"
 fi
 
-
 #------------------------------------------------------------------------------
 # Git config
 #------------------------------------------------------------------------------
@@ -202,26 +260,35 @@ fi
 git config --global user.name "$GIT_FULL_NAME"
 git config --global user.email "$GIT_EMAIL"
 
+git config -l | grep user.name
+git config -l | grep user.email
+
+## TESTING
+#if [ git config -l | grep user.name ] != $GIT_FULL_NAME ; then
+#    echo "diff"
+#else
+#    echo "OK"
+#fi
 
 #------------------------------------------------------------------------------
-# Check for install HomeBrew (http://mxcl.github.com/homebrew/)
+# Set computer name (as done via System Preferences → Sharing)
 #------------------------------------------------------------------------------
-while ( [ $(which gcc) == "" ] )
-do
-    echo "Waiting for HomeBrew to be installed..."
-    sleep 15
-done
+# Set computer name (as done via System Preferences → Sharing)
+#sudo scutil --set ComputerName "$COMPUTER_NAME"
+#sudo scutil --set HostName "$COMPUTER_NAME"
+#sudo scutil --set LocalHostName "$COMPUTER_NAME"
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 #------------------------------------------------------------------------------
 # Moving original libphp5 file
 #------------------------------------------------------------------------------
 #sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 if [ -e //usr/libexec/apache2/libphp5.so ] ; then
-	echo "Original libphp5-file found, renaming file..."
-    sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
+	echo "Original libphp5-file found, copying file..."
+    sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 else
 	if [ -e //usr/libexec/apache2/libphp5.so.org ] ; then
-		echo "Renamed file libphp5 found						[OK]"
+		echo "Copied file libphp5 found						[OK]"
 	else
 		echo "No file libphp5 found								[ERR]"
 	fi
@@ -233,20 +300,23 @@ fi
 #------------------------------------------------------------------------------
 # Install HomeBrew
 #------------------------------------------------------------------------------
-# This will install:
-# /usr/local/bin/brew
-# /usr/local/Library/...
-# /usr/local/share/man/man1/brew.1
+## This will install:
+## /usr/local/bin/brew
+## /usr/local/Library/...
+## /usr/local/share/man/man1/brew.1
+## Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
 
 ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 brew update
 brew tap homebrew/dupes
+#?? brew install homebrew/dupes/grep
 brew upgrade
 brew doctor
 
-# Install GNU core utilities (those that come with OS X are outdated)
+## PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+ # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 # Install Bash 4
 brew install bash
@@ -257,29 +327,29 @@ brew cleanup
 #------------------------------------------------------------------------------
 # Install Bash Completion
 #------------------------------------------------------------------------------
-brew install bash-completion git
-
-#Add the following lines to your ~/.bash_profile:
-#  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-#    . $(brew --prefix)/etc/bash_completion
-#  fi
-
-ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
-
-cat >> ~/.bash_profile << EOF
-if [ -f 'brew --prefix'/etc/bash_completion ]; then
-    . 'brew --prefix'/etc/bash_completion
-fi
-EOF
-
-#subl ~/.bash_profile
-
-# Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
-# Install Bash 4
-brew install bash
+#brew install bash-completion git
+#
+##Add the following lines to your ~/.bash_profile:
+##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+##    . $(brew --prefix)/etc/bash_completion
+##  fi
+#
+#sudo ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
+#
+##subl ~/.bash_profile
+#if [ -e ~/.bash_profile ] ; then
+#    echo "File .bash_profile found, please add the following manually:"
+#    echo "if [ -f 'brew --prefix'/etc/bash_completion ]; then"
+#    echo     "    . 'brew --prefix'/etc/bash_completion"
+#    echo "fi"
+#    subl ~/.bash_profile
+#else
+#    cat >> ~/.bash_profile << EOF
+#if [ -f 'brew --prefix'/etc/bash_completion ]; then
+#    . 'brew --prefix'/etc/bash_completion
+#fi
+#EOF
+#fi
 
 
 #### ERROR ######
@@ -327,6 +397,9 @@ brew install bash
 ## You can test the MySQL daemon with mysql-test-run.pl
 ## cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
 
+#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
+#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
+
 if [ ! -e /usr/local/Cellar/mysql ] ; then
     echo "MySQL not found, installing..."
     #sudo port install mysql55 mysql55-server
@@ -339,14 +412,12 @@ if [ ! -e /usr/local/Cellar/mysql ] ; then
     cp /usr/local/Cellar/mysql/5.5.29/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
     /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
-    #/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
-    /usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
 
     mysql.server start
     #mysql -u root -p
-#else
-#    echo "MySQL found								[OK]"
-#fi
+else
+    echo "MySQL found								[OK]"
+fi
 
 
 #------------------------------------------------------------------------------
@@ -362,12 +433,17 @@ initdb --locale=en_US.UTF-8 --encoding=UTF8 /usr/local/var/postgres
 mkdir -p ~/Library/LaunchAgents
 cp /usr/local/Cellar/postgresql/9.2.2/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-sudo mkdir /var/pgsql_socket/
-ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
+
+if [ ! -e /var/pgsql_socket/ ] ; then
+    sudo mkdir /var/pgsql_socket/
+fi
+sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
 #echo "Enter the required role name: postgres"
+#createuser andries ENCRYPTED PASSWORD 'XxNtpQs0' 
+
 #createuser -s -U $USER
-createuser -s -U $POSTGRESQL_USER
+#createuser -s -U $USER
 
 #psqlstart
 ##psqlstop
@@ -383,71 +459,162 @@ createuser -s -U $POSTGRESQL_USER
 #    pear config-set php_ini /usr/local/etc/php/5.4/php.ini
 #If you are having issues with custom extension compiling, ensure that this php is in your PATH:
 #    PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-    
-brew tap homebrew/dupes
-brew tap josegonzalez/homebrew-php
-brew upgrade
-brew install php54 --with-pgsql --with-mysql --with-tidy --with-intl
-brew install php54-intl
-brew install php54-apc
+
 #To finish installing apc for PHP 5.4:
 #  * /usr/local/etc/php/5.4/conf.d/ext-apc.ini was created,
 #    do not forget to remove it upon extension removal.
-brew install php54-memcached
+
 #To have launchd start memcached at login:
 #    ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
 #Then to load memcached now:
 #    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 #Or, if you don't want/need launchctl, you can just run:
 #    /usr/local/opt/memcached/bin/memcached
+
+#brew tap homebrew/dupes
+brew tap josegonzalez/homebrew-php
+brew upgrade
+
+#??brew install php54 --with-mysql --with-pgsql --with-fpm
+brew install php54 --with-pgsql --with-mysql --with-tidy --with-intl --with-gmp
+brew install php54-intl
+brew install php54-apc
+brew install php54-memcached
 brew install php54-inclued
 brew install php54-http
 brew install php54-oauth
 brew install php54-ssh2
 brew install php54-xdebug
-brew install php54-uploadprogress
 brew install php54-mcrypt
 brew install php54-imagick
-#ERR brew install php54-gmp # No available formula
-#brew install php54-yaml
-#brew install php54-solr
-#brew install php54-xhprof
+#brew install gmp
+#brew install php54-uploadprogress
 
-#??brew install php54 --with-mysql --with-pgsql
-#??brew install php54 --with-mysql --with-pgsql --with-fpm
-#??brew install php54 --with-mysql
-#brew install php54-apc php54-memcached php54-inclued php54-http php54-oauth php54-ssh2 php54-xdebug php54-intl php54-uploadprogress php54-xhprof php54-http php54-mcrypt php54-yaml php54-imagick php54-solr
-#??brew install php54-apc php54-memcached php54-xdebug php54-imagick
-#brew install mysql
 ##ERR cp /usr/local/Cellar/php54/5.4.11/homebrew-php.josegonzalez.php54.plist ~/Library/LaunchAgents/
 ##ERR launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist
 
-##??sudo cp /usr/local/etc/php/5.4/php.ini.default /usr/local/etc/php/5.4/php.ini
+ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
-sudo cp /private/etc/php.ini.default /private/etc/php.ini
+##??sudo cp /usr/local/etc/php/5.4/php.ini.default /usr/local/etc/php/5.4/php.ini
+if [ ! -f /usr/local/etc/php/5.4/php.ini ] ; then
+    sudo cp /usr/local/etc/php/5.4/php.ini.default /usr/local/etc/php/5.4/php.ini
+fi
+
+if [ ! -f /private/etc/php.ini ] ; then
+    sudo cp /private/etc/php.ini.default /private/etc/php.ini
+fi
 echo "Add/Change the following lines:"
 echo "date.timezone = Europe/Amsterdam"
-#?? Which One ???
-subl /usr/local/etc/php/5.4/php.ini
+echo "register_globals = Off"
+echo "max_execution_time = 120"
+echo "memory_limit = 256M"
+
+sudo subl /usr/local/etc/php/5.4/php.ini
 sudo subl /private/etc/php.ini
+
+#/usr/libexec/apache2/libphp5.so
+#/usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so
+#sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp53.so
+#sudo ln -s /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so
 
 echo "Add/Change the following lines:"
 echo "LoadModule php5_module /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so"
-sudo subl /private/etc/apache2/httpd.conf
+#sudo subl /private/etc/apache2/httpd.conf
 
-sudo apachectl restart
+if [ ! -e /Applications/Server.app ] ; then
+    sudo subl /private/etc/apache2/httpd.conf
+else
+    sudo subl /private/etc/apache2/httpd.conf
+    sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
+fi
+
+#sudo apachectl restart
+sudo apachectl start
+open http://localhost
 
 #?? sudo nano /usr/local/etc/php/5.4/php.ini
 #cat >> ~/.bashrc << EOF
 #PATH="$(brew --prefix php54)/bin:$PATH"
 #EOF
 
+#------------------------------------------------------------------------------
+# Install PEAR
+#------------------------------------------------------------------------------
+sudo php /usr/lib/php/install-pear-nozlib.phar
+
+echo "Change the following line"
+echo 'include_path = ".:/usr/lib/php/pear"'
+sudo subl /usr/local/etc/php/5.4/php.ini
+#sudo subl /etc/php.ini
+
+pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+pecl config-set php_ini /usr/local/etc/php/5.4/php.ini
+sudo pear upgrade-all
+
+#pear config-set php_ini /etc/php.ini
+#pecl config-set php_ini /etc/php.ini
+#sudo pear upgrade-all
+
+#if [ ! -f ~/.profile ] ; then
+#    cat >> ~/.profile <<'EOF'
+### Add PHP 5.4 to the path
+#PHP_PATH="$(brew --prefix php54)/bin"
+#export PATH=$PHP_PATH:$PATH
+#EOF
+#else
+#    echo 'Add/Change the following lines:'
+#    echo '## Add PHP 5.4 to the path'
+#    echo 'PHP_PATH="$(brew --prefix php54)/bin'
+#    echo 'export PATH=$PHP_PATH:$PATH'
+#    subl ~/.profile
+#fi
+
+#------------------------------------------------------------------------------
+# Apache - Generic
+#------------------------------------------------------------------------------
+## /private/etc/apache2/extra/httpd-vhosts.conf
+## sudo apachectl -V
+
+sudo apachectl -V
+
+echo 'Add/Change the following lines:'
+echo 'ServerName pooky.local'
+sudo subl /private/etc/apache2/httpd.conf
+
+echo "Add below the first </Directory>:"
+echo "<Directory />"
+echo "    Options FollowSymLinks"
+echo "    AllowOverride None"
+echo "    Order deny,allow"
+echo "    Allow from all"
+echo "</Directory>"
+
+sudo apachectl configtest
+sudo apachectl restart
+
+#------------------------------------------------------------------------------
+# Enable Apache Virtual Host
+#------------------------------------------------------------------------------
+#/private/etc/apache2/extra/httpd-vhosts.conf
+
+#echo ''
+#echo '# Virtual hosts'
+#echo 'Include /private/etc/apache2/extra/httpd-vhosts.conf'
+#sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
+
 
 #------------------------------------------------------------------------------
 # Create and open phpinfo.php
 #------------------------------------------------------------------------------
+## /Library/Server/Web/Config/apache2/httpd_server_app.conf
+#sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
+#echo "Add/Change the following lines:"
+#echo 'DocumentRoot "/Library/WebServer/Documents"'
+
+
 #SUDO_EDITOR="open -FWne" sudo -e /etc/apache2/httpd.conf
-cat >> /tmp/phpinfo.php <<'EOF'
+cat >> /tmp/php_info.php <<'EOF'
 <?php
 
 // Show all information, defaults to INFO_ALL
@@ -456,8 +623,8 @@ phpinfo();
 ?>
 EOF
 
-sudo mv /tmp/phpinfo.php /Library/WebServer/Documents/
-open http://localhost/phpinfo.php
+sudo mv /tmp/php_info.php /Library/WebServer/Documents/
+open http://localhost/php_info.php
 
 #------------------------------------------------------------------------------
 # Install Spotweb
@@ -466,6 +633,10 @@ open http://localhost/phpinfo.php
 sudo -u andries psql postgres -c "create database spotweb_db"
 sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
+
+open /Applications/pgAdmin3.app
+echo "Open pgAdmin and set the password of user: spotweb_user"
+
 
 ## Not used, postgresql instead of MySQL
 #echo "-----------------------------------------------------------"
@@ -481,83 +652,337 @@ sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to
 #sudo git clone https://github.com/spotweb/spotweb.git
 #subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 
-cd $SYSTEM_WEB_ROOT/
+sudo mkdir -p /Users/Spotweb/Sites/
+sudo mkdir -p /Users/Spotweb/Sites/log/
+cd /Users/Spotweb/Sites/
 sudo git clone https://github.com/spotweb/spotweb.git
-subl $SYSTEM_WEB_ROOT/spotweb/dbsettings.inc.php
 
-echo $bold$blue
+sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
+## -------------> TODO
+
+open http://localhost/spotweb/install.php
+subl /Users/Spotweb/Sites//spotweb/dbsettings.inc.php
+
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
+echo "| Type              : PostgreSQL"
+echo "| Server            : localhost"
+echo "| Database          : spotweb_db"
+echo "| Username          : spotweb_user"
+echo "| Password          : <password>"
+echo "-----------------------------------------------------------"
 echo "| Usenet Server     : XsNews"
 echo "| User Name         : 105764"
 echo "-----------------------------------------------------------"
-echo $reset
 
-open http://localhost/spotweb/install.php
-
-sudo touch /Library/WebServer/Documents/spotweb/dbsettings.inc.php
-sudo subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
+sudo touch /Users/Spotweb/Sites/spotweb/dbsettings.inc.php
+sudo subl /Users/Spotweb/Sites/spotweb/dbsettings.inc.php
 
 #/Library/WebServer/Documents/spotweb/retrieve.php
 #sh php /Library/WebServer/Documents/spotweb/retrieve.php
 #/bin/bash php /Library/WebServer/Documents/spotweb/retrieve.php
 
+open http://localhost/spotweb
+
 osascript -e 'tell app "Terminal"
-    do script "php /Library/WebServer/Documents/spotweb/retrieve.php"
+    do script "php /Users/Spotweb/Sites/spotweb/retrieve.php"
 end tell'
 
-
-
-
-
 ### FORCED QUIT ####
-exit 1
-
-
+#exit 1
 
 
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
-sudo mkdir -p /Library/WebServer/Documents/Newznab/
-cd /Library/WebServer/Documents/Newznab/
+#sudo mkdir -p /Library/WebServer/Documents/Newznab/
+#cd /Library/WebServer/Documents/Newznab/
+
+sudo mkdir -p /Users/Newznab/Sites/newznab/
+cd /Users/Newznab/Sites/newznab/
 
 echo "-----------------------------------------------------------"
 echo "Enter the following inoformation:"
 echo "Username  : svnplus"
 echo "Password  : svnplu5"
-svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Library/WebServer/Documents/Newznab
+sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
 
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www/lib/smarty/templates_c
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www/covers/movies
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www/covers/anime
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www/covers/music
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www
-sudo chmod 777 /Library/WebServer/Documents/Newznab/www/install
-sudo chmod -R 777 /Library/WebServer/Documents/Newznab/nzbfiles/
-sudo chmod 777 /Library/WebServer/Documents/Newznab/db
-#ERR - Does not exist: sudo chmod 777 /Library/WebServer/Documents/Newznab/nzbfiles/tmpunrar
+sudo mkdir /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
+sudo chmod 777 /Users/Newznab/Sites/newznab/www/lib/smarty/templates_c
+sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/movies
+sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/anime
+sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/music
+sudo chmod 777 /Users/Newznab/Sites/newznab/www
+sudo chmod 777 /Users/Newznab/Sites/newznab/www/install
+sudo chmod -R 777 /Users/Newznab/Sites/newznab/nzbfiles/
+sudo chmod 777 /Users/Newznab/Sites/newznab/db
+sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 
-open http://localhost/newznab
-
-
-
-
-
-
-
+sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
 
 echo "-----------------------------------------------------------"
 echo "Enter the following in MySQL:"
 echo "CREATE DATABASE newznab;"
 echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
 echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+echo "FLUSH PRIVILEGES;"
+echo "-----------------------------------------------------------"
+open mysql -u root -p
+
+echo "-----------------------------------------------------------"
+echo "| Paste the information as seen in the installer:"
+echo "| Hostname          : localhost"
+echo "| Port              : 3306"
+echo "| Username          : newznab"
+echo "| Password          : <password>"
+echo "| Database          : newznab"
+echo "| DB Engine         : MyISAM"
+echo "-----------------------------------------------------------"
+echo "| News Server Setup:"
+echo "| Server            : reader.xsnews.nl"
+echo "| User Name         : 105764"
+echo "| Password          : <password>"
+echo "| Port              : 563"
+echo "| SSL               : Enable"
+echo "-----------------------------------------------------------"
+echo "| Caching Setup:"
+echo "| Caching Type      : Memcache"
+echo "-----------------------------------------------------------"
+echo "| Admin Setup:"
+echo "-----------------------------------------------------------"
+echo "| NZB File Path Setup:"
+echo "| /Users/Newznab/Sites/newznab/nzbfiles/"
+
+open http://localhost/newznab
+
+
+#------------------------------------------------------------------------------
+# Install SABnzbd+
+#------------------------------------------------------------------------------
+
+mkdir -p ~/Downloads/Usenet/Incomplete
+mkdir -p ~/Downloads/Usenet/Complete
+mkdir -p ~/Downloads/Usenet/Watch
+
+
+if [ ! -e /Applications/SABnzbd.app ] ; then
+    echo "SABnzbd not installed, please install..."
+    open http://sabnzbd.org/
+    while ( [ ! -e /Applications/SABnzbd.app ] )
+    do
+        echo "Waiting for SABnzbd to be installed..."
+        sleep 15
+    done
+else
+    echo "SABnzbd found                               [OK]"
+fi
+
+echo "-----------------------------------------------------------"
+echo "| News Server Setup:"
+echo "| Server            : reader.xsnews.nl"
+echo "| Port              : 563"
+echo "| User Name         : 105764"
+echo "| Password          : <password>"
+echo "| SSL               : Enable"
+echo "-----------------------------------------------------------"
+echo "| Step 2"
+echo "| Access            : I want SABnzbd to be viewable by any pc on my network."
+echo "| Password          : Enable"
+echo "| HTTPS             : Enable"
+echo "| Launch            : Disable"
 echo "-----------------------------------------------------------"
 
+open https://localhost:9090/sabnzbd/ 
 
+echo "-----------------------------------------------------------"
+echo "| Folders:"
+echo "1G"
+echo "/Users/Andries/Downloads/Usenet/Incomplete"
+echo "/Users/Andries/Downloads/Usenet/Complete"
+echo "/Users/Andries/Downloads/Usenet/Watch"
+echo "300"
+echo "/Users/Andries/Library/Application Support/SABnzbd/scripts"
+echo "-----------------------------------------------------------"
+echo "| Categories:"
+echo "| anime, Default, Default, Default"
+echo "| apps, Default, Default, Default"
+echo "| books, Default, Default, Default"
+echo "| consoles, Default, Default, Default"
+echo "| games, Default, Default, Default"
+echo "| movies, Default, Default, Default"
+echo "| music, Default, Default, Default"
+echo "| pda, Default, Default, Default"
+echo "| tv, Default, Default, Default"
+echo "-----------------------------------------------------------"
 
+#------------------------------------------------------------------------------
+# Install Sickbeard
+#------------------------------------------------------------------------------
 
+echo "Download latest Cheetah:"
+open http://www.cheetahtemplate.org/download
 
+tar xvzf Cheetah-2.4.4.tar
+cd Cheetah-2.4.4.tar
+sudo python setup.py install
+
+cd /Applications
+sudo git clone git://github.com/midgetspy/Sick-Beard.git
+cd Sick-Beard
+sudo python /Applications/Sick-Beard/sickbeard.py
+
+#open http://localhost:8081
+
+echo "-----------------------------------------------------------"
+echo "| Menu, Config, General:"
+echo "| Launch Browser    : disable"
+echo "| User Name         : sickbeard"
+echo "| Password          : <password>"
+echo "| Enable API        : enable"
+echo "-----------------------------------------------------------"
+echo "| Menu, Config, Search Settings:"
+echo "| Enable API        : enable"
+echo "| Search Frequency  : 15"
+echo "| Usenet Retention  : 1000"
+echo "| NZB Search        : enable"
+echo "| NZBMethod         : SABnzbd"
+echo "| SABnzbd URL       : http://localhost:8080"
+echo "| SABnzbd Username  : sabnzbd"
+echo "| SABnzbd Password  : <password>"
+echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)"
+echo "| SABnzbd Category  : tv"
+echo "-----------------------------------------------------------"
+echo "| Menu, Config, Search Providers"
+echo "| Sick Beard Index  : Enable"
+echo "-----------------------------------------------------------"
+echo "| Menu, Config, Post Processing"
+echo "| Keep original files : Uncheck"
+echo "| Name Pattern      : Season %0S/%SN S%0SE%0E %QN-%RG"
+echo "| Multi-Episode : Extend"
+echo "-----------------------------------------------------------"
+
+cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
+cd ~/Library/Application\ Support/SABnzbd/scripts/
+cp autoProcessTV.cfg.sample autoProcessTV.cfg 
+
+echo "-----------------------------------------------------------"
+echo "| Modify the following:"
+echo "| port=8081"
+echo "| username=sabnzbd"
+echo "| password=mini_sabnzbd"
+echo "| web_root="
+echo "-----------------------------------------------------------"
+subl autoProcessTV.cfg 
+echo "-----------------------------------------------------------"
+echo "| Modify the following:"
+echo "| tv, Default, Default, sabToSickBeard.py"
+echo "-----------------------------------------------------------"
+open http://localhost:8080/config/categories/
+
+## ERR: python /Applications/Sick-Beard/sickbeard.py –d
+## Datadir must be writable
+
+sudo python /Applications/Sick-Beard/sickbeard.py –d
+
+#------------------------------------------------------------------------------
+# Install CouchPotato
+#------------------------------------------------------------------------------
+
+echo "Download latest CouchPotato:"
+#open http://couchpotatoapp.com
+open https://couchpota.to/updates/latest/osx/
+
+sudo mv ~/Downloads/CouchPotato.app /Applications
+open /Applications/CouchPotato.app
+
+echo "-----------------------------------------------------------"
+echo "| Enter the following settings:"
+echo "| username          : couchpotato"
+echo "| password          : <password>"
+echo "| port              : 8082"
+echo "| Lauch Browser     : Uncheck"
+echo "-----------------------------------------------------------"
+echo "| Download Apps:"
+echo "| SABNnzbd:"
+echo "| SABnzbd URL       : localhost:8080"
+echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)"
+echo "| SABnzbd Category  : movies"
+echo "-----------------------------------------------------------"
+
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.couchpotatoserver.couchpotatoserver.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.couchpotatoserver.couchpotatoserver</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python</string>
+        <string>CouchPotato.py</string>
+        <string>--quiet</string>
+        <string>--daemon</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/Applications/CouchPotatoServer</string>
+</dict>
+</plist>
+EOF
+
+sudo mv /tmp/com.couchpotatoserver.couchpotatoserver.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/com.couchpotatoserver.couchpotatoserver.plist
+
+#------------------------------------------------------------------------------
+# Install Auto-Sub
+#------------------------------------------------------------------------------
+echo "Download latest Auto-Sub:"
+#open http://couchpotatoapp.com
+open http://code.google.com/p/auto-sub/
+
+sudo mv ~/Downloads/auto-sub /Applications/
+sudo python /Applications/auto-sub/AutoSub.py
+
+echo "-----------------------------------------------------------"
+echo "| Click main menu item Config (niet sub-menu item(s)), General:"
+echo "| Rootpath          : /TV/Series"
+echo "| Subtitle English  : nl"
+
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.autosub.autosub.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.autosub.autosub</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python</string>
+        <string>AutoSub.py</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/Applications/auto-sub</string>
+</dict>
+</plist>
+EOF
+
+sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/com.autosub.autosub.plist
+
+#------------------------------------------------------------------------------
+# Install CouchPotato
+#------------------------------------------------------------------------------
+cd /Applications
+git clone https://github.com/mrkipling/maraschino.git
+cd maraschino
+sudo python /Applications/maraschino/Maraschino.py
+
+open http://localhost:7000
 
 
 
