@@ -815,10 +815,27 @@ echo "| pda, Default, Default, Default"
 echo "| tv, Default, Default, Default"
 echo "-----------------------------------------------------------"
 
+
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#  <key>Label</key>
+#  <string>com.sabnzbd.SABnzbd</string>
+#  <key>ProgramArguments</key>
+#  <array>
+#	  <string>/usr/bin/open</string>
+#	  <string>-a</string>
+#	   <string>/Applications/SABnzbd.app</string>
+#  </array>
+#  <key>RunAtLoad</key>
+#  <true/>
+#</dict>
+#</plist>
+
 #------------------------------------------------------------------------------
 # Install Cheetah
 #------------------------------------------------------------------------------
-
 echo "Download latest Cheetah:"
 open http://www.cheetahtemplate.org/download
 
@@ -826,9 +843,14 @@ tar xvzf Cheetah-2.4.4.tar
 cd Cheetah-2.4.4.tar
 sudo python setup.py install
 
+#------------------------------------------------------------------------------
+# Install Sick-Beard
+#------------------------------------------------------------------------------
+echo "Install latest Sick-Beard:"
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
 cd Sick-Beard
+#?? python /Applications/Sick-Beard/CouchPotato.py sickbeard.py  -d -q
 sudo python /Applications/Sick-Beard/sickbeard.py
 
 #open http://localhost:8081
@@ -882,12 +904,35 @@ open http://localhost:8080/config/categories/
 
 ## ERR: python /Applications/Sick-Beard/sickbeard.py –d
 ## Datadir must be writable
-
 sudo python /Applications/Sick-Beard/sickbeard.py –d
+
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#  <key>Label</key>
+#  <string>com.sickbeard.sickbeard</string>
+#  <key>ProgramArguments</key>
+#  <array>
+#	   <string>/usr/local/bin/python</string>
+#	   <string>/Applications/SickBeard/SickBeard.py</string>
+#	   <string>-q</string>
+#	   <string>-d</string>
+#  </array>
+#  <key>RunAtLoad</key>
+#  <true/>
+#</dict>
+#</plist>
+#
+#sudo mv /tmp/com.sickbeard.sickbear.plist ~/Library/LaunchAgents/
+#launchctl load -w ~/Library/LaunchAgents/com.sickbeard.sickbear
+#
+#launchctl start ~/Library/LaunchAgents/com.sickbeard.sickbear
 
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
+## http://christopher-williams.net/2011/02/automating-your-movie-downloads-with-sabnzbd-and-couchpotato/
 
 echo "Download latest CouchPotato:"
 #open http://couchpotatoapp.com
@@ -895,6 +940,9 @@ open https://couchpota.to/updates/latest/osx/
 
 sudo mv ~/Downloads/CouchPotato.app /Applications
 open /Applications/CouchPotato.app
+
+#?? python ~/Downloads/CouchPotato.app/CouchPotato.py -d
+
 
 echo "-----------------------------------------------------------"
 echo "| Enter the following settings:"
@@ -935,8 +983,49 @@ cat >> /tmp/com.couchpotatoserver.couchpotatoserver.plist <<'EOF'
 </plist>
 EOF
 
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#    <key>Label</key>
+#    <string>com.couchpotato.agent</string>
+#    <key>OnDemand</key>
+#    <false/>
+#    <key>ProgramArguments</key>
+#    <array>
+#    <string>python</string>
+#    <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+#    </array>
+#    <key>RunAtLoad</key>
+#    <true/>
+#    <key>WorkingDirectory</key>
+#    <string>/Applications/CouchPotato.app/</string>
+#    <key>ServiceDescription</key>
+#    <string>CouchPotato</string>
+#</dict>
+#</plist>
+
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#  <key>Label</key>
+#  <string>com.couchpotato.couchpotato</string>
+#  <key>ProgramArguments</key>
+#  <array>
+#	  <string>/usr/local/bin/python</string>
+#	  <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+#  </array>
+#  <key>RunAtLoad</key>
+#  <true/>
+#</dict>
+#</plist>
+
+
 sudo mv /tmp/com.couchpotatoserver.couchpotatoserver.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/com.couchpotatoserver.couchpotatoserver.plist
+
+launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotatoserver
 
 #------------------------------------------------------------------------------
 # Install Auto-Sub
