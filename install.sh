@@ -23,7 +23,6 @@ else
   exit 1
 fi
 
-
 #------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
@@ -42,9 +41,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 #echo -e "Please enter Full Name for GIT"
 #read GIT_FULL_NAME
+GIT_FULL_NAME='Andries Jongsma'
 
 #echo -e "Please enter e-mail address for GIT"
 #read GIT_EMAIL
+GIT_EMAIL='a.jongsma@gmail.com'
 
 #echo -e "Please enter the MySQL Password"
 #read MYSQL_PASSWORD
@@ -52,12 +53,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #echo "Please enter the required role name: postgres"
 #read POSTGRESQL_USER
 
+
 #------------------------------------------------------------------------------
 # Variables
 #------------------------------------------------------------------------------
 #APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
-GIT_FULL_NAME='Andries Jongsma'
-GIT_EMAIL='a.jongsma@gmail.com'
 
 
 #------------------------------------------------------------------------------
@@ -66,6 +66,7 @@ GIT_EMAIL='a.jongsma@gmail.com'
 # run software update and reboot
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
+
 
 #------------------------------------------------------------------------------
 # Checking system directories
@@ -76,7 +77,6 @@ GIT_EMAIL='a.jongsma@gmail.com'
 #else
 #    echo "Directory /var/log/devicemgr/                    [OK]"
 #fi
-
 
 
 #------------------------------------------------------------------------------
@@ -95,6 +95,7 @@ else
     echo "Xcode found								[OK]"
 fi
 
+
 #------------------------------------------------------------------------------
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
@@ -108,6 +109,7 @@ if [ ! -e /usr/bin/gcc ] ; then
 else
     echo "GCC found								[OK]"
 fi
+
 
 #------------------------------------------------------------------------------
 # Check for Java
@@ -123,6 +125,7 @@ else
     echo "Java found								[OK]"
 fi
 
+
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
 #------------------------------------------------------------------------------
@@ -137,6 +140,7 @@ if [ ! -e /Applications/Server.app ] ; then
 else
     echo "OS X Server found							[OK]"
 fi
+
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
@@ -160,8 +164,9 @@ else
     echo "Sublime Text link found						[OK]"
 fi
 
+
 #------------------------------------------------------------------------------
-# Check for iTerm
+# Check for iTerm 2
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/iTerm.app ] ; then
     echo "iTerm not installed, please install..."
@@ -174,6 +179,7 @@ if [ ! -e /Applications/iTerm.app ] ; then
 else
     echo "iTerm found                            [OK]"
 fi
+
 
 #------------------------------------------------------------------------------
 # Colourize terminal
@@ -199,6 +205,7 @@ else
     subl ~/.bash_profile
 fi
 
+
 #------------------------------------------------------------------------------
 # Check for Xlog
 #------------------------------------------------------------------------------
@@ -214,6 +221,7 @@ if [ ! -e /Applications/Xlog.app ] ; then
 else
     echo "Xlog found                         [OK]"
 fi
+
 
 #------------------------------------------------------------------------------
 # Show the ~/Library folder
@@ -236,6 +244,7 @@ else
     echo "Directory ~/Github/                       [OK]"
 fi
 
+
 #------------------------------------------------------------------------------
 # Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
 #------------------------------------------------------------------------------
@@ -251,12 +260,10 @@ else
     echo "pgAdmin found                                [OK]"
 fi
 
+
 #------------------------------------------------------------------------------
 # Git config
 #------------------------------------------------------------------------------
-#git config --global user.name "Andries Jongsma"
-#git config --global user.email "a.jongsma@gmail.com"
-
 git config --global user.name "$GIT_FULL_NAME"
 git config --global user.email "$GIT_EMAIL"
 
@@ -270,6 +277,7 @@ git config -l | grep user.email
 #    echo "OK"
 #fi
 
+
 #------------------------------------------------------------------------------
 # Set computer name (as done via System Preferences → Sharing)
 #------------------------------------------------------------------------------
@@ -280,7 +288,7 @@ git config -l | grep user.email
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 #------------------------------------------------------------------------------
-# Moving original libphp5 file
+# Copy original libphp5 file
 #------------------------------------------------------------------------------
 #sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 if [ -e //usr/libexec/apache2/libphp5.so ] ; then
@@ -316,13 +324,14 @@ brew doctor
 ## PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 #Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
- # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 # Install Bash 4
 brew install bash
 
 # Remove outdated versions from the cellar
 brew cleanup
+
 
 #------------------------------------------------------------------------------
 # Install Bash Completion
@@ -440,7 +449,7 @@ fi
 sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
 #echo "Enter the required role name: postgres"
-#createuser andries ENCRYPTED PASSWORD 'XxNtpQs0' 
+#createuser $POSTGRESQL_USER ENCRYPTED PASSWORD $POSTGRESQL_PASSWORD
 
 #createuser -s -U $USER
 #createuser -s -U $USER
@@ -578,8 +587,8 @@ sudo pear upgrade-all
 
 sudo apachectl -V
 
-echo 'Add/Change the following lines:'
-echo 'ServerName pooky.local'
+echo "Add/Change the following lines:"
+echo "ServerName pooky.local"
 sudo subl /private/etc/apache2/httpd.conf
 
 echo "Add below the first </Directory>:"
@@ -596,11 +605,10 @@ sudo apachectl restart
 #------------------------------------------------------------------------------
 # Enable Apache Virtual Host
 #------------------------------------------------------------------------------
-#/private/etc/apache2/extra/httpd-vhosts.conf
-
-#echo ''
-#echo '# Virtual hosts'
-#echo 'Include /private/etc/apache2/extra/httpd-vhosts.conf'
+## /private/etc/apache2/extra/httpd-vhosts.conf
+#
+#echo "# Virtual hosts"
+#echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
 #sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
 
 
@@ -611,7 +619,6 @@ sudo apachectl restart
 #sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
 #echo "Add/Change the following lines:"
 #echo 'DocumentRoot "/Library/WebServer/Documents"'
-
 
 #SUDO_EDITOR="open -FWne" sudo -e /etc/apache2/httpd.conf
 cat >> /tmp/php_info.php <<'EOF'
@@ -695,6 +702,8 @@ end tell'
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
+## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
+
 #sudo mkdir -p /Library/WebServer/Documents/Newznab/
 #cd /Library/WebServer/Documents/Newznab/
 
@@ -752,8 +761,25 @@ echo "| Admin Setup:"
 echo "-----------------------------------------------------------"
 echo "| NZB File Path Setup:"
 echo "| /Users/Newznab/Sites/newznab/nzbfiles/"
-
+echo "-----------------------------------------------------------"
 open http://localhost/newznab
+
+echo "-----------------------------------------------------------"
+echo "| Enable categories:"
+echo "| a.b.teevee"
+echo "|"
+echo "| For extended testrun:"
+echo "| a.b.multimedia"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/group-list.php
+
+cd /Users/Newznab/Sites/newznab/misc/update_scripts
+#php update_binaries.php && php update_releases.php
+php update_binaries.php
+php update_releases.php
+
+
+
 
 
 #------------------------------------------------------------------------------
@@ -861,8 +887,6 @@ sudo python setup.py install
 ###You probably don't want to change anything below here
 ##do shell script "python " & pathToSickBeard & "/SickBeard.py > /dev/null 2>&1 &"
 ### ----------------------------------------
-
-
 
 echo "Install latest Sick-Beard:"
 cd /Applications
@@ -1125,13 +1149,129 @@ sudo python /Applications/maraschino/Maraschino.py
 open http://localhost:7000
 
 
+#------------------------------------------------------------------------------
+# Install NewzNAB
+#------------------------------------------------------------------------------
+## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
+
+
+
+
+
+
+
+
+
 
 
 
 
 # ?????????????????????????????????????????????????????????????????????????????
 #------------------------------------------------------------------------------
-# Install Maraschino
+# Configure Spotweb as a Newznab Provider
+#------------------------------------------------------------------------------
+## !!!  Create normal user(s) in Spotweb for the API calls, not the ADMIN account !!!
+##
+## --------------------
+## http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
+##
+## /etc/apache2/sites-enabled/blahdieblah (hier naam van bestand of website invullen)
+## <VirtualHost *:8080>
+##     ServerAdmin blahblah@gmail.com
+## 
+##     DocumentRoot /var/www
+##     <Directory />
+##         Options FollowSymLinks
+##         AllowOverride None
+##     </Directory>
+##     <Directory /var/www/>
+##         Options Indexes FollowSymLinks MultiViews
+##         AllowOverride None
+##         Order allow,deny
+##         allow from all
+##     </Directory>
+##     ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+##     <Directory "/usr/lib/cgi-bin">
+##         AllowOverride None
+##         Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+##         Order allow,deny
+##         Allow from all
+##     </Directory>
+##
+## etc etc etc....
+## </VirtualHost>
+##
+## Add:
+## <Directory /Users/Spotweb/Sites/spotweb/>
+##    RewriteEngine on
+##    RewriteCond %{REQUEST_URI} !api/
+##    RewriteRule ^api/?$ index.php?page=newznabapi [QSA,L]
+##    Options Indexes FollowSymLinks Multiviews
+##    AllowOverride None
+##    Order allow,deny
+##    allow from all
+## </Directory>
+##
+## sudo a2enmod rewrite
+## sudo apachectl restart
+##
+##
+## --------------------
+## https://github.com/spotweb/spotweb/wiki/Spotweb-als-Newznab-Provider
+##
+## Open the page to your CouchPotato configuration (http://url.to.your.couchpotato/config/) and click Providers.
+## The item Newznab is listed on this page, you need to enter both a host and an API-key.
+## For Host you'll enter http://localhost/spotweb/?page=newznabapi (please change to match your servername)
+## For Apikey you need to enter the API key of Spotweb. You can find it in Spotweb by navigating to "Change user" from the main page.
+##
+## Enable:
+## mod_rewrite
+## AllowOverride
+## 
+## file .htaccess:
+## RewriteEngine on
+## RewriteCond %{REQUEST_URI} !api/
+## RewriteRule api/?$ /spotweb/index.php?page=newznabapi [QSA,L]
+## 
+## sudo a2enmod rewrite
+## sudo apachectl restart
+## 
+## Check for XML output:
+## open http://localhost/spotweb/api?t=c
+##
+## Sick Beard:
+## 1. Bij Provider Name kun je zelf bepalen hoe je het wilt noemen, bijvoorbeeld Spotweb.
+## 2. Bij Site URL vul je http://server/spotweb/ in (uiteraard na aanpassing aan de eigen omgeving).
+## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## open http://localhost:8081/config/providers/
+##
+## CouchPotato:
+## 1. Bij Host vul je server/spotweb in (uiteraard na aanpassing aan de eigen omgeving).
+## 2. Bij Apikey vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## Op de pagina http://url.naar.couchpotato/config/ en klik op Providers. Op die pagina staat het onderdeel Newznab. Hier dien je een host en een API-key op te geven.
+## open open http://localhost:8081/config
+##
+## Headphones:
+## 1. Vink Newznab aan.
+## 2. Bij Newznabhost vul je server/spotweb in.
+## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## Op de pagina http://url.naar.headphones/config staat Newznab onder Providers.
+## --------------------
+## http://patrickscholten.com/spotweb-gebruiken-als-newznab-server/
+## --------------------
+
+
+
+
+
+
+
+# ?????????????????????????????????????????????????????????????????????????????
+#------------------------------------------------------------------------------
+# Install LazyLibrarian
 #------------------------------------------------------------------------------
 ## https://github.com/itsmegb/LazyLibrarian
+
+
+
 
