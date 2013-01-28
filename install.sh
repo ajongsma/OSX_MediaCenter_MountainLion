@@ -2,13 +2,13 @@
 
 #bold=`tput bold`
 #black=`tput setaf 0` #   0  Black
-#red=`tput setaf 1`  # 	1	Red
-#green=`tput setaf 2`  # 	2	Green
-#yellow=`tput setaf 3`  # 	3	Yellow
-#blue=`tput setaf 4`  # 	4	Blue
-#magenta=`tput setaf 5`  # 	5	Magenta
-#cyan=`tput setaf 6`  # 	6	Cyan
-#white=`tput setaf 7`  # 	7	White
+#red=`tput setaf 1`  #  1   Red
+#green=`tput setaf 2`  #    2   Green
+#yellow=`tput setaf 3`  #   3   Yellow
+#blue=`tput setaf 4`  #     4   Blue
+#magenta=`tput setaf 5`  #  5   Magenta
+#cyan=`tput setaf 6`  #     6   Cyan
+#white=`tput setaf 7`  #    7   White
 #reset=`tput sgr0`
  
 #echo $bold$blue"  [color] Weee!!!"$reset
@@ -17,7 +17,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   os="Mac"
   app_file="chrome-mac.zip"
   app_path="/Applications"
-  echo "OS X Detected								[OK]"
+  echo "OS X Detected                               [OK]"
 else
   echo "Linux unsupported."
   exit 1
@@ -85,14 +85,14 @@ GIT_EMAIL='a.jongsma@gmail.com'
 if [ ! -e /Applications/Xcode.app ] ; then
     echo "Xcode not installed, please install..."
     open http://itunes.apple.com/us/app/xcode/id497799835?mt=12
-	while ( [ ! -e /Applications/Xcode.app ] )
-	do
-    	echo "Waiting for Xcode to be installed..."
-		sleep 15
-	done
-	sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+    while ( [ ! -e /Applications/Xcode.app ] )
+    do
+        echo "Waiting for Xcode to be installed..."
+        sleep 15
+    done
+    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 else
-    echo "Xcode found								[OK]"
+    echo "Xcode found                               [OK]"
 fi
 
 
@@ -101,13 +101,13 @@ fi
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/gcc ] ; then
     echo "GCC not installed, please install..."
-	while ( [ $(which gcc) == "" ] )
-	do
-    	echo "Waiting for GCC to be installed..."
-		sleep 15
-	done
+    while ( [ $(which gcc) == "" ] )
+    do
+        echo "Waiting for GCC to be installed..."
+        sleep 15
+    done
 else
-    echo "GCC found								[OK]"
+    echo "GCC found                             [OK]"
 fi
 
 
@@ -116,13 +116,13 @@ fi
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/java ] ; then
     echo "Java not installed, please install..."
-	while ( [ $(which java) == "" ] )
-	do
-    	echo "Waiting for Java to be installed..."
-		sleep 15
-	done
+    while ( [ $(which java) == "" ] )
+    do
+        echo "Waiting for Java to be installed..."
+        sleep 15
+    done
 else
-    echo "Java found								[OK]"
+    echo "Java found                                [OK]"
 fi
 
 
@@ -132,13 +132,13 @@ fi
 if [ ! -e /Applications/Server.app ] ; then
     echo "OS X Server not installed, please install..."
     open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
-	while ( [ ! -e /Applications/Server.app ] )
-	do
-    	echo "Waiting for OS X Server to be installed..."
-		sleep 15
-	done
+    while ( [ ! -e /Applications/Server.app ] )
+    do
+        echo "Waiting for OS X Server to be installed..."
+        sleep 15
+    done
 else
-    echo "OS X Server found							[OK]"
+    echo "OS X Server found                         [OK]"
 fi
 
 
@@ -148,20 +148,20 @@ fi
 if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
     echo "Sublime Text not installed, please install..."
     open http://www.sublimetext.com
-	while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
-	do
-    	echo "Waiting for Sublime Text to be installed..."
-		sleep 15
-	done
+    while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
+    do
+        echo "Waiting for Sublime Text to be installed..."
+        sleep 15
+    done
 else
-    echo "Sublime Text found							[OK]"
+    echo "Sublime Text found                            [OK]"
 fi
 if [ ! -e /usr/local/bin/subl ] ; then
-	echo "Creating link to Sublime Text..."
-	sudo mkdir -p /usr/local/bin/ 
-	sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+    echo "Creating link to Sublime Text..."
+    sudo mkdir -p /usr/local/bin/ 
+    sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 else
-    echo "Sublime Text link found						[OK]"
+    echo "Sublime Text link found                       [OK]"
 fi
 
 
@@ -291,15 +291,15 @@ git config -l | grep user.email
 # Copy original libphp5 file
 #------------------------------------------------------------------------------
 #sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
-if [ -e //usr/libexec/apache2/libphp5.so ] ; then
-	echo "Original libphp5-file found, copying file..."
+if [ -e /usr/libexec/apache2/libphp5.so ] ; then
+    echo "Original libphp5-file found, copying file..."
     sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 else
-	if [ -e //usr/libexec/apache2/libphp5.so.org ] ; then
-		echo "Copied file libphp5 found						[OK]"
-	else
-		echo "No file libphp5 found								[ERR]"
-	fi
+    if [ -e /usr/libexec/apache2/libphp5.so.org ] ; then
+        echo "Copied file libphp5 found                     [OK]"
+    else
+        echo "No file libphp5 found                             [ERR]"
+    fi
 fi
 
 #------------------------------------------------------------------------------
@@ -423,9 +423,12 @@ if [ ! -e /usr/local/Cellar/mysql ] ; then
     /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
 
     mysql.server start
+
+    sudo mkdir /var/mysql
+    sudo ln -s /private/tmp/mysql.sock /var/mysql/mysql.sock
     #mysql -u root -p
 else
-    echo "MySQL found								[OK]"
+    echo "MySQL found                               [OK]"
 fi
 
 
@@ -672,14 +675,14 @@ subl /Users/Spotweb/Sites//spotweb/dbsettings.inc.php
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
-echo "| Type              : PostgreSQL"
-echo "| Server            : localhost"
-echo "| Database          : spotweb_db"
-echo "| Username          : spotweb_user"
-echo "| Password          : <password>"
+echo "| Type                          : PostgreSQL"
+echo "| Server                        : localhost"
+echo "| Database                      : spotweb_db"
+echo "| Username                      : spotweb_user"
+echo "| Password                      : <password>"
 echo "-----------------------------------------------------------"
-echo "| Usenet Server     : XsNews"
-echo "| User Name         : 105764"
+echo "| Usenet Server                 : XsNews"
+echo "| User Name                     : 105764"
 echo "-----------------------------------------------------------"
 
 sudo touch /Users/Spotweb/Sites/spotweb/dbsettings.inc.php
@@ -702,18 +705,25 @@ end tell'
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
+## Sphinx (http://sphinxsearch.com)
+
 ## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
 
 #sudo mkdir -p /Library/WebServer/Documents/Newznab/
 #cd /Library/WebServer/Documents/Newznab/
+
+## ERR:
+#brew install sphinx
+
+brew install unrar
 
 sudo mkdir -p /Users/Newznab/Sites/newznab/
 cd /Users/Newznab/Sites/newznab/
 
 echo "-----------------------------------------------------------"
 echo "Enter the following inoformation:"
-echo "Username  : svnplus"
-echo "Password  : svnplu5"
+echo "Username              : svnplus"
+echo "Password              : svnplu5"
 sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
 
 sudo mkdir /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
@@ -730,6 +740,17 @@ sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
 
 echo "-----------------------------------------------------------"
+echo "Enter the httpd.conf:"
+echo "<Directory /Library/WebServer/Documents/newznab>"
+echo "    Options FollowSymLinks"
+echo "    AllowOverride All"
+echo "    Order deny,allow"
+echo "    Allow from all"
+echo "</Directory>"
+echo "-----------------------------------------------------------"
+sudo subl /etc/apache2/httpd.conf
+
+echo "-----------------------------------------------------------"
 echo "Enter the following in MySQL:"
 echo "CREATE DATABASE newznab;"
 echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
@@ -740,29 +761,45 @@ open mysql -u root -p
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
-echo "| Hostname          : localhost"
-echo "| Port              : 3306"
-echo "| Username          : newznab"
-echo "| Password          : <password>"
-echo "| Database          : newznab"
-echo "| DB Engine         : MyISAM"
+echo "| Hostname                      : localhost"
+echo "| Port                          : 3306"
+echo "| Username                      : newznab"
+echo "| Password                      : <password>"
+echo "| Database                      : newznab"
+echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
-echo "| Server            : reader.xsnews.nl"
-echo "| User Name         : 105764"
-echo "| Password          : <password>"
-echo "| Port              : 563"
-echo "| SSL               : Enable"
+echo "| Server                        : reader.xsnews.nl"
+echo "| User Name                     : 105764"
+echo "| Password                      : <password>"
+echo "| Port                          : 563"
+echo "| SSL                           : Enable"
 echo "-----------------------------------------------------------"
 echo "| Caching Setup:"
-echo "| Caching Type      : Memcache"
+echo "| Caching Type                  : Memcache"
 echo "-----------------------------------------------------------"
 echo "| Admin Setup:"
 echo "-----------------------------------------------------------"
-echo "| NZB File Path Setup:"
-echo "| /Users/Newznab/Sites/newznab/nzbfiles/"
+echo "| NZB File Path Setup           : /Users/Newznab/Sites/newznab/nzbfiles/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab
+
+echo "-----------------------------------------------------------"
+echo "| newznab ID                    : <nnplus id>"
+echo "| Unrar Path                    : /usr/local/bin/unrar"
+
+echo "|*Integration Type              : Site Wide"
+echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
+echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
+echo "| Api Key Type                  : Full Api Key"
+
+echo "| Minimum Completion Percent    : 90"
+echo "| Start new groups              : Days, 1"
+
+echo "| Check For Passworded Releases : Deep"
+echo "| Delete Passworded Releases    : Yes"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/site-edit.php
 
 echo "-----------------------------------------------------------"
 echo "| Enable categories:"
@@ -773,60 +810,75 @@ echo "| a.b.multimedia"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/group-list.php
 
+
+## --- TESTING
+
 cd /Users/Newznab/Sites/newznab/misc/update_scripts
-#php update_binaries.php && php update_releases.php
-php update_binaries.php
-php update_releases.php
+##php update_binaries.php && php update_releases.php
+##php update_binaries.php
+##php update_releases.php
 
+cp newznab_screen.sh newznab_local.sh
 
+echo "-----------------------------------------------------------"
+echo "| Update the following:"
+echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
+echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
+subl newznab_local.sh
+
+chmod +x newznab_local.sh
+screen bash
+./newznab_local.sh
+ctrl-ad to detach screen
+
+./Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/newznab_local.sh
 #------------------------------------------------------------------------------
 # Install Sphinx
 #------------------------------------------------------------------------------
 ## http://newznab.readthedocs.org/en/latest/misc/sphinx/
 
 echo "Download latest Sphinx from http://sphinxsearch.com"
-open http://sphinxsearch.com/
+#open http://sphinxsearch.com/
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts
+gcc -v
+cd /usr/bin
+sudo ln -s gcc gcc-4.2
+
+brew install sphinx
+## /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf
+
+which searchd
+## /usr/local/bin/searchd
+which indexer
+## /usr/local/bin/indexer
+
+cd /Users/Newznab/Sites/newznab/misc/sphinx
 ./nnindexer.php generate
 
 echo "-----------------------------------------------------------"
 echo "| Configure Sphinx:"
 echo "| Use Sphinx                 : Yes"
 echo "| "Sphinx Configuration Path : <full path to sphinx.conf>"
-echo "| "Sphinx Binaries Path : <full path to Sphinx binaries>"
+echo "| "Sphinx Binaries Path : /usr/local/bin/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin
 
 ./nnindexer.php daemon
 ./nnindexer.php index full all
+## ERROR: source 'releases': unknown type 'mysql'; skipping.
+## ERROR: index 'releases': failed to configure some of the sources, will not index.
+
 ./nnindexer.php index delta all
+## ERROR: source 'releases_delta': unknown type 'mysql'; skipping.
+## ERROR: index 'releases_delta': failed to configure some of the sources, will not index.
+
 ./nnindexer.php daemon --stop
 ./nnindexer.php daemon
+## WARNING: index 'releases': preload: failed to open /Users/Newznab/Sites/newznab/db/sphinxdata/releases.sph: No such file or directory; NOT SERVING
+## precaching index 'releases_delta'
+
 
 ## ./nnindexer.php search --index releases "some search term"
-
-## -- TODO --
-#------------------------------------------------------------------------------
-# Install Unrar
-#------------------------------------------------------------------------------
-##
-
-## ?? brew install unrar
-
-## http://www.rarlab.com/download.htm
-
-## ?? (1)
-## sudo mv unrar /usr/local/bin
-
-## ?? (2)
-## sudo mv unrar /usr/bin
-
-## ?? (3)
-## tar xvzf rar
-## cd rar
-## sudo install -c -o yourusername unrar /bin
-## which unrar
 
 
 #------------------------------------------------------------------------------
@@ -865,7 +917,7 @@ echo "| HTTPS             : Enable"
 echo "| Launch            : Disable"
 echo "-----------------------------------------------------------"
 
-open https://localhost:9090/sabnzbd/ 
+open https://localhost:8080/sabnzbd/ 
 
 echo "-----------------------------------------------------------"
 echo "| Folders:"
@@ -888,23 +940,28 @@ echo "| pda, Default, Default, Default"
 echo "| tv, Default, Default, Default"
 echo "-----------------------------------------------------------"
 
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.sabnzbd.SABnzbd.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sabnzbd.SABnzbd</string>
+  <key>ProgramArguments</key>
+  <array>
+     <string>/usr/bin/open</string>
+     <string>-a</string>
+      <string>/Applications/SABnzbd.app</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+EOF
 
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.sabnzbd.SABnzbd</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#	  <string>/usr/bin/open</string>
-#	  <string>-a</string>
-#	   <string>/Applications/SABnzbd.app</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
+mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
 
 #------------------------------------------------------------------------------
 # Install Cheetah
@@ -938,9 +995,10 @@ sudo python setup.py install
 echo "Install latest Sick-Beard:"
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
+sudo chown -R andries:staff /Applications/Sick-Beard/
 cd Sick-Beard
 #?? python /Applications/Sick-Beard/CouchPotato.py sickbeard.py  -d -q
-sudo python /Applications/Sick-Beard/sickbeard.py
+python /Applications/Sick-Beard/sickbeard.py
 
 #open http://localhost:8081
 
@@ -1008,36 +1066,39 @@ open http://localhost:8080/config/categories/
 ## tv, Default, Default, sabToSickBeard.py, /Users/Andries/Media/Series
 ##### ????
 
-#### ERR: 
-## python /Applications/Sick-Beard/sickbeard.py –d
-## Datadir must be writable
-#### ERR: 
+#sudo python /Applications/Sick-Beard/sickbeard.py –d
+#sudo python /Applications/Sick-Beard/sickbeard.py -q --nolaunch
 
-sudo python /Applications/Sick-Beard/sickbeard.py –d
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.sickbeard.sickbeard.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+    <key>Label</key>
+    <string>com.sickbeard.sickbeard</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python</string>
+        <string>SickBeard.py</string>
+        <string>-q</string>
+        <string>--nolaunch</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/Applications/Sick-Beard</string>
+</dict>
+</plist>
+EOF
 
-#### ---- NEW
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.sickbeard.sickbeard</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#	   <string>/usr/local/bin/python</string>
-#	   <string>/Applications/SickBeard/SickBeard.py</string>
-#	   <string>-q</string>
-#	   <string>-d</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
-#
-#sudo mv /tmp/com.sickbeard.sickbear.plist ~/Library/LaunchAgents/
-#launchctl load -w ~/Library/LaunchAgents/com.sickbeard.sickbear.plist
-#
-#launchctl start ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
+mv /tmp/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
 
 #------------------------------------------------------------------------------
 # Install CouchPotato
@@ -1072,14 +1133,31 @@ echo "-----------------------------------------------------------"
 echo " Settings, Searcher :"
 echo " Preferrd Words     : dutch"
 echo " Ignored Words      : <remove dutch>"
-echo " Retention          : 1000
+echo " Retention          : 1000"
 echo "-----------------------------------------------------------"
 open http://localhost:8082
 
 
-## --- MODIFIED ---
-#
-#echo "Creating Lauch Agent file:"
+## --- TESTING ---
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.couchpotato.couchpotato</string>
+  <key>ProgramArguments</key>
+  <array>
+      <string>/usr/local/bin/python</string>
+      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+EOF
+
 #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
 #<?xml version="1.0" encoding="UTF-8"?>
 #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -1101,6 +1179,7 @@ open http://localhost:8082
 #</dict>
 #</plist>
 #EOF
+
 #
 #<?xml version="1.0" encoding="UTF-8"?>
 #<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -1132,16 +1211,16 @@ open http://localhost:8082
 #  <string>com.couchpotato.couchpotato</string>
 #  <key>ProgramArguments</key>
 #  <array>
-#	  <string>/usr/local/bin/python</string>
-#	  <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+#     <string>/usr/local/bin/python</string>
+#     <string>/Applications/CouchPotato.app/CouchPotato.py</string>
 #  </array>
 #  <key>RunAtLoad</key>
 #  <true/>
 #</dict>
 #</plist>
 #
-#sudo mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
-#launchctl load -w ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
+mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
 #
 #launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
@@ -1182,8 +1261,8 @@ cat >> /tmp/com.autosub.autosub.plist <<'EOF'
 EOF
 
 sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/com.autosub.autosub.plist
-launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
+launchctl load ~/Library/LaunchAgents/com.autosub.autosub.plist
+#launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
 
 #------------------------------------------------------------------------------
 # Install Maraschino
@@ -1194,22 +1273,6 @@ cd maraschino
 sudo python /Applications/maraschino/Maraschino.py
 
 open http://localhost:7000
-
-
-#------------------------------------------------------------------------------
-# Install NewzNAB
-#------------------------------------------------------------------------------
-## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1262,6 +1325,8 @@ open http://localhost:7000
 ## sudo a2enmod rewrite
 ## sudo apachectl restart
 ##
+## Check for XML output:
+## open http://localhost/spotweb/api?t=c
 ##
 ## --------------------
 ## https://github.com/spotweb/spotweb/wiki/Spotweb-als-Newznab-Provider
@@ -1318,7 +1383,3 @@ open http://localhost:7000
 # Install LazyLibrarian
 #------------------------------------------------------------------------------
 ## https://github.com/itsmegb/LazyLibrarian
-
-
-
-
