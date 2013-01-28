@@ -205,7 +205,7 @@ fi
 #https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
 if [ ! -e /Applications/Xlog.app ] ; then
     echo "Xlog not installed, please install..."
-    open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
+    open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
     while ( [ ! -e /Applications/Xlog.app ] )
     do
         echo "Waiting for Xlog to be installed..."
