@@ -905,14 +905,26 @@ cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnz
 cd ~/Library/Application\ Support/SABnzbd/scripts/
 cp autoProcessTV.cfg.sample autoProcessTV.cfg 
 
+#### --- ORG
+#echo "-----------------------------------------------------------"
+#echo "| Modify the following:"
+#echo "| port=8081"
+#echo "| username=sabnzbd"
+#echo "| password=mini_sabnzbd"
+#echo "| web_root="
+#echo "-----------------------------------------------------------"
+#subl autoProcessTV.cfg 
+
+#### --- NEW
 echo "-----------------------------------------------------------"
 echo "| Modify the following:"
 echo "| port=8081"
-echo "| username=sabnzbd"
-echo "| password=mini_sabnzbd"
+echo "| username=couchpotato"
+echo "| password=<password>"
 echo "| web_root="
 echo "-----------------------------------------------------------"
 subl autoProcessTV.cfg 
+
 
 echo "-----------------------------------------------------------"
 echo "| Modify the following:"
@@ -984,7 +996,7 @@ echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)
 echo "| SABnzbd Category  : movies"
 echo "-----------------------------------------------------------"
 
-
+## --- MODIFIED ---
 echo "-----------------------------------------------------------"
 echo " Settings, Searcher :"
 echo " Preferrd Words     : dutch"
