@@ -984,6 +984,16 @@ echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)
 echo "| SABnzbd Category  : movies"
 echo "-----------------------------------------------------------"
 
+
+echo "-----------------------------------------------------------"
+echo " Settings, Searcher :"
+echo " Preferrd Words     : dutch"
+echo " Ignored Words      : <remove dutch>"
+echo " Retention          : 1000
+echo "-----------------------------------------------------------"
+open http://localhost:8082
+
+
 ## --- MODIFIED ---
 #
 #echo "Creating Lauch Agent file:"
