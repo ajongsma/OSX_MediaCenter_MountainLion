@@ -816,7 +816,7 @@ echo "| tv, Default, Default, Default"
 echo "-----------------------------------------------------------"
 
 #------------------------------------------------------------------------------
-# Install Sickbeard
+# Install Cheetah
 #------------------------------------------------------------------------------
 
 echo "Download latest Cheetah:"
@@ -858,7 +858,7 @@ echo "-----------------------------------------------------------"
 echo "| Menu, Config, Post Processing"
 echo "| Keep original files : Uncheck"
 echo "| Name Pattern      : Season %0S/%SN S%0SE%0E %QN-%RG"
-echo "| Multi-Episode : Extend"
+echo "| Multi-Episode     : Extend"
 echo "-----------------------------------------------------------"
 
 cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
@@ -873,6 +873,7 @@ echo "| password=mini_sabnzbd"
 echo "| web_root="
 echo "-----------------------------------------------------------"
 subl autoProcessTV.cfg 
+
 echo "-----------------------------------------------------------"
 echo "| Modify the following:"
 echo "| tv, Default, Default, sabToSickBeard.py"
@@ -909,6 +910,8 @@ echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)
 echo "| SABnzbd Category  : movies"
 echo "-----------------------------------------------------------"
 
+## --- MODIFIED ---
+
 echo "Creating Lauch Agent file:"
 cat >> /tmp/com.couchpotatoserver.couchpotatoserver.plist <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -927,7 +930,7 @@ cat >> /tmp/com.couchpotatoserver.couchpotatoserver.plist <<'EOF'
     <key>RunAtLoad</key>
     <true/>
     <key>WorkingDirectory</key>
-    <string>/Applications/CouchPotatoServer</string>
+    <string>/Applications/CouchPotato.app</string>
 </dict>
 </plist>
 EOF
@@ -975,7 +978,7 @@ sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/com.autosub.autosub.plist
 
 #------------------------------------------------------------------------------
-# Install CouchPotato
+# Install Maraschino
 #------------------------------------------------------------------------------
 cd /Applications
 git clone https://github.com/mrkipling/maraschino.git
