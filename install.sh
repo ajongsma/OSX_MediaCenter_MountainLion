@@ -846,6 +846,24 @@ sudo python setup.py install
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
+### ----------------------------------------
+### http://jetshred.com/2012/07/26/installing-sickbeard-on-os-x-10-dot-8/
+### Since daemon mode is what’s not working all that’s necessary to get around the bug is to not use daemon mode. Here it is:
+### --------------------
+### This script starts SickBeard and suppressed the output so
+### that it runs as if in daemon mode while avoiding the daemon mode
+### issue. Once you have changed the settings
+### save this script as an Application and add it to your Login Items.
+##
+###Change the following line to the path to your SickBeard folder
+##set pathToSickBeard to "~/Development/Sick-Beard"
+##
+###You probably don't want to change anything below here
+##do shell script "python " & pathToSickBeard & "/SickBeard.py > /dev/null 2>&1 &"
+### ----------------------------------------
+
+
+
 echo "Install latest Sick-Beard:"
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
@@ -902,11 +920,19 @@ echo "| tv, Default, Default, sabToSickBeard.py"
 echo "-----------------------------------------------------------"
 open http://localhost:8080/config/categories/
 
-## ERR: python /Applications/Sick-Beard/sickbeard.py –d
+##### ????
+## http://jetshred.com/2012/07/31/configuring-sickbeard-to-work-with-sabnzbd-plus/
+## tv, Default, Default, sabToSickBeard.py, /Users/Andries/Media/Series
+##### ????
+
+#### ERR: 
+## python /Applications/Sick-Beard/sickbeard.py –d
 ## Datadir must be writable
+#### ERR: 
+
 sudo python /Applications/Sick-Beard/sickbeard.py –d
 
-# ---- NEW
+#### ---- NEW
 #<?xml version="1.0" encoding="UTF-8"?>
 #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 #<plist version="1.0">
@@ -1077,4 +1103,13 @@ sudo python /Applications/maraschino/Maraschino.py
 open http://localhost:7000
 
 
+
+
+
+
+# ?????????????????????????????????????????????????????????????????????????????
+#------------------------------------------------------------------------------
+# Install Maraschino
+#------------------------------------------------------------------------------
+## https://github.com/itsmegb/LazyLibrarian
 
