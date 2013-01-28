@@ -906,6 +906,7 @@ open http://localhost:8080/config/categories/
 ## Datadir must be writable
 sudo python /Applications/Sick-Beard/sickbeard.py –d
 
+# ---- NEW
 #<?xml version="1.0" encoding="UTF-8"?>
 #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 #<plist version="1.0">
@@ -925,9 +926,9 @@ sudo python /Applications/Sick-Beard/sickbeard.py –d
 #</plist>
 #
 #sudo mv /tmp/com.sickbeard.sickbear.plist ~/Library/LaunchAgents/
-#launchctl load -w ~/Library/LaunchAgents/com.sickbeard.sickbear
+#launchctl load -w ~/Library/LaunchAgents/com.sickbeard.sickbear.plist
 #
-#launchctl start ~/Library/LaunchAgents/com.sickbeard.sickbear
+#launchctl start ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
 
 #------------------------------------------------------------------------------
 # Install CouchPotato
@@ -942,7 +943,6 @@ sudo mv ~/Downloads/CouchPotato.app /Applications
 open /Applications/CouchPotato.app
 
 #?? python ~/Downloads/CouchPotato.app/CouchPotato.py -d
-
 
 echo "-----------------------------------------------------------"
 echo "| Enter the following settings:"
@@ -959,36 +959,36 @@ echo "| SABnzbd Category  : movies"
 echo "-----------------------------------------------------------"
 
 ## --- MODIFIED ---
-
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.couchpotatoserver.couchpotatoserver.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.couchpotatoserver.couchpotatoserver</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/python</string>
-        <string>CouchPotato.py</string>
-        <string>--quiet</string>
-        <string>--daemon</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>WorkingDirectory</key>
-    <string>/Applications/CouchPotato.app</string>
-</dict>
-</plist>
-EOF
-
+#
+#echo "Creating Lauch Agent file:"
+#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#    <key>Label</key>
+#    <string>com.couchpotato.couchpotato</string>
+#    <key>ProgramArguments</key>
+#    <array>
+#        <string>/usr/bin/python</string>
+#        <string>CouchPotato.py</string>
+#        <string>--quiet</string>
+#        <string>--daemon</string>
+#    </array>
+#    <key>RunAtLoad</key>
+#    <true/>
+#    <key>WorkingDirectory</key>
+#    <string>/Applications/CouchPotato.app</string>
+#</dict>
+#</plist>
+#EOF
+#
 #<?xml version="1.0" encoding="UTF-8"?>
 #<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 #<plist version="1.0">
 #<dict>
 #    <key>Label</key>
-#    <string>com.couchpotato.agent</string>
+#    <string>com.couchpotato.couchpotato</string>
 #    <key>OnDemand</key>
 #    <false/>
 #    <key>ProgramArguments</key>
@@ -1020,12 +1020,11 @@ EOF
 #  <true/>
 #</dict>
 #</plist>
-
-
-sudo mv /tmp/com.couchpotatoserver.couchpotatoserver.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/com.couchpotatoserver.couchpotatoserver.plist
-
-launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotatoserver
+#
+#sudo mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+#launchctl load -w ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
+#
+#launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
 #------------------------------------------------------------------------------
 # Install Auto-Sub
@@ -1065,6 +1064,7 @@ EOF
 
 sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/com.autosub.autosub.plist
+launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
 
 #------------------------------------------------------------------------------
 # Install Maraschino
