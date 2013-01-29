@@ -1,0 +1,186 @@
+
+http://www.perkussionswartung.com/how-to-install-spotweb-on-mac-os-x-server/
+https://github.com/spotweb/spotweb/wiki/.htaccess-voor-Spotweb
+
+-------------------------------------------------------------------------
+
+http://oizopower.tweakblogs.net/
+
+-------------------------------------------------------------------------
+
+brew install apple-gcc42
+
+?? sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+?? ## PostgreSQL
+?? echo "export PATH=\"\$PATH:/usr/local/pgsql/bin\"" >> ~/.bash_profile
+?? echo "export DYLD_LIBRARY_PATH=\"/usr/local/pgsql/lib:\$DYLD_LIBRARY_PATH\"" >> ~/.bash_profile
+?? echo "export PGDATA=\"/usr/local/pgsql/data\"" >> ~/.bash_profile
+
+?? ## MySQL
+?? echo "export PATH=\"\$PATH:/usr/local/mysql/bin\"" >> ~/.bash_profile
+?? echo "export DYLD_LIBRARY_PATH=\"/usr/local/mysql/lib:\$DYLD_LIBRARY_PATH\"" >> ~/.bash_profile
+
+
+brew update
+brew install sphinx
+
+
+./configure --with-mysql-includes=/Applications/MAMP/Library/include/mysql --with-pgsql=/usr/local/include/postgresql
+./configure --with-mysql-includes=/Applications/XAMPP/xamppfiles/include/mysql
+./configure --with-mysql=/Applications/XAMPP/xamppfiles
+
+make
+make test
+sudo make install
+
+--------------------
+http://sphinxsearch.com/
+
+$ curl -O http://sphinxsearch.com/files/sphinx-2.0.3-release.tar.gz
+$ tar zxvf sphinx-2.0.3-release.tar.gz
+$ cd sphinx-2.0.3-release
+$ ./configure --with-mysql-includes=/usr/local/mysql/include/mysql --with-mysql-libs=/usr/local/mysql/lib/mysql
+$ ./configure --with-mysql-includes=/usr/local/mysql/include/mysql --with-mysql-libs=/usr/local/mysql/lib/mysql --with-pgsql=/usr/local/include/postgresql
+
+$ make
+$ sudo make install
+
+--------------------
+
+http://silicos-it.com/cookbook/configuring_osx_for_chemoinformatics/configuring_osx_for_chemoinformatics.html
+http://pat.github.com/ts/en/installing_sphinx.html
+https://github.com/apatlola/iforms/wiki/Sphinx-installation-on-Mac-OS-X
+
+--------------------
+
+curl -O http://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz  
+tar zxvf libiconv-1.14.tar.gz
+cd libiconv-1.14
+./configure --prefix=/usr/local
+make
+sudo make install
+cd ..
+
+Download and extract the link for expat form http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz
+tar xvzf expat-2.1.0.tar
+cd expat-2.1.0
+./configure --prefix=/usr/local
+make
+sudo make install
+$ cd ..
+
+Download Source tarball (tar.gz) from http://sphinxsearch.com/downloads/release/
+tar xvzf sphinx-2.0.6-release.tar
+cd sphinx-2.0.6-release
+./configure -prefix=/usr/local --with-pgsql --without-mysql
+$ make
+$ sudo make install
+
+To make sure sphinx is installed navigate to cd /usr/local/bin and check if “searchd” is present. 
+
+-------------------------------------------------------------------------
+
+httpd.conf:
+Find AllowOverride None within the <Directory "/Library/WebServer/Documents"> section and change to AllowOverride All so that .htaccess files will work.
+
+php.ini (generic):
+replace all instances of /var/mysql/mysql.sock into /tmp/mysql.sock
+error_reporting = E_ALL | E_STRICT
+
+-------------------------------------------------------------------------
+
+cd /usr/lib/php
+sudo php install-pear-nozlib.phar
+cd /usr/lib/php
+sudo pear channel-update pear.php.net
+sudo pecl channel-update pecl.php.net
+sudo pear upgrade-all
+#sudo pear install Mail
+
+--------------------
+
+php.ini (PEAR):
+
+
+?? ;***** Added by go-pear
+?? include_path=".:/usr/lib/php:/usr/lib/php/PEAR"
+?? ;*****
+
+
+?? Old PHP Reference? - Add/modify include_path = ".:/usr/lib/php/pear"
+## /usr/local/Cellar/php54/5.4.9/bin/pear
+
+## chmod -R ug+w /usr/local/Cellar/php54/5.4.9/lib/php
+pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+
+-------------------------------------------------------------------------
+
+Python:
+
+To find out the Python system’s site-packages location, execute the following from the command line:
+python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
+
+cd ~/Downloads
+tar xfz MySQL-python-1.2.3.tar.gz
+cd MySQL-python-1.2.3
+python setup.py build
+sudo python setup.py install
+
+test Python install:
+python
+>>> import MySQLdb as mysql
+>>> db = mysql.connect('localhost', 'root', 'password')
+>>> cur = db.cursor()
+>>> cur.execute("select version()")
+1L
+>>> print cur.fetchone()
+('5.5.24',)
+
+-------------------------------------------------------------------------
+
+SpotWeb API /spotweb/api?t=c :
+
+http://synology.brickman.nl/syn_howto/HowTo%20-%20install%20Spotweb.txt
+http://dl.dropbox.com/u/5653370/syn_files/apache_conf/apache.conf
+http://dl.dropbox.com/u/5653370/syn_files/apache_conf/spotweb.conf
+
+--------------------
+
+Try adding those lines to httpd.conf add the end of the <Location /www> block and restart apache:
+  RewriteEngine on
+  RewriteCond %{REQUEST_URI} !api/
+  RewriteRule api/?$ spotweb/index.php?page=newznabapi [QSA,L]
+
+--------------------
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on  
+	RewriteCond %{REQUEST_URI} !api/  
+	RewriteRule api/?$ index.php?page=newznabapi [QSA,L]  
+</IfModule>
+
+--------------------
+
+.htaccess:
+Options Indexes FollowSymLinks Multiviews
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !api/
+RewriteBase /spotweb/
+RewriteRule api/?$ index.php?page=newznabapi [QSA,L]
+
+-------------------------------------------------------------------------
+
+https://gist.github.com/4222932
+spotweb_retr.sh
+
+-------------------------------------------------------------------------
+
+if [ ! -f /usr/local ] ; then sudo mkdir -p /usr/local ; fi
+sudo chown 'whoami':'id -g -n' /usr/local
+
+-------------------------------------------------------------------------
+
