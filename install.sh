@@ -820,6 +820,11 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts
 
 cp newznab_screen.sh newznab_local.sh
 
+## ERR:
+## PHP Warning:  require_once(PEAR.php): failed to open stream: No such file or directory in /Users/Newznab/Sites/newznab/www/lib/Net_NNTP/NNTP/Protocol/Client.php on line 73
+## PHP Fatal error:  require_once(): Failed opening required 'PEAR.php' (include_path='.:') in /Users/Newznab/Sites/newznab/www/lib/Net_NNTP/NNTP/Protocol/Client.php on line 73
+
+
 echo "-----------------------------------------------------------"
 echo "| Update the following:"
 echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
