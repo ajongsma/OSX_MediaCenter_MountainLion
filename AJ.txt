@@ -1,4 +1,23 @@
 
+### ERR 
+### PHP Strict standards:  Non-static method PEAR::isError() should not be called statically, assuming $this from incompatible context in /Users/Newznab/Sites/newznab/www/lib/backfill.php on line 161
+### PHP Stack trace:
+### PHP   1. {main}() /Users/Newznab/Sites/newznab/misc/update_scripts/update_binaries.php:0
+### PHP   2. Binaries->updateAllGroups() /Users/Newznab/Sites/newznab/misc/update_scripts/update_binaries.php:21
+### PHP   3. Binaries->updateGroup() /Users/Newznab/Sites/newznab/www/lib/binaries.php:66
+### PHP   4. Backfill->postdate() /Users/Newznab/Sites/newznab/www/lib/binaries.php:210
+### 
+### Strict standards: Non-static method PEAR::isError() should not be called statically, assuming $this from incompatible context in /Users/Newznab/Sites/newznab/www/lib/backfill.php on line 161
+### 
+### Call Stack:
+###     0.0002     233568   1. {main}() /Users/Newznab/Sites/newznab/misc/update_scripts/update_binaries.php:0
+###     0.0396    6007968   2. Binaries->updateAllGroups() /Users/Newznab/Sites/newznab/misc/update_scripts/update_binaries.php:21
+###     0.2719    6023392   3. Binaries->updateGroup() /Users/Newznab/Sites/newznab/www/lib/binaries.php:66
+###     6.6002    6034008   4. Backfill->postdate() /Users/Newznab/Sites/newznab/www/lib/binaries.php:210
+### ### ### 
+
+-------------------------------------------------------------------------
+
 http://www.perkussionswartung.com/how-to-install-spotweb-on-mac-os-x-server/
 https://github.com/spotweb/spotweb/wiki/.htaccess-voor-Spotweb
 
@@ -8,81 +27,9 @@ http://oizopower.tweakblogs.net/
 
 -------------------------------------------------------------------------
 
-brew install apple-gcc42
-
-?? sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-
-?? ## PostgreSQL
-?? echo "export PATH=\"\$PATH:/usr/local/pgsql/bin\"" >> ~/.bash_profile
-?? echo "export DYLD_LIBRARY_PATH=\"/usr/local/pgsql/lib:\$DYLD_LIBRARY_PATH\"" >> ~/.bash_profile
-?? echo "export PGDATA=\"/usr/local/pgsql/data\"" >> ~/.bash_profile
-
-?? ## MySQL
-?? echo "export PATH=\"\$PATH:/usr/local/mysql/bin\"" >> ~/.bash_profile
-?? echo "export DYLD_LIBRARY_PATH=\"/usr/local/mysql/lib:\$DYLD_LIBRARY_PATH\"" >> ~/.bash_profile
-
-
-brew update
-brew install sphinx
-
-
-./configure --with-mysql-includes=/Applications/MAMP/Library/include/mysql --with-pgsql=/usr/local/include/postgresql
-./configure --with-mysql-includes=/Applications/XAMPP/xamppfiles/include/mysql
-./configure --with-mysql=/Applications/XAMPP/xamppfiles
-
-make
-make test
-sudo make install
-
---------------------
-http://sphinxsearch.com/
-
-$ curl -O http://sphinxsearch.com/files/sphinx-2.0.3-release.tar.gz
-$ tar zxvf sphinx-2.0.3-release.tar.gz
-$ cd sphinx-2.0.3-release
-$ ./configure --with-mysql-includes=/usr/local/mysql/include/mysql --with-mysql-libs=/usr/local/mysql/lib/mysql
-$ ./configure --with-mysql-includes=/usr/local/mysql/include/mysql --with-mysql-libs=/usr/local/mysql/lib/mysql --with-pgsql=/usr/local/include/postgresql
-
-$ make
-$ sudo make install
-
---------------------
-
-http://silicos-it.com/cookbook/configuring_osx_for_chemoinformatics/configuring_osx_for_chemoinformatics.html
-http://pat.github.com/ts/en/installing_sphinx.html
-https://github.com/apatlola/iforms/wiki/Sphinx-installation-on-Mac-OS-X
-
---------------------
-
-curl -O http://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz  
-tar zxvf libiconv-1.14.tar.gz
-cd libiconv-1.14
-./configure --prefix=/usr/local
-make
-sudo make install
-cd ..
-
-Download and extract the link for expat form http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz
-tar xvzf expat-2.1.0.tar
-cd expat-2.1.0
-./configure --prefix=/usr/local
-make
-sudo make install
-$ cd ..
-
-Download Source tarball (tar.gz) from http://sphinxsearch.com/downloads/release/
-tar xvzf sphinx-2.0.6-release.tar
-cd sphinx-2.0.6-release
-./configure -prefix=/usr/local --with-pgsql --without-mysql
-$ make
-$ sudo make install
-
-To make sure sphinx is installed navigate to cd /usr/local/bin and check if “searchd” is present. 
-
--------------------------------------------------------------------------
-
 httpd.conf:
-Find AllowOverride None within the <Directory "/Library/WebServer/Documents"> section and change to AllowOverride All so that .htaccess files will work.
+Find AllowOverride None within the <Directory "/Library/WebServer/Documents"> section and 
+change to AllowOverride All so that .htaccess files will work.
 
 php.ini (generic):
 replace all instances of /var/mysql/mysql.sock into /tmp/mysql.sock
@@ -103,16 +50,20 @@ sudo pear upgrade-all
 php.ini (PEAR):
 
 
+?? Hmm ;***** Added by go-pear
+?? Hmm include_path=".:/usr/lib/php:/usr/lib/php/PEAR"
+?? Hmm ;*****
+
 ?? ;***** Added by go-pear
-?? include_path=".:/usr/lib/php:/usr/lib/php/PEAR"
+include_path=".:/usr/local/Cellar/php54/5.4.11/lib/php:/usr/local/Cellar/php54/5.4.11/lib/php/PEAR"
 ?? ;*****
 
-
 ?? Old PHP Reference? - Add/modify include_path = ".:/usr/lib/php/pear"
-## /usr/local/Cellar/php54/5.4.9/bin/pear
+## /usr/local/Cellar/php54/5.4.11/bin/pear
 
-## chmod -R ug+w /usr/local/Cellar/php54/5.4.9/lib/php
-pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+## chmod -R ug+w /usr/local/Cellar/php54/5.4.11/lib/php
+
+pear config-set php_ini /usr/local/etc/php/5.11/php.ini
 
 PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
