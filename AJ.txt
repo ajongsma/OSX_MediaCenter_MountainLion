@@ -10,6 +10,13 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 # NewzNAB - Hashed releases
 # Je kan het "update_parsing.php" script draaien
 
+# NewzNAB = RegEx
+
+# a.b.nl etc. (ordinal 5 oid): /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS
+
+# CatchAll (ordinal 8 oid): /.*?\[(?P<parts>\d{1,3}\/\d{1,3})\].*?\"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|srt|ass|mpg|txt|zip|wmv|ssa|srr|r\d{1,3}|7z|tar|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|ac3|t\d{1,2}|u\d{1,3})/iS
+
+
 # On ERR: Fatal error occured while connecting to the newsserver: (0) Unexpected response [response: "ca.giganews.com free.pt:2779679"]
 # => Decrease retrieve increment to, for example, 500 
 
