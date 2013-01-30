@@ -15,6 +15,16 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 
 -------------------------------------------------------------------------
 
+## http://gathering.tweakers.net/forum/list_message/39485000#39485000
+
+## NewzNAb: releases.php
+## ToCheck for QoQ releases (
+# Als je de volgende code in update_parser.php op regel 256, net na $searchname = str_replace('_', ' ', $foundName);, zet dan moet hij het daar ook aanpassen:
+# if(strpos($searchname, 'QoQ-sbuSLN') !== FALSE) {
+#     $searchname = strrev($searchname);
+# }
+-------------------------------------------------------------------------
+
 ### http://www.tiag.me/how-to-backfill-newznab-safely-without-bloating-your-database/
 
 # http://www.tiag.me/newznab_screen.txt:
