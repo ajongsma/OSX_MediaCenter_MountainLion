@@ -21,13 +21,25 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 <?php
 // V0.1 By Splendid
 
-define('FS_ROOT', '{pad_naar_newznab}');
+#define('FS_ROOT', '{pad_naar_newznab}');
 
-require_once (FS_ROOT . "config.php");
-require_once (FS_ROOT . "lib/framework/db.php");
-require_once (FS_ROOT . "lib/nntp.php");
-require_once (FS_ROOT . "lib/site.php");
-require_once (FS_ROOT . "lib/util.php");
+#require_once (FS_ROOT . "config.php");
+#require_once (FS_ROOT . "lib/framework/db.php");
+#require_once (FS_ROOT . "lib/nntp.php");
+#require_once (FS_ROOT . "lib/site.php");
+#require_once (FS_ROOT . "lib/util.php");
+
+define('FS_ROOT', realpath(dirname(__FILE__)));
+
+require_once (FS_ROOT . "/../../www/config.php");
+require_once (FS_ROOT . "/../../www/lib/framework/db.php");
+require_once (FS_ROOT . "/../../www/lib/nntp.php");
+require_once (FS_ROOT . "/../../www/lib/site.php");
+require_once (FS_ROOT . "/../../www/lib/util.php");
+require_once (FS_ROOT . "/../../www/lib/releases.php");
+require_once (FS_ROOT . "/../../www/lib/nfo.php");
+require_once (FS_ROOT . "/../../www/lib/category.php");
+
 
 $Filecount = 0;
 $rescount = 0;
