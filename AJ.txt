@@ -1,5 +1,8 @@
-
 #- 30-01-2013 ------------------------------------------------------------------------
+
+https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
+
+-------------------------------------------------------------------------
 
 # NewzNAb - Read INSTALL.TXT
 # Allowoverride All must be set in your apache vhost conf.
