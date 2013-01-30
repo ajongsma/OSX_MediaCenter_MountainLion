@@ -7,6 +7,9 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 # NewzNAb - Read INSTALL.TXT
 # Allowoverride All must be set in your apache vhost conf.
 
+# FAQ NewzNab
+# https://newznab.readthedocs.org/en/latest/faq/#error-mysql-server-has-gone-away
+
 # NewzNAB - Hashed releases
 # Je kan het "update_parsing.php" script draaien
 
