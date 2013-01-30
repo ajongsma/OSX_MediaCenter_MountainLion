@@ -307,15 +307,18 @@ sudo nano proxy.conf:
 
 -------------------------------------------------------------------------
 
+1) => a.b.teevee
+2) => a.b.hdtv.x264
+3) => a.b.nl
+
+*) Others:
 a.b.cores
 a.b.etc
 a.b.hdtv
-a.b.hdtv.x264
 a.b.misc
 a.b.movies
 a.b.multimedia
 a.b.multimedia.tv
-a.b.teevee
 a.b.tvseries
 a.b.x264
 
