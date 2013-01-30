@@ -17,12 +17,68 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 
 ## http://gathering.tweakers.net/forum/list_message/39485000#39485000
 
-## NewzNAb: releases.php
-## ToCheck for QoQ releases (
-# Als je de volgende code in update_parser.php op regel 256, net na $searchname = str_replace('_', ' ', $foundName);, zet dan moet hij het daar ook aanpassen:
-# if(strpos($searchname, 'QoQ-sbuSLN') !== FALSE) {
-#     $searchname = strrev($searchname);
-# }
+## update_release_groups.php
+<?php
+// V0.1 By Splendid
+
+define('FS_ROOT', '{pad_naar_newznab}');
+
+require_once (FS_ROOT . "config.php");
+require_once (FS_ROOT . "lib/framework/db.php");
+require_once (FS_ROOT . "lib/nntp.php");
+require_once (FS_ROOT . "lib/site.php");
+require_once (FS_ROOT . "lib/util.php");
+
+$Filecount = 0;
+$rescount = 0;
+$test = 0;
+$db = new DB();
+
+//Full DB
+//$res = $db->query("select r.searchname, r.ID as RID, r.categoryID, r.guid, r.postdate, rn.ID as nfoID, g.name as groupname, rf.name as rarfilename from releases r left join releasenfo rn on rn.releaseID = r.ID left join groups g on g.ID = r.groupID left join releasefiles rf on rf.releaseID = r.ID WHERE r.searchname LIKE '%QoQ%'");
+//Last 24Hours
+$res = $db->query("select r.searchname, r.ID as RID, r.categoryID, r.guid, r.postdate, rn.ID as nfoID, g.name as groupname, rf.name as rarfilename from releases r left join releasenfo rn on rn.releaseID = r.ID left join groups g on g.ID = r.groupID left join releasefiles rf on rf.releaseID = r.ID WHERE r.adddate BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND r.searchname LIKE '%QoQ%'");
+
+echo "Update searchnames for specific release groups\n";
+if ($res) {
+    $rescount = sizeof($res);
+    echo "\nProcessing ".$rescount." release groups\n\n";
+    
+    foreach($res as $rel) {
+        $test = 0;
+        if ($test == 0) {
+            $foundName = '';
+            $tempname = '';
+
+            $searchname = str_replace('_', ' ', $rel['searchname']);
+                
+            if(strpos($searchname, 'QoQ-sbu') !== FALSE) {
+                $searchname = strrev($searchname);
+                $Filecount++;
+            }
+
+            echo '['.date("H:i:s").'] New SearchName:    '.$searchname."\n";
+            echo '['.date("H:i:s").'] Old Name:        '.$rel['searchname']."\n";
+            echo '['.date("H:i:s").'] ReleaseID:        '.$rel['RID']."\n";
+
+            if ( $rel['searchname'] == $searchname)  {
+                echo "[".date("H:i:s")."] Status:        Nothing Changed, Not Updating Release\n";
+            } else  {
+                echo "[".date("H:i:s")."] Status:        Release Changed, Updating Release\n";
+                $db->query(sprintf("UPDATE releases SET searchname = %s WHERE releases.ID = %d", $db->escapeString($searchname), $rel['RID']));
+            }
+            echo "\n";
+        }
+    }
+    echo date("H:i:s")."] ".$rescount . " releases checked\n";
+    echo date("H:i:s")."] ".$Filecount . " releases updated\n";
+} else {
+    echo date("H:i:s")."] No updates required\n";
+}
+
+?>
+
+
 -------------------------------------------------------------------------
 
 ### http://www.tiag.me/how-to-backfill-newznab-safely-without-bloating-your-database/
