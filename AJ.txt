@@ -7,6 +7,9 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 # NewzNAb - Read INSTALL.TXT
 # Allowoverride All must be set in your apache vhost conf.
 
+# NewzNAB - Hashed releases
+# Je kan het "update_parsing.php" script draaien
+
 # On ERR: Fatal error occured while connecting to the newsserver: (0) Unexpected response [response: "ca.giganews.com free.pt:2779679"]
 # => Decrease retrieve increment to, for example, 500 
 
