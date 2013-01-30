@@ -30,6 +30,7 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 
 ## http://gathering.tweakers.net/forum/list_message/39485000#39485000
 
+#cp newznab_update_release_groups.php /Users/Newznab/Sites/newznab/misc/update_scripts
 ## update_release_groups.php
 <?php
 // V0.1 By Splendid
