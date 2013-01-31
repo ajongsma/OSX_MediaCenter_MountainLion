@@ -69,7 +69,7 @@ cat $PHP_INI_2 | grep "^memory_limit"
 cat $PHP_INI_2 | grep "^error_reporting"
 
 if [ -e $MYSQL_CONF ] ; then
-  # https://newznab.readthedocs.org/en/latest/install/
+	# https://newznab.readthedocs.org/en/latest/install/
 	echo "======================"
 	echo "MYSQL => ${MYSQL_CONF}"
 	echo "----------------------"
@@ -80,3 +80,19 @@ if [ -e $MYSQL_CONF ] ; then
 else
 	echo "Missing file : ${MYSQL_CONF}   [ERR]"
 fi
+
+echo "======================"
+echo "Up and Running"
+echo "----------------------"
+echo "MySQL      :$(mysql.server status)"
+echo "PostgreSQL : $(pg_ctl status -D /usr/local/var/postgres)" | grep pg_ctl
+
+echo "memcached  :$(ps aux)" | grep memcached
+echo "searchd    :$(ps aux)" | grep searchd
+
+echo "SABnzbd    :$(ps aux)" | grep SABnzbd
+echo "SickBeard  :$(ps aux)" | grep SickBeard.py
+echo "AutoSub    :$(ps aux)" | grep AutoSub.py
+
+
+
