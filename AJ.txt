@@ -1,4 +1,3 @@
-
 #- 31-01-2013 ------------------------------------------------------------------------
 
 =========================================================================
@@ -6,6 +5,13 @@ NewzNAB:
 =======
 
 Met update_parsing worden middels nfo-bestanden de mooiere namen alsnog ingevoerd indien van toepassing.
+
+-------------------------------------------------------------------------
+
+1. update_binaries
+2. update_releases.php
+3. update_parsing
+4. update_release_groups.ph
 
 -------------------------------------------------------------------------
 
