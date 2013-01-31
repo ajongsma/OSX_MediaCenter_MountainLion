@@ -10,12 +10,19 @@ MYSQL_CONF=/etc/my.cnf
 PATH_TO_SPOTWEB=/volume1/web/spotweb
 PATH_TO_PHP=/usr/bin/php
 
-
-
 echo "======================"
 echo -n `date +%Y-%m-%d\ %H:%M`
 echo ": Starting check"
 echo ""
+
+echo "======================"
+echo ".BASH_PROFILE (source ~/.bash_profile)"
+echo "----------------------"
+echo "~/.bash_profile :" 
+echo ""
+echo "=> PATH PHP:"
+echo $PATH | grep PHP
+
 
 echo "======================"
 echo "APACHE2"
@@ -45,6 +52,12 @@ cat PHP_INI_1 | grep "memory_limit"
 cat PHP_INI_2 | grep "max_execution_time"
 cat PHP_INI_2 | grep "date.timezone"
 
+echo "======================"
+echo "MYSQL"
+echo "----------------------"
+echo "memory_limit =  -1"
+echo ""
+cat MYSQL_CONF | grep "memory_limit"
 
-MYSQL_CONF
+
 
