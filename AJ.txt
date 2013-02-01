@@ -54,6 +54,41 @@ Alias /spotweb /data/sites/spotweb/
     Satisfy Any
 </Directory>
 
+------------------------------------
+
+<Directory /srv/http/spotweb>
+RewriteEngine on
+RewriteRule ^api/?$ index.php?page=newznabapi [QSA,L]
+Options Indexes FollowSymLinks Multiviews 
+Order deny,allow
+Deny from all
+Allow from 127.0.0.1
+ExpiresActive On
+ExpiresDefault "access plus 4 hours"
+ExpiresByType application/javascript A900
+ExpiresByType application/x-javascript A900
+ExpiresByType text/javascript A900
+ExpiresByType text/html A90
+ExpiresByType text/xml A90
+ExpiresByType text/css A900
+ExpiresByType text/plain A62
+ExpiresByType image/gif A14400
+ExpiresByType image/jpg A14400
+ExpiresByType image/jpeg A14400
+ExpiresByType image/png A14400
+ExpiresByType image/bmp A14400
+ExpiresByType application/x-shockwave-flash A3600
+</Directory>
+
+------------------------------------
+
+.htaccess Spotweb Folder:
+<IfModule mod_rewrite.c>
+    RewriteEngine on  
+    RewriteCond %{REQUEST_URI} !api/  
+    RewriteRule api/?$ index.php?page=newznabapi [QSA,L]  
+</IfModule>
+
 =========================================================================
 
 #- 31-01-2013 ------------------------------------------------------------------------
