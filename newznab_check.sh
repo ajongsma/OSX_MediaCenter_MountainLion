@@ -40,6 +40,8 @@ if [ -e APACHE2_CONF ] ; then
 	echo "======================"
 	echo "APACHE2 => ${APACHE2_CONF}"
 	echo "----------------------"
+	echo "Check :$(/usr/local/apache2/bin/httpd -S)"
+	echo "----------------------"
 	cat $APACHE2_CONF | grep "mod_rewrite.so"
 	cat $APACHE2_CONF | grep "proxy_http_module"
 	cat $APACHE2_CONF | grep "proxy_module"
