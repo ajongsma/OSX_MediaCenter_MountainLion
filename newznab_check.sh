@@ -6,6 +6,7 @@ PHP_INI_1=/private/etc/php.ini
 PHP_INI_2=/usr/local/etc/php/5.4/php.ini
 APACHE2_CONF=/private/etc/apache2/httpd.conf
 MYSQL_CONF=/etc/my.cnf
+SPHINX_CONF=/etc/default/sphinxsearch
 
 PATH_TO_SPOTWEB=/User/Spotweb/Sites/spotweb
 PATH_TO_PHP_1=/usr/bin/php
@@ -59,6 +60,7 @@ echo 'register_globals = Off'
 echo 'max_execution_time = 120'
 echo 'memory_limit = 256M'
 echo 'error_reporting = E_ALL ^ E_STRICT'
+echo '?? extension=sphinx.so'
 echo "----------------------"
 if [ -e PHP_INI_1 ] ; then
 	echo "=> ${PHP_INI_1} : "
@@ -98,6 +100,16 @@ if [ -e $MYSQL_CONF ] ; then
 	cat $MYSQL_CONF | grep "max_allowed_packet"
 else
 	echo "Missing file : ${MYSQL_CONF}   [ERR]"
+fi
+
+if [ -e SPHINX_CONF ] ; then
+	echo "======================"
+	echo "Sphinx => ${SPHINX_CONF}"
+	echo "?? ON"
+	echo "----------------------"
+	cat SPHINX_CONF
+else
+	echo "Missing file : ${SPHINX_CONF}   [ERR]"
 fi
 
 echo "======================"
