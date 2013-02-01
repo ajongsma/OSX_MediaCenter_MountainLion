@@ -7,9 +7,13 @@ en verwijder de #
 
 
 
+-------------------------------------------------------------------------
 
+screen -S NZBUpdate -dmS /pathtoyourdirectory/misc/update_scripts/nix_scripts/./newznab_screen.sh
 
-
+#screen -l  (lists your screen sessions, you should see one call NZBUpdate if it's started from the script above)
+#screen -r (to reconnect to a disconnected session)
+#ctrl + a d  (to detach from the screen session without killing it)
 
 -------------------------------------------------------------------------
 Themes:
