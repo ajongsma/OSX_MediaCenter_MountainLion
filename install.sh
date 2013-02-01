@@ -24,6 +24,10 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# For access to the dump of nzbs, type /query newznab !nzbdump YOURNEWZNABID
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
 # Ask for the administrator password upfront
