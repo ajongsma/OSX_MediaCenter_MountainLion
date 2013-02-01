@@ -5,8 +5,6 @@ sudo nano /var/www/newznab/www/lib/binaries.php
 en verwijder de #
 #$db->query(sprintf("UPDATE partrepair SET attempts=attempts+1 WHERE ID=%d LIMIT 1", $item['ID']));
 
-
-
 -------------------------------------------------------------------------
 
 screen -S NZBUpdate -dmS /pathtoyourdirectory/misc/update_scripts/nix_scripts/./newznab_screen.sh
@@ -37,6 +35,24 @@ https://github.com/clinton-hall/nzbToMedia
 -------------------------------------------------------------------------
 Install:
 http://forums.sabnzbd.org/viewtopic.php?t=12557
+
+-------------------------------------------------------------------------
+
+Alias /spotweb /data/sites/spotweb/
+<Directory /data/sites/spotweb/>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !api/
+    RewriteRule api/?$ index.php?page=newznabapi [QSA,L]
+    Options Indexes MultiViews FollowSymLinks
+    AllowOverride FileInfo Options
+    Order allow,deny
+    AuthType Basic
+    AuthName "Restricted!"
+    Require valid-user
+    Allow from 192.168.0
+    Allow from 127.0.0.1
+    Satisfy Any
+</Directory>
 
 =========================================================================
 
@@ -181,85 +197,6 @@ https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 
 # On ERR: PEAR::isError()
 # Set: error_reporting = E_ALL & ~E_STRICT – in php.ini.
-
--------------------------------------------------------------------------
-
-## http://gathering.tweakers.net/forum/list_message/39485000#39485000
-
-#cp newznab_update_release_groups.php /Users/Newznab/Sites/newznab/misc/update_scripts
-## update_release_groups.php
-<?php
-// V0.1 By Splendid
-
-#define('FS_ROOT', '{pad_naar_newznab}');
-
-#require_once (FS_ROOT . "config.php");
-#require_once (FS_ROOT . "lib/framework/db.php");
-#require_once (FS_ROOT . "lib/nntp.php");
-#require_once (FS_ROOT . "lib/site.php");
-#require_once (FS_ROOT . "lib/util.php");
-
-define('FS_ROOT', realpath(dirname(__FILE__)));
-
-require_once (FS_ROOT . "/../../www/config.php");
-require_once (FS_ROOT . "/../../www/lib/framework/db.php");
-require_once (FS_ROOT . "/../../www/lib/nntp.php");
-require_once (FS_ROOT . "/../../www/lib/site.php");
-require_once (FS_ROOT . "/../../www/lib/util.php");
-require_once (FS_ROOT . "/../../www/lib/releases.php");
-require_once (FS_ROOT . "/../../www/lib/nfo.php");
-require_once (FS_ROOT . "/../../www/lib/category.php");
-
-
-$Filecount = 0;
-$rescount = 0;
-$test = 0;
-$db = new DB();
-
-//Full DB
-//$res = $db->query("select r.searchname, r.ID as RID, r.categoryID, r.guid, r.postdate, rn.ID as nfoID, g.name as groupname, rf.name as rarfilename from releases r left join releasenfo rn on rn.releaseID = r.ID left join groups g on g.ID = r.groupID left join releasefiles rf on rf.releaseID = r.ID WHERE r.searchname LIKE '%QoQ%'");
-//Last 24Hours
-$res = $db->query("select r.searchname, r.ID as RID, r.categoryID, r.guid, r.postdate, rn.ID as nfoID, g.name as groupname, rf.name as rarfilename from releases r left join releasenfo rn on rn.releaseID = r.ID left join groups g on g.ID = r.groupID left join releasefiles rf on rf.releaseID = r.ID WHERE r.adddate BETWEEN NOW() - INTERVAL 1 DAY AND NOW() AND r.searchname LIKE '%QoQ%'");
-
-echo "Update searchnames for specific release groups\n";
-if ($res) {
-    $rescount = sizeof($res);
-    echo "\nProcessing ".$rescount." release groups\n\n";
-    
-    foreach($res as $rel) {
-        $test = 0;
-        if ($test == 0) {
-            $foundName = '';
-            $tempname = '';
-
-            $searchname = str_replace('_', ' ', $rel['searchname']);
-                
-            if(strpos($searchname, 'QoQ-sbu') !== FALSE) {
-                $searchname = strrev($searchname);
-                $Filecount++;
-            }
-
-            echo '['.date("H:i:s").'] New SearchName:    '.$searchname."\n";
-            echo '['.date("H:i:s").'] Old Name:        '.$rel['searchname']."\n";
-            echo '['.date("H:i:s").'] ReleaseID:        '.$rel['RID']."\n";
-
-            if ( $rel['searchname'] == $searchname)  {
-                echo "[".date("H:i:s")."] Status:        Nothing Changed, Not Updating Release\n";
-            } else  {
-                echo "[".date("H:i:s")."] Status:        Release Changed, Updating Release\n";
-                $db->query(sprintf("UPDATE releases SET searchname = %s WHERE releases.ID = %d", $db->escapeString($searchname), $rel['RID']));
-            }
-            echo "\n";
-        }
-    }
-    echo date("H:i:s")."] ".$rescount . " releases checked\n";
-    echo date("H:i:s")."] ".$Filecount . " releases updated\n";
-} else {
-    echo date("H:i:s")."] No updates required\n";
-}
-
-?>
-
 
 -------------------------------------------------------------------------
 
