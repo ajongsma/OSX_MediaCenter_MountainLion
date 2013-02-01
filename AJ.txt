@@ -26,9 +26,13 @@ NewzNAB scripts
 
 -------------------------------------------------------------------------
 
+Scripts:
 http://dl.dropbox.com/u/5653370/syn_files/newznab/
-
 https://github.com/clinton-hall/nzbToMedia
+
+-------------------------------------------------------------------------
+Install:
+http://forums.sabnzbd.org/viewtopic.php?t=12557
 
 =========================================================================
 
