@@ -24,6 +24,7 @@ then
 else
  printf '%s%*s%s\n' "$RED" $col '[FAIL]' "$NORMAL"
 fi
+
 ## -----------------------------------------------
 
 echo "============================================"
@@ -35,12 +36,16 @@ echo "=> PATH PHP:"
 cat ~/.bash_profile | grep php
 echo "$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
-echo "======================"
-echo "APACHE2 => ${APACHE2_CONF}"
-echo "----------------------"
-echo "??? mod_rewrite"
-cat $APACHE2_CONF | grep "proxy_http_module"
-cat $APACHE2_CONF | grep "proxy_module"
+if [ -e APACHE2_CONF ] ; then
+	echo "======================"
+	echo "APACHE2 => ${APACHE2_CONF}"
+	echo "----------------------"
+	echo "??? mod_rewrite"
+	cat $APACHE2_CONF | grep "proxy_http_module"
+	cat $APACHE2_CONF | grep "proxy_module"
+else
+	echo "Missing file : ${APACHE2_CONF}   [ERR]"
+fi
 
 echo "======================"
 echo "PHP"
@@ -52,26 +57,35 @@ echo "max_execution_time = 120"
 echo "memory_limit = 256M"
 echo "error_reporting = E_ALL ^ E_STRICT"
 echo "----------------------"
-echo "=> ${PHP_INI_1} : "
-echo ""
-cat $PHP_INI_1 | grep "^date.timezone"
-cat $PHP_INI_1 | grep "^register_globals"
-cat $PHP_INI_1 | grep "^max_execution_time"
-cat $PHP_INI_1 | grep "^memory_limit"
-cat $PHP_INI_1 | grep "^error_reporting"
-echo "----------------------"
-echo "=> ${PHP_INI_2} :" 
-echo ""
-cat $PHP_INI_2 | grep "^date.timezone"
-cat $PHP_INI_2 | grep "^register_globals"
-cat $PHP_INI_2 | grep "^max_execution_time"
-cat $PHP_INI_2 | grep "^memory_limit"
-cat $PHP_INI_2 | grep "^error_reporting"
+if [ -e PHP_INI_1 ] ; then
+	echo "=> ${PHP_INI_1} : "
+	cat $PHP_INI_1 | grep "^date.timezone"
+	cat $PHP_INI_1 | grep "^register_globals"
+	cat $PHP_INI_1 | grep "^max_execution_time"
+	cat $PHP_INI_1 | grep "^memory_limit"
+	cat $PHP_INI_1 | grep "^error_reporting"
+	echo "----------------------"
+else
+	echo "Missing file : ${PHP_INI_1}   [ERR]"
+fi
+if [ -e PHP_INI_2 ] ; then
+	echo "=> ${PHP_INI_2} :" 
+	echo ""
+	cat $PHP_INI_2 | grep "^date.timezone"
+	cat $PHP_INI_2 | grep "^register_globals"
+	cat $PHP_INI_2 | grep "^max_execution_time"
+	cat $PHP_INI_2 | grep "^memory_limit"
+	cat $PHP_INI_2 | grep "^error_reporting"
+else
+	echo "Missing file : ${PHP_INI_2}   [ERR]"
+fi
 
 if [ -e $MYSQL_CONF ] ; then
 	# https://newznab.readthedocs.org/en/latest/install/
 	echo "======================"
 	echo "MYSQL => ${MYSQL_CONF}"
+	echo "?? max_allowed_packet= 32M"
+	echo "?? group_concat_max_len = 8M"
 	echo "----------------------"
 	echo "[mysqld]"
 	echo "max_allowed_packet = 12582912"
