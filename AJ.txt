@@ -14,13 +14,13 @@ flags: g
 -------------------------------------------------------------------------
 
 ## http://gathering.tweakers.net/forum/list_message/39685023#39685023
-sudo nano /var/www/newznab/www/lib/binaries.php
+sudo nano /Users/Newznab/Sites/newznab/www/lib/binaries.php
 en verwijder de #
 #$db->query(sprintf("UPDATE partrepair SET attempts=attempts+1 WHERE ID=%d LIMIT 1", $item['ID']));
 
 -------------------------------------------------------------------------
 
-screen -S NZBUpdate -dmS /pathtoyourdirectory/misc/update_scripts/nix_scripts/./newznab_screen.sh
+screen -S NZBUpdate -dmS /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/./newznab_screen.sh
 
 #screen -l  (lists your screen sessions, you should see one call NZBUpdate if it's started from the script above)
 #screen -r (to reconnect to a disconnected session)
