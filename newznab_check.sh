@@ -49,18 +49,20 @@ else
 	echo "Missing file : ${APACHE2_CONF}   [ERR]"
 fi
 
-echo "======================"
-echo "PHP"
-echo "----------------------"
-echo "Add/Change the following lines:"
-echo "date.timezone = Europe/Amsterdam"
-echo "register_globals = Off"
-echo "max_execution_time = 120"
-echo "memory_limit = 256M"
-echo "error_reporting = E_ALL ^ E_STRICT"
+echo '======================'
+echo 'PHP'
+echo '----------------------'
+echo 'Add/Change the following lines:'
+echo 'include_path = ".:/opt/share/pear"'
+echo 'date.timezone = Europe/Amsterdam'
+echo 'register_globals = Off'
+echo 'max_execution_time = 120'
+echo 'memory_limit = 256M'
+echo 'error_reporting = E_ALL ^ E_STRICT'
 echo "----------------------"
 if [ -e PHP_INI_1 ] ; then
 	echo "=> ${PHP_INI_1} : "
+	cat $PHP_INI_1 | grep "^include_path"
 	cat $PHP_INI_1 | grep "^date.timezone"
 	cat $PHP_INI_1 | grep "^register_globals"
 	cat $PHP_INI_1 | grep "^max_execution_time"
@@ -72,7 +74,7 @@ else
 fi
 if [ -e PHP_INI_2 ] ; then
 	echo "=> ${PHP_INI_2} :" 
-	echo ""
+	cat $PHP_INI_2 | grep "^include_path"
 	cat $PHP_INI_2 | grep "^date.timezone"
 	cat $PHP_INI_2 | grep "^register_globals"
 	cat $PHP_INI_2 | grep "^max_execution_time"
