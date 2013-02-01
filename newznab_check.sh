@@ -82,13 +82,14 @@ fi
 
 if [ -e $MYSQL_CONF ] ; then
 	# https://newznab.readthedocs.org/en/latest/install/
+	# http://gathering.tweakers.net/forum/list_message/39531009#39531009
 	echo "======================"
 	echo "MYSQL => ${MYSQL_CONF}"
 	echo "?? max_allowed_packet= 32M"
-	echo "?? group_concat_max_len = 8M"
 	echo "----------------------"
 	echo "[mysqld]"
 	echo "max_allowed_packet = 12582912"
+	echo "group_concat_max_len = 8M"
 	echo ""
 	cat $MYSQL_CONF | grep "max_allowed_packet"
 else
