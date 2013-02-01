@@ -38,6 +38,14 @@ http://forums.sabnzbd.org/viewtopic.php?t=12557
 
 -------------------------------------------------------------------------
 
+Alias /spotweb /var/www/spotweb
+<Location /spotweb>
+    Order allow,deny
+    Allow from all
+</Location>
+
+-------------------------------------------------------------------------
+
 Alias /spotweb /data/sites/spotweb/
 <Directory /data/sites/spotweb/>
     RewriteEngine on
