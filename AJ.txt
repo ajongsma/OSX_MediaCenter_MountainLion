@@ -5,11 +5,24 @@ sudo nano /var/www/newznab/www/lib/binaries.php
 en verwijder de #
 #$db->query(sprintf("UPDATE partrepair SET attempts=attempts+1 WHERE ID=%d LIMIT 1", $item['ID']));
 
+
+
+
+
+
+
+-------------------------------------------------------------------------
+Themes:
+Baffi		: https://github.com/Frikish/Baffi-Theme--Newznab-
+sinfuljosh	: https://github.com/sinfuljosh/bootstrapped
+
+
 -------------------------------------------------------------------------
 
-Baffi Theme:
-https://github.com/Frikish/Baffi-Theme--Newznab-
+NewzNAB scripts
+(+) jonnyboy	: https://github.com/jonnyboy/newznab
 
+(?) 		: https://github.com/theplaceboeffect/nnplus
 
 
 =========================================================================
