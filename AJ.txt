@@ -1,6 +1,28 @@
-#- 01-02-2013 ------------------------------------------------------------------------
+
+#- 04-02-2013 ------------------------------------------------------------------------
+
+NewzNAB scripts:
+(+) jonnyboy	: https://github.com/jonnyboy/newznab
 
 -------------------------------------------------------------------------
+
+Themes:
+Baffi		: https://github.com/Frikish/Baffi-Theme--Newznab-
+sinfuljosh	: https://github.com/sinfuljosh/bootstrapped
+
+-------------------------------------------------------------------------
+
+# ??? Set up Apache/PHP
+sed -i "s/ServerAdmin you@example.com/ServerAdmin webmaster@$DOMAIN/" /etc/httpd/conf/httpd.conf
+sed -i "s/#ServerName www.example.com:80/ServerName $DOMAIN:80/" /etc/httpd/conf/httpd.conf
+sed -i 's/LoadModule authnz_ldap_module modules\/mod_authnz_ldap.so/#LoadModule authnz_ldap_module modules\/mod_authnz_ldap.so/' /etc/httpd/conf/httpd.conf
+sed -i 's/LoadModule unique_id_module modules\/mod_unique_id.so/#LoadModule unique_id_module modules\/mod_unique_id.so/' /etc/httpd/conf/httpd.conf
+sed -i 's/LoadModule ldap_module modules\/mod_ldap.so/#LoadModule ldap_module modules\/mod_ldap.so/' /etc/httpd/conf/httpd.conf
+sed -i 's/LoadModule rewrite_module modules\/mod_rewrite.so/LoadModule rewrite_module modules\/mod_rewrite.so\nLoadModule php5_module modules\/libphp5.so/' /etc/httpd/conf/httpd.conf
+sed -i 's/# Various default settings/Include conf\/extra\/php5_module.conf/' /etc/httpd/conf/httpd.conf
+sed -i 's/;extension=mysql.so/extension=mysql.so/' /etc/php/php.ini
+
+#- 01-02-2013 ------------------------------------------------------------------------
 
 ??? Date dd-mm-yyyy > 2000
 
