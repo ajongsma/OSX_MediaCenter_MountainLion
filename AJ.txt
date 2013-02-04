@@ -1,5 +1,31 @@
-
 #- 04-02-2013 ------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+#!/bin/bash
+CHECK=$0
+SERVICE=$1
+DATE=`date`
+OUTPUT=$(ps aux | grep -v grep | grep -v $CHECK |grep $1)
+echo $OUTPUT
+if [ "${#OUTPUT}" -gt 0 ] ;
+then echo "$DATE: $SERVICE service running, everything is fine"
+else echo "$DATE: $SERVICE is not running"
+fi
+
+--------------------
+
+#!/bin/sh
+SERVICE='httpd'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null
+then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
+
+-------------------------------------------------------------------------
 
 NewzNAB scripts:
 (+) jonnyboy	: https://github.com/jonnyboy/newznab
@@ -12,6 +38,23 @@ sinfuljosh	: https://github.com/sinfuljosh/bootstrapped
 
 -------------------------------------------------------------------------
 
+newznab_screen.sh:
+time /usr/bin/php ${NEWZNAB_PATH}/update_binaries.php
+time /usr/bin/php ${NEWZNAB_PATH}/update_releases.php
+time /usr/bin/php ${NEWZNAB_PATH}/update_parsing
+time /usr/bin/php ${NEWZNAB_PATH}/update_release_groups.php
+
+DIFF=$(($CURRTIME-$LASTOPTIMIZE))
+if [ "$DIFF" -gt 43200 ] || [ "$DIFF" -lt 1 ]
+then
+	LASTOPTIMIZE=`date +%s`
+	/usr/bin/php5 ${NEWZNAB_PATH}/optimise_db.php
+	/usr/bin/php5 ${NEWZNAB_PATH}/update_tvschedule.php
+	/usr/bin/php5 ${NEWZNAB_PATH}/update_theaters.php
+fi
+
+-------------------------------------------------------------------------
+
 # ??? Set up Apache/PHP
 sed -i "s/ServerAdmin you@example.com/ServerAdmin webmaster@$DOMAIN/" /etc/httpd/conf/httpd.conf
 sed -i "s/#ServerName www.example.com:80/ServerName $DOMAIN:80/" /etc/httpd/conf/httpd.conf
@@ -21,6 +64,22 @@ sed -i 's/LoadModule ldap_module modules\/mod_ldap.so/#LoadModule ldap_module mo
 sed -i 's/LoadModule rewrite_module modules\/mod_rewrite.so/LoadModule rewrite_module modules\/mod_rewrite.so\nLoadModule php5_module modules\/libphp5.so/' /etc/httpd/conf/httpd.conf
 sed -i 's/# Various default settings/Include conf\/extra\/php5_module.conf/' /etc/httpd/conf/httpd.conf
 sed -i 's/;extension=mysql.so/extension=mysql.so/' /etc/php/php.ini
+
+-------------------------------------------------------------------------
+
+## pcntl_exec("command", array("parameter1", "parameter2"));
+
+pcntl_exec("/usr/bin/mysql", array(
+    "--user=".$params['user'],
+    "--password=".$params['password'],
+    "--host=".$params['host'],
+    $params['dbname']
+));
+
+--------------------
+
+$command = `gnome-terminal -e 'bash -c "expect ~/commands/login_script.tcl \"$user\" \"$host\" \"$port\" \"$password\"; exec bash"' &`;
+shell_exec($command);
 
 #- 01-02-2013 ------------------------------------------------------------------------
 
