@@ -13,10 +13,20 @@ PATH_TO_PHP_1=/usr/bin/php
 PATH_TO_PHP_2=(brew --prefix josegonzalez/php/php54)/bin
 
 ## http://forum.qnap.com/viewtopic.php?p=306612
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-NORMAL=$(tput sgr0)
+BOLD=$(tput bold)
+BLACK=$(tput setaf 0) #   0  Black
+RED=$(tput setaf 1)  #  1   Red
+GREEN=$(tput setaf 2)  #    2   Green
+YELLOW=$(tput setaf 3)  #   3   Yellow
+BLUE=$(tput setaf 4)  #     4   Blue
+MAGENTA=$(tput setaf 5)  #  5   Magenta
+CYAN=$(tput setaf 6)  #     6   Cyan
+WHITE=$(tput setaf 7)  #    7   White
+RESET=$(tput sgr0)
 col=40
+
+#echo $BOLD$BLUE"  [color] Weee!!!"$RESET
+printf 'Weee!!!\n' "$$BOLD$BLUE" $col '[OK]' "$RESET"
 
 echo $PID > ${NN_PID_PATH}${PIDFILE}
 if [ -f ${NN_PID_PATH}${PIDFILE} ]
@@ -46,12 +56,16 @@ if [ -e APACHE2_CONF ] ; then
 	cat $APACHE2_CONF | grep "mod_rewrite.so"
 	cat $APACHE2_CONF | grep "proxy_http_module"
 	cat $APACHE2_CONF | grep "proxy_module"
+	/opt/local/apache2/bin/httpd -t
 else
 	echo "Missing file : ${APACHE2_CONF}   [ERR]"
 fi
 
 echo '======================'
 echo 'PHP'
+echo '----------------------'
+echo php -v
+echo php -my
 echo '----------------------'
 echo 'Add/Change the following lines:'
 echo 'include_path = ".:/opt/share/pear"'
@@ -112,18 +126,56 @@ else
 	echo "Missing file : ${SPHINX_CONF}   [ERR]"
 fi
 
+if [ -e /Library/LaunchDaemons/org.macports.apache2.plist ] ; then
+	printf 'LaunchDaemons - apache2\n' "$GREEN" $col '[OK]' "$NORMAL"
+## sudo launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist
+else
+	printf 'LaunchDaemons - apache2\n' "$RED" $col '[FAIL]' "$NORMAL"
+fi
+
 echo "======================"
 echo "Up and Running"
 echo "----------------------"
 echo "MySQL      :$(mysql.server status)"
 echo "PostgreSQL : $(pg_ctl status -D /usr/local/var/postgres)" | grep pg_ctl
 
-echo "memcached  :$(ps aux)" | grep memcached
-echo "searchd    :$(ps aux)" | grep searchd
+#echo "memcached  :$(ps aux)" | grep memcached
+#echo "searchd    :$(ps aux)" | grep searchd
+#echo "SABnzbd    :$(ps aux)" | grep SABnzbd
+#echo "SickBeard  :$(ps aux)" | grep SickBeard.py
+#echo "AutoSub    :$(ps aux)" | grep AutoSub.py
 
-echo "SABnzbd    :$(ps aux)" | grep SABnzbd
-echo "SickBeard  :$(ps aux)" | grep SickBeard.py
-echo "AutoSub    :$(ps aux)" | grep AutoSub.py
+SERVICE='memcached'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
 
+SERVICE='searchd'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
 
+SERVICE='SABnzbd'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
 
+SERVICE='SickBeard.py'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
+
+SERVICE='AutoSub.py'
+if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
+    echo "$SERVICE service running, everything is fine"
+else
+    echo "$SERVICE is not running"
+fi
