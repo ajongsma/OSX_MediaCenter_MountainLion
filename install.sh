@@ -13,6 +13,16 @@
  
 #echo $bold$blue"  [color] Weee!!!"$reset
 
+## ----------------------------------------------------------------------------
+## -= Used git's =-
+## Postprocessing scripts:
+## git clone https://github.com/clinton-hall/nzbToMedia
+## https://github.com/jonnyboy/newznab
+
+## ?? https://github.com/roderik/dotfiles
+## ?? https://github.com/mathiasbynens/dotfiles
+## ----------------------------------------------------------------------------
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   os="Mac"
   app_file="chrome-mac.zip"
@@ -22,10 +32,6 @@ else
   echo "Linux unsupported."
   exit 1
 fi
-
-#------------------------------------------------------------------------------
-# For access to the dump of nzbs, type /query newznab !nzbdump YOURNEWZNABID
-#------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
@@ -42,6 +48,12 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #------------------------------------------------------------------------------
 #echo -e "Please enter computer name"
 #read COMPUTER_NAME
+
+# gitx
+wget http://frim.frim.nl/GitXStable.app.zip
+unzip GitXStable.app.zip
+mv GitX.app /Applications/
+##open /Applications/GitX.app
 
 #echo -e "Please enter Full Name for GIT"
 #read GIT_FULL_NAME
@@ -63,14 +75,12 @@ GIT_EMAIL='a.jongsma@gmail.com'
 #------------------------------------------------------------------------------
 #APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 
-
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
 #------------------------------------------------------------------------------
 # run software update and reboot
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
-
 
 #------------------------------------------------------------------------------
 # Checking system directories
@@ -81,7 +91,6 @@ GIT_EMAIL='a.jongsma@gmail.com'
 #else
 #    echo "Directory /var/log/devicemgr/                    [OK]"
 #fi
-
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode
@@ -99,7 +108,6 @@ else
     echo "Xcode found                               [OK]"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
@@ -113,7 +121,6 @@ if [ ! -e /usr/bin/gcc ] ; then
 else
     echo "GCC found                             [OK]"
 fi
-
 
 #------------------------------------------------------------------------------
 # Check for Java
@@ -129,7 +136,6 @@ else
     echo "Java found                                [OK]"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
 #------------------------------------------------------------------------------
@@ -144,7 +150,6 @@ if [ ! -e /Applications/Server.app ] ; then
 else
     echo "OS X Server found                         [OK]"
 fi
-
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
@@ -168,7 +173,6 @@ else
     echo "Sublime Text link found                       [OK]"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for iTerm 2
 #------------------------------------------------------------------------------
@@ -183,7 +187,6 @@ if [ ! -e /Applications/iTerm.app ] ; then
 else
     echo "iTerm found                            [OK]"
 fi
-
 
 #------------------------------------------------------------------------------
 # Colourize terminal
@@ -209,7 +212,6 @@ else
     subl ~/.bash_profile
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Xlog
 #------------------------------------------------------------------------------
@@ -231,6 +233,15 @@ fi
 # Show the ~/Library folder
 #------------------------------------------------------------------------------
 chflags nohidden ~/Library
+
+#------------------------------------------------------------------------------
+# Install fonts
+#------------------------------------------------------------------------------
+cd ~/Downloads
+wget http://www.levien.com/type/myfonts/Inconsolata.otf
+open Inconsolata.otf
+wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
+open Inconsolata-Powerline.otf
 
 #------------------------------------------------------------------------------
 # Checking existance custom user directories
@@ -268,6 +279,13 @@ fi
 #------------------------------------------------------------------------------
 # Git config
 #------------------------------------------------------------------------------
+
+## git config
+# ?? Add a git alias for pretty logs from http://www.jukie.net/bart/blog/pimping-out-git-log
+# ?? git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# color everything
+# ?? git config --global color.ui true
 git config --global user.name "$GIT_FULL_NAME"
 git config --global user.email "$GIT_EMAIL"
 
@@ -333,6 +351,13 @@ brew install findutils
 # Install Bash 4
 brew install bash
 
+brew install apple-gcc42
+
+#?? brew install {zsh,git,wget}
+#?? brew install {ack,tmux,colordiff,ssh-copy-id,irssi,ffmpeg,gist,imagemagick,svn,hg}
+brew install wget
+brew install tmux
+
 # Remove outdated versions from the cellar
 brew cleanup
 
@@ -340,7 +365,7 @@ brew cleanup
 #------------------------------------------------------------------------------
 # Install Bash Completion
 #------------------------------------------------------------------------------
-#brew install bash-completion git
+#brew install bash-completion
 #
 ##Add the following lines to your ~/.bash_profile:
 ##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -398,6 +423,10 @@ brew cleanup
 #------------------------------------------------------------------------------
 # Install MySQL
 #------------------------------------------------------------------------------
+## http://hivelogic.com/articles/installing-mysql-on-mac-os-x/
+## http://theablefew.com/blog/very-simple-homebrew-mysql-and-rails
+## --------------------
+
 ## /usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
 ## /usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
 ##
@@ -426,6 +455,9 @@ if [ ! -e /usr/local/Cellar/mysql ] ; then
     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
     /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
 
+# plutil -lint ~/Library/LaunchAgents/*.plist
+# sudo plutil ~/Library/LaunchAgents/*.plist -s
+
     mysql.server start
 
     sudo mkdir /var/mysql
@@ -435,6 +467,22 @@ else
     echo "MySQL found                               [OK]"
 fi
 
+if [ ! -e /etc/my.cfg ] ; then
+    #sudo cp $(brew --prefix mysql)/support-files/my-small.cnf /etc/my.cnf
+    sudo cp $(brew --prefix mysql)/support-files/my-medium.cnf /etc/my.cnf
+
+    # https://newznab.readthedocs.org/en/latest/install/
+    echo "-----------------------------------------------------------"
+    echo "| Change the following information:"
+    echo "| [mysqld]"
+    echo "| ;max_allowed_packet = 1M"
+    echo "| max_allowed_packet = 12582912"
+    echo "| "
+    echo "| ?? group_concat_max_len = 8192 ??"
+    sudo subl /etc/my.cnf
+    mysql.server restart
+else
+fi
 
 #------------------------------------------------------------------------------
 # Install Postgresql
@@ -506,6 +554,30 @@ brew install php54-imagick
 #brew install gmp
 #brew install php54-uploadprogress
 
+
+## To enable PHP in Apache add the following to httpd.conf and restart Apache:
+##    LoadModule php5_module    /usr/local/Cellar/php53/5.3.21/libexec/apache2/libphp5.so
+## The php.ini file can be found in:
+##    /usr/local/etc/php/5.3/php.ini
+## If you are having issues with custom extension compiling, ensure that this php is in your PATH:
+##    PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+
+## TESTING PHP 5.3
+brew install php53 --with-pgsql --with-mysql --with-tidy --with-intl --with-gmp
+brew unlink php54 && link php53
+brew install php53-intl
+brew install php53-apc
+brew install php53-memcached
+brew install php53-inclued
+brew install php53-http
+brew install php53-oauth
+brew install php53-ssh2
+brew install php53-xdebug
+brew install php53-mcrypt
+brew install php53-imagick
+
+#brew unlink php53 && brew link php54
+
 ##ERR cp /usr/local/Cellar/php54/5.4.11/homebrew-php.josegonzalez.php54.plist ~/Library/LaunchAgents/
 ##ERR launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist
 
@@ -525,8 +597,19 @@ echo "date.timezone = Europe/Amsterdam"
 echo "register_globals = Off"
 echo "max_execution_time = 120"
 echo "memory_limit = 256M"
+echo "error_reporting = E_ALL ^ E_STRICT"
+
+echo "TESTING"
+echo "serialize_precision = 100"
+echo "Doesn't work: error_reporting  =  E_ALL & ~E_NOTICE"
+echo "error_reporting = E_ALL & ~E_STRICT"
+echo "display_startup_errors = Off"
+echo "track_errors = Off"
+echo "variables_order = "EGPCS""
+echo "post_max_size = 128M"
 
 sudo subl /usr/local/etc/php/5.4/php.ini
+sudo subl /usr/local/etc/php/5.3/php.ini
 sudo subl /private/etc/php.ini
 
 #/usr/libexec/apache2/libphp5.so
@@ -536,6 +619,9 @@ sudo subl /private/etc/php.ini
 
 echo "Add/Change the following lines:"
 echo "LoadModule php5_module /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so"
+
+echo "?? sudo /opt/local/apache2/bin/apxs -a -e -n "php5" mod_php54.so"
+echo "?? sudo /opt/local/apache2/bin/apxs -a -e -n "php54" libphp54.so"
 #sudo subl /private/etc/apache2/httpd.conf
 
 if [ ! -e /Applications/Server.app ] ; then
@@ -546,21 +632,37 @@ else
 fi
 
 #sudo apachectl restart
+/usr/sbin/httpd -t
+
 sudo apachectl start
 open http://localhost
 
 #?? sudo nano /usr/local/etc/php/5.4/php.ini
+
+##PATH="$(brew --prefix php54)/bin:$PATH"
+
+if [ ! -e ~/.bashrc ] ; then
+cat >> ~/.bashrc << EOF
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+EOF
+else
+    echo "Add the following to ~/.bashrc"
+    echo "PATH="$(brew --prefix josegonzalez/php54)/bin:$PATH""
+fi
+source ~/.bashrc
+
 #cat >> ~/.bashrc << EOF
 #PATH="$(brew --prefix php54)/bin:$PATH"
 #EOF
-
+#PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 #------------------------------------------------------------------------------
 # Install PEAR
 #------------------------------------------------------------------------------
 sudo php /usr/lib/php/install-pear-nozlib.phar
 
 echo "Change the following line"
-echo 'include_path = ".:/usr/lib/php/pear"'
+#echo 'include_path = ".:/usr/lib/php/pear"'
+echo "include_path=".:/usr/local/Cellar/php54/5.4.11/lib/php:/usr/local/Cellar/php54/5.4.11/lib/php/PEAR""
 sudo subl /usr/local/etc/php/5.4/php.ini
 #sudo subl /etc/php.ini
 
@@ -595,16 +697,39 @@ sudo pear upgrade-all
 sudo apachectl -V
 
 echo "Add/Change the following lines:"
-echo "ServerName pooky.local"
+echo "ServerName localhost"
 sudo subl /private/etc/apache2/httpd.conf
 
-echo "Add below the first </Directory>:"
+echo "Modify the <Directory>:"
 echo "<Directory />"
 echo "    Options FollowSymLinks"
 echo "    AllowOverride None"
-echo "    Order deny,allow"
-echo "    Allow from all"
+echo "    #Order deny,allow"
+echo "    #Deny from all"
 echo "</Directory>"
+
+echo "Modify the <Directory "/Library/WebServer/Documents">"
+echo "Options Indexes FollowSymLinks Multiviews -> Options Indexes FollowSymLinks ExecCGI Includes"
+echo "AllowOverride None -> AllowOverride All"
+
+
+## ??? (1)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride None"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+
+## ??? (2)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride All"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
 
 sudo apachectl configtest
 sudo apachectl restart
@@ -705,6 +830,128 @@ end tell'
 ### FORCED QUIT ####
 #exit 1
 
+# ?????????????????????????????????????????????????????????????????????????????
+#------------------------------------------------------------------------------
+# Configure Spotweb as a Newznab Provider
+#------------------------------------------------------------------------------
+## !!!  Create normal user(s) in Spotweb for the API calls, not the ADMIN account !!!
+##
+## --------------------
+## http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
+##
+## /etc/apache2/sites-enabled/blahdieblah (hier naam van bestand of website invullen)
+## <VirtualHost *:8080>
+##     ServerAdmin blahblah@gmail.com
+## 
+##     DocumentRoot /var/www
+##     <Directory />
+##         Options FollowSymLinks
+##         AllowOverride None
+##     </Directory>
+##     <Directory /var/www/>
+##         Options Indexes FollowSymLinks MultiViews
+##         AllowOverride None
+##         Order allow,deny
+##         allow from all
+##     </Directory>
+##     ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+##     <Directory "/usr/lib/cgi-bin">
+##         AllowOverride None
+##         Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+##         Order allow,deny
+##         Allow from all
+##     </Directory>
+##
+## etc etc etc....
+## </VirtualHost>
+##
+## Add:
+## <Directory /Users/Spotweb/Sites/spotweb/>
+##    RewriteEngine on
+##    RewriteCond %{REQUEST_URI} !api/
+##    RewriteRule ^api/?$ index.php?page=newznabapi [QSA,L]
+##    Options Indexes FollowSymLinks Multiviews
+##    AllowOverride None
+##    Order allow,deny
+##    allow from all
+## </Directory>
+##
+## sudo a2enmod rewrite
+## sudo apachectl restart
+##
+## Check for XML output:
+## open http://localhost/spotweb/api?t=c
+##
+## --------------------
+## https://github.com/spotweb/spotweb/wiki/Spotweb-als-Newznab-Provider
+##
+## Open the page to your CouchPotato configuration (http://url.to.your.couchpotato/config/) and click Providers.
+## The item Newznab is listed on this page, you need to enter both a host and an API-key.
+## For Host you'll enter http://localhost/spotweb/?page=newznabapi (please change to match your servername)
+## For Apikey you need to enter the API key of Spotweb. You can find it in Spotweb by navigating to "Change user" from the main page.
+##
+## Enable:
+## mod_rewrite
+## AllowOverride
+## 
+## file .htaccess:
+## RewriteEngine on
+## RewriteCond %{REQUEST_URI} !api/
+## RewriteRule api/?$ /spotweb/index.php?page=newznabapi [QSA,L]
+## 
+## sudo a2enmod rewrite
+## sudo apachectl restart
+## 
+## Check for XML output:
+## open http://localhost/spotweb/api?t=c
+##
+## Sick Beard:
+## 1. Bij Provider Name kun je zelf bepalen hoe je het wilt noemen, bijvoorbeeld Spotweb.
+## 2. Bij Site URL vul je http://server/spotweb/ in (uiteraard na aanpassing aan de eigen omgeving).
+## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## open http://localhost:8081/config/providers/
+##
+## CouchPotato:
+## 1. Bij Host vul je server/spotweb in (uiteraard na aanpassing aan de eigen omgeving).
+## 2. Bij Apikey vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## Op de pagina http://url.naar.couchpotato/config/ en klik op Providers. Op die pagina staat het onderdeel Newznab. Hier dien je een host en een API-key op te geven.
+## open open http://localhost:8081/config
+##
+## Headphones:
+## 1. Vink Newznab aan.
+## 2. Bij Newznabhost vul je server/spotweb in.
+## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## Op de pagina http://url.naar.headphones/config staat Newznab onder Providers.
+## --------------------
+## http://patrickscholten.com/spotweb-gebruiken-als-newznab-server/
+## --------------------
+
+#sudo apachectl restart
+
+#------------------------------------------------------------------------------
+# Install Python
+#------------------------------------------------------------------------------
+## Distribute and Pip have been installed. To update them
+##   pip install --upgrade distribute
+##   pip install --upgrade pip
+## 
+## To symlink "Idle" and the "Python Launcher" to ~/Applications
+##   `brew linkapps`
+## Executable python scripts will be put in:
+##  /usr/local/share/python
+## so you may want to put "/usr/local/share/python" in your PATH, too.
+
+brew install python
+pip install --upgrade distribute
+pip install --upgrade pip
+brew linkapps
+sudo easy_install pip
+
+## Install Powerline
+## https://github.com/Lokaltog/powerline-fonts
+pip install --user git+git://github.com/Lokaltog/powerline
+cd ~/Githug
+git clone https://github.com/Lokaltog/powerline-fonts.git
 
 #------------------------------------------------------------------------------
 # Install NewzNAB
@@ -824,45 +1071,164 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts
 
 cp newznab_screen.sh newznab_local.sh
 
-## ERR:
-## PHP Warning:  require_once(PEAR.php): failed to open stream: No such file or directory in /Users/Newznab/Sites/newznab/www/lib/Net_NNTP/NNTP/Protocol/Client.php on line 73
-## PHP Fatal error:  require_once(): Failed opening required 'PEAR.php' (include_path='.:') in /Users/Newznab/Sites/newznab/www/lib/Net_NNTP/NNTP/Protocol/Client.php on line 73
-
-
 echo "-----------------------------------------------------------"
 echo "| Update the following:"
 echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
 echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
 subl newznab_local.sh
 
-chmod +x newznab_local.sh
-screen bash
-./newznab_local.sh
-ctrl-ad to detach screen
+echo "-----------------------------------------------------------"
+echo "| Add the following newsgroup:"
+echo "| Name                          : alt.binaries.nl"
+echo "| Backfill Days                 : 1"
+open http://localhost/newznab/admin/group-edit.php
 
-./Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/newznab_local.sh
+echo "-----------------------------------------------------------"
+echo "| Add the following RegEx:"
+echo "| Group                         : alt.binaries.nl"
+echo "| RegEx                         : /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS""
+echo "| Ordinal                       : 5"
+open http://localhost/newznab/admin/group-edit.php
+
+chmod +x newznab_local.sh
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+./newznab_local.sh
+
+# screen bash
+#screen
+#./newznab_local.sh
+#echo "ctrl-ad to detach screen"
+
+mkdir -p ~/Github/
+cd ~/Github/
+git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
+cp -r Newznab-Simple-Theme/simple /Users/Newznab/Sites/newznab/www/templates/simple
+git clone https://github.com/sinfuljosh/bootstrapped.git
+cp -r bootstrapped /Users/Newznab/Sites/newznab/www/templates/bootstrapped
+
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+git clone https://github.com/jonnyboy/newznab-tmux.git tmux
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux
+cp config.sh defaults.sh
+
+## https://github.com/NNScripts/nn-custom-scripts
+mkdir -p /Users/Newznab/Sites/newznab/misc/custom
+git clone https://github.com/NNScripts/nn-custom-scripts.git /Users/Newznab/Sites/newznab/misc/custom
+echo "-----------------------------------------------------------"
+echo "| Change the following settings:"
+echo "| define('REMOVE', false); => define('REMOVE', true);"
+echo "-----------------------------------------------------------"
+subl /Users/Newznab/Sites/newznab/misc/custom/remove_blacklist_releases.php
+
+echo "-----------------------------------------------------------"
+echo "| Backing up current MySQL database..."
+echo "-----------------------------------------------------------"
+mysqldump --opt -u root -p newznab > ~/newznab_backup.sql
+echo "-----------------------------------------------------------"
+echo "| Change the following settings:"
+echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
+echo "| *export BINARIES="false"       : export BINARIES="true""
+echo "| *export BINARIES_THREADS="false"    : export BINARIES_THREADS="true""
+echo "| *export RELEASES="false"       : export RELEASES="true""
+echo "| *export OPTIMIZE="false"      : export OPTIMIZE="true""
+echo "| export CLEANUP="false"        : export CLEANUP="true""
+echo "| export PARSING="false"        : export PARSING="true""
+echo "| export SPHINX="true"          : export SPHINX="true""
+echo "| export SED="/bin/sed"         : export SED="/usr/bin/sed""
+echo "| export AGREED="no"            : export AGREED="yes""
+echo "-----------------------------------------------------------"
+subl defaults.sh
+
+echo "-----------------------------------------------------------"
+echo "| Change the following settings:"
+echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
+echo "-----------------------------------------------------------"
+subl /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts/check_svn.sh 
+
+echo "-----------------------------------------------------------"
+export NEWZPATH="/Users/Newznab/Sites/newznab"
+export PASSWORD="<password>"
+echo "-----------------------------------------------------------"
+subl /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts/update_svn.sh 
+
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts
+sudo ./set_perms.sh
+
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/
+./start.sh
+## chmod: /var/www/newznab/www/lib/smarty/templates_c: No such file or directory
+## chmod: /var/www/newznab/www/covers: No such file or directory
+## chmod: /var/www/newznab/www: No such file or directory
+## chmod: /var/www/newznab/www/install: No such file or directory
+
+
+
+### ERR:
+## PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /Users/Newznab/Sites/newznab/www/lib/framework/db.php on line 193
+## PHP Stack trace:
+## PHP   1. {main}() /Users/Newznab/Sites/newznab/misc/update_scripts/update_releases.php:0
+## PHP   2. Sphinx->update() /Users/Newznab/Sites/newznab/misc/update_scripts/update_releases.php:10
+## PHP   3. DB->getAssocArray() /Users/Newznab/Sites/newznab/www/lib/sphinx.php:322
+##
+## Fatal error: Call to a member function fetch_assoc() on a non-object in /Users/Newznab/Sites/newznab/www/lib/framework/db.php on line 193
+########
+
 #------------------------------------------------------------------------------
 # Install Sphinx
 #------------------------------------------------------------------------------
 ## http://newznab.readthedocs.org/en/latest/misc/sphinx/
 
+## ?? brew install sphinx
+## /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf
+
 echo "Download latest Sphinx from http://sphinxsearch.com"
 #open http://sphinxsearch.com/
 
-gcc -v
-cd /usr/bin
-sudo ln -s gcc gcc-4.2
+curl -O http://sphinxsearch.com/files/sphinx-2.0.6-release.tar
+tar xvzf sphinx-2.0.6-release.tar
+cd sphinx-2.0.6-release
 
-brew install sphinx
-## /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf
+./configure -prefix=/usr/local/bin --with-pgsql --with-mysql
+make
+make install
 
-which searchd
+#### Not needed due to brew install apple-gcc42 ??
+#gcc -v
+#cd /usr/bin
+#sudo ln -s gcc gcc-4.2
+####
+
+## which searchd
 ## /usr/local/bin/searchd
-which indexer
+## which indexer
 ## /usr/local/bin/indexer
 
 cd /Users/Newznab/Sites/newznab/misc/sphinx
 ./nnindexer.php generate
+
+echo "Creating Lauch Agent file:"
+cat >> /tmp/com.nnindexer.nnindexer.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nnindexer.nnindexer</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/php</string>
+        <string>nnindexer.php</string>
+        <string>--daemon</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/Users/Newznab/Sites/newznab/misc/sphinx</string>
+</dict>
+</plist>
+EOF
+mv /tmp/com.nnindexer.nnindexer.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.nnindexer.nnindexer.plist
 
 echo "-----------------------------------------------------------"
 echo "| Configure Sphinx:"
@@ -874,18 +1240,14 @@ open http://localhost/newznab/admin
 
 ./nnindexer.php daemon
 ./nnindexer.php index full all
-## ERROR: source 'releases': unknown type 'mysql'; skipping.
-## ERROR: index 'releases': failed to configure some of the sources, will not index.
-
 ./nnindexer.php index delta all
-## ERROR: source 'releases_delta': unknown type 'mysql'; skipping.
-## ERROR: index 'releases_delta': failed to configure some of the sources, will not index.
-
 ./nnindexer.php daemon --stop
 ./nnindexer.php daemon
 ## WARNING: index 'releases': preload: failed to open /Users/Newznab/Sites/newznab/db/sphinxdata/releases.sph: No such file or directory; NOT SERVING
 ## precaching index 'releases_delta'
 
+## /Users/Newznab/Sites/newznab/db/sphinxdata
+## indexer --config /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf --all
 
 ## ./nnindexer.php search --index releases "some search term"
 
@@ -1002,6 +1364,25 @@ sudo python setup.py install
 ### ----------------------------------------
 
 echo "Install latest Sick-Beard:"
+
+mkdir -p ~/Andries/Github/
+cd ~/Andries/Github/
+git clone https://github.com/clinton-hall/nzbToMedia
+cp -R ~/Andries/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
+#cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
+
+cd ~/Library/Application\ Support/SABnzbd/scripts/
+cp autoProcessTV.cfg.sample autoProcessTV.cfg 
+cp autoProcessMovie.cfg.sample autoProcessMovie.cfg
+echo "-----------------------------------------------------------"
+echo "| Modify the following:"
+echo "| port=8081"
+echo "| username=couchpotato"
+echo "| password=<password>"
+echo "| web_root="
+echo "-----------------------------------------------------------"
+subl autoProcessTV.cfg 
+
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
 sudo chown -R andries:staff /Applications/Sick-Beard/
@@ -1038,37 +1419,10 @@ echo "| Keep original files : Uncheck"
 echo "| Name Pattern      : Season %0S/%SN S%0SE%0E %QN-%RG"
 echo "| Multi-Episode     : Extend"
 echo "-----------------------------------------------------------"
-
-cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
-cd ~/Library/Application\ Support/SABnzbd/scripts/
-cp autoProcessTV.cfg.sample autoProcessTV.cfg 
-
-#### --- ORG
-#echo "-----------------------------------------------------------"
-#echo "| Modify the following:"
-#echo "| port=8081"
-#echo "| username=sabnzbd"
-#echo "| password=mini_sabnzbd"
-#echo "| web_root="
-#echo "-----------------------------------------------------------"
-#subl autoProcessTV.cfg 
-
-#### --- NEW
+echo "| Menu, Config, Categories:"
+echo "| tv, Default, Default, nzbToSickBeard.py"
 echo "-----------------------------------------------------------"
-echo "| Modify the following:"
-echo "| port=8081"
-echo "| username=couchpotato"
-echo "| password=<password>"
-echo "| web_root="
-echo "-----------------------------------------------------------"
-subl autoProcessTV.cfg 
-
-
-echo "-----------------------------------------------------------"
-echo "| Modify the following:"
-echo "| tv, Default, Default, sabToSickBeard.py"
-echo "-----------------------------------------------------------"
-open http://localhost:8080/config/categories/
+open http://localhost:8080/config/switches/
 
 ##### ????
 ## http://jetshred.com/2012/07/31/configuring-sickbeard-to-work-with-sabnzbd-plus/
@@ -1146,26 +1500,41 @@ echo " Retention          : 1000"
 echo "-----------------------------------------------------------"
 open http://localhost:8082
 
+echo "-----------------------------------------------------------"
+echo "| Modify the following:"
+echo "| port=8082"
+echo "| username=couchpotato"
+echo "| password=<password>"
+echo "| apikey = <Couchpotato API Key>"
+echo "-----------------------------------------------------------"
+subl autoProcessMovie.cfg 
 
-## --- TESTING ---
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>com.couchpotato.couchpotato</string>
-  <key>ProgramArguments</key>
-  <array>
-      <string>/usr/local/bin/python</string>
-      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-  </array>
-  <key>RunAtLoad</key>
-  <true/>
-</dict>
-</plist>
-EOF
+echo "-----------------------------------------------------------"
+echo "| Menu, Config, Categories:"
+echo "| movies, Default, Default, nzbToCouchpotato.py"
+echo "-----------------------------------------------------------"
+open http://localhost:8080/config/switches/
+
+
+### --- TESTING ---
+#echo "Creating Lauch Agent file:"
+#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
+#<?xml version="1.0" encoding="UTF-8"?>
+#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#<plist version="1.0">
+#<dict>
+#  <key>Label</key>
+#  <string>com.couchpotato.couchpotato</string>
+#  <key>ProgramArguments</key>
+#  <array>
+#      <string>/usr/local/bin/python</string>
+#      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+#  </array>
+#  <key>RunAtLoad</key>
+#  <true/>
+#</dict>
+#</plist>
+#EOF
 
 #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
 #<?xml version="1.0" encoding="UTF-8"?>
@@ -1228,8 +1597,9 @@ EOF
 #</dict>
 #</plist>
 #
-mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
-launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
+
+#mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+#launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
 #
 #launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
@@ -1260,6 +1630,8 @@ cat >> /tmp/com.autosub.autosub.plist <<'EOF'
     <array>
         <string>/usr/bin/python</string>
         <string>AutoSub.py</string>
+        <string>--config</string>
+        <string>/Applications/auto-sub/config.properties</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -1285,101 +1657,7 @@ open http://localhost:7000
 
 
 
-# ?????????????????????????????????????????????????????????????????????????????
-#------------------------------------------------------------------------------
-# Configure Spotweb as a Newznab Provider
-#------------------------------------------------------------------------------
-## !!!  Create normal user(s) in Spotweb for the API calls, not the ADMIN account !!!
-##
-## --------------------
-## http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
-##
-## /etc/apache2/sites-enabled/blahdieblah (hier naam van bestand of website invullen)
-## <VirtualHost *:8080>
-##     ServerAdmin blahblah@gmail.com
-## 
-##     DocumentRoot /var/www
-##     <Directory />
-##         Options FollowSymLinks
-##         AllowOverride None
-##     </Directory>
-##     <Directory /var/www/>
-##         Options Indexes FollowSymLinks MultiViews
-##         AllowOverride None
-##         Order allow,deny
-##         allow from all
-##     </Directory>
-##     ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
-##     <Directory "/usr/lib/cgi-bin">
-##         AllowOverride None
-##         Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
-##         Order allow,deny
-##         Allow from all
-##     </Directory>
-##
-## etc etc etc....
-## </VirtualHost>
-##
-## Add:
-## <Directory /Users/Spotweb/Sites/spotweb/>
-##    RewriteEngine on
-##    RewriteCond %{REQUEST_URI} !api/
-##    RewriteRule ^api/?$ index.php?page=newznabapi [QSA,L]
-##    Options Indexes FollowSymLinks Multiviews
-##    AllowOverride None
-##    Order allow,deny
-##    allow from all
-## </Directory>
-##
-## sudo a2enmod rewrite
-## sudo apachectl restart
-##
-## Check for XML output:
-## open http://localhost/spotweb/api?t=c
-##
-## --------------------
-## https://github.com/spotweb/spotweb/wiki/Spotweb-als-Newznab-Provider
-##
-## Open the page to your CouchPotato configuration (http://url.to.your.couchpotato/config/) and click Providers.
-## The item Newznab is listed on this page, you need to enter both a host and an API-key.
-## For Host you'll enter http://localhost/spotweb/?page=newznabapi (please change to match your servername)
-## For Apikey you need to enter the API key of Spotweb. You can find it in Spotweb by navigating to "Change user" from the main page.
-##
-## Enable:
-## mod_rewrite
-## AllowOverride
-## 
-## file .htaccess:
-## RewriteEngine on
-## RewriteCond %{REQUEST_URI} !api/
-## RewriteRule api/?$ /spotweb/index.php?page=newznabapi [QSA,L]
-## 
-## sudo a2enmod rewrite
-## sudo apachectl restart
-## 
-## Check for XML output:
-## open http://localhost/spotweb/api?t=c
-##
-## Sick Beard:
-## 1. Bij Provider Name kun je zelf bepalen hoe je het wilt noemen, bijvoorbeeld Spotweb.
-## 2. Bij Site URL vul je http://server/spotweb/ in (uiteraard na aanpassing aan de eigen omgeving).
-## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
-## open http://localhost:8081/config/providers/
-##
-## CouchPotato:
-## 1. Bij Host vul je server/spotweb in (uiteraard na aanpassing aan de eigen omgeving).
-## 2. Bij Apikey vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
-## Op de pagina http://url.naar.couchpotato/config/ en klik op Providers. Op die pagina staat het onderdeel Newznab. Hier dien je een host en een API-key op te geven.
-## open open http://localhost:8081/config
-##
-## Headphones:
-## 1. Vink Newznab aan.
-## 2. Bij Newznabhost vul je server/spotweb in.
-## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
-## Op de pagina http://url.naar.headphones/config staat Newznab onder Providers.
-## --------------------
-## http://patrickscholten.com/spotweb-gebruiken-als-newznab-server/
-## --------------------
+
 
 
 
