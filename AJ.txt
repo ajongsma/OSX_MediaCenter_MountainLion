@@ -1,15 +1,83 @@
-
 #= 05-02-2013 ========================================================================
 
 powerline:
 http://lokaltog.github.com/powerline/
 https://github.com/Lokaltog/powerline
+http://mitchmckenna.com/items/view/11527/setting-up-vim-powerline-for-solarized-theme-on-mac-os-x
+https://github.com/mxcl/homebrew/wiki/installation
+http://lokaltog.github.com/powerline/installation/osx.html
+
+--------------------
+
+
+--------------------
+
+brew install python
+brew install mercurial
+brew install vim --env-std --override-system-vim --enable-pythoninterp
+
+## Homebrew installs default to /usr/local/bin, modify existing $PATH by commenting out all of them in ~/.zshrc
+printf '"Add to #1 of ~/.zshrc:'
+printf '"export PATH="/usr/local/bin:$PATH"'
+subl ~/.zshrc
+
+printf 'Verify /usr/local/bin/python:'
+which python
+
+# Install FontForge
+# https://github.com/Lokaltog/vim-powerline/blob/develop/fontpatcher/README.rst
+# ?? brew install fontforge 
+fontforge -version
+printf 'IF not installed:'
+	brew update
+	$ brew install --use-gcc fontforge
+
+printf 'IF version number contains NoPython, try to update to a later version
+	brew uninstall fontforge
+	brew update
+	brew install --use-gcc fontforge
+
+# Patch your fonts by passing the fontpatcher script as a parameter to FontForge
+#fontforge -script /path/to/fontpatcher MyFontFile.ttf
+#printf 'Install the font by double-clicking the font file in Finder and click "Install this font" from the preview window'
+fontforge -script ~/.vim/bundle/vim-powerline/fontpatcher/fontpatcher ~/Library/Fonts/Menlo-Powerline.otf
+
+# Install Powerline
+pip install --user git+git://github.com/Lokaltog/powerline
+
+printf 'Add to ~/.vimrc:'
+printf 'python from powerline.bindings.vim import source_plugin; source_plugin()'
+printf 'source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/source_plugin.vim'
+subl ~/.vimrc
+
+printf 'Add to ~/.zshrc:'
+printf '. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh'
+subl ~/.zshrc
+
+printf '~/.tmux.conf:'
+printf 'source /usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf'
+subl ~/.tmux.conf
+
+##?? Update your vimrc configuration to use the new symbols:
+#?? let g:Powerline_symbols = 'fancy'
+#??? let g:Powerline_theme="skwp" ???
+#??? let g:Powerline_colorscheme="skwp" ???
+
+rm /tmp/Powerline.cache
+rm .vim/bundle/vim-powerline/*.cache
+
+## Start vim and enjoy the new statusline
+? vimrc
+
+--------------------
 
 Adams-MacBook-Pro% export PS1=`~/.dotfiles/libs/powerline/scripts/powerline-prompt`
 zsh: not an identifier: %{^[[38;5;31;48;5;240;22m%}?
 
 You have to escape the backwards quote marks:
 export PS1=\`~/.dotfiles/libs/powerline/scripts/powerline-prompt\`
+
+
 
 -------------------------------------------------------------------------
 
