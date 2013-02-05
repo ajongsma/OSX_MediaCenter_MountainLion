@@ -1,5 +1,22 @@
 #= 05-02-2013 ========================================================================
 
+???? brew install:
+##php54-gd
+##php54-mbstring
+##php54-iconv
+##php54-curl
+##php54-zip
+##php54-soap
+##php54-xmlrpc
+##php54-openssl
+##php54-ldap
+
+error_log = /var/log/php_errors.log
+sudo subl /private/etc/php.ini
+sudo subl /usr/local/etc/php/5.4/php.ini
+
+-------------------------------------------------------------------------
+
 powerline:
 http://lokaltog.github.com/powerline/
 https://github.com/Lokaltog/powerline
@@ -237,7 +254,7 @@ https://github.com/clinton-hall/nzbToMedia
 
 -------------------------------------------------------------------------
 Install:
-http://forums.sabnzbd.org/viewtopic.php?t=12557
+Newznab Installation Tutorial for Mac OSX - http://forums.sabnzbd.org/viewtopic.php?t=12557
 
 -------------------------------------------------------------------------
 
