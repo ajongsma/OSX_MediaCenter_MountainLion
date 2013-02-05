@@ -8,6 +8,33 @@ https://github.com/mxcl/homebrew/wiki/installation
 http://lokaltog.github.com/powerline/installation/osx.html
 
 --------------------
+##https://github.com/jonnyboy/newznab-tmux/blob/master/powerline/powerline/README.md
+
+# The grep tool is outdated on OS X 10.8, update via GIT
+brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+
+# Install tmux powerline
+cd ~/Github/
+git clone git://github.com/erikw/tmux-powerline.git
+
+printf '!!! Note !!!'
+printf 'Set the maximum lengths to something that suits your configuration of segments and size of terminal'
+printf '(the maximum segments length will be handled better in the future).'
+printf '-----'
+printf 'Edit ~/.tmux.conf, change the following values:'
+printf 'set-option -g status on'
+printf 'set-option -g status-interval 2'
+printf 'set-option -g status-utf8 on'
+printf 'set-option -g status-justify "centre"'
+printf 'set-option -g status-left-length 60'
+printf 'set-option -g status-right-length 90'
+printf 'set-option -g status-left "#(~/path/to/tmux-powerline/powerline.sh left)"'
+printf 'set-option -g status-right "#(~/path/to/tmux-powerline/powerline.sh right)"'
+subl ~/.tmux.conf
+
+printf 'The window list can be powerlineified if you'd like by adding the following line to the same file:'
+printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"'
+
 
 
 --------------------
@@ -76,8 +103,6 @@ zsh: not an identifier: %{^[[38;5;31;48;5;240;22m%}?
 
 You have to escape the backwards quote marks:
 export PS1=\`~/.dotfiles/libs/powerline/scripts/powerline-prompt\`
-
-
 
 -------------------------------------------------------------------------
 
