@@ -1,8 +1,20 @@
-#- 04-02-2013 ------------------------------------------------------------------------
 
+#= 05-02-2013 ========================================================================
 
+powerline:
+http://lokaltog.github.com/powerline/
+https://github.com/Lokaltog/powerline
+
+Adams-MacBook-Pro% export PS1=`~/.dotfiles/libs/powerline/scripts/powerline-prompt`
+zsh: not an identifier: %{^[[38;5;31;48;5;240;22m%}?
+
+You have to escape the backwards quote marks:
+export PS1=\`~/.dotfiles/libs/powerline/scripts/powerline-prompt\`
 
 -------------------------------------------------------------------------
+
+#= 04-02-2013 ========================================================================
+
 #!/bin/bash
 CHECK=$0
 SERVICE=$1
@@ -30,12 +42,12 @@ fi
 NewzNAB scripts:
 (+) jonnyboy	: https://github.com/jonnyboy/newznab
 
+(?) 		: https://github.com/theplaceboeffect/nnplus
 -------------------------------------------------------------------------
 
 Themes:
-Baffi		: https://github.com/Frikish/Baffi-Theme--Newznab-
 sinfuljosh	: https://github.com/sinfuljosh/bootstrapped
-
+https://github.com/nivong/nnplus-custom
 -------------------------------------------------------------------------
 
 newznab_screen.sh:
@@ -112,16 +124,7 @@ Themes:
 Baffi		: https://github.com/Frikish/Baffi-Theme--Newznab-
 sinfuljosh	: https://github.com/sinfuljosh/bootstrapped
 
-
 -------------------------------------------------------------------------
-
-NewzNAB scripts
-(+) jonnyboy	: https://github.com/jonnyboy/newznab
-
-(?) 		: https://github.com/theplaceboeffect/nnplus
-
--------------------------------------------------------------------------
-
 Scripts:
 https://github.com/clinton-hall/nzbToMedia
 
@@ -190,22 +193,12 @@ ExpiresByType application/x-shockwave-flash A3600
     RewriteRule api/?$ index.php?page=newznabapi [QSA,L]  
 </IfModule>
 
-=========================================================================
+#= 31-01-2013 ========================================================================
 
-#- 31-01-2013 ------------------------------------------------------------------------
-
-=========================================================================
 NewzNAB:
 =======
 
 Met update_parsing worden middels nfo-bestanden de mooiere namen alsnog ingevoerd indien van toepassing.
-
--------------------------------------------------------------------------
-
-1. update_binaries
-2. update_releases.php
-3. update_parsing
-4. update_release_groups.ph
 
 -------------------------------------------------------------------------
 
@@ -291,22 +284,7 @@ Binary blacklists HD Only:
 (100043, 'alt.binaries.*', 'L.Joe@no-mans-land.com|Firestorm2012|#cripples', 2, 1, 1, 'foreign and crap posters.'),
 (100044, 'alt.binaries.*', 'NoTHing|9NoTHing|EveryFinG', 1, 1, 0, '');
 
--------------------------------------------------------------------------
-
-Themes ???
-https://github.com/nivong/Newznab_Baffi_design
-
-https://github.com/nivong/nnplus-custom
-
--------------------------------------------------------------------------
-
-svn update
-
-
--------------------------------------------------------------------------
-
-
-#- 30-01-2013 ------------------------------------------------------------------------
+#= 30-01-2013 ========================================================================
 
 https://github.com/clinton-hall/nzbToMedia/blob/master/README.md
 
@@ -363,10 +341,10 @@ php $&;{NEWZNAB_PATH}/update_releases.php
 DIFF=$&;(($&;CURRTIME-$&;LASTOPTIMIZE))
 if [ "$&;DIFF" -gt 43200 ] || [ "$&;DIFF" -lt 1 ]
 then
-LASTOPTIMIZE=`date +%s`
-php $&;{NEWZNAB_PATH}/optimise_db.php
-php $&;{NEWZNAB_PATH}/update_tvschedule.php
-php $&;{NEWZNAB_PATH}/update_theaters.php
+	LASTOPTIMIZE=`date +%s`
+	php $&;{NEWZNAB_PATH}/optimise_db.php
+	php $&;{NEWZNAB_PATH}/update_tvschedule.php
+	php $&;{NEWZNAB_PATH}/update_theaters.php
 fi
 
 echo "waiting $&;{NEWZNAB_SLEEP_TIME} seconds..."
@@ -383,7 +361,6 @@ done
 ## ??mod_rewrite
 
 --------------------
-
 
 ## http://www.perkussionswartung.com/
 
@@ -537,7 +514,6 @@ sudo nano proxy.conf:
 
 #/usr/bin/php5 -q /pad/naar/spotweb/retrieve.php
 
-
 -------------------------------------------------------------------------
 
 1) => a.b.teevee
@@ -567,9 +543,7 @@ a.b.x264
 
 ## https://affiliate-program.amazon.com/gp/associates/network/main.html
 
-
-
-#- 29-01-2013 ------------------------------------------------------------------------
+#= 29-01-2013 ========================================================================
 
 ### ERR 
 ### PHP Strict standards:  Non-static method PEAR::isError() should not be called statically, assuming $this from incompatible context in /Users/Newznab/Sites/newznab/www/lib/backfill.php on line 161
