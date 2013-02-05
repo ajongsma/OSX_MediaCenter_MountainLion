@@ -26,24 +26,43 @@ http://lokaltog.github.com/powerline/installation/osx.html
 
 --------------------
 ##https://github.com/jonnyboy/newznab-tmux/blob/master/powerline/powerline/README.md
+##https://github.com/pjg/dotfiles/blob/master/.tmux.conf
+##https://github.com/gmcabrita/dotfiles/blob/master/.tmux.conf
 
 # The grep tool is outdated on OS X 10.8, update via GIT
 brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 
+# Install ZSH
+#To use this build of Zsh as your login shell, add it to /etc/shells.
+#
+#If you have administrator privileges, you must fix an Apple miss
+#configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
+#/etc/zprofile, or Zsh will have the wrong PATH when executed
+#non-interactively by scripts.
+#
+#Alternatively, install Zsh with /etc disabled:
+#
+#  brew install --disable-etcdir zsh
+
+brew install zsh
+
 # Install tmux powerline
 cd ~/Github/
 git clone git://github.com/erikw/tmux-powerline.git
+cd tmux-powerline/
 
 printf '!!! Note !!!'
 printf 'Set the maximum lengths to something that suits your configuration of segments and size of terminal'
 printf '(the maximum segments length will be handled better in the future).'
 printf '-----'
-printf 'Edit ~/.tmux.conf, change the following values:'
+printf '# tmux-powerline'
+printf 'Edit ~/.tmux.conf, add the following values at the last line of the file:'
 printf 'set-option -g status on'
 printf 'set-option -g status-interval 2'
 printf 'set-option -g status-utf8 on'
 printf 'set-option -g status-justify "centre"'
 printf 'set-option -g status-left-length 60'
+## printf 'set-option -g status-left-length 32'
 printf 'set-option -g status-right-length 90'
 printf 'set-option -g status-left "#(~/path/to/tmux-powerline/powerline.sh left)"'
 printf 'set-option -g status-right "#(~/path/to/tmux-powerline/powerline.sh right)"'
@@ -75,11 +94,12 @@ brew install mercurial
 brew install vim --env-std --override-system-vim --enable-pythoninterp
 
 ## Homebrew installs default to /usr/local/bin, modify existing $PATH by commenting out all of them in ~/.zshrc
-printf '"Add to #1 of ~/.zshrc:'
+printf '"Insert on the 1st line of ~/.zshrc:'
 printf '"export PATH="/usr/local/bin:$PATH"'
 subl ~/.zshrc
 
 printf 'Verify /usr/local/bin/python:'
+zsh
 which python
 
 # Install FontForge
@@ -98,18 +118,20 @@ printf 'IF version number contains NoPython, try to update to a later version
 # Patch your fonts by passing the fontpatcher script as a parameter to FontForge
 #fontforge -script /path/to/fontpatcher MyFontFile.ttf
 #printf 'Install the font by double-clicking the font file in Finder and click "Install this font" from the preview window'
-fontforge -script ~/.vim/bundle/vim-powerline/fontpatcher/fontpatcher ~/Library/Fonts/Menlo-Powerline.otf
+#ERR fontforge -script ~/.vim/bundle/vim-powerline/fontpatcher/fontpatcher ~/Library/Fonts/Menlo-Powerline.otf
 
 # Install Powerline
 pip install --user git+git://github.com/Lokaltog/powerline
 
 printf 'Add to ~/.vimrc:'
 printf 'python from powerline.bindings.vim import source_plugin; source_plugin()'
-printf 'source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/source_plugin.vim'
+#printf 'source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/source_plugin.vim'
+printf 'source /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/source_plugin.vim'
 subl ~/.vimrc
 
 printf 'Add to ~/.zshrc:'
-printf '. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh'
+#printf '. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh'
+printf '. /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh'
 subl ~/.zshrc
 
 printf '~/.tmux.conf:'
