@@ -30,12 +30,26 @@ printf 'set-option -g status-left-length 60'
 printf 'set-option -g status-right-length 90'
 printf 'set-option -g status-left "#(~/path/to/tmux-powerline/powerline.sh left)"'
 printf 'set-option -g status-right "#(~/path/to/tmux-powerline/powerline.sh right)"'
-subl ~/.tmux.conf
-
+printf '---'
 printf 'The window list can be powerlineified if you'd like by adding the following line to the same file:'
 printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"'
+subl ~/.tmux.conf
 
+printf 'Add the following line to ~/.zshrc:'
+printf 'PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")''
+subl ~/.zshrc
 
+printf 'Generate the default configuration file...'
+./generate_rc.sh
+mv ~/.tmux-powerlinerc.default ~/.tmux-powerlinerc
+subl ~/.tmux-powerlinerc
+
+printf 'Optional - Create custom theme:'
+printf 'cp themes/default.sh themes/mytheme.sh'
+printf 'subl themes/mytheme.sh'
+
+printf 'If not working as intended, check page at:'
+printf 'https://github.com/jonnyboy/newznab-tmux/blob/master/powerline/powerline/README.md#debugging'
 
 --------------------
 
