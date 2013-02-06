@@ -1230,14 +1230,6 @@ EOF
 mv /tmp/com.nnindexer.nnindexer.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.nnindexer.nnindexer.plist
 
-echo "-----------------------------------------------------------"
-echo "| Configure Sphinx:"
-echo "| Use Sphinx                 : Yes"
-echo "| "Sphinx Configuration Path : <full path to sphinx.conf>"
-echo "| "Sphinx Binaries Path : /usr/local/bin/"
-echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin
-
 ./nnindexer.php daemon
 ./nnindexer.php index full all
 ./nnindexer.php index delta all
@@ -1250,6 +1242,15 @@ open http://localhost/newznab/admin
 ## indexer --config /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf --all
 
 ## ./nnindexer.php search --index releases "some search term"
+
+
+echo "-----------------------------------------------------------"
+echo "| Configure Sphinx:"
+echo "| Use Sphinx                 : Yes"
+echo "| Sphinx Configuration Path  : <full path to sphinx.conf>"
+echo "| Sphinx Binaries Path       : /usr/local/bin/"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin
 
 
 #------------------------------------------------------------------------------
