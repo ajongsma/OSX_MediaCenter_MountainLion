@@ -1,5 +1,16 @@
 #!/bin/bash
 
+## ----------------------------------------------------------------------------
+## -= Used git's =-
+## Postprocessing scripts:
+## git clone https://github.com/clinton-hall/nzbToMedia
+## https://github.com/jonnyboy/newznab
+
+## ?? https://github.com/roderik/dotfiles
+## ?? https://github.com/mathiasbynens/dotfiles
+## ----------------------------------------------------------------------------
+
+
 BOLD=$(tput bold)
 BLACK=$(tput setaf 0) #   0  Black
 RED=$(tput setaf 1)  #  1   Red
@@ -12,20 +23,9 @@ WHITE=$(tput setaf 7)  #    7   White
 RESET=$(tput sgr0)
 col=40
 
-# printf '123\n' "$GREEN" $col '[OK]' "$RESET"
-# printf 'abc\n' "$RED" $col '[FAIL]' "$RESET"
-
-
-## ----------------------------------------------------------------------------
-## -= Used git's =-
-## Postprocessing scripts:
-## git clone https://github.com/clinton-hall/nzbToMedia
-## https://github.com/jonnyboy/newznab
-
-## ?? https://github.com/roderik/dotfiles
-## ?? https://github.com/mathiasbynens/dotfiles
-## ----------------------------------------------------------------------------
-
+##-----------------------------------------------------------------------------
+## Check OS
+##-----------------------------------------------------------------------------
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   OS="Mac"
   APP_FILE="chrome-mac.zip"
@@ -234,6 +234,23 @@ else
     printf 'Xlog found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------
+# Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/pgAdmin3.app ] ; then
+    #echo "pgAdmin not installed, please install..."
+    printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    open http://www.pgadmin.org/download/macosx.php
+    while ( [ ! -e /Applications/pgAdmin3.app ] )
+    do
+        #echo "Waiting for pgAdmin to be installed..."
+        printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+    done
+else
+    echo "pgAdmin found                                [OK]"
+fi
+
 
 #------------------------------------------------------------------------------
 # Colourize terminal
@@ -267,44 +284,31 @@ chflags nohidden ~/Library
 #------------------------------------------------------------------------------
 # Install fonts
 #------------------------------------------------------------------------------
-cd ~/Downloads
-wget http://www.levien.com/type/myfonts/Inconsolata.otf
-open Inconsolata.otf
-wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
-open Inconsolata-Powerline.otf
+#cd ~/Downloads
+#wget http://www.levien.com/type/myfonts/Inconsolata.otf
+#open Inconsolata.otf
+#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
+#open Inconsolata-Powerline.otf
 
 #------------------------------------------------------------------------------
 # Checking existance custom user directories
 #------------------------------------------------------------------------------
 if [ ! -e ~/Sites/ ] ; then
-    echo "Creating directory: Sites"
+    #echo "Creating directory: Sites"
+    printf 'Creating directory ~/Sites...' "YELLOW" $col '[WAIT]' "$RESET"
     mkdir -p ~/Sites/
 else
-    echo "Directory ~/Sites/                        [OK]"
+    #echo "Directory ~/Sites/                        [OK]"
+    printf 'Directory ~/Sites/ found' "$GREEN" $col '[OK]' "$RESET"
 fi
 if [ ! -e ~/Github/ ] ; then
-    echo "Creating directory: Github"
+    #echo "Creating directory: Github"
+    printf 'Creating directory ~/Github...' "YELLOW" $col '[WAIT]' "$RESET"
     mkdir -p ~/Github/
 else
-    echo "Directory ~/Github/                       [OK]"
+    #echo "Directory ~/Github/                       [OK]"
+    printf 'Directory ~/Github/ found' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-
-#------------------------------------------------------------------------------
-# Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
-#------------------------------------------------------------------------------
-if [ ! -e /Applications/pgAdmin3.app ] ; then
-    echo "pgAdmin not installed, please install..."
-    open http://www.pgadmin.org/download/macosx.php
-    while ( [ ! -e /Applications/pgAdmin3.app ] )
-    do
-        echo "Waiting for pgAdmin to be installed..."
-        sleep 15
-    done
-else
-    echo "pgAdmin found                                [OK]"
-fi
-
 
 #------------------------------------------------------------------------------
 # Git config
@@ -1156,6 +1160,8 @@ echo "-----------------------------------------------------------"
 ## https://github.com/jonnyboy/newznab-tmux.git
 
 brew install htop
+brew install iftop
+brew install watch
 
 cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
 git clone https://github.com/jonnyboy/newznab-tmux.git tmux
@@ -1185,7 +1191,7 @@ echo "| export USE_BWMNG="false"           : ??"
 echo "| export USE_IOTOP="false"           : ??"
 echo "| export USE_MYTOP="false"           : ??"
 echo "| export USE_VNSTAT="false"          : ??"
-echo "| export USE_IFTOP="false"           : ??"
+echo "| export USE_IFTOP="false"           : export USE_IFTOP="true""
 echo "| export POWERLINE="false"           : ??"
 echo "| "
 echo "| Use tmpfs to run postprocessing on true/false"
