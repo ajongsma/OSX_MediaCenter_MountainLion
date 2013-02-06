@@ -78,7 +78,7 @@ GIT_EMAIL='a.jongsma@gmail.com'
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
 #------------------------------------------------------------------------------
-# run software update and reboot
+## Run software update and reboot
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
 
@@ -324,12 +324,12 @@ else
     fi
 fi
 
-#------------------------------------------------------------------------------
-# INSTALL SCRIPTS
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
-# Install HomeBrew
-#------------------------------------------------------------------------------
+##==============================================================================
+## INSTALL SCRIPTS
+##------------------------------------------------------------------------------
+##------------------------------------------------------------------------------
+## Install HomeBrew
+##------------------------------------------------------------------------------
 ## This will install:
 ## /usr/local/bin/brew
 ## /usr/local/Library/...
@@ -362,9 +362,10 @@ brew install tmux
 brew cleanup
 
 
-#------------------------------------------------------------------------------
-# Install Bash Completion
-#------------------------------------------------------------------------------
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Bash Completion
+##------------------------------------------------------------------------------
 #brew install bash-completion
 #
 ##Add the following lines to your ~/.bash_profile:
@@ -390,10 +391,10 @@ brew cleanup
 #fi
 
 
-#### ERROR ######
-#------------------------------------------------------------------------------
-# Install Ruby
-#------------------------------------------------------------------------------
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Ruby
+##------------------------------------------------------------------------------
 #cd ~/Github/
 
 ## -- Try 1 --
@@ -420,9 +421,9 @@ brew cleanup
 #rbenv global 1.9.3-p194
 
 
-#------------------------------------------------------------------------------
-# Install MySQL
-#------------------------------------------------------------------------------
+##------------------------------------------------------------------------------
+## Install MySQL
+##------------------------------------------------------------------------------
 ## http://hivelogic.com/articles/installing-mysql-on-mac-os-x/
 ## http://theablefew.com/blog/very-simple-homebrew-mysql-and-rails
 ## --------------------
@@ -455,8 +456,8 @@ if [ ! -e /usr/local/Cellar/mysql ] ; then
     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
     /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
 
-# plutil -lint ~/Library/LaunchAgents/*.plist
-# sudo plutil ~/Library/LaunchAgents/*.plist -s
+    #?? plutil -lint ~/Library/LaunchAgents/*.plist
+    #?? sudo plutil ~/Library/LaunchAgents/*.plist -s
 
     mysql.server start
 
@@ -484,13 +485,13 @@ if [ ! -e /etc/my.cfg ] ; then
 else
 fi
 
-#------------------------------------------------------------------------------
-# Install Postgresql
-#------------------------------------------------------------------------------
-#You can now start the database server using:
-#    postgres -D /usr/local/var/postgres
-#or
-#    pg_ctl -D /usr/local/var/postgres -l logfile start
+##------------------------------------------------------------------------------
+## Install Postgresql
+##------------------------------------------------------------------------------
+## You can now start the database server using:
+##    postgres -D /usr/local/var/postgres
+##    or
+##    pg_ctl -D /usr/local/var/postgres -l logfile start
 
 brew install postgresql --without-ossp-uuid
 initdb --locale=en_US.UTF-8 --encoding=UTF8 /usr/local/var/postgres
@@ -513,27 +514,25 @@ sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 ##psqlstop
 
 
-#------------------------------------------------------------------------------
-# Install PHP
-#------------------------------------------------------------------------------
-#The php.ini file can be found in:
-#    /usr/local/etc/php/5.4/php.ini
-#If PEAR complains about permissions, 'fix' the default PEAR permissions and config:
-#    chmod -R ug+w /usr/local/Cellar/php54/5.4.11/lib/php
-#    pear config-set php_ini /usr/local/etc/php/5.4/php.ini
-#If you are having issues with custom extension compiling, ensure that this php is in your PATH:
-#    PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-
-#To finish installing apc for PHP 5.4:
-#  * /usr/local/etc/php/5.4/conf.d/ext-apc.ini was created,
-#    do not forget to remove it upon extension removal.
-
-#To have launchd start memcached at login:
-#    ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
-#Then to load memcached now:
-#    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
-#Or, if you don't want/need launchctl, you can just run:
-#    /usr/local/opt/memcached/bin/memcached
+##------------------------------------------------------------------------------
+## Install PHP
+##------------------------------------------------------------------------------
+## The php.ini file can be found in:
+##    /usr/local/etc/php/5.4/php.ini
+## If PEAR complains about permissions, 'fix' the default PEAR permissions and config:
+##    chmod -R ug+w /usr/local/Cellar/php54/5.4.11/lib/php
+##    pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+## If you are having issues with custom extension compiling, ensure that this php is in your PATH:
+##    PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+##
+## To finish installing apc for PHP 5.4:
+##  * /usr/local/etc/php/5.4/conf.d/ext-apc.ini was created,
+## To have launchd start memcached at login:
+##   ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+## Then to load memcached now:
+##    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+## Or, if you don't want/need launchctl, you can just run:
+##    /usr/local/opt/memcached/bin/memcached
 
 #brew tap homebrew/dupes
 brew tap josegonzalez/homebrew-php
@@ -555,6 +554,7 @@ brew install php54-imagick
 #brew install php54-uploadprogress
 
 
+## TESTING PHP 5.3
 ## To enable PHP in Apache add the following to httpd.conf and restart Apache:
 ##    LoadModule php5_module    /usr/local/Cellar/php53/5.3.21/libexec/apache2/libphp5.so
 ## The php.ini file can be found in:
@@ -562,7 +562,6 @@ brew install php54-imagick
 ## If you are having issues with custom extension compiling, ensure that this php is in your PATH:
 ##    PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
 
-## TESTING PHP 5.3
 brew install php53 --with-pgsql --with-mysql --with-tidy --with-intl --with-gmp
 brew unlink php54 && link php53
 brew install php53-intl
@@ -631,9 +630,10 @@ else
     sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
 fi
 
-#sudo apachectl restart
+# Test apache config
 /usr/sbin/httpd -t
 
+# sudo apachectl restart
 sudo apachectl start
 open http://localhost
 
@@ -655,9 +655,11 @@ source ~/.bashrc
 #PATH="$(brew --prefix php54)/bin:$PATH"
 #EOF
 #PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-#------------------------------------------------------------------------------
-# Install PEAR
-#------------------------------------------------------------------------------
+
+
+##------------------------------------------------------------------------------
+## Install PEAR
+##------------------------------------------------------------------------------
 sudo php /usr/lib/php/install-pear-nozlib.phar
 
 echo "Change the following line"
@@ -1118,7 +1120,13 @@ echo "| define('REMOVE', false);           : define('REMOVE', true);"
 echo "-----------------------------------------------------------"
 subl /Users/Newznab/Sites/newznab/misc/custom/remove_blacklist_releases.php
 
-## - https://github.com/jonnyboy/newznab-tmux.git
+echo "-----------------------------------------------------------"
+echo "| Install jonnyboy/newznab-tmux"
+echo "-----------------------------------------------------------"
+## https://github.com/jonnyboy/newznab-tmux.git
+
+brew install htop
+
 cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
 git clone https://github.com/jonnyboy/newznab-tmux.git tmux
 cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux
@@ -1131,14 +1139,28 @@ mysqldump --opt -u root -p newznab > ~/newznab_backup.sql
 echo "-----------------------------------------------------------"
 echo "| Change the following settings:"
 echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
-echo "| *export BINARIES="false"           : export BINARIES="true""
+echo "| export BINARIES="false"            : export BINARIES="true""
 echo "| *export BINARIES_THREADS="false"   : export BINARIES_THREADS="true""
-echo "| *export RELEASES="false"           : export RELEASES="true""
-echo "| *export OPTIMIZE="false"           : export OPTIMIZE="true""
+echo "| export RELEASES="false"            : export RELEASES="true""
+echo "| export OPTIMIZE="false"            : export OPTIMIZE="true""
 echo "| export CLEANUP="false"             : export CLEANUP="true""
 echo "| export PARSING="false"             : export PARSING="true""
 echo "| export SPHINX="true"               : export SPHINX="true""
 echo "| export SED="/bin/sed"              : export SED="/usr/bin/sed""
+echo "| "
+echo "| TESTING:"
+echo "| export USE_HTOP="false"            : export USE_HTOP="true""
+echo "| export USE_NMON="false"            : ??" 
+echo "| export USE_BWMNG="false"           : ??"
+echo "| export USE_IOTOP="false"           : ??"
+echo "| export USE_MYTOP="false"           : ??"
+echo "| export USE_VNSTAT="false"          : ??"
+echo "| export USE_IFTOP="false"           : ??"
+echo "| export POWERLINE="false"           : ??"
+echo "| "
+echo "| Use tmpfs to run postprocessing on true/false"
+echo "| export RAMDISK="false"             : ??"
+
 echo "| export AGREED="no"                 : export AGREED="yes""
 echo "-----------------------------------------------------------"
 cp config.sh defaults.sh
