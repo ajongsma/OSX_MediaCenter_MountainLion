@@ -1,9 +1,7 @@
 OSX_NewBox
 ==========
 
-# LINKS
-
-https://github.com/jonnyboy/newznab-tmux
+Shell scripts are currently used as a guideline document and should not be run as an install script.
 
 <hr>
 
@@ -25,19 +23,22 @@ https://github.com/jonnyboy/newznab-tmux
 * [Xlog](https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1)
 * [Tmux](http://tmux.sourceforge.net/)
 * PHP 5.4
+* Python
 * MySQL
 * PostgreSQL
 * [pgadmin](http://www.pgadmin.org/download/macosx.php)
 * [HomeBrew] (http://mxcl.github.com/homebrew/)
 * [NewzNAB] (http://www.newznab.com/)
+  * [jonnyboy/newznab-tmux] (https://github.com/jonnyboy/newznab-tmux)
 * [Sphinx] (http://www.sphinxsearch.com/downloads.html)
 * SpotWeb
 * [SabNZBD] (http://sabnzbd.org/)
   * [nzbToMedia] (https://github.com/clinton-hall/nzbToMedia)
 * [Cheetah] (http://www.cheetahtemplate.org/download)
 * [SickBeard] (http://sickbeard.com/)
+* [Auto-Sub] (http://code.google.com/p/auto-sub/)
 * [Couch Potato] (https://couchpota.to/)
-* Marachino
+* [Maraschino] (http://www.maraschinoproject.com/)
 
 # ADDENDUM
 
