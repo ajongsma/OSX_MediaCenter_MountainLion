@@ -1,3 +1,12 @@
+
+ERR:
+Pooky:tmux Andries$ sudo ./start.sh 
+Password:
+sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
+ERROR 1045 (28000): Access denied for user '-h'@'localhost' (using password: NO)
+./start.sh: line 95: mountpoint: command not found
+umount: 1: not currently mounted
+
 #= 05-02-2013 ========================================================================
 
 ???? brew install:
