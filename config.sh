@@ -16,6 +16,11 @@ export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
 ############################################################
 
+#Specify your SED binary
+export SED="/usr/bin/sed"
+
+############################################################
+
 ## NewzNAB paths
 export $INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 

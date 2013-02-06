@@ -27,7 +27,9 @@ source defaults.sh
 #  exit
 #fi
 
-## ??? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
+### ERR: sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
+## ??? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$INST_NEWZNAB_PATH"/www/config.php )
+## ??? eval $( /usr/bin/sed -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" /Users/Newznab/Sites/newznab/www/config.php )
 
 if [[ $AGREED == "no" ]]; then
   echo "Please edit the defaults.sh file"
@@ -44,7 +46,6 @@ fi
 ## ?? https://github.com/roderik/dotfiles
 ## ?? https://github.com/mathiasbynens/dotfiles
 ## ----------------------------------------------------------------------------
-
 
 BOLD=$(tput bold)
 BLACK=$(tput setaf 0) #   0  Black
@@ -277,6 +278,23 @@ if [ ! -e /Applications/pgAdmin3.app ] ; then
     printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open http://www.pgadmin.org/download/macosx.php
     while ( [ ! -e /Applications/pgAdmin3.app ] )
+    do
+        #echo "Waiting for pgAdmin to be installed..."
+        printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+    done
+else
+    echo "pgAdmin found                                [OK]"
+fi
+
+#------------------------------------------------------------------------------
+# Install GitHub for Mac
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/GitHub.app ] ; then
+    #echo "pgAdmin not installed, please install..."
+    printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    open http://mac.github.com
+    while ( [ ! -e /Applications/GitHub.app ] )
     do
         #echo "Waiting for pgAdmin to be installed..."
         printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
