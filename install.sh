@@ -19,12 +19,13 @@ fi
 source defaults.sh
 
 ## Verify that all variables exist
-source bin/test_defaults.sh
-if [[ $ALLOW_START == "false" ]]; then
-  clear
-  echo "Please copy config.sh to defaults.sh, your current copy is outdated."
-  exit
-fi
+## https://github.com/jonnyboy/newznab-tmux/blob/master/bin/test_defaults.sh
+#source bin/test_defaults.sh
+#if [[ $ALLOW_START == "false" ]]; then
+#  clear
+#  echo "Please copy config.sh to defaults.sh, your current copy is outdated."
+#  exit
+#fi
 
 ## ??? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
 
