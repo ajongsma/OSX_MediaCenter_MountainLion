@@ -1,4 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+SOURCE="${BASH_SOURCE[0]}"
+DIR="$( dirname "$SOURCE" )"
+while [ -h "$SOURCE" ]
+do
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+if [ ! -f defaults.sh ]; then
+  clear
+  echo "Please copy config.sh to defaults.sh"
+  exit
+fi
+
+source defaults.sh
+
+## Verify that all variables exist
+source bin/test_defaults.sh
+if [[ $ALLOW_START == "false" ]]; then
+  clear
+  echo "Please copy config.sh to defaults.sh, your current copy is outdated."
+  exit
+fi
+
+## ??? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
+
+if [[ $AGREED == "no" ]]; then
+  echo "Please edit the defaults.sh file"
+  exit
+fi
+
 
 ## ----------------------------------------------------------------------------
 ## -= Used git's =-
