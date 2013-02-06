@@ -1,17 +1,20 @@
 #!/bin/bash
 
-#bold=`tput bold`
-#black=`tput setaf 0` #   0  Black
-#red=`tput setaf 1`  #  1   Red
-#green=`tput setaf 2`  #    2   Green
-#yellow=`tput setaf 3`  #   3   Yellow
-#blue=`tput setaf 4`  #     4   Blue
-#magenta=`tput setaf 5`  #  5   Magenta
-#cyan=`tput setaf 6`  #     6   Cyan
-#white=`tput setaf 7`  #    7   White
-#reset=`tput sgr0`
- 
-#echo $bold$blue"  [color] Weee!!!"$reset
+BOLD=$(tput bold)
+BLACK=$(tput setaf 0) #   0  Black
+RED=$(tput setaf 1)  #  1   Red
+GREEN=$(tput setaf 2)  #    2   Green
+YELLOW=$(tput setaf 3)  #   3   Yellow
+BLUE=$(tput setaf 4)  #     4   Blue
+MAGENTA=$(tput setaf 5)  #  5   Magenta
+CYAN=$(tput setaf 6)  #     6   Cyan
+WHITE=$(tput setaf 7)  #    7   White
+RESET=$(tput sgr0)
+col=40
+
+# printf '123\n' "$GREEN" $col '[OK]' "$RESET"
+# printf 'abc\n' "$RED" $col '[FAIL]' "$RESET"
+
 
 ## ----------------------------------------------------------------------------
 ## -= Used git's =-
@@ -24,12 +27,14 @@
 ## ----------------------------------------------------------------------------
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  os="Mac"
-  app_file="chrome-mac.zip"
-  app_path="/Applications"
-  echo "OS X Detected                               [OK]"
+  OS="Mac"
+  APP_FILE="chrome-mac.zip"
+  APP_PATH="/Applications"
+  #echo "OS X Detected                               [OK]"
+  printf 'OS X Detected' "$GREEN" $col '[OK]' "$RESET"
 else
-  echo "Linux unsupported."
+  #echo "Linux unsupported."
+  printf 'Linux unsupported.' "$RED" $col '[FAIL]' "$RESET"
   exit 1
 fi
 
@@ -49,10 +54,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #echo -e "Please enter computer name"
 #read COMPUTER_NAME
 
-# gitx
-wget http://frim.frim.nl/GitXStable.app.zip
-unzip GitXStable.app.zip
-mv GitX.app /Applications/
+#### REALLY NEEDED ???
+## Install GitX
+#wget http://frim.frim.nl/GitXStable.app.zip
+#unzip GitXStable.app.zip
+#mv GitX.app /Applications/
 ##open /Applications/GitX.app
 
 #echo -e "Please enter Full Name for GIT"
@@ -96,97 +102,138 @@ GIT_EMAIL='a.jongsma@gmail.com'
 # Check for installation Xcode
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Xcode.app ] ; then
-    echo "Xcode not installed, please install..."
+    #echo "Xcode not installed, please install..."
+    printf 'Xcode not installed, please install..' "$RED" $col '[FAIL]' "$RESET"
+
     open http://itunes.apple.com/us/app/xcode/id497799835?mt=12
     while ( [ ! -e /Applications/Xcode.app ] )
     do
-        echo "Waiting for Xcode to be installed..."
+        #echo "Waiting for Xcode to be installed..."
+        printf 'Waiting for Xcode to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 else
-    echo "Xcode found                               [OK]"
+    #echo "Xcode found                               [OK]"
+    printf 'Xcode found' "$GREEN" $col '[OK]' "$RESET"
 fi
+
 
 #------------------------------------------------------------------------------
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/gcc ] ; then
-    echo "GCC not installed, please install..."
+    #echo "GCC not installed, please install..."
+    printf 'GCC not installed, please Command Line tools..' "$RED" $col '[FAIL]' "$RESET"
     while ( [ $(which gcc) == "" ] )
     do
-        echo "Waiting for GCC to be installed..."
+        #echo "Waiting for GCC to be installed..."
+        printf 'Waiting for GCC to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
-    echo "GCC found                             [OK]"
+    #echo "GCC found                             [OK]"
+    printf 'GCC found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for Java
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/java ] ; then
-    echo "Java not installed, please install..."
+    #echo "Java not installed, please install..."
+    printf 'Java not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     while ( [ $(which java) == "" ] )
     do
-        echo "Waiting for Java to be installed..."
+        #echo "Waiting for Java to be installed..."
+        printf 'Waiting for Java to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
-    echo "Java found                                [OK]"
+    #echo "Java found                                [OK]"
+    printf 'Java found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Server.app ] ; then
-    echo "OS X Server not installed, please install..."
+    #echo "OS X Server not installed, please install..."
+    printf 'OS X Server not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
     while ( [ ! -e /Applications/Server.app ] )
     do
-        echo "Waiting for OS X Server to be installed..."
+        #echo "Waiting for OS X Server to be installed..."
+        printf 'Waiting for OS X Server to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
-    echo "OS X Server found                         [OK]"
+    #echo "OS X Server found                         [OK]"
+    printf 'OS X Server found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
-    echo "Sublime Text not installed, please install..."
+    #echo "Sublime Text not installed, please install..."
+    printf 'Sublime Text not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open http://www.sublimetext.com
     while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
     do
-        echo "Waiting for Sublime Text to be installed..."
+        #echo "Waiting for Sublime Text to be installed..."
+        printf 'Waiting for Sublime Text to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
     echo "Sublime Text found                            [OK]"
 fi
 if [ ! -e /usr/local/bin/subl ] ; then
-    echo "Creating link to Sublime Text..."
+    #echo "Creating link to Sublime Text..."
+    printf 'Symbolic link to Sublime Text not found, creating...' "$RED" $col '[FAIL]' "$RESET"
     sudo mkdir -p /usr/local/bin/ 
     sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 else
-    echo "Sublime Text link found                       [OK]"
+    #echo "Sublime Text link found                       [OK]"
+    printf 'Sublime Text link found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for iTerm 2
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/iTerm.app ] ; then
-    echo "iTerm not installed, please install..."
+    #echo "iTerm not installed, please install..."
+    printf 'iTerm not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open http://http://www.iterm2.com
     while ( [ ! -e /Applications/iTerm.app ] )
     do
-        echo "Waiting for iTerm to be installed..."
+        #echo "Waiting for iTerm to be installed..."
+        printf 'Waiting for iTerm to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
     echo "iTerm found                            [OK]"
+    printf 'iTerm found' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+#------------------------------------------------------------------------------
+# Check for Xlog
+#------------------------------------------------------------------------------
+#https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
+if [ ! -e /Applications/Xlog.app ] ; then
+    #echo "Xlog not installed, please install..."
+    printf 'Xlog not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
+    while ( [ ! -e /Applications/Xlog.app ] )
+    do
+        #echo "Waiting for Xlog to be installed..."
+        printf 'Waiting for Xlog to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+    done
+else
+    #echo "Xlog found                         [OK]"
+    printf 'Xlog found' "$GREEN" $col '[OK]' "$RESET"
+fi
+
 
 #------------------------------------------------------------------------------
 # Colourize terminal
@@ -211,23 +258,6 @@ else
     echo "export GREP_OPTIONS='--color=auto'"
     subl ~/.bash_profile
 fi
-
-#------------------------------------------------------------------------------
-# Check for Xlog
-#------------------------------------------------------------------------------
-#https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
-if [ ! -e /Applications/Xlog.app ] ; then
-    echo "Xlog not installed, please install..."
-    open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
-    while ( [ ! -e /Applications/Xlog.app ] )
-    do
-        echo "Waiting for Xlog to be installed..."
-        sleep 15
-    done
-else
-    echo "Xlog found                         [OK]"
-fi
-
 
 #------------------------------------------------------------------------------
 # Show the ~/Library folder
