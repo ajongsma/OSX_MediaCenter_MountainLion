@@ -57,7 +57,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * If needed, backup the MySQL database:
  
   ```bash
-  mysqldump --opt -u root -p newznab > ~/newznab_backup.sql
+  mysqldump --opt -u root -p <password> ~/mysql_backup.sql
   ```
 
 <hr>
