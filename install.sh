@@ -1099,6 +1099,8 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
 #./newznab_local.sh
 #echo "ctrl-ad to detach screen"
 
+
+## Additional custom NewzNAB Themes
 mkdir -p ~/Github/
 cd ~/Github/
 git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
@@ -1106,37 +1108,40 @@ cp -r Newznab-Simple-Theme/simple /Users/Newznab/Sites/newznab/www/templates/sim
 git clone https://github.com/sinfuljosh/bootstrapped.git
 cp -r bootstrapped /Users/Newznab/Sites/newznab/www/templates/bootstrapped
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
-git clone https://github.com/jonnyboy/newznab-tmux.git tmux
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux
-cp config.sh defaults.sh
-
-## https://github.com/NNScripts/nn-custom-scripts
+## Install custom NewzNAB Update Script
+## - https://github.com/NNScripts/nn-custom-scripts
 mkdir -p /Users/Newznab/Sites/newznab/misc/custom
 git clone https://github.com/NNScripts/nn-custom-scripts.git /Users/Newznab/Sites/newznab/misc/custom
 echo "-----------------------------------------------------------"
 echo "| Change the following settings:"
-echo "| define('REMOVE', false); => define('REMOVE', true);"
+echo "| define('REMOVE', false);           : define('REMOVE', true);"
 echo "-----------------------------------------------------------"
 subl /Users/Newznab/Sites/newznab/misc/custom/remove_blacklist_releases.php
+
+## - https://github.com/jonnyboy/newznab-tmux.git
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+git clone https://github.com/jonnyboy/newznab-tmux.git tmux
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux
 
 echo "-----------------------------------------------------------"
 echo "| Backing up current MySQL database..."
 echo "-----------------------------------------------------------"
 mysqldump --opt -u root -p newznab > ~/newznab_backup.sql
+
 echo "-----------------------------------------------------------"
 echo "| Change the following settings:"
 echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
-echo "| *export BINARIES="false"       : export BINARIES="true""
-echo "| *export BINARIES_THREADS="false"    : export BINARIES_THREADS="true""
-echo "| *export RELEASES="false"       : export RELEASES="true""
-echo "| *export OPTIMIZE="false"      : export OPTIMIZE="true""
-echo "| export CLEANUP="false"        : export CLEANUP="true""
-echo "| export PARSING="false"        : export PARSING="true""
-echo "| export SPHINX="true"          : export SPHINX="true""
-echo "| export SED="/bin/sed"         : export SED="/usr/bin/sed""
-echo "| export AGREED="no"            : export AGREED="yes""
+echo "| *export BINARIES="false"           : export BINARIES="true""
+echo "| *export BINARIES_THREADS="false"   : export BINARIES_THREADS="true""
+echo "| *export RELEASES="false"           : export RELEASES="true""
+echo "| *export OPTIMIZE="false"           : export OPTIMIZE="true""
+echo "| export CLEANUP="false"             : export CLEANUP="true""
+echo "| export PARSING="false"             : export PARSING="true""
+echo "| export SPHINX="true"               : export SPHINX="true""
+echo "| export SED="/bin/sed"              : export SED="/usr/bin/sed""
+echo "| export AGREED="no"                 : export AGREED="yes""
 echo "-----------------------------------------------------------"
+cp config.sh defaults.sh
 subl defaults.sh
 
 echo "-----------------------------------------------------------"
@@ -1156,12 +1161,6 @@ sudo ./set_perms.sh
 
 cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/
 ./start.sh
-## chmod: /var/www/newznab/www/lib/smarty/templates_c: No such file or directory
-## chmod: /var/www/newznab/www/covers: No such file or directory
-## chmod: /var/www/newznab/www: No such file or directory
-## chmod: /var/www/newznab/www/install: No such file or directory
-
-
 
 ### ERR:
 ## PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /Users/Newznab/Sites/newznab/www/lib/framework/db.php on line 193
@@ -1172,6 +1171,7 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/
 ##
 ## Fatal error: Call to a member function fetch_assoc() on a non-object in /Users/Newznab/Sites/newznab/www/lib/framework/db.php on line 193
 ########
+
 
 #------------------------------------------------------------------------------
 # Install Sphinx
@@ -1235,6 +1235,8 @@ launchctl load ~/Library/LaunchAgents/com.nnindexer.nnindexer.plist
 ./nnindexer.php index delta all
 ./nnindexer.php daemon --stop
 ./nnindexer.php daemon
+
+#### ERR:
 ## WARNING: index 'releases': preload: failed to open /Users/Newznab/Sites/newznab/db/sphinxdata/releases.sph: No such file or directory; NOT SERVING
 ## precaching index 'releases_delta'
 
@@ -1260,7 +1262,6 @@ open http://localhost/newznab/admin
 mkdir -p ~/Downloads/Usenet/Incomplete
 mkdir -p ~/Downloads/Usenet/Complete
 mkdir -p ~/Downloads/Usenet/Watch
-
 
 if [ ! -e /Applications/SABnzbd.app ] ; then
     echo "SABnzbd not installed, please install..."
