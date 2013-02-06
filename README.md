@@ -9,6 +9,17 @@ https://github.com/jonnyboy/newznab-tmux
 
 # SETUP
 
+* OSX Server 2.0
+  * Apache
+* PHP 5.4
+* Brew
+* NewzNAB
+* SpotWeb
+* SabNZBD
+* Sick-Beard
+* Couch Potato
+* Marachino
+* 
 
 
 
