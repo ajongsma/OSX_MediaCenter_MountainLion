@@ -17,8 +17,8 @@ https://github.com/jonnyboy/newznab-tmux
 
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
 
-* [jonnyboy - Newznab-tmux](https://github.com/jonnyboy/newznab-tmux)
-* To exit the jonnyboy scripts without any worry of causing problems. Click into the Monitor pane, top left and Ctrl-c, or edit defaults.sh and set running="false". This will stop the monitor script. When all of the other panes show dead, then it is ok to run Ctrl-a c and in new window run killall tmux.
+ * [jonnyboy - Newznab-tmux](https://github.com/jonnyboy/newznab-tmux)
+ * To exit the jonnyboy scripts without any worry of causing problems. Click into the Monitor pane, top left and Ctrl-c, or edit defaults.sh and set running="false". This will stop the monitor script. When all of the other panes show dead, then it is ok to run Ctrl-a c and in new window run killall tmux.
 
   ```bash
   cd ../ && ./start.sh
