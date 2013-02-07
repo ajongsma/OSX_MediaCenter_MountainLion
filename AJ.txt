@@ -1,5 +1,14 @@
 #= 07-02-2013 ========================================================================
 
+[GeekTool] (http://projects.tynsoe.org/en/geektool)
+
+-------------------------------------------------------------------------
+
+## brew install spark todo-txt agrep dos2unix fortune gawk git gnu-sed htop multitail psgrep rename sqlite ssh-copy-id wget
+
+brew install gnu-sed
+
+-------------------------------------------------------------------------
 
 ## 1) sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
 -----
@@ -130,7 +139,9 @@ https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
 #=> FONT: https://gist.github.com/sjl/1627888
 
 ### ZSH/OH-MY-ZSH
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+#curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 
 # $PATH
 # This puts homebrew packages first in path
