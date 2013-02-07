@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Make sure only root can run our script
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 BOLD=$(tput bold)
 BLACK=$(tput setaf 0) #   0  Black
 RED=$(tput setaf 1)  #  1   Red
