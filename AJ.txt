@@ -1,4 +1,41 @@
 
+
+#= 07-02-2013 ========================================================================
+
+
+## 1) sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
+-----
+?? - Install GSED
+?? - Set the path to GSED in defaults.sh.
+
+
+## 2) ERROR 1045 (28000): Access denied for user '-h'@'localhost' (using password: NO)
+-----
+??
+
+
+## 3.1) ./start.sh: line 95: mountpoint: command not found
+## 3.2) umount: 1: not currently mounted
+-----
+??
+http://localhost/newznab/admin, "edit site"
+Unrar Path           : /usr/local/bin/unrar
+Temp Unrar File Path : /srv/nnplus/nzbfiles/tmpunrar
+
+## 4.1) PHP Notice: Use of undefined constant SIGSTKFLT - assumed 'SIGSTKFLT' in /lib/powerprocess.php on line 212
+## 4.2) PHP Notice: Use of undefined constant SIGCLD - assumed 'SIGCLD' in /lib/powerprocess.php on line 214
+-----
+?? Add ??
+display_errors = off
+
+
+?? Check current .INI's:
+error_reporting = E_ALL | E_DEPRECATED
+error_reporting = E_ALL ^ E_STRICT
+
+
+#= 06-02-2013 ========================================================================
+
 ERR:
 Pooky:tmux Andries$ sudo ./start.sh 
 Password:
