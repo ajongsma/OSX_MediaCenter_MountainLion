@@ -1,22 +1,35 @@
 
-
 #= 07-02-2013 ========================================================================
 
 
 ## 1) sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
 -----
+??## start.sh
+?? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
+
 ?? - Install GSED
 ?? - Set the path to GSED in defaults.sh.
 
 
 ## 2) ERROR 1045 (28000): Access denied for user '-h'@'localhost' (using password: NO)
 -----
-??
+?? start.sh
+?? #create mysql my.conf
+?? #this keeps your password from being displayed in ps, htop and others
+?? echo -e '[client]\npassword='$DB_PASSWORD > ./conf/my.cnf
+?? chmod 600 ./conf/my.cnf
 
 
 ## 3.1) ./start.sh: line 95: mountpoint: command not found
 ## 3.2) umount: 1: not currently mounted
 -----
+?? #create a ramdisk
+?? if [[ $RAMDISK == "true" ]]; then
+??   mountpoint -q $TMPUNRAR_PATH || mount -t tmpfs -o size=256M tmpfs $TMPUNRAR_PATH 2>&1 > /dev/null
+?? fi
+?? 
+?? chmod -R 777 $TMPUNRAR_PATH
+
 ??
 http://localhost/newznab/admin, "edit site"
 Unrar Path           : /usr/local/bin/unrar
@@ -32,6 +45,19 @@ display_errors = off
 ?? Check current .INI's:
 error_reporting = E_ALL | E_DEPRECATED
 error_reporting = E_ALL ^ E_STRICT
+
+-------------------------------------------------------------------------
+
+command -v mysql >/dev/null 2>&1 || { echo >&2 "I require mysql but it's not installed.  Aborting."; exit 1; } && export MYSQL=`command -v mysql`
+command -v php5 >/dev/null 2>&1 && export PHP=`command -v php5` || { export PHP=`command -v php`; }
+command -v tmux >/dev/null 2>&1 || { echo >&2 "I require tmux but it's not installed.  Aborting."; exit 1; } && export TMUXCMD=`command -v tmux`
+command -v nice >/dev/null 2>&1 || { echo >&2 "I require nice but it's not installed.  Aborting."; exit 1; } && export NICE=`command -v nice`
+command -v nmon >/dev/null 2>&1 || { echo >&2 "I require nmon but it's not installed.  Aborting."; exit 1; } && export NMON=`command -v nmon`
+command -v bwm-ng >/dev/null 2>&1|| { echo >&2 "I require bwm-ng but it's not installed.  Aborting."; exit 1; } && export BWMNG=`command -v bwm-ng`
+command -v iotop >/dev/null 2>&1|| { echo >&2 "I require iotop but it's not installed.  Aborting."; exit 1; } && export IOTOP=`command -v iotop`
+command -v mytop >/dev/null 2>&1|| { echo >&2 "I require mytop but it's not installed.  Aborting."; exit 1; } && export MYTOP=`command -v mytop`
+command -v vnstat >/dev/null 2>&1|| { echo >&2 "I require vnstat but it's not installed. Aborting."; exit 1; } && export VNSTAT=`command -v vnstat`
+command -v iftop >/dev/null 2>&1|| { echo >&2 "I require iftop but it's not installed. Aborting."; exit 1; } && export IFTOP=`command -v iftop`
 
 
 #= 06-02-2013 ========================================================================
