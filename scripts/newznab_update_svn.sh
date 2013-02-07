@@ -18,4 +18,4 @@ cd $NEWZNAB_PATH"/misc/update_scripts"
 php update_database_version.php
 
 cd $NEWZNAB_PATH"/misc/update_scripts/nix_scripts/tmux/scripts"
-./set_perms.sh
+./newzmab_set_perms.sh
