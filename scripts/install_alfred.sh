@@ -19,7 +19,7 @@ if [ ! -e /Applications/alfred.app ] ; then
 
   url="http://cachefly.alfredapp.com/alfred_1.3.2_265.zip"
   zip="${url##http*/}"
-  download_dir="/src/alfred"
+  download_dir="~/src/alfred"
   mkdir -p "$download_dir"
   curl -L "$url" -o "${download_dir}/${zip}"
 
