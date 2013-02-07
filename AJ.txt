@@ -1,6 +1,7 @@
 #= 07-02-2013 ========================================================================
 
 [GeekTool] (http://projects.tynsoe.org/en/geektool)
+https://itunes.apple.com/nl/app/geektool/id456877552?l=en&mt=12
 
 -------------------------------------------------------------------------
 
@@ -9,15 +10,6 @@
 brew install gnu-sed
 
 -------------------------------------------------------------------------
-
-## 1) sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
------
-??## start.sh
-?? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
-
-?? - Install GSED
-?? - Set the path to GSED in defaults.sh.
-
 
 ## 2) ERROR 1045 (28000): Access denied for user '-h'@'localhost' (using password: NO)
 -----
@@ -94,13 +86,13 @@ brew install fontforge
 ### VIM & MACVIM
 brew install macvim
 
-brew tap homebrew/dupes
-vim /usr/local/Library/Taps/homebrew-dupes/vim.rb
-
-# At the very top, replace url
-url 'https://vim.googlecode.com/hg/', :tag => 'v7-3-617'
-
-brew install homebrew/dupes/vim
+##brew tap homebrew/dupes
+##vim /usr/local/Library/Taps/homebrew-dupes/vim.rb
+##
+### At the very top, replace url
+##url 'https://vim.googlecode.com/hg/', :tag => 'v7-3-617'
+##
+##brew install homebrew/dupes/vim
 
 ### JANUS
 
@@ -113,15 +105,17 @@ git clone https://github.com/Lokaltog/vim-powerline
 git clone https://github.com/altercation/vim-colors-solarized
 git clone https://github.com/tpope/vim-eunuch
 
-cd ~/.janus/vim-powerline
-fontforge -script fontpatcher/fontpatcher Menlo\ for\ Powerline.ttf
+#?? cd ~/.janus/vim-powerline
+#?? fontforge -script fontpatcher/fontpatcher Menlo\ for\ Powerline.ttf
 
-vim .vimrc.before
+vim ~/.vimrc.before
 ## Add this line, because tComment is better
 call janus#disable_plugin('nerdcommenter')
 
-vim .vimrc.after
 ## Copy in a .vimrc boiler plate
+## Paste into the .vimrc.after
+open https://gist.github.com/killtheliterate/3267660
+subl ~/.vimrc.after
 
 
 ### ITERM2

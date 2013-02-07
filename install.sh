@@ -1056,6 +1056,7 @@ git clone https://github.com/Lokaltog/powerline-fonts.git
 #brew install sphinx
 
 brew install unrar
+brew install gnu-sed
 
 sudo mkdir -p /Users/Newznab/Sites/newznab/
 cd /Users/Newznab/Sites/newznab/
@@ -1235,7 +1236,7 @@ echo "| export OPTIMIZE="false"            : export OPTIMIZE="true""
 echo "| export CLEANUP="false"             : export CLEANUP="true""
 echo "| export PARSING="false"             : export PARSING="true""
 echo "| export SPHINX="true"               : export SPHINX="true""
-echo "| export SED="/bin/sed"              : export SED="/usr/bin/sed""
+echo "| export SED="/bin/sed"              : export SED="/usr/local/bin/gsed""
 echo "| "
 echo "| TESTING:"
 echo "| export USE_HTOP="false"            : export USE_HTOP="true""
