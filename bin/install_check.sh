@@ -6,7 +6,7 @@ PHP_INI_1=/private/etc/php.ini
 PHP_INI_2=/usr/local/etc/php/5.4/php.ini
 APACHE2_CONF=/private/etc/apache2/httpd.conf
 MYSQL_CONF=/etc/my.cnf
-SPHINX_CONF=/etc/default/sphinxsearch
+#SPHINX_CONF=/etc/default/sphinxsearch
 
 PATH_TO_SPOTWEB=/User/Spotweb/Sites/spotweb
 PATH_TO_PHP_1=/usr/bin/php
@@ -26,15 +26,14 @@ RESET=$(tput sgr0)
 col=40
 
 #echo $BOLD$BLUE"  [color] Weee!!!"$RESET
-printf 'Weee!!!\n' "$$BOLD$BLUE" $col '[OK]' "$RESET"
-
-echo $PID > ${NN_PID_PATH}${PIDFILE}
-if [ -f ${NN_PID_PATH}${PIDFILE} ]
-then
- printf '%s%*s%s\n' "$GREEN" $col '[OK]' "$NORMAL"
-else
- printf '%s%*s%s\n' "$RED" $col '[FAIL]' "$NORMAL"
-fi
+#printf 'Weee!!!\n' "$$BOLD$BLUE" $col '[OK]' "$RESET"
+#echo $PID > ${NN_PID_PATH}${PIDFILE}
+#if [ -f ${NN_PID_PATH}${PIDFILE} ]
+#then
+# printf '%s%*s%s\n' "$GREEN" $col '[OK]' "$NORMAL"
+#else
+# printf '%s%*s%s\n' "$RED" $col '[FAIL]' "$NORMAL"
+#fi
 
 ## -----------------------------------------------
 
@@ -116,15 +115,15 @@ else
 	echo "Missing file : ${MYSQL_CONF}   [ERR]"
 fi
 
-if [ -e SPHINX_CONF ] ; then
-	echo "======================"
-	echo "Sphinx => ${SPHINX_CONF}"
-	echo "?? ON"
-	echo "----------------------"
-	cat SPHINX_CONF
-else
-	echo "Missing file : ${SPHINX_CONF}   [ERR]"
-fi
+#if [ -e SPHINX_CONF ] ; then
+#	echo "======================"
+#	echo "Sphinx => ${SPHINX_CONF}"
+#	echo "?? ON"
+#	echo "----------------------"
+#	cat SPHINX_CONF
+#else
+#    printf 'Missing file : ${SPHINX_CONF}' "$RED" $col '[FAIL]' "$NORMAL"
+#fi
 
 if [ -e /Library/LaunchDaemons/org.macports.apache2.plist ] ; then
 	printf 'LaunchDaemons - apache2\n' "$GREEN" $col '[OK]' "$NORMAL"
@@ -147,35 +146,35 @@ echo "PostgreSQL : $(pg_ctl status -D /usr/local/var/postgres)" | grep pg_ctl
 
 SERVICE='memcached'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    echo "$SERVICE service running, everything is fine"
+    printf '$SERVICE is running' "$GREEN" $col '[FAIL]' "$NORMAL"
 else
-    echo "$SERVICE is not running"
+    printf '$SERVICE is not running' "$RED" $col '[FAIL]' "$NORMAL"
 fi
 
 SERVICE='searchd'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    echo "$SERVICE service running, everything is fine"
+    printf '$SERVICE is running' "$GREEN" $col '[FAIL]' "$NORMAL"
 else
-    echo "$SERVICE is not running"
+    printf '$SERVICE is not running' "$RED" $col '[FAIL]' "$NORMAL"
 fi
 
 SERVICE='SABnzbd'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    echo "$SERVICE service running, everything is fine"
+    printf '$SERVICE is running' "$GREEN" $col '[FAIL]' "$NORMAL"
 else
-    echo "$SERVICE is not running"
+    printf '$SERVICE is not running' "$RED" $col '[FAIL]' "$NORMAL"
 fi
 
 SERVICE='SickBeard.py'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    echo "$SERVICE service running, everything is fine"
+    printf '$SERVICE is running' "$GREEN" $col '[FAIL]' "$NORMAL"
 else
-    echo "$SERVICE is not running"
+    printf '$SERVICE is not running' "$RED" $col '[FAIL]' "$NORMAL"
 fi
 
 SERVICE='AutoSub.py'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    echo "$SERVICE service running, everything is fine"
+    printf '$SERVICE is running' "$GREEN" $col '[FAIL]' "$NORMAL"
 else
-    echo "$SERVICE is not running"
+    printf '$SERVICE is not running' "$RED" $col '[FAIL]' "$NORMAL"
 fi
