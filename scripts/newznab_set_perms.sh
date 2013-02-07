@@ -23,11 +23,15 @@ if [[ $AGREED == "no" ]]; then
         exit
 fi
 
+sudo mkdir $INST_NEWZNAB_PATH/nzbfiles/tmpunrar
+
 echo "Fixing permisions, this can take some time if you have a large set of releases"
-sudo chmod 777 $INST_NEWZNAB_PATH/www/lib/smarty/templates_c
-sudo chmod -R 777 $INST_NEWZNAB_PATH/www/covers
-sudo chmod 777 $INST_NEWZNAB_PATH/www
-sudo chmod 777 $INST_NEWZNAB_PATH/www/install
+sudo chmod 777 $INST_NEWZNAB_PATH/lib/smarty/templates_c
+sudo chmod -R 777 $INST_NEWZNAB_PATH/covers
+sudo chmod 777 $INST_NEWZNAB_PATH
+sudo chmod 777 $INST_NEWZNAB_PATH/install
+sudo chmod -R 777 $INST_NEWZNAB_PATH/nzbfiles/
+sudo chmod 777 $INST_NEWZNAB_PATH/db
 
 echo -e "\033[38;5;160mCompleted\033[39m"
 
