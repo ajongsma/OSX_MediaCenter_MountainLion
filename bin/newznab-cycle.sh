@@ -12,7 +12,7 @@ export NEWZNAB_SLEEP_TIME="600" # in seconds
 while :
  do
 	CURRTIME=`date +%s`
-	cd ${NEWZNAB_PATH_NIX_SCRIPTS}
+#	cd ${NEWZNAB_PATH_NIX_SCRIPTS}
 	./newznab_local.sh
 
 #	#cd ${NEWZNAB_PATH}
