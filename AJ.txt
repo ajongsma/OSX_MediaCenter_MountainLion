@@ -1,3 +1,61 @@
+
+#= 08-02-2013 ========================================================================
+
+-------------------------------------------------------------------------
+## https://github.com/erikw/tmux-powerline
+
+#cd ~/some/path/
+cd /usr/local/etc
+git clone git://github.com/erikw/tmux-powerline.git
+#?? ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
+
+printf 'set-option -g status on'
+printf 'set-option -g status-interval 2'
+printf 'set-option -g status-utf8 on'
+printf 'set-option -g status-justify "centre"'
+printf 'set-option -g status-left-length 60'
+printf 'set-option -g status-right-length 90'
+#printf 'set-option -g status-left "#(~/path/to/tmux-powerline/powerline.sh left)"'
+printf 'set-option -g status-left "#(/usr/local/etc/tmux-powerline/powerline.sh left)"'
+#printf 'set-option -g status-right "#(~/path/to/tmux-powerline/powerline.sh right)"'
+printf 'set-option -g status-right "#(/usr/local/etc/tmux-powerline/powerline.sh right)"'
+subl ~/.tmux.conf
+
+printf 'Add Powerline'
+printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"'
+subl ~/.tmux.conf
+
+printf 'You can bind a toggle of the visibility for the statusbars by adding the following lines:'
+#printf 'bind C-[ run '/usr/local/etc/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.'
+printf 'bind C-[ run '/usr/local/etc/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.'
+#printf 'bind C-] run '/usr/local/etc/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.'
+printf 'bind C-] run '/usr/local/etc/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.'
+subl ~/.tmux.conf
+
+printf 'Reloading tmux.conf...'
+tmux source-file ~/.tmux.conf
+
+printf 'Add/Change the following in ~/.bashrc'
+printf 'PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")''
+subl ~/.bashrc
+
+printf 'Copying default theme to mytheme ...'
+cd /usr/local/share/tmux-powerline/
+cp themes/default.sh themes/mytheme.sh
+subl themes/mytheme.sh
+
+printf 'Creating default configuration file...'
+./generate_rc.sh
+mv ~/.tmux-powerlinerc.default ~/.tmux-powerlinerc
+
+printf 'Change the theme to use and values for segments you want to use:'
+subl ~/.tmux-powerlinerc
+
+printf 'If debugging is required, enable debuggin in file ~/.tmux-powerlinerc'
+printf 'For detailed inspection of all executed bash commands, type "bash -x powerline.sh (left|right)"'
+
+
+
 #= 07-02-2013 ========================================================================
 
 [GeekTool] (http://projects.tynsoe.org/en/geektool)
