@@ -27,10 +27,6 @@ source defaults.sh
 #  exit
 #fi
 
-### ERR: sed: 1: "/^define/ { s/.*('\([^' ...": extra characters at the end of p command
-## ??? eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$INST_NEWZNAB_PATH"/www/config.php )
-## ??? eval $( /usr/bin/sed -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" /Users/Newznab/Sites/newznab/www/config.php )
-
 if [[ $AGREED == "no" ]]; then
   echo "Please edit the defaults.sh file"
   exit
