@@ -63,8 +63,9 @@ Shell scripts are currently used as a guideline document and should not be run a
 <hr>
 
 # TO CHECK OUT
-
-* http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
+* [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
+* [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
+* [Solarized] (http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html)
 * Bash Completion
 * Ruby
 * Spotweb as a Newznab Provider
