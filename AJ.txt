@@ -1,7 +1,15 @@
 #= 08-02-2013 ========================================================================
 
+
+##?? PostgresApp, instead of a Brew Install ??
+brew remove postgresql
+
+PostgreSQL on the Mac : Install: http://postgresapp.com/
+PostgreSQL GUI        : http://inductionapp.com/ (or perhaps still http://www.pgadmin.org/)
+
 -------------------------------------------------------------------------
 ## https://github.com/erikw/tmux-powerline
+## https://github.com/zolrath/dotfiles/blob/master/tmux.conf
 
 #cd ~/some/path/
 cd /usr/local/etc
