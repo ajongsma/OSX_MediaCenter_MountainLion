@@ -1,6 +1,19 @@
 #= 08-02-2013 ========================================================================
 
 
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+ps aux | sort -nk +4 | tail
+
+top -l 1 | grep PhysMem: | awk '{print $10}'
+
+echo -e "\n$(top -l 1 | awk '/PhysMem/';)\n"
+
+-------------------------------------------------------------------------
+
 ##?? PostgresApp, instead of a Brew Install ??
 brew remove postgresql
 
@@ -12,6 +25,8 @@ PostgreSQL GUI        : http://inductionapp.com/ (or perhaps still http://www.pg
 ## https://github.com/zolrath/dotfiles/blob/master/tmux.conf
 
 #cd ~/some/path/
+#cd /usr/local/share
+
 cd /usr/local/etc
 git clone git://github.com/erikw/tmux-powerline.git
 ##?? ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
