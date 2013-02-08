@@ -24,23 +24,50 @@ PostgreSQL GUI        : http://inductionapp.com/ (or perhaps still http://www.pg
 ## https://github.com/erikw/tmux-powerline
 ## https://github.com/zolrath/dotfiles/blob/master/tmux.conf
 
-#cd ~/some/path/
-#cd /usr/local/share
+brew install ack
+brew install macvim --env-std --override-system-vim
+brew install ifstat
 
-cd /usr/local/etc
+pip install --user git+git://github.com/Lokaltog/powerline
+cd ~/Github/
+git clone https://github.com/Lokaltog/powerline-fonts
+open ~/Github/powerline-fonts/Menlo/Menlo\ Regular\ for\ Powerline.otf
+open ~/Github/powerline-fonts/DejaVuSansMono/DejaVu\ Sans\ Mono\ for\ Powerline.otf 
+open ~/Github/powerline-fontsInconsolata/Inconsolata\ for\ Powerline.otf
+
+### Install Fontforge:
+printf 'Make sure that the executable version number doesn't have NoPython:'
+which fontforge
+
+printf 'If the executable version number doesn't have NoPython continue, otherwise uninstall fontforge:'
+printf 'brew uninstall fontforge'
+printf 'brew update'
+printf 'brew install --use-gcc fontforge'
+
+cd /usr/local/share
+#git clone https://github.com/Lokaltog/vim-powerline.git
+git clone https://github.com/Lokaltog/powerline.git
+
+#fontforge -script /usr/local/share/vim-powerline/fontpatcher/fontpatcher MyFontFile.ttf
+#fontforge -script /usr/local/share/vim-powerline/fontpatcher/fontpatcher Menlo\ for\ Powerline.ttf
+
+### The main homebrew repo does not contain grep so use the following command to get the lastest version:
+brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+
+### Install Tmux-Powerline
 git clone git://github.com/erikw/tmux-powerline.git
 ##?? ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
 
+printf 'set -g default-terminal "screen-256color"'
+printf '#Powerline'
 printf 'set-option -g status on'
 printf 'set-option -g status-interval 2'
 printf 'set-option -g status-utf8 on'
 printf 'set-option -g status-justify "centre"'
 printf 'set-option -g status-left-length 60'
 printf 'set-option -g status-right-length 90'
-#printf 'set-option -g status-left "#(~/path/to/tmux-powerline/powerline.sh left)"'
-printf 'set-option -g status-left "#(/usr/local/etc/tmux-powerline/powerline.sh left)"'
-#printf 'set-option -g status-right "#(~/path/to/tmux-powerline/powerline.sh right)"'
-printf 'set-option -g status-right "#(/usr/local/etc/tmux-powerline/powerline.sh right)"'
+printf 'set-option -g status-left "#(/usr/local/share/tmux-powerline/powerline.sh left)"'
+printf 'set-option -g status-right "#(/usr/local/share/tmux-powerline/powerline.sh right)"'
 subl ~/.tmux.conf
 
 printf 'Add Powerline'
@@ -48,9 +75,7 @@ printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=co
 subl ~/.tmux.conf
 
 printf 'You can bind a toggle of the visibility for the statusbars by adding the following lines:'
-#printf 'bind C-[ run '/usr/local/etc/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.'
 printf 'bind C-[ run '/usr/local/etc/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.'
-#printf 'bind C-] run '/usr/local/etc/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.'
 printf 'bind C-] run '/usr/local/etc/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.'
 subl ~/.tmux.conf
 
@@ -58,13 +83,19 @@ printf 'Reloading tmux.conf...'
 tmux source-file ~/.tmux.conf
 
 printf 'Add/Change the following in ~/.bashrc'
+printf 'export TERM="screen-256color"'
+printf 'alias tmux="tmux -2"'
 printf 'PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")''
 subl ~/.bashrc
+
+printf 'set t_Co=256                        " force vim to use 256 colors'
+printf 'let g:solarized_termcolors=256      " use solarized 256 fallback'
+subl ~/.vimrc
 
 printf 'Copying default theme to mytheme ...'
 cd /usr/local/share/tmux-powerline/
 cp themes/default.sh themes/mytheme.sh
-subl themes/mytheme.sh
+subl /usr/local/share/tmux-powerline/themes/mytheme.sh
 
 printf 'Creating default configuration file...'
 ./generate_rc.sh
@@ -77,6 +108,8 @@ printf 'If debugging is required, enable debuggin in file ~/.tmux-powerlinerc'
 printf 'For detailed inspection of all executed bash commands, type "bash -x powerline.sh (left|right)"'
 
 ##?? source ~/path/to/tmux-colors-solarized/tmuxcolors.conf
+##?? https://github.com/seebi/tmux-colors-solarized
+
 
 #= 07-02-2013 ========================================================================
 
