@@ -22,7 +22,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [iTerm 2](http://http://www.iterm2.com)
 * [Xlog](https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1)
 * [Tmux](http://tmux.sourceforge.net/)
-  * [Tmux crashcourse] (http://robots.thoughtbot.com/post/2641409235/a-tmux-crash-course)
+    * ([Tmux crashcourse] (http://robots.thoughtbot.com/post/2641409235/a-tmux-crash-course))
 * PHP 5.4
 * Python
 * MySQL
