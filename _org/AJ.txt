@@ -25,11 +25,15 @@ PostgreSQL GUI        : http://inductionapp.com/ (or perhaps still http://www.pg
 ## https://github.com/zolrath/dotfiles/blob/master/tmux.conf
 
 brew install ack
+brew install macvim --env-std --override-system-vim
 brew install ifstat
-brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 
-##Error: An unsatisfied requirement failed this build.
-##brew install macvim --env-std --override-system-vim
+pip install --user git+git://github.com/Lokaltog/powerline
+cd ~/Github/
+git clone https://github.com/Lokaltog/powerline-fonts
+open ~/Github/powerline-fonts/Menlo/Menlo\ Regular\ for\ Powerline.otf
+open ~/Github/powerline-fonts/DejaVuSansMono/DejaVu\ Sans\ Mono\ for\ Powerline.otf 
+open ~/Github/powerline-fontsInconsolata/Inconsolata\ for\ Powerline.otf
 
 ### Install Fontforge:
 printf 'Make sure that the executable version number doesn't have NoPython:'
@@ -40,19 +44,9 @@ printf 'brew uninstall fontforge'
 printf 'brew update'
 printf 'brew install --use-gcc fontforge'
 
-cd ~/Github/
-pip install --user git+git://github.com/Lokaltog/powerline
-#git clone https://github.com/Lokaltog/powerline-fonts
-open ~/Github/powerline-fonts/DejaVuSansMono/DejaVu\ Sans\ Mono\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf
-open ~/Github/powerline-fonts/Inconsolata\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Menlo/Menlo\ Regular\ for\ Powerline.otf
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ Regular\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline.otf 
-open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ Regular\ for\ Powerline.otf 
+cd /usr/local/share
+#git clone https://github.com/Lokaltog/vim-powerline.git
+git clone https://github.com/Lokaltog/powerline.git
 
 #fontforge -script /usr/local/share/vim-powerline/fontpatcher/fontpatcher MyFontFile.ttf
 #fontforge -script /usr/local/share/vim-powerline/fontpatcher/fontpatcher Menlo\ for\ Powerline.ttf
@@ -60,13 +54,9 @@ open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ Regular\ for\ Powerline.otf
 ### The main homebrew repo does not contain grep so use the following command to get the lastest version:
 brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 
-cd /usr/local/share
-git clone https://github.com/Lokaltog/powerline.git
-#git clone https://github.com/Lokaltog/vim-powerline.git
-
 ### Install Tmux-Powerline
 git clone git://github.com/erikw/tmux-powerline.git
-ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
+##?? ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
 
 printf 'set -g default-terminal "screen-256color"'
 printf '#Powerline'

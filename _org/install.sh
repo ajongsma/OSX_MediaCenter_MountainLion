@@ -10,19 +10,28 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [ ! -f config.sh ]; then
+if [ ! -f defaults.sh ]; then
   clear
-  echo "No config.sh found. Creating file, and please edit the required values"
-  cp config.sh.default config.sh
-  vi config.sh
+  echo "Please copy config.sh to defaults.sh"
+  exit
 fi
 
-source config.sh
+source defaults.sh
+
+## Verify that all variables exist
+## https://github.com/jonnyboy/newznab-tmux/blob/master/bin/test_defaults.sh
+#source bin/test_defaults.sh
+#if [[ $ALLOW_START == "false" ]]; then
+#  clear
+#  echo "Please copy config.sh to defaults.sh, your current copy is outdated."
+#  exit
+#fi
 
 if [[ $AGREED == "no" ]]; then
   echo "Please edit the defaults.sh file"
   exit
 fi
+
 
 ## ----------------------------------------------------------------------------
 ## -= Used git's =-
@@ -46,8 +55,6 @@ WHITE=$(tput setaf 7)  #    7   White
 RESET=$(tput sgr0)
 col=40
 
-export CLICOLOR=1
-
 ##-----------------------------------------------------------------------------
 ## Check OS
 ##-----------------------------------------------------------------------------
@@ -55,12 +62,13 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   OS="Mac"
   APP_FILE="chrome-mac.zip"
   APP_PATH="/Applications"
-  printf 'OS X Detected\n' "$GREEN" $col '[OK]' "$RESET"
+  #echo "OS X Detected                               [OK]"
+  printf 'OS X Detected' "$GREEN" $col '[OK]' "$RESET"
 else
-  printf 'Linux unsupported.\n' "$RED" $col '[FAIL]' "$RESET"
+  #echo "Linux unsupported."
+  printf 'Linux unsupported.' "$RED" $col '[FAIL]' "$RESET"
   exit 1
 fi
-
 
 #------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
@@ -72,6 +80,38 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+#------------------------------------------------------------------------------
+# Read input
+#------------------------------------------------------------------------------
+#echo -e "Please enter computer name"
+#read COMPUTER_NAME
+
+#### REALLY NEEDED ???
+## Install GitX
+#wget http://frim.frim.nl/GitXStable.app.zip
+#unzip GitXStable.app.zip
+#mv GitX.app /Applications/
+##open /Applications/GitX.app
+
+#echo -e "Please enter Full Name for GIT"
+#read GIT_FULL_NAME
+GIT_FULL_NAME='Andries Jongsma'
+
+#echo -e "Please enter e-mail address for GIT"
+#read GIT_EMAIL
+GIT_EMAIL='a.jongsma@gmail.com'
+
+#echo -e "Please enter the MySQL Password"
+#read MYSQL_PASSWORD
+
+#echo "Please enter the required role name: postgres"
+#read POSTGRESQL_USER
+
+
+#------------------------------------------------------------------------------
+# Variables
+#------------------------------------------------------------------------------
+#APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
@@ -80,38 +120,33 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
 
-
 #------------------------------------------------------------------------------
-# Show the ~/Library folder
+# Checking system directories
 #------------------------------------------------------------------------------
-chflags nohidden ~/Library
-
-
-#------------------------------------------------------------------------------
-# Checking existence directories
-#------------------------------------------------------------------------------
-if [ ! -e ~/Sites/ ] ; then
-    printf 'Creating directory ~/Sites…\n' "YELLOW" $col '[WAIT]' "$RESET"
-    mkdir -p ~/Sites/
-else
-    printf 'Directory ~/Sites/ found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
+#if [ ! -e /var/log/devicemgr/ ] ; then
+#    echo "Creating directory: Sites"
+#    sudo mkdir -p /var/log/devicemgr/
+#else
+#    echo "Directory /var/log/devicemgr/                    [OK]"
+#fi
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Xcode.app ] ; then
-    printf 'Xcode not installed, please install..\n' "$RED" $col '[FAIL]' "$RESET"
+    #echo "Xcode not installed, please install..."
+    printf 'Xcode not installed, please install..' "$RED" $col '[FAIL]' "$RESET"
 
-    open http://itunes.apple.com/nl/app/xcode/id497799835?mt=12
+    open http://itunes.apple.com/us/app/xcode/id497799835?mt=12
     while ( [ ! -e /Applications/Xcode.app ] )
     do
-        printf 'Waiting for Xcode to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for Xcode to be installed..."
+        printf 'Waiting for Xcode to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 else
+    #echo "Xcode found                               [OK]"
     printf 'Xcode found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
@@ -120,290 +155,115 @@ fi
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/gcc ] ; then
-    printf 'GCC not installed, please Command Line tools..\n' "$RED" $col '[FAIL]' "$RESET"
-    open https://developer.apple.com/downloads/index.action#
-    while ( [ ! -e /usr/bin/gcc ] )
+    #echo "GCC not installed, please install..."
+    printf 'GCC not installed, please Command Line tools..' "$RED" $col '[FAIL]' "$RESET"
+    while ( [ $(which gcc) == "" ] )
     do
-        printf 'Waiting for GCC to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for GCC to be installed..."
+        printf 'Waiting for GCC to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
-    printf 'GCC found\n' "$GREEN" $col '[OK]' "$RESET"
+    #echo "GCC found                             [OK]"
+    printf 'GCC found' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-
-#------------------------------------------------------------------------------
-# Check for XQuartz
-#------------------------------------------------------------------------------
-if [ ! -d /opt/X11/ ] ; then
-    printf 'XQuartz not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://xquartz.macosforge.org/landing/
-    while ( [ ! -d /opt/X11/ ] )
-    do
-        printf 'Waiting for XQuartz to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-else
-    printf 'XQuartz found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
 
 #------------------------------------------------------------------------------
 # Check for Java
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/java ] ; then
-    printf 'Java not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    while ( [ ! -e /usr/bin/java ] )
+    #echo "Java not installed, please install..."
+    printf 'Java not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    while ( [ $(which java) == "" ] )
     do
-        printf 'Waiting for Java to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for Java to be installed..."
+        printf 'Waiting for Java to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
 else
-    printf 'Java found\n' "$GREEN" $col '[OK]' "$RESET"
+    #echo "Java found                                [OK]"
+    printf 'Java found' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Server.app ] ; then
-    printf 'OS X Server not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    #echo "OS X Server not installed, please install..."
+    printf 'OS X Server not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
     while ( [ ! -e /Applications/Server.app ] )
     do
-        printf 'Waiting for OS X Server to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for OS X Server to be installed..."
+        printf 'Waiting for OS X Server to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
-    open /Applications/Server.app
-    printf 'Please enable:\n' "BLUE" $col '[WAIT]' "$RESET"
-    printf ' * Websites…\n' "BLUE" $col '[WAIT]' "$RESET"
-    printf ' * PHP Web Applications…\n' "BLUE" $col '[WAIT]' "$RESET"
-
 else
-    printf 'OS X Server found\n' "$GREEN" $col '[OK]' "$RESET"
+    #echo "OS X Server found                         [OK]"
+    printf 'OS X Server found' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-SERVICE='httpd'
-if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-   printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
-else
-    printf $SERVICE' is not running\n' "$RED" $col '[FAIL]' "$NORMAL"
-fi
-
-#------------------------------------------------------------------------------
-# Copy original libphp5 file
-#------------------------------------------------------------------------------
-#sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
-if [ ! -e /usr/libexec/apache2/libphp5.so.org ] ; then
-    printf 'Backup file libphp5.org not found, copying file…\n' "YELLOW" $col '[WAIT]' "$RESET"
-    sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
-    if [ -e /usr/libexec/apache2/libphp5.so.org ] ; then
-        printf 'Backup file libphp5.org found\n' "YELLOW" $col '[OK]' "$RESET"
-    else
-        echo "No file libphp5 found                             [ERR]"
-        printf 'No backup of file libphp5.so found\n' "$RED" $col '[FAIL]' "$NORMAL"
-    fi
-else
-    printf 'Backup file libphp5.org found\n' "YELLOW" $col '[OK]' "$RESET"
-fi
-
-
-#------------------------------------------------------------------------------
-# Check for iTerm 2
-#------------------------------------------------------------------------------
-if [ ! -e /Applications/iTerm.app ] ; then
-    printf 'iTerm not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://www.iterm2.com
-    while ( [ ! -e /Applications/iTerm.app ] )
-    do
-        printf 'Waiting for iTerm to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/iTerm.app
-else
-    printf 'iTerm found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
-    printf 'Sublime Text not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    #echo "Sublime Text not installed, please install..."
+    printf 'Sublime Text not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open http://www.sublimetext.com
     while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
     do
-        printf 'Waiting for Sublime Text to be installed...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for Sublime Text to be installed..."
+        printf 'Waiting for Sublime Text to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
-    open /Applications/Sublime\ Text\ 2.app
 else
-    printf 'Sublime Text found\n' "$GREEN" $col '[OK]' "$RESET"
+    echo "Sublime Text found                            [OK]"
 fi
 if [ ! -e /usr/local/bin/subl ] ; then
-    printf 'Symbolic link to Sublime Text not found, creating...\n' "$RED" $col '[FAIL]' "$RESET"
-    if [ ! -d /usr/local/bin ] ; then
-        sudo mkdir -p /usr/local/bin/ 
-    fi
+    #echo "Creating link to Sublime Text..."
+    printf 'Symbolic link to Sublime Text not found, creating...' "$RED" $col '[FAIL]' "$RESET"
+    sudo mkdir -p /usr/local/bin/ 
     sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 else
-    printf 'Sublime Text link found\n' "$GREEN" $col '[OK]' "$RESET"
+    #echo "Sublime Text link found                       [OK]"
+    printf 'Sublime Text link found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------
+# Check for iTerm 2
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/iTerm.app ] ; then
+    #echo "iTerm not installed, please install..."
+    printf 'iTerm not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    open http://http://www.iterm2.com
+    while ( [ ! -e /Applications/iTerm.app ] )
+    do
+        #echo "Waiting for iTerm to be installed..."
+        printf 'Waiting for iTerm to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+    done
+else
+    echo "iTerm found                            [OK]"
+    printf 'iTerm found' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Check for Xlog
 #------------------------------------------------------------------------------
 #https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
 if [ ! -e /Applications/Xlog.app ] ; then
-    printf 'Xlog not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    #echo "Xlog not installed, please install..."
+    printf 'Xlog not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
     open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
     while ( [ ! -e /Applications/Xlog.app ] )
     do
-        printf 'Waiting for Xlog to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for Xlog to be installed..."
+        printf 'Waiting for Xlog to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
-    open /Applications/Xlog.app
 else
-    printf 'Xlog found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-
-#------------------------------------------------------------------------------
-# Check for GitHub for Mac
-#------------------------------------------------------------------------------
-if [ ! -e ~/Github/ ] ; then
-    printf 'Creating directory ~/Github…\n' "YELLOW" $col '[WAIT]' "$RESET"
-    mkdir -p ~/Github/
-else
-    printf 'Directory ~/Github/ found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-if [ ! -e /Applications/GitHub.app ] ; then
-    printf 'Github not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://mac.github.com
-    while ( [ ! -e /Applications/GitHub.app ] )
-    do
-        printf 'Waiting for Github to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    #open /Applications/GitHub.app
-else
-    printf 'GitHub found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-#------------------------------------------------------------------------------
-# Check for Dropbox
-#------------------------------------------------------------------------------
-if [ ! -d /Library/DropboxHelperTools ] ; then
-    printf 'Dropbox not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open https://www.dropbox.com/download?plat=mac
-    while ( [ ! -d /Library/DropboxHelperTools ] )
-    do
-        printf 'Waiting for Dropbox to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    #open /Applications/GitHub.app
-else
-    printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-
-##------------------------------------------------------------------------------
-## Install HomeBrew
-##------------------------------------------------------------------------------
-## This will install:
-## /usr/local/bin/brew
-## /usr/local/Library/...
-## /usr/local/share/man/man1/brew.1
-## Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
-## Don’t forget to add /usr/local/Cellar/coreutils/8.20/libexec/gnubin to $PATH
-
-if [ ! -e /usr/local/bin/brew ] ; then
-    printf 'HomeBrew not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_brew.sh"
-    while ( [ ! -e /usr/local/bin/brew ] )
-    do
-        printf 'Waiting for HomeBrew to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    #open /Applications/GitHub.app
-else
-    printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-##------------------------------------------------------------------------------
-## Install several tools via Brew
-##------------------------------------------------------------------------------
-### Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
-
-brew tap homebrew/dupes
-brew install apple-gcc42
-brew install gnu-sed
-brew install coreutils
-brew install autoconf
-brew install automake
-brew install findutils
-brew install bash
-brew install wget
-brew install tmux
-
-
-##------------------------------------------------------------------------------
-## Install MySQL
-##------------------------------------------------------------------------------
-## http://hivelogic.com/articles/installing-mysql-on-mac-os-x/
-## http://theablefew.com/blog/very-simple-homebrew-mysql-and-rails
-## --------------------
-
-## /usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
-## /usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
-##
-## Alternatively you can run:
-## /usr/local/opt/mysql/bin/mysql_secure_installation
-##
-## You can start the MySQL daemon with:
-## cd /usr/local/opt/mysql ; /usr/local/opt/mysql/bin/mysqld_safe &
-##
-## You can test the MySQL daemon with mysql-test-run.pl
-## cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
-
-#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
-#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
-
-if [ ! -e /usr/local/opt/mysql ] ; then
-    printf 'MySQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_mysql.sh"
-else
-    printf 'MySQL found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-#------------------------------------------------------------------------------
-# Install MySQL Workbench
-#------------------------------------------------------------------------------
-if [ ! -e /Applications/MySQLWorkbench.app ] ; then
-    #echo "pgAdmin not installed, please install..."
-    printf 'MySQL Workbench not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
-    open http://dev.mysql.com/downloads/workbench/
-    while ( [ ! -e /Applications/MySQLWorkbench.app ] )
-    do
-        #echo "Waiting for pgAdmin to be installed..."
-        printf 'Waiting for MySQL Workbench to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/MySQLWorkbench.app
-else
-    printf 'MySQL Workbench found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-#------------------------------------------------------------------------------
-# Check for PostgreSQL
-#------------------------------------------------------------------------------
-if [ ! -d /usr/local/var/postgres ] ; then
-    printf 'PostgreSQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_mysql.sh"
-else
-    printf 'PostgreSQL found\n' "$GREEN" $col '[OK]' "$RESET"
+    #echo "Xlog found                         [OK]"
+    printf 'Xlog found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -420,84 +280,26 @@ if [ ! -e /Applications/pgAdmin3.app ] ; then
         sleep 15
     done
 else
-    printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
+    echo "pgAdmin found                                [OK]"
 fi
 
-
 #------------------------------------------------------------------------------
-# Check for InductionApp
+# Install GitHub for Mac
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/Induction.app ] ; then
-    printf 'Induction not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    printf 'Induction is in testing phase, uninstall if not needed\n' "$BLUE" $col '[FAIL]' "$RESET"
-    open http://inductionapp.com
-    while ( [ ! -e /Applications/Induction.app ] )
+if [ ! -e /Applications/GitHub.app ] ; then
+    #echo "pgAdmin not installed, please install..."
+    printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+    open http://mac.github.com
+    while ( [ ! -e /Applications/GitHub.app ] )
     do
-        printf 'Waiting for Induction to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        #echo "Waiting for pgAdmin to be installed..."
+        printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
-    open /Applications/Induction.app
 else
-    printf 'Induction found\n' "$GREEN" $col '[OK]' "$RESET"
+    echo "pgAdmin found                                [OK]"
 fi
 
-
-##------------------------------------------------------------------------------
-## Install PHP 5.4
-##------------------------------------------------------------------------------
-
-if [ ! -d /usr/local/etc/php/5.4 ] ; then
-    printf 'PHP 5.4 not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_php54.sh"
-else
-    printf 'PHP 5.4 found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-
-##------------------------------------------------------------------------------
-## Install Python
-##------------------------------------------------------------------------------
-
-if [ ! -e /usr/bin/python ] ; then
-    printf 'Python not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_python.sh"
-else
-    printf 'Python found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-
-##------------------------------------------------------------------------------
-## Install Powerline
-##------------------------------------------------------------------------------
-
-if [ ! -e /usr/bin/python ] ; then
-    printf 'Python not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_python.sh"
-else
-    printf 'Python found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-exit
-
-
-
-## Install Powerline
-## https://github.com/Lokaltog/powerline-fonts
-## pip install --user git+git://github.com/Lokaltog/powerline
-## cd ~/Githug
-## git clone https://github.com/Lokaltog/powerline-fonts.git
-
-
-
-#------------------------------------------------------------------------------
-# Checking system directories
-#------------------------------------------------------------------------------
-#if [ ! -e /var/log/devicemgr/ ] ; then
-#    echo "Creating directory: Sites"
-#    sudo mkdir -p /var/log/devicemgr/
-#else
-#    echo "Directory /var/log/devicemgr/                    [OK]"
-#fi
 
 #------------------------------------------------------------------------------
 # Colourize terminal
@@ -524,6 +326,11 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Show the ~/Library folder
+#------------------------------------------------------------------------------
+chflags nohidden ~/Library
+
+#------------------------------------------------------------------------------
 # Install fonts
 #------------------------------------------------------------------------------
 #cd ~/Downloads
@@ -531,6 +338,26 @@ fi
 #open Inconsolata.otf
 #wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
 #open Inconsolata-Powerline.otf
+
+#------------------------------------------------------------------------------
+# Checking existance custom user directories
+#------------------------------------------------------------------------------
+if [ ! -e ~/Sites/ ] ; then
+    #echo "Creating directory: Sites"
+    printf 'Creating directory ~/Sites...' "YELLOW" $col '[WAIT]' "$RESET"
+    mkdir -p ~/Sites/
+else
+    #echo "Directory ~/Sites/                        [OK]"
+    printf 'Directory ~/Sites/ found' "$GREEN" $col '[OK]' "$RESET"
+fi
+if [ ! -e ~/Github/ ] ; then
+    #echo "Creating directory: Github"
+    printf 'Creating directory ~/Github...' "YELLOW" $col '[WAIT]' "$RESET"
+    mkdir -p ~/Github/
+else
+    #echo "Directory ~/Github/                       [OK]"
+    printf 'Directory ~/Github/ found' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Git config
@@ -564,6 +391,59 @@ git config -l | grep user.email
 #sudo scutil --set HostName "$COMPUTER_NAME"
 #sudo scutil --set LocalHostName "$COMPUTER_NAME"
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+#------------------------------------------------------------------------------
+# Copy original libphp5 file
+#------------------------------------------------------------------------------
+#sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
+if [ -e /usr/libexec/apache2/libphp5.so ] ; then
+    echo "Original libphp5-file found, copying file..."
+    sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
+else
+    if [ -e /usr/libexec/apache2/libphp5.so.org ] ; then
+        echo "Copied file libphp5 found                     [OK]"
+    else
+        echo "No file libphp5 found                             [ERR]"
+    fi
+fi
+
+##==============================================================================
+## INSTALL SCRIPTS
+##------------------------------------------------------------------------------
+##------------------------------------------------------------------------------
+## Install HomeBrew
+##------------------------------------------------------------------------------
+## This will install:
+## /usr/local/bin/brew
+## /usr/local/Library/...
+## /usr/local/share/man/man1/brew.1
+## Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
+
+ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+brew update
+brew tap homebrew/dupes
+#?? brew install homebrew/dupes/grep
+brew upgrade
+brew doctor
+
+## PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew install findutils
+# Install Bash 4
+brew install bash
+
+brew install apple-gcc42
+
+#?? brew install {zsh,git,wget}
+#?? brew install {ack,tmux,colordiff,ssh-copy-id,irssi,ffmpeg,gist,imagemagick,svn,hg}
+brew install wget
+brew install tmux
+
+# Remove outdated versions from the cellar
+brew cleanup
+
 
 #### ??? REALLY NEEDED ??? ######
 ##------------------------------------------------------------------------------
@@ -623,6 +503,71 @@ git config -l | grep user.email
 #rbenv rehash
 #rbenv global 1.9.3-p194
 
+
+##------------------------------------------------------------------------------
+## Install MySQL
+##------------------------------------------------------------------------------
+## http://hivelogic.com/articles/installing-mysql-on-mac-os-x/
+## http://theablefew.com/blog/very-simple-homebrew-mysql-and-rails
+## --------------------
+
+## /usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
+## /usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
+##
+## Alternatively you can run:
+## /usr/local/opt/mysql/bin/mysql_secure_installation
+##
+## You can start the MySQL daemon with:
+## cd /usr/local/opt/mysql ; /usr/local/opt/mysql/bin/mysqld_safe &
+##
+## You can test the MySQL daemon with mysql-test-run.pl
+## cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
+
+#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
+#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
+
+if [ ! -e /usr/local/Cellar/mysql ] ; then
+    echo "MySQL not found, installing..."
+    #sudo port install mysql55 mysql55-server
+    #sudo port clean --all
+
+    brew install mysql
+    unset TMPDIR
+    mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+    mkdir -p ~/Library/LaunchAgents
+    cp /usr/local/Cellar/mysql/5.5.29/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+    /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
+
+    #?? plutil -lint ~/Library/LaunchAgents/*.plist
+    #?? sudo plutil ~/Library/LaunchAgents/*.plist -s
+
+    mysql.server start
+
+    sudo mkdir /var/mysql
+    sudo ln -s /private/tmp/mysql.sock /var/mysql/mysql.sock
+    #mysql -u root -p
+else
+    echo "MySQL found                               [OK]"
+fi
+
+if [ ! -e /etc/my.cfg ] ; then
+    #sudo cp $(brew --prefix mysql)/support-files/my-small.cnf /etc/my.cnf
+    sudo cp $(brew --prefix mysql)/support-files/my-medium.cnf /etc/my.cnf
+
+    # https://newznab.readthedocs.org/en/latest/install/
+    echo "-----------------------------------------------------------"
+    echo "| Change the following information:"
+    echo "| [mysqld]"
+    echo "| ;max_allowed_packet = 1M"
+    echo "| max_allowed_packet = 12582912"
+    echo "| "
+    echo "| ?? group_concat_max_len = 8192 ??"
+    sudo subl /etc/my.cnf
+    mysql.server restart
+else
+fi
+
 ##------------------------------------------------------------------------------
 ## Install Postgresql
 ##------------------------------------------------------------------------------
@@ -652,7 +597,147 @@ sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 ##psqlstop
 
 
+##------------------------------------------------------------------------------
+## Install PHP
+##------------------------------------------------------------------------------
+## The php.ini file can be found in:
+##    /usr/local/etc/php/5.4/php.ini
+## If PEAR complains about permissions, 'fix' the default PEAR permissions and config:
+##    chmod -R ug+w /usr/local/Cellar/php54/5.4.11/lib/php
+##    pear config-set php_ini /usr/local/etc/php/5.4/php.ini
+## If you are having issues with custom extension compiling, ensure that this php is in your PATH:
+##    PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+##
+## To finish installing apc for PHP 5.4:
+##  * /usr/local/etc/php/5.4/conf.d/ext-apc.ini was created,
+## To have launchd start memcached at login:
+##   ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+## Then to load memcached now:
+##    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+## Or, if you don't want/need launchctl, you can just run:
+##    /usr/local/opt/memcached/bin/memcached
 
+#brew tap homebrew/dupes
+brew tap josegonzalez/homebrew-php
+brew upgrade
+
+#??brew install php54 --with-mysql --with-pgsql --with-fpm
+brew install php54 --with-pgsql --with-mysql --with-tidy --with-intl --with-gmp
+brew install php54-intl
+brew install php54-apc
+brew install php54-memcached
+brew install php54-inclued
+brew install php54-http
+brew install php54-oauth
+brew install php54-ssh2
+brew install php54-xdebug
+brew install php54-mcrypt
+brew install php54-imagick
+#brew install gmp
+#brew install php54-uploadprogress
+
+
+## TESTING PHP 5.3
+## To enable PHP in Apache add the following to httpd.conf and restart Apache:
+##    LoadModule php5_module    /usr/local/Cellar/php53/5.3.21/libexec/apache2/libphp5.so
+## The php.ini file can be found in:
+##    /usr/local/etc/php/5.3/php.ini
+## If you are having issues with custom extension compiling, ensure that this php is in your PATH:
+##    PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+
+brew install php53 --with-pgsql --with-mysql --with-tidy --with-intl --with-gmp
+brew unlink php54 && link php53
+brew install php53-intl
+brew install php53-apc
+brew install php53-memcached
+brew install php53-inclued
+brew install php53-http
+brew install php53-oauth
+brew install php53-ssh2
+brew install php53-xdebug
+brew install php53-mcrypt
+brew install php53-imagick
+
+#brew unlink php53 && brew link php54
+
+##ERR cp /usr/local/Cellar/php54/5.4.11/homebrew-php.josegonzalez.php54.plist ~/Library/LaunchAgents/
+##ERR launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist
+
+ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+
+##??sudo cp /usr/local/etc/php/5.4/php.ini.default /usr/local/etc/php/5.4/php.ini
+if [ ! -f /usr/local/etc/php/5.4/php.ini ] ; then
+    sudo cp /usr/local/etc/php/5.4/php.ini.default /usr/local/etc/php/5.4/php.ini
+fi
+
+if [ ! -f /private/etc/php.ini ] ; then
+    sudo cp /private/etc/php.ini.default /private/etc/php.ini
+fi
+echo "Add/Change the following lines:"
+echo "date.timezone = Europe/Amsterdam"
+echo "register_globals = Off"
+echo "max_execution_time = 120"
+echo "memory_limit = 256M"
+echo "error_reporting = E_ALL ^ E_STRICT"
+
+echo "TESTING"
+echo "serialize_precision = 100"
+echo "Doesn't work: error_reporting  =  E_ALL & ~E_NOTICE"
+echo "error_reporting = E_ALL & ~E_STRICT"
+echo "display_startup_errors = Off"
+echo "track_errors = Off"
+echo "variables_order = "EGPCS""
+echo "post_max_size = 128M"
+
+sudo subl /usr/local/etc/php/5.4/php.ini
+sudo subl /usr/local/etc/php/5.3/php.ini
+sudo subl /private/etc/php.ini
+
+#/usr/libexec/apache2/libphp5.so
+#/usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so
+#sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp53.so
+#sudo ln -s /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so
+
+echo "Add/Change the following lines:"
+echo "LoadModule php5_module /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so"
+
+echo "?? sudo /opt/local/apache2/bin/apxs -a -e -n "php5" mod_php54.so"
+echo "?? sudo /opt/local/apache2/bin/apxs -a -e -n "php54" libphp54.so"
+#sudo subl /private/etc/apache2/httpd.conf
+
+if [ ! -e /Applications/Server.app ] ; then
+    sudo subl /private/etc/apache2/httpd.conf
+else
+    sudo subl /private/etc/apache2/httpd.conf
+    sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
+fi
+
+# Test apache config
+/usr/sbin/httpd -t
+
+# sudo apachectl restart
+sudo apachectl start
+open http://localhost
+
+#?? sudo nano /usr/local/etc/php/5.4/php.ini
+
+##PATH="$(brew --prefix php54)/bin:$PATH"
+
+if [ ! -e ~/.bashrc ] ; then
+cat >> ~/.bashrc << EOF
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+EOF
+else
+    echo "Add the following to ~/.bashrc"
+    echo "PATH="$(brew --prefix josegonzalez/php54)/bin:$PATH""
+fi
+source ~/.bashrc
+
+#cat >> ~/.bashrc << EOF
+#PATH="$(brew --prefix php54)/bin:$PATH"
+#EOF
+#PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 
 ##------------------------------------------------------------------------------
@@ -743,6 +828,27 @@ sudo apachectl restart
 #echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
 #sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
 
+
+#------------------------------------------------------------------------------
+# Create and open phpinfo.php
+#------------------------------------------------------------------------------
+## /Library/Server/Web/Config/apache2/httpd_server_app.conf
+#sudo subl /Library/Server/Web/Config/apache2/httpd_server_app.conf
+#echo "Add/Change the following lines:"
+#echo 'DocumentRoot "/Library/WebServer/Documents"'
+
+#SUDO_EDITOR="open -FWne" sudo -e /etc/apache2/httpd.conf
+cat >> /tmp/php_info.php <<'EOF'
+<?php
+
+// Show all information, defaults to INFO_ALL
+phpinfo();
+
+?>
+EOF
+
+sudo mv /tmp/php_info.php /Library/WebServer/Documents/
+open http://localhost/php_info.php
 
 #------------------------------------------------------------------------------
 # Install Spotweb
@@ -907,7 +1013,30 @@ end tell'
 
 #sudo apachectl restart
 
+#------------------------------------------------------------------------------
+# Install Python
+#------------------------------------------------------------------------------
+## Distribute and Pip have been installed. To update them
+##   pip install --upgrade distribute
+##   pip install --upgrade pip
+## 
+## To symlink "Idle" and the "Python Launcher" to ~/Applications
+##   `brew linkapps`
+## Executable python scripts will be put in:
+##  /usr/local/share/python
+## so you may want to put "/usr/local/share/python" in your PATH, too.
 
+brew install python
+pip install --upgrade distribute
+pip install --upgrade pip
+brew linkapps
+sudo easy_install pip
+
+## Install Powerline
+## https://github.com/Lokaltog/powerline-fonts
+pip install --user git+git://github.com/Lokaltog/powerline
+cd ~/Githug
+git clone https://github.com/Lokaltog/powerline-fonts.git
 
 #------------------------------------------------------------------------------
 # Install NewzNAB
@@ -923,7 +1052,7 @@ end tell'
 #brew install sphinx
 
 brew install unrar
-
+brew install gnu-sed
 
 sudo mkdir -p /Users/Newznab/Sites/newznab/
 cd /Users/Newznab/Sites/newznab/
