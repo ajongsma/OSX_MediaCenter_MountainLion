@@ -53,7 +53,9 @@ echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
 echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
 echo "FLUSH PRIVILEGES;"
 echo "-----------------------------------------------------------"
-open mysql -u root -p
+mysql -u root -p
+
+##ERR: Can't connect to local MySQL server through socket '/var/mysql/mysql.sock' (2)
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"

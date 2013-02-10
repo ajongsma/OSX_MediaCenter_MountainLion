@@ -512,7 +512,6 @@ exit
 
 brew install unrar
 
-
 sudo mkdir -p /Users/Newznab/Sites/newznab/
 cd /Users/Newznab/Sites/newznab/
 
