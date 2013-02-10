@@ -489,18 +489,26 @@ fi
 
 exit
 
+##------------------------------------------------------------------------------
+## Install PEAR
+##------------------------------------------------------------------------------
+if [ ! -e /usr/local/bin/searchd ] ; then
+    printf 'Pear not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_pear.sh"
+else
+    printf 'Pear found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+exit
+
+
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
-## Sphinx (http://sphinxsearch.com)
-
 ## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
 
 #sudo mkdir -p /Library/WebServer/Documents/Newznab/
 #cd /Library/WebServer/Documents/Newznab/
-
-## ERR:
-#brew install sphinx
 
 brew install unrar
 
@@ -525,18 +533,25 @@ sudo chmod -R 777 /Users/Newznab/Sites/newznab/nzbfiles/
 sudo chmod 777 /Users/Newznab/Sites/newznab/db
 sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 
-sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
+echo "-----------------------------------------------------------"
+echo "| Enable overrides using .htaccess files"
+echo "| Create alias in Server Website"
+echo "|  Path      : /newzab"
+echo "|  Folder    : /Users/Newznab/Sites/newzab/www"
+echo "-----------------------------------------------------------"
+open /Applications/Server.app
 
-echo "-----------------------------------------------------------"
-echo "Enter the httpd.conf:"
-echo "<Directory /Library/WebServer/Documents/newznab>"
-echo "    Options FollowSymLinks"
-echo "    AllowOverride All"
-echo "    Order deny,allow"
-echo "    Allow from all"
-echo "</Directory>"
-echo "-----------------------------------------------------------"
-sudo subl /etc/apache2/httpd.conf
+
+#echo "-----------------------------------------------------------"
+#echo "Enter the httpd.conf:"
+#echo "<Directory /Library/WebServer/Documents/newznab>"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride All"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+#echo "-----------------------------------------------------------"
+#sudo subl /etc/apache2/httpd.conf
 
 echo "-----------------------------------------------------------"
 echo "Enter the following in MySQL:"
@@ -970,38 +985,7 @@ sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
 
 
-##------------------------------------------------------------------------------
-## Install PEAR
-##------------------------------------------------------------------------------
-sudo php /usr/lib/php/install-pear-nozlib.phar
 
-echo "Change the following line"
-#echo 'include_path = ".:/usr/lib/php/pear"'
-echo "include_path=".:/usr/local/Cellar/php54/5.4.11/lib/php:/usr/local/Cellar/php54/5.4.11/lib/php/PEAR""
-sudo subl /usr/local/etc/php/5.4/php.ini
-#sudo subl /etc/php.ini
-
-pear config-set php_ini /usr/local/etc/php/5.4/php.ini
-pecl config-set php_ini /usr/local/etc/php/5.4/php.ini
-sudo pear upgrade-all
-
-#pear config-set php_ini /etc/php.ini
-#pecl config-set php_ini /etc/php.ini
-#sudo pear upgrade-all
-
-#if [ ! -f ~/.profile ] ; then
-#    cat >> ~/.profile <<'EOF'
-### Add PHP 5.4 to the path
-#PHP_PATH="$(brew --prefix php54)/bin"
-#export PATH=$PHP_PATH:$PATH
-#EOF
-#else
-#    echo 'Add/Change the following lines:'
-#    echo '## Add PHP 5.4 to the path'
-#    echo 'PHP_PATH="$(brew --prefix php54)/bin'
-#    echo 'export PATH=$PHP_PATH:$PATH'
-#    subl ~/.profile
-#fi
 
 #------------------------------------------------------------------------------
 # Apache - Generic

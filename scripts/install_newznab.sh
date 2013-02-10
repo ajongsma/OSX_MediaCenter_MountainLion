@@ -26,18 +26,25 @@ sudo chmod -R 777 /Users/Newznab/Sites/newznab/nzbfiles/
 sudo chmod 777 /Users/Newznab/Sites/newznab/db
 sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 
-sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
-
 echo "-----------------------------------------------------------"
-echo "Enter the httpd.conf:"
-echo "<Directory /Library/WebServer/Documents/newznab>"
-echo "    Options FollowSymLinks"
-echo "    AllowOverride All"
-echo "    Order deny,allow"
-echo "    Allow from all"
-echo "</Directory>"
+echo "| Enable overrides using .htaccess files"
+echo "| Create alias in Server Website"
+echo "|  Path      : /newzab"
+echo "|  Folder    : /Users/Newznab/Sites/newzab/www"
 echo "-----------------------------------------------------------"
-sudo subl /etc/apache2/httpd.conf
+open /Applications/Server.app
+#sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
+#
+#echo "-----------------------------------------------------------"
+#echo "Enter the httpd.conf:"
+#echo "<Directory /Library/WebServer/Documents/newznab>"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride All"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+#echo "-----------------------------------------------------------"
+#sudo subl /etc/apache2/httpd.conf
 
 echo "-----------------------------------------------------------"
 echo "Enter the following in MySQL:"
