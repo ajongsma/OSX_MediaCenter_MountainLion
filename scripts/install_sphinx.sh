@@ -11,6 +11,12 @@
 echo "Download latest Sphinx from http://sphinxsearch.com"
 open http://sphinxsearch.com/
 
+### ???
+brew install libstemmer_c
+./configure --prefix=/usr/local --with-libstemmer
+### ???
+
+
 cd ~/Downloads
 #curl -O http://sphinxsearch.com/files/sphinx-2.0.6-release.tar
 tar xvzf sphinx-2.0.6-release.tar
