@@ -376,25 +376,6 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 ##------------------------------------------------------------------------------
 ## Install MySQL
 ##------------------------------------------------------------------------------
-## http://hivelogic.com/articles/installing-mysql-on-mac-os-x/
-## http://theablefew.com/blog/very-simple-homebrew-mysql-and-rails
-## --------------------
-
-## /usr/local/opt/mysql/bin/mysqladmin -u root password 'new-password'
-## /usr/local/opt/mysql/bin/mysqladmin -u root -h Pooky.local password 'new-password'
-##
-## Alternatively you can run:
-## /usr/local/opt/mysql/bin/mysql_secure_installation
-##
-## You can start the MySQL daemon with:
-## cd /usr/local/opt/mysql ; /usr/local/opt/mysql/bin/mysqld_safe &
-##
-## You can test the MySQL daemon with mysql-test-run.pl
-## cd /usr/local/opt/mysql/mysql-test ; perl mysql-test-run.pl
-
-#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
-#/usr/local/Cellar/mysql/5.5.29/bin/mysqladmin -u root password '$MYSQL_PASSWORD'
-
 if [ ! -e /usr/local/opt/mysql ] ; then
     printf 'MySQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_mysql.sh"
