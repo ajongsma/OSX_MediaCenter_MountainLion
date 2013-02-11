@@ -12,12 +12,16 @@ echo "Download latest Sphinx from http://sphinxsearch.com"
 open http://sphinxsearch.com/
 
 ### ???
-brew install libstemmer_c
+## brew install libstemmer_c
 ### ???
-
 
 cd ~/Downloads
 #curl -O http://sphinxsearch.com/files/sphinx-2.0.6-release.tar
+while ( [ ! -e sphinx-2.0.6-release.tar ] )
+do
+    printf 'Waiting for Sphinx to be downloaded…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    sleep 15
+done
 tar xvzf sphinx-2.0.6-release.tar
 cd sphinx-2.0.6-release
 

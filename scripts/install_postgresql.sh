@@ -45,6 +45,17 @@ createdb $USER
 
 $psql -U $USER
 
+## ERR:
+## Users/Andries/Library/LaunchAgents/homebrew.mxcl.postgresql.plist -> /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+## Password:
+## Enter password for new role: 
+## Enter it again: 
+## CREATE ROLE "Andries" ENCRYPTED PASSWORD 'md5a57a9262ec97f5ce08aa1deff75c1d22' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+## createuser: creation of new role failed: ERROR:  role "Andries" already exists
+## /Users/Andries/Github/OSX_NewBox/scripts/install_postgresql.sh: line 46: -U: command not found
+
+## -------------------------------------------------
+
 #ALTER USER Andries with password 'secure-password';
 
 #echo "Enter the required role name: postgres"

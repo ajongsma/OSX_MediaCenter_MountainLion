@@ -134,6 +134,18 @@ echo "  display_startup_errors = Off"
 ## #EOF
 ## #PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
+echo "Don’t forget to add the PATH:"
+echo "PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH.""
+
+cat >> ~/.bashrc <<'EOF'
+# PHP 5.4
+PATH="$(brew --prefix josegonzalez/php/php54)/bin":$PATH
+EOF
+source ~/.bashrc
+
+sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp53.so
+sudo ln -sv /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so
+
 cat >> /tmp/php_info.php <<'EOF'
 <?php
 
@@ -142,13 +154,15 @@ phpinfo();
 
 ?>
 EOF
+sudo mv /tmp/php_info.php /Library/Server/Web/Data/Sites/Default/
 
 /usr/sbin/httpd -t
 sudo apachectl restart
 
-sudo mv /tmp/php_info.php /Library/Server/Web/Data/Sites/Default/
 open http://localhost/php_info.php
 
 echo "Install PHP 5.4 complete.\n"
-echo "Don’t forget to add the PATH:"
-echo "PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH."
+
+
+
+

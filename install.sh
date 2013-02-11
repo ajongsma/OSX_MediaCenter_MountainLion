@@ -465,13 +465,11 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_PGADMIN == "true" ]]; then
     if [ ! -e /Applications/pgAdmin3.app ] ; then
-        #echo "pgAdmin not installed, please install..."
-        printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+        printf 'pgAdmin not installed, please install...\n' "$RED" $col '[FAIL]' "$RESET"
         open http://www.pgadmin.org/download/macosx.php
         while ( [ ! -e /Applications/pgAdmin3.app ] )
         do
-            #echo "Waiting for pgAdmin to be installed..."
-            printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+            printf 'Waiting for pgAdmin to be installed...\n' "YELLOW" $col '[WAIT]' "$RESET"
             sleep 15
         done
     else
@@ -498,7 +496,7 @@ if [[ $INST_INDUCTIONAPP == "true" ]]; then
     fi
 fi
 
-exit
+
 ##------------------------------------------------------------------------------
 ## Install PHP 5.4
 ##------------------------------------------------------------------------------
@@ -525,14 +523,12 @@ fi
 ##------------------------------------------------------------------------------
 ## Install PEAR
 ##------------------------------------------------------------------------------
-if [ ! -e /usr/local/bin/searchd ] ; then
+if [ ! -e /usr/local/share/pear/bin/pear ] ; then
     printf 'Pear not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_pear.sh"
 else
     printf 'Pear found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-exit
 
 
 #------------------------------------------------------------------------------
@@ -540,7 +536,7 @@ exit
 #------------------------------------------------------------------------------
 if [ ! -e /usr/local/bin/searchd ] ; then
     printf 'Sphinx not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_spinx.sh"
+    source "$DIR/scripts/install_sphinx.sh"
 else
     printf 'local found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
@@ -555,8 +551,6 @@ if [ ! -d /usr/local/share/tmux-powerline ] ; then
 else
     printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-
 
 
 #==============================================================================
