@@ -13,7 +13,6 @@ open http://sphinxsearch.com/
 
 ### ???
 brew install libstemmer_c
-./configure --prefix=/usr/local --with-libstemmer
 ### ???
 
 
@@ -23,6 +22,8 @@ tar xvzf sphinx-2.0.6-release.tar
 cd sphinx-2.0.6-release
 
 #./configure -prefix=/usr/local/bin --with-pgsql --with-mysql
+#?? ./configure --prefix=/usr/local  --with-pgsql --with-mysql --with-libstemmer
+
 ./configure --prefix=/usr/local --with-pgsql --with-mysql
 make
 sudo make install
