@@ -44,6 +44,21 @@ export INST_NEWSSERVER_SERVER_PW=''
 export INST_NEWSSERVER_SERVER_PORT=''
 export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
+#-----------------------------------------------------------
+
+## Install optional software
+# Install iTerm 2 (http://www.iterm2.com) - (true/false)
+export INST_ITERM2="true"
+# Install Sublime Text (http://www.sublimetext.com) - (true/false)
+export INST_SUBLIMETEXT="true"
+# Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
+export INST_XLOG="true"
+# Install Mac Github (http://mac.github.com) - (true/false)
+export INST_MACGITHUB="true"
+# Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
+export INST_DROPBOX="true"
+
+
 ############################################################
 
 ## By using this script you understand that the programmer is not responsible for any loss of data, users, or sanity.
