@@ -75,26 +75,32 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Checking if system is up-to-date
 #------------------------------------------------------------------------------
 ## Run software update and reboot
-#sudo softwareupdate --list
-#sudo softwareupdate --install --all
-
+if [[ $INST_OSX_UPDATES == "true" ]]; then
+    sudo softwareupdate --list
+    sudo softwareupdate --install --all
+fi
 
 #------------------------------------------------------------------------------
 # Dotfiles
 #------------------------------------------------------------------------------
 ## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
 
-if [ -e ~/.bash_profile ] ; then
+if [ ! -e ~/.bash_profile ] ; then
     echo "Creating default .bash_profile..."
     cp conf/bash_profile ~/.bash_profile
 else
-    echo "Add the following to ~/.bash_profile..."
+    echo "File ~/.bash_profile found, please add the following manually..."
     echo "# Tell ls to be colourful"
     echo "export CLICOLOR=1"
     echo ""
     echo "# Tell grep to highlight matches"
     echo "export GREP_OPTIONS='--color=auto'"
+    echo " --- press any key to continue ---"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    nano ~/.bash_profile
 fi
+source ~/.bash_profile
 
 
 #------------------------------------------------------------------------------
@@ -165,6 +171,11 @@ if [ ! -d /opt/X11/ ] ; then
         printf 'Waiting for XQuartz to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
+
+    #echo -e "${BLUE} ---      Restart needed       --- ${RESET}"
+    #echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    #read -n 1 -s
+    sudo shutdown -r +1 "Server is rebooting in 1 minute..."
 else
     printf 'XQuartz found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
@@ -200,14 +211,15 @@ if [ ! -e /Applications/Server.app ] ; then
     printf 'Please enable:\n' "BLUE" $col '[WAIT]' "$RESET"
     printf ' * Websites…\n' "BLUE" $col '[WAIT]' "$RESET"
     printf ' * PHP Web Applications…\n' "BLUE" $col '[WAIT]' "$RESET"
-
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
 else
     printf 'OS X Server found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 SERVICE='httpd'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-   printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
+    printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
 else
     printf $SERVICE' is not running\n' "$RED" $col '[FAIL]' "$NORMAL"
 fi
@@ -234,52 +246,47 @@ fi
 # Check for iTerm 2
 #------------------------------------------------------------------------------
 if [[ $INST_ITERM2 == "true" ]]; then
-    echo "TESTING"
-    echo "INST_ITERM2 = TRUE"
+    if [ ! -e /Applications/iTerm.app ] ; then
+        printf 'iTerm not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        open http://www.iterm2.com
+        while ( [ ! -e /Applications/iTerm.app ] )
+        do
+            printf 'Waiting for iTerm to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        open /Applications/iTerm.app
+    else
+        printf 'iTerm found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
-if [ ! -e /Applications/iTerm.app ] ; then
-    printf 'iTerm not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://www.iterm2.com
-    while ( [ ! -e /Applications/iTerm.app ] )
-    do
-        printf 'Waiting for iTerm to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/iTerm.app
-else
-    printf 'iTerm found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
 
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
 #------------------------------------------------------------------------------
 if [[ $INST_SUBLIMETEXT == "true" ]]; then
-    echo "TESTING"
-    echo "INST_SUBLIMETEXT = TRUE"
-fi
-
-if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
-    printf 'Sublime Text not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://www.sublimetext.com
-    while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
-    do
-        printf 'Waiting for Sublime Text to be installed...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/Sublime\ Text\ 2.app
-else
-    printf 'Sublime Text found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-if [ ! -e /usr/local/bin/subl ] ; then
-    printf 'Symbolic link to Sublime Text not found, creating...\n' "$RED" $col '[FAIL]' "$RESET"
-    if [ ! -d /usr/local/bin ] ; then
-        sudo mkdir -p /usr/local/bin/ 
+    if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
+        printf 'Sublime Text not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        open http://www.sublimetext.com
+        while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
+        do
+            printf 'Waiting for Sublime Text to be installed...\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        open /Applications/Sublime\ Text\ 2.app
+    else
+        printf 'Sublime Text found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
-    sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
-else
-    printf 'Sublime Text link found\n' "$GREEN" $col '[OK]' "$RESET"
+    if [ ! -e /usr/local/bin/subl ] ; then
+        printf 'Symbolic link to Sublime Text not found, creating...\n' "$RED" $col '[FAIL]' "$RESET"
+        if [ ! -d /usr/local/bin ] ; then
+            sudo mkdir -p /usr/local/bin/ 
+        fi
+        sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+    else
+        printf 'Sublime Text link found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 
@@ -288,21 +295,18 @@ fi
 #------------------------------------------------------------------------------
 #https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
 if [[ $INST_XLOG == "true" ]]; then
-    echo "TESTING"
-    echo "INST_XLOG = TRUE"
-fi
-
-if [ ! -e /Applications/Xlog.app ] ; then
-    printf 'Xlog not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
-    while ( [ ! -e /Applications/Xlog.app ] )
-    do
-        printf 'Waiting for Xlog to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/Xlog.app
-else
-    printf 'Xlog found\n' "$GREEN" $col '[OK]' "$RESET"
+    if [ ! -e /Applications/Xlog.app ] ; then
+        printf 'Xlog not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
+        while ( [ ! -e /Applications/Xlog.app ] )
+        do
+            printf 'Waiting for Xlog to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        open /Applications/Xlog.app
+    else
+        printf 'Xlog found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 
@@ -310,42 +314,37 @@ fi
 # Check for GitHub for Mac
 #------------------------------------------------------------------------------
 if [[ $INST_MACGITHUB == "true" ]]; then
-    echo "TESTING"
-    echo "INST_MACGITHUB = TRUE"
+    if [ ! -e /Applications/GitHub.app ] ; then
+        printf 'Github not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        open http://mac.github.com
+        while ( [ ! -e /Applications/GitHub.app ] )
+        do
+            printf 'Waiting for Github to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        #open /Applications/GitHub.app
+    else
+        printf 'GitHub found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
-if [ ! -e /Applications/GitHub.app ] ; then
-    printf 'Github not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open http://mac.github.com
-    while ( [ ! -e /Applications/GitHub.app ] )
-    do
-        printf 'Waiting for Github to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    #open /Applications/GitHub.app
-else
-    printf 'GitHub found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
 
 #------------------------------------------------------------------------------
 # Check for Dropbox
 #------------------------------------------------------------------------------
 if [[ $INST_DROPBOX == "true" ]]; then
-    echo "TESTING"
-    echo "INST_DROPBOX = TRUE"
-fi
-
-if [ ! -d /Library/DropboxHelperTools ] ; then
-    printf 'Dropbox not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    open https://www.dropbox.com/download?plat=mac
-    while ( [ ! -d /Library/DropboxHelperTools ] )
-    do
-        printf 'Waiting for Dropbox to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    #open /Applications/GitHub.app
-else
-    printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
+    if [ ! -d /Library/DropboxHelperTools ] ; then
+        printf 'Dropbox not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        open https://www.dropbox.com/download?plat=mac
+        while ( [ ! -d /Library/DropboxHelperTools ] )
+        do
+            printf 'Waiting for Dropbox to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        #open /Applications/GitHub.app
+    else
+        printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 
@@ -372,6 +371,7 @@ else
     printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+
 ##------------------------------------------------------------------------------
 ## Install several tools via Brew
 ##------------------------------------------------------------------------------
@@ -389,6 +389,28 @@ brew install wget
 brew install tmux
 
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+echo "# homebrew"
+echo "PATH=/usr/local/bin:/usr/local/sbin:$PATH"
+echo "# GNU coreutils"
+echo "PATH=/opt/local/libexec/gnubin/:$PATH"
+
+
+if [ ! -e ~/.bashrc ] ; then
+    echo "Copying default .bashrc..."
+    cp conf/bashrc ~/.bashrc
+else
+    echo "File ~/.bashrc found, please add the following manually..."
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+    echo ""
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    nano ~/.bashrc
+fi
+source ~/.bashrc
+
 
 ##------------------------------------------------------------------------------
 ## Install MySQL
@@ -404,22 +426,24 @@ fi
 #------------------------------------------------------------------------------
 # Install MySQL Workbench
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/MySQLWorkbench.app ] ; then
-    #echo "pgAdmin not installed, please install..."
-    printf 'MySQL Workbench not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
-    open http://dev.mysql.com/downloads/workbench/
-    while ( [ ! -e /Applications/MySQLWorkbench.app ] )
-    do
-        #echo "Waiting for pgAdmin to be installed..."
-        printf 'Waiting for MySQL Workbench to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/MySQLWorkbench.app
-else
-    printf 'MySQL Workbench found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
+    if [ ! -e /Applications/MySQLWorkbench.app ] ; then
+        #echo "pgAdmin not installed, please install..."
+        printf 'MySQL Workbench not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+        open http://dev.mysql.com/downloads/workbench/
+        while ( [ ! -e /Applications/MySQLWorkbench.app ] )
+        do
+            #echo "Waiting for pgAdmin to be installed..."
+            printf 'Waiting for MySQL Workbench to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        open /Applications/MySQLWorkbench.app
+    else
+        printf 'MySQL Workbench found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
-
+exit
 #------------------------------------------------------------------------------
 # Check for PostgreSQL
 #------------------------------------------------------------------------------
@@ -434,38 +458,40 @@ fi
 #------------------------------------------------------------------------------
 # Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/pgAdmin3.app ] ; then
-    #echo "pgAdmin not installed, please install..."
-    printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
-    open http://www.pgadmin.org/download/macosx.php
-    while ( [ ! -e /Applications/pgAdmin3.app ] )
-    do
-        #echo "Waiting for pgAdmin to be installed..."
-        printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-else
-    printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_PGADMIN == "true" ]]; then
+    if [ ! -e /Applications/pgAdmin3.app ] ; then
+        #echo "pgAdmin not installed, please install..."
+        printf 'pgAdmin not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
+        open http://www.pgadmin.org/download/macosx.php
+        while ( [ ! -e /Applications/pgAdmin3.app ] )
+        do
+            #echo "Waiting for pgAdmin to be installed..."
+            printf 'Waiting for pgAdmin to be installed...' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+    else
+        printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
-
 #------------------------------------------------------------------------------
-# Check for InductionApp
+# Install for InductionApp (http://inductionapp.com)
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/Induction.app ] ; then
-    printf 'Induction not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    printf 'Induction is in testing phase, uninstall if not needed\n' "$BLUE" $col '[FAIL]' "$RESET"
-    open http://inductionapp.com
-    while ( [ ! -e /Applications/Induction.app ] )
-    do
-        printf 'Waiting for Induction to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-    done
-    open /Applications/Induction.app
-else
-    printf 'Induction found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_INDUCTIONAPP == "true" ]]; then
+    if [ ! -e /Applications/Induction.app ] ; then
+        printf 'Induction not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf 'Induction is in testing phase, uninstall if not needed\n' "$BLUE" $col '[FAIL]' "$RESET"
+        open http://inductionapp.com
+        while ( [ ! -e /Applications/Induction.app ] )
+        do
+            printf 'Waiting for Induction to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            sleep 15
+        done
+        open /Applications/Induction.app
+    else
+        printf 'Induction found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
-
 
 ##------------------------------------------------------------------------------
 ## Install PHP 5.4

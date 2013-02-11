@@ -10,6 +10,31 @@ echo "-----------------------------------------------------"
 ######################### EDIT THESE #########################
 ##############################################################
 
+## Check and install OS X Updates
+export INST_OSX_UPDATES="false"
+
+#-----------------------------------------------------------
+
+## Install optional software
+# Install iTerm 2 (http://www.iterm2.com) - (true/false)
+export INST_ITERM2="true"
+# Install Sublime Text (http://www.sublimetext.com) - (true/false)
+export INST_SUBLIMETEXT="true"
+# Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
+export INST_XLOG="true"
+# Install Mac Github (http://mac.github.com) - (true/false)
+export INST_MACGITHUB="true"
+# Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
+export INST_DROPBOX="true"
+# Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
+export INST_MYSQL_WORKBENCH="true"
+#Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
+export INST_PGADMIN="true"
+# Install for InductionApp (http://inductionapp.com) - (true/false)
+export INST_INDUCTIONAPP="false"
+
+#-----------------------------------------------------------
+
 ## Full User Name for GIT
 export INST_GIT_FULL_NAME='Andries Jongsma'
 
@@ -47,17 +72,6 @@ export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 #-----------------------------------------------------------
 
-## Install optional software
-# Install iTerm 2 (http://www.iterm2.com) - (true/false)
-export INST_ITERM2="true"
-# Install Sublime Text (http://www.sublimetext.com) - (true/false)
-export INST_SUBLIMETEXT="true"
-# Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
-export INST_XLOG="true"
-# Install Mac Github (http://mac.github.com) - (true/false)
-export INST_MACGITHUB="true"
-# Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
-export INST_DROPBOX="true"
 
 
 ############################################################
