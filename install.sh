@@ -378,6 +378,7 @@ else
     printf 'MySQL found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+
 #------------------------------------------------------------------------------
 # Install MySQL Workbench
 #------------------------------------------------------------------------------
@@ -396,6 +397,7 @@ else
     printf 'MySQL Workbench found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+
 #------------------------------------------------------------------------------
 # Check for PostgreSQL
 #------------------------------------------------------------------------------
@@ -405,6 +407,7 @@ if [ ! -d /usr/local/var/postgres ] ; then
 else
     printf 'PostgreSQL found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
 
 #------------------------------------------------------------------------------
 # Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
@@ -501,6 +504,8 @@ fi
 
 
 
+
+#==============================================================================
 #=== FORCED EXIT DUE TO TESTING ===============================================
 exit
 #==============================================================================
@@ -517,13 +522,15 @@ exit
 brew install unrar
 
 sudo mkdir -p /Users/Newznab/Sites/newznab/
+sudo chown `whoami` /Users/Newznab/Sites/newznab
 cd /Users/Newznab/Sites/newznab/
 
 echo "-----------------------------------------------------------"
 echo "Enter the following inoformation:"
 echo "Username              : svnplus"
 echo "Password              : svnplu5"
-sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
+##sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
+svn co svn://$INST_NEWZNAB_SVN_UID@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
 
 sudo mkdir /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 sudo chmod 777 /Users/Newznab/Sites/newznab/www/lib/smarty/templates_c
@@ -559,8 +566,11 @@ open /Applications/Server.app
 echo "-----------------------------------------------------------"
 echo "Enter the following in MySQL:"
 echo "CREATE DATABASE newznab;"
-echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
-echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+#echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
+#echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+
+echo "CREATE USER '$INST_NEWZNAB_MYSQL_UID'@'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+echo "GRANT ALL PRIVILEGES ON newznab.* TO $INST_NEWZNAB_MYSQL_UID @'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
 echo "FLUSH PRIVILEGES;"
 echo "-----------------------------------------------------------"
 open mysql -u root -p
@@ -569,16 +579,22 @@ echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
 echo "| Hostname                      : localhost"
 echo "| Port                          : 3306"
-echo "| Username                      : newznab"
-echo "| Password                      : <password>"
+#echo "| Username                      : newznab"
+#echo "| Password                      : <password>"
+echo "| Username                      : $INST_NEWZNAB_MYSQL_UID"
+echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : newznab"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
-echo "| Server                        : reader.xsnews.nl"
-echo "| User Name                     : 105764"
-echo "| Password                      : <password>"
-echo "| Port                          : 563"
+#echo "| Server                        : reader.xsnews.nl"
+#echo "| User Name                     : 105764"
+#echo "| Password                      : <password>"
+#echo "| Port                          : 563"
+echo "| Server                        : $INST_NEWSSERVER_SERVER"
+echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
+echo "| Password                      : $INST_NEWSSERVER_SERVER_PW"
+echo "| Port                          : $INST_NEWSSERVER_SERVER_PORT_SSL"
 echo "| SSL                           : Enable"
 echo "-----------------------------------------------------------"
 echo "| Caching Setup:"
