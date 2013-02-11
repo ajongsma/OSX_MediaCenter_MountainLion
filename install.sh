@@ -466,14 +466,16 @@ fi
 
 
 ##------------------------------------------------------------------------------
-## Install Powerline
+## Install PEAR
 ##------------------------------------------------------------------------------
-if [ ! -d /usr/local/share/tmux-powerline ] ; then
-    printf 'Powerline not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_powerline_tmux.sh"
+if [ ! -e /usr/local/bin/searchd ] ; then
+    printf 'Pear not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_pear.sh"
 else
-    printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Pear found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+exit
 
 
 #------------------------------------------------------------------------------
@@ -487,19 +489,21 @@ else
 fi
 
 
-exit
-
 ##------------------------------------------------------------------------------
-## Install PEAR
+## Install Powerline
 ##------------------------------------------------------------------------------
-if [ ! -e /usr/local/bin/searchd ] ; then
-    printf 'Pear not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_pear.sh"
+if [ ! -d /usr/local/share/tmux-powerline ] ; then
+    printf 'Powerline not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_powerline_tmux.sh"
 else
-    printf 'Pear found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+
+
+#=== FORCED EXIT DUE TO TESTING ===============================================
 exit
+#==============================================================================
 
 
 #------------------------------------------------------------------------------
