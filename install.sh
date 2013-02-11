@@ -538,8 +538,13 @@ exit
 #------------------------------------------------------------------------------
 ## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
 
-#sudo mkdir -p /Library/WebServer/Documents/Newznab/
-#cd /Library/WebServer/Documents/Newznab/
+if [ ! -d /Users/Newznab/Sites/newznab ] ; then
+    printf 'NewzNAB not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newznab.sh"
+else
+    printf 'NewzNAB found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
 
 brew install unrar
 
