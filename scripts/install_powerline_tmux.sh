@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ## https://github.com/erikw/tmux-powerline
+## https://github.com/jonnyboy/newznab-tmux/tree/master/powerline
 
 brew install --use-gcc fontforge
 brew install ack
