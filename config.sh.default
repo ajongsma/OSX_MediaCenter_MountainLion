@@ -26,6 +26,8 @@ export SED="/usr/local/bin/gsed"
 export $INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 export $INST_NEWZNAB_SVN_UID=""
 export $INST_NEWZNAB_SVN_PW=""
+export $INST_NEWZNAB_MYSQL_UID=""
+export $INST_NEWZNAB_MYSQL_PW=""
 
 ############################################################
 
