@@ -20,7 +20,7 @@ fi
 source config.sh
 
 if [[ $AGREED == "no" ]]; then
-  echo "Please edit the defaults.sh file"
+  echo "Please edit the config.sh file"
   exit
 fi
 
@@ -53,7 +53,6 @@ export CLICOLOR=1
 ##-----------------------------------------------------------------------------
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   OS="Mac"
-  APP_FILE="chrome-mac.zip"
   APP_PATH="/Applications"
   printf 'OS X Detected\n' "$GREEN" $col '[OK]' "$RESET"
 else
