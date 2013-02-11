@@ -9,10 +9,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ######################### EDIT THESE #########################
 ##############################################################
 
-## Full User Name for GIT
+## GIT information
 export INST_GIT_FULL_NAME='Andries Jongsma'
-
-## E-mail address for GIT
 export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
 #-----------------------------------------------------------
