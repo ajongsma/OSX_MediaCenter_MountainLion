@@ -30,6 +30,8 @@ export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 
 ## NewzNAB paths
 export INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
+export $INST_NEWZNAB_SVN_UID=""
+export $INST_NEWZNAB_SVN_PW=""
 
 ############################################################
 
