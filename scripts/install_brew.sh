@@ -20,4 +20,3 @@ brew doctor
 brew cleanup
 
 echo "Install Homebrew complete."
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
