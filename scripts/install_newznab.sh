@@ -3,38 +3,27 @@
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
+## http://www.newznabforums.com
 
-brew install unrar
+source ../config.sh
 
-sudo mkdir -p /Users/Newznab/Sites/newznab/
-cd /Users/Newznab/Sites/newznab/
+sudo mkdir -p $INST_NEWZNAB_PATH
+sudo chown `whoami` $INST_NEWZNAB_PATH
+cd $INST_NEWZNAB_PATH
 
-echo "-----------------------------------------------------------"
-echo "Enter the following inoformation:"
-echo "Username              : svnplus"
-echo "Password              : svnplu5"
-sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
+svn co svn://svn.newznab.com/nn/branches/nnplus/ --username $INST_NEWZNAB_SVN_UID --password $INST_NEWZNAB_SVN_PW $INST_NEWZNAB_PATH
 
-sudo mkdir /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
-sudo chmod 777 /Users/Newznab/Sites/newznab/www/lib/smarty/templates_c
-sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/movies
-sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/anime
-sudo chmod 777 /Users/Newznab/Sites/newznab/www/covers/music
-sudo chmod 777 /Users/Newznab/Sites/newznab/www
-sudo chmod 777 /Users/Newznab/Sites/newznab/www/install
-sudo chmod -R 777 /Users/Newznab/Sites/newznab/nzbfiles/
-sudo chmod 777 /Users/Newznab/Sites/newznab/db
-sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
+mkdir $INST_NEWZNAB_PATH/nzbfiles/tmpunrar
+sudo chmod 777 $INST_NEWZNAB_PATH/www/lib/smarty/templates_c
+sudo chmod 777 $INST_NEWZNAB_PATH/www/covers/movies
+sudo chmod 777 $INST_NEWZNAB_PATH/www/covers/anime
+sudo chmod 777 $INST_NEWZNAB_PATH/www/covers/music
+sudo chmod 777 $INST_NEWZNAB_PATH/www
+sudo chmod 777 $INST_NEWZNAB_PATH/www/install
+sudo chmod 777 $INST_NEWZNAB_PATH/db
+sudo chmod -R 777 $INST_NEWZNAB_PATH/nzbfiles/
 
-echo "-----------------------------------------------------------"
-echo "| Enable overrides using .htaccess files"
-echo "| Create alias in Server Website"
-echo "|  Path      : /newzab"
-echo "|  Folder    : /Users/Newznab/Sites/newzab/www"
-echo "-----------------------------------------------------------"
-open /Applications/Server.app
-#sudo ln -s /Users/Newznab/Sites/newznab/www/ /Library/WebServer/Documents/newznab
-#
+
 #echo "-----------------------------------------------------------"
 #echo "Enter the httpd.conf:"
 #echo "<Directory /Library/WebServer/Documents/newznab>"
@@ -46,31 +35,59 @@ open /Applications/Server.app
 #echo "-----------------------------------------------------------"
 #sudo subl /etc/apache2/httpd.conf
 
+echo "----------------------------------------------------------"
+echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
+echo "| Create alias in Server Website"
+echo "|   Path      : /newzab"
+echo "|   Folder    : /Users/Newznab/Sites/newzab/www"
+echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
-echo "Enter the following in MySQL:"
-echo "CREATE DATABASE newznab;"
-echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
-echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
-echo "FLUSH PRIVILEGES;"
-echo "-----------------------------------------------------------"
-mysql -u root -p
+open /Applications/Server.app
+read -n 1 -s
 
-##ERR: Can't connect to local MySQL server through socket '/var/mysql/mysql.sock' (2)
+#echo "-----------------------------------------------------------"
+#echo "Enter the following in MySQL:"
+##echo "CREATE DATABASE newznab;"
+##echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
+##echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+#
+#echo "CREATE USER '$INST_NEWZNAB_MYSQL_UID'@'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+#echo "GRANT ALL PRIVILEGES ON newznab.* TO $INST_NEWZNAB_MYSQL_UID @'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+#echo "FLUSH PRIVILEGES;"
+#echo "-----------------------------------------------------------"
+#open mysql -u root -p
+
+## Create the MySQL user and DB NewzNAB
+MYSQL=`which mysql`
+
+Q1="CREATE DATABASE IF NOT EXISTS $INST_NEWZNAB_MYSQL_DB;"
+Q2="GRANT USAGE ON *.* TO $INST_NEWZNAB_MYSQL_UID@localhost IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+Q3="GRANT ALL PRIVILEGES ON $INST_NEWZNAB_MYSQL_DB.* TO $INST_NEWZNAB_MYSQL_UID@localhost;"
+Q4="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}${Q3}${Q4}"
+
+MYSQL -u root -p -e "$SQL"
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
 echo "| Hostname                      : localhost"
 echo "| Port                          : 3306"
-echo "| Username                      : newznab"
-echo "| Password                      : <password>"
+#echo "| Username                      : newznab"
+#echo "| Password                      : <password>"
+echo "| Username                      : $INST_NEWZNAB_MYSQL_UID"
+echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : newznab"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
-echo "| Server                        : reader.xsnews.nl"
-echo "| User Name                     : 105764"
-echo "| Password                      : <password>"
-echo "| Port                          : 563"
+#echo "| Server                        : reader.xsnews.nl"
+#echo "| User Name                     : 105764"
+#echo "| Password                      : <password>"
+#echo "| Port                          : 563"
+echo "| Server                        : $INST_NEWSSERVER_SERVER"
+echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
+echo "| Password                      : $INST_NEWSSERVER_SERVER_PW"
+echo "| Port                          : $INST_NEWSSERVER_SERVER_PORT_SSL"
 echo "| SSL                           : Enable"
 echo "-----------------------------------------------------------"
 echo "| Caching Setup:"
@@ -83,23 +100,6 @@ echo "-----------------------------------------------------------"
 open http://localhost/newznab
 
 echo "-----------------------------------------------------------"
-echo "| newznab ID                    : <nnplus id>"
-echo "| Unrar Path                    : /usr/local/bin/unrar"
-
-echo "|*Integration Type              : Site Wide"
-echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
-echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
-echo "| Api Key Type                  : Full Api Key"
-
-echo "| Minimum Completion Percent    : 90"
-echo "| Start new groups              : Days, 1"
-
-echo "| Check For Passworded Releases : Deep"
-echo "| Delete Passworded Releases    : Yes"
-echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin/site-edit.php
-
-echo "-----------------------------------------------------------"
 echo "| Enable categories:"
 echo "| a.b.teevee"
 echo "|"
@@ -109,7 +109,32 @@ echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/group-list.php
 
 
+echo "-----------------------------------------------------------"
+echo "| Main Site Settings, HTML Layout, Tags"
+echo "| newznab ID                    : <nnplus id>"
+echo "| "
+echo "| 3rd Party Application Paths"
+echo "| Unrar Path                    : /usr/local/bin/unrar"
+
+echo "| Usenet Settings"
+echo "| Minimum Completion Percent    : 95"
+echo "| Start new groups              : Days, 1"
+
+echo "| Check For Passworded Releases : Deep"
+echo "| Delete Passworded Releases    : Yes"
+echo "| Show Passworded Releases      : Show everything"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/site-edit.php
 ## --- TESTING
+
+
+## SabNZBD - AFTER SabNZBD INSTALL
+echo "|*Integration Type              : Site Wide"
+echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
+echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
+echo "| Api Key Type                  : Full Api Key"
+
+
 
 cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php && php update_releases.php
@@ -309,12 +334,6 @@ echo "| Sphinx Configuration Path  : <full path to sphinx.conf>"
 echo "| Sphinx Binaries Path       : /usr/local/bin/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin
-
-
-
-
-
-
 
 
 
