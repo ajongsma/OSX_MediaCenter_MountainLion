@@ -32,6 +32,7 @@ export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 export INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 export INST_NEWZNAB_SVN_UID='svnplus'
 export INST_NEWZNAB_SVN_PW='svnplu5'
+export INST_NEWZNAB_MYSQL_DB="newznab"
 export INST_NEWZNAB_MYSQL_UID="newznab"
 export INST_NEWZNAB_MYSQL_PW="mini_newznab"
 
