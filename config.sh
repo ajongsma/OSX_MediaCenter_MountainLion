@@ -41,6 +41,7 @@ export INST_NEWZNAB_MYSQL_PW="mini_newznab"
 export INST_NEWSSERVER_SERVER='reader.xsnews.nl'
 export INST_NEWSSERVER_SERVER_UID='105764'
 export INST_NEWSSERVER_SERVER_PW=''
+export INST_NEWSSERVER_SERVER_PORT=''
 export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 ############################################################
