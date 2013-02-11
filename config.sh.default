@@ -35,6 +35,7 @@ export $INST_NEWZNAB_MYSQL_PW=""
 export INST_NEWSSERVER_SERVER=''
 export INST_NEWSSERVER_SERVER_UID=''
 export INST_NEWSSERVER_SERVER_PW=''
+export INST_NEWSSERVER_SERVER_PORT=''
 export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 ############################################################
