@@ -38,10 +38,10 @@ export INST_NEWZNAB_MYSQL_PW="mini_newznab"
 #-----------------------------------------------------------
 
 ## News Server Provider
-export INST_NEWSSERVER_PROVIDER_UID='105764'
-export INST_NEWSSERVER_PROVIDER_PW=''
-export INST_NEWSSERVER_PROVIDER_PORT_SSL='563'
-
+export INST_NEWSSERVER_SERVER='reader.xsnews.nl'
+export INST_NEWSSERVER_SERVER_UID='105764'
+export INST_NEWSSERVER_SERVER_PW=''
+export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 ############################################################
 
