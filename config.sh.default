@@ -29,6 +29,13 @@ export $INST_NEWZNAB_SVN_PW=""
 export $INST_NEWZNAB_MYSQL_UID=""
 export $INST_NEWZNAB_MYSQL_PW=""
 
+#-----------------------------------------------------------
+
+## News Server Provider
+export INST_NEWSSERVER_PROVIDER_UID=''
+export INST_NEWSSERVER_PROVIDER_PW=''
+export INST_NEWSSERVER_PROVIDER_PORT_SSL='563'
+
 ############################################################
 
 ## By using this script you understand that the programmer is not responsible for any loss of data, users, or sanity.
