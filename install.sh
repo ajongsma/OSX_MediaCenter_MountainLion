@@ -415,7 +415,7 @@ source ~/.bashrc
 ##------------------------------------------------------------------------------
 ## Install MySQL
 ##------------------------------------------------------------------------------
-if [ ! -e /usr/local/opt/mysql ] ; then
+if [ ! -f /usr/local/bin/mysql ] ; then
     printf 'MySQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_mysql.sh"
 else
@@ -428,7 +428,7 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
     if [ ! -e /Applications/MySQLWorkbench.app ] ; then
-        #echo "pgAdmin not installed, please install..."
+        #echo "MySQL Workbench not installed, please install..."
         printf 'MySQL Workbench not installed, please install...' "$RED" $col '[FAIL]' "$RESET"
         open http://dev.mysql.com/downloads/workbench/
         while ( [ ! -e /Applications/MySQLWorkbench.app ] )
@@ -443,13 +443,18 @@ if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
     fi
 fi
 
-exit
+## ERROR ON CONNECTING:
+##  Error: /usr/local/mysql/support-files/mysql.server start is invalid
+##  Operation failed: /usr/local/mysql/support-files/mysql.server start is invalid
+##  Operation failed: /usr/local/mysql/support-files/mysql.server start is invalid
+
+
 #------------------------------------------------------------------------------
 # Check for PostgreSQL
 #------------------------------------------------------------------------------
 if [ ! -d /usr/local/var/postgres ] ; then
     printf 'PostgreSQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_mysql.sh"
+    source "$DIR/scripts/install_postgresql.sh"
 else
     printf 'PostgreSQL found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
@@ -493,6 +498,7 @@ if [[ $INST_INDUCTIONAPP == "true" ]]; then
     fi
 fi
 
+exit
 ##------------------------------------------------------------------------------
 ## Install PHP 5.4
 ##------------------------------------------------------------------------------

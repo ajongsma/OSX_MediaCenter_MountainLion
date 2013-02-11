@@ -5,6 +5,9 @@
 ## https://support.eapps.com/index.php?/Knowledgebase/Article/View/414/32/user-guide---postgresql-9-and-phppgadmin
 ## http://scratching.psybermonkey.net/2009/06/postgresql-how-to-reset-user-name.html
 
+## http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
+
+
 ## By default, Homebrew builds all available Contrib extensions.  To see a list of all
 ## available extensions, from the psql command line, run:
 ##   SELECT * FROM pg_available_extensions;
@@ -40,7 +43,8 @@ sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 createuser $USER -s -d  -r -P -E -e
 createdb $USER
 
-$psql -U postgres
+$psql -U $USER
+
 #ALTER USER Andries with password 'secure-password';
 
 #echo "Enter the required role name: postgres"
