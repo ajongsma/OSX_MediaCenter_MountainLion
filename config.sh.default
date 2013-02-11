@@ -16,15 +16,17 @@ export INST_GIT_FULL_NAME='Andries Jongsma'
 ## E-mail address for GIT
 export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
-############################################################
+#-----------------------------------------------------------
 
 #Specify your SED binary
 export SED="/usr/local/bin/gsed"
 
-############################################################
+#-----------------------------------------------------------
 
 ## NewzNAB paths
 export $INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
+export $INST_NEWZNAB_SVN_UID=""
+export $INST_NEWZNAB_SVN_PW=""
 
 ##Should not need to change
 export INST_NEWZNAB_UPDATE_PATH=$NEWZNAB_PATH"/misc/update_scripts"
