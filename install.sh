@@ -82,6 +82,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #------------------------------------------------------------------------------
 # Dotfiles
 #------------------------------------------------------------------------------
+## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
+
 if [ -e ~/.bash_profile ] ; then
     cp conf/bash_profile ~/.bash_profile
 else
