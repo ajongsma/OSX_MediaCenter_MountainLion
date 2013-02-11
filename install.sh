@@ -96,6 +96,12 @@ else
     printf 'Directory ~/Sites/ found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+if [ ! -e ~/Github/ ] ; then
+    printf 'Creating directory ~/Github…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    mkdir -p ~/Github/
+else
+    printf 'Directory ~/Github/ found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode
@@ -210,6 +216,11 @@ fi
 #------------------------------------------------------------------------------
 # Check for iTerm 2
 #------------------------------------------------------------------------------
+if [[ $INST_ITERM2 == "true" ]]; then
+    echo "TESTING"
+    echo "INST_ITERM2 = TRUE"
+fi
+
 if [ ! -e /Applications/iTerm.app ] ; then
     printf 'iTerm not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     open http://www.iterm2.com
@@ -227,6 +238,11 @@ fi
 #------------------------------------------------------------------------------
 # Check for Sublime Text
 #------------------------------------------------------------------------------
+if [[ $INST_SUBLIMETEXT == "true" ]]; then
+    echo "TESTING"
+    echo "INST_SUBLIMETEXT = TRUE"
+fi
+
 if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
     printf 'Sublime Text not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     open http://www.sublimetext.com
@@ -254,6 +270,11 @@ fi
 # Check for Xlog
 #------------------------------------------------------------------------------
 #https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
+if [[ $INST_XLOG == "true" ]]; then
+    echo "TESTING"
+    echo "INST_XLOG = TRUE"
+fi
+
 if [ ! -e /Applications/Xlog.app ] ; then
     printf 'Xlog not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
@@ -271,11 +292,9 @@ fi
 #------------------------------------------------------------------------------
 # Check for GitHub for Mac
 #------------------------------------------------------------------------------
-if [ ! -e ~/Github/ ] ; then
-    printf 'Creating directory ~/Github…\n' "YELLOW" $col '[WAIT]' "$RESET"
-    mkdir -p ~/Github/
-else
-    printf 'Directory ~/Github/ found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_MACGITHUB == "true" ]]; then
+    echo "TESTING"
+    echo "INST_MACGITHUB = TRUE"
 fi
 
 if [ ! -e /Applications/GitHub.app ] ; then
@@ -294,6 +313,11 @@ fi
 #------------------------------------------------------------------------------
 # Check for Dropbox
 #------------------------------------------------------------------------------
+if [[ $INST_DROPBOX == "true" ]]; then
+    echo "TESTING"
+    echo "INST_DROPBOX = TRUE"
+fi
+
 if [ ! -d /Library/DropboxHelperTools ] ; then
     printf 'Dropbox not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     open https://www.dropbox.com/download?plat=mac
@@ -347,8 +371,7 @@ brew install bash
 brew install wget
 brew install tmux
 
-#???
-brew install subversion
+#??? brew install subversion
 
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
