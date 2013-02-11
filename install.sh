@@ -569,15 +569,6 @@ sudo chmod -R 777 /Users/Newznab/Sites/newznab/nzbfiles/
 sudo chmod 777 /Users/Newznab/Sites/newznab/db
 sudo chmod 777 /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 
-echo "-----------------------------------------------------------"
-echo "| Enable overrides using .htaccess files"
-echo "| Create alias in Server Website"
-echo "|  Path      : /newzab"
-echo "|  Folder    : /Users/Newznab/Sites/newzab/www"
-echo "-----------------------------------------------------------"
-open /Applications/Server.app
-
-
 #echo "-----------------------------------------------------------"
 #echo "Enter the httpd.conf:"
 #echo "<Directory /Library/WebServer/Documents/newznab>"
@@ -589,17 +580,40 @@ open /Applications/Server.app
 #echo "-----------------------------------------------------------"
 #sudo subl /etc/apache2/httpd.conf
 
+echo "----------------------------------------------------------"
+echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
+echo "| Create alias in Server Website"
+echo "|   Path      : /newzab"
+echo "|   Folder    : /Users/Newznab/Sites/newzab/www"
+echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
-echo "Enter the following in MySQL:"
-echo "CREATE DATABASE newznab;"
-#echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
-#echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+open /Applications/Server.app
 
-echo "CREATE USER '$INST_NEWZNAB_MYSQL_UID'@'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
-echo "GRANT ALL PRIVILEGES ON newznab.* TO $INST_NEWZNAB_MYSQL_UID @'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
-echo "FLUSH PRIVILEGES;"
-echo "-----------------------------------------------------------"
-open mysql -u root -p
+
+#echo "-----------------------------------------------------------"
+#echo "Enter the following in MySQL:"
+##echo "CREATE DATABASE newznab;"
+##echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
+##echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
+#
+#echo "CREATE USER '$INST_NEWZNAB_MYSQL_UID'@'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+#echo "GRANT ALL PRIVILEGES ON newznab.* TO $INST_NEWZNAB_MYSQL_UID @'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+#echo "FLUSH PRIVILEGES;"
+#echo "-----------------------------------------------------------"
+#open mysql -u root -p
+
+## Create the MySQL user and DB NewzNAB
+MYSQL=`which mysql`
+
+Q1="CREATE DATABASE IF NOT EXISTS $INST_NEWZNAB_MYSQL_DB;"
+Q2="GRANT USAGE ON *.* TO $INST_NEWZNAB_MYSQL_UID@localhost IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
+Q3="GRANT ALL PRIVILEGES ON $INST_NEWZNAB_MYSQL_DB.* TO $INST_NEWZNAB_MYSQL_UID@localhost;"
+Q4="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}${Q3}${Q4}"
+  
+MYSQL -uroot -p -e "$SQL"
+
+
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
