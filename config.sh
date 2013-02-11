@@ -16,22 +16,32 @@ export INST_GIT_FULL_NAME='Andries Jongsma'
 ## E-mail address for GIT
 export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
-############################################################
+#-----------------------------------------------------------
 
 #Specify your SED binary
 export SED="/usr/local/bin/gsed"
 
-############################################################
+#-----------------------------------------------------------
 
 ## Apache
 export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 
-############################################################
+#-----------------------------------------------------------
 
 ## NewzNAB
 export INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 export INST_NEWZNAB_SVN_UID='svnplus'
 export INST_NEWZNAB_SVN_PW='svnplu5'
+export INST_NEWZNAB_MYSQL_UID="newznab"
+export INST_NEWZNAB_MYSQL_PW="mini_newznab"
+
+#-----------------------------------------------------------
+
+## News Server Provider
+export INST_NEWSSERVER_PROVIDER_UID='105764'
+export INST_NEWSSERVER_PROVIDER_PW=''
+export INST_NEWSSERVER_PROVIDER_PORT_SSL='563'
+
 
 ############################################################
 
