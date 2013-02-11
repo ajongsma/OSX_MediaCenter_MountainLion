@@ -17,7 +17,7 @@ export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
 #-----------------------------------------------------------
 
-## Specify your SED binary
+## Specify the location of SED binary
 export SED="/usr/local/bin/gsed"
 
 #-----------------------------------------------------------
