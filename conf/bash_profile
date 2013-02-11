@@ -1,0 +1,11 @@
+# Tell bash to be colourful
+export CLICOLOR=1
+
+# Colors for Dark Terminal Themes:
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Colors for Light Terminal Themes:
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
