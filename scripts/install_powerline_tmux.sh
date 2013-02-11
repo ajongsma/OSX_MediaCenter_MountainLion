@@ -48,7 +48,7 @@ else
 	printf 'set-option -g status-right-length 90'
 	printf 'set-option -g status-left "#(/usr/local/share/tmux-powerline/powerline.sh left)"'
 	printf 'set-option -g status-right "#(/usr/local/share/tmux-powerline/powerline.sh right)"'
-    printf ''
+	printf ''
 	printf '#Add Powerline'
 	printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"'
 	printf ''
@@ -60,7 +60,7 @@ fi
 printf 'Reloading tmux.conf...'
 tmux source-file ~/.tmux.conf
 
-if [ ! -e ~/.tmux.conf ] ; then
+if [ ! -e ~/.powerlinerc ] ; then
     cp $DIR/conf/tmux-powerlinerc ~/.tmux-powerlinerc
 else
 	printf 'Creating default configuration file...'
@@ -74,7 +74,7 @@ else
 	printf 'For detailed inspection of all executed bash commands, type "bash -x powerline.sh (left|right)"'
 fi
 
-if [ ! -e ~/.tmux.conf ] ; then
+if [ ! -e ~/.bashrc] ; then
     cp $DIR/conf/bashrc ~/.bashrc
 else
 	printf 'Add/Change the following in ~/.bashrc'
