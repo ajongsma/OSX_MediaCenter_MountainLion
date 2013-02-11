@@ -32,9 +32,10 @@ export $INST_NEWZNAB_MYSQL_PW=""
 #-----------------------------------------------------------
 
 ## News Server Provider
-export INST_NEWSSERVER_PROVIDER_UID=''
-export INST_NEWSSERVER_PROVIDER_PW=''
-export INST_NEWSSERVER_PROVIDER_PORT_SSL='563'
+export INST_NEWSSERVER_SERVER=''
+export INST_NEWSSERVER_SERVER_UID=''
+export INST_NEWSSERVER_SERVER_PW=''
+export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 ############################################################
 
