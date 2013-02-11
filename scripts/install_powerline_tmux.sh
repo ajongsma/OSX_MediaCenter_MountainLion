@@ -2,6 +2,7 @@
 
 ## https://github.com/erikw/tmux-powerline
 ## https://github.com/jonnyboy/newznab-tmux/tree/master/powerline
+## https://github.com/jonnyboy/newznab-tmux/blob/master/conf/tmux.conf
 
 brew install --use-gcc fontforge
 brew install ack
