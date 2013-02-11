@@ -85,16 +85,15 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
 
 if [ -e ~/.bash_profile ] ; then
+    echo "Creating default .bash_profile..."
     cp conf/bash_profile ~/.bash_profile
 else
-    echo "Creating default .bash_profile..."
-cat >> ~/.bash_profile <<'EOF'
-# Tell ls to be colourful
-export CLICOLOR=1
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
-EOF
+    echo "Add the following to ~/.bash_profile..."
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+    echo ""
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
 fi
 
 
