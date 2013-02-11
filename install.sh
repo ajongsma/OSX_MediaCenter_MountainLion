@@ -533,7 +533,9 @@ echo "Enter the following inoformation:"
 echo "Username              : svnplus"
 echo "Password              : svnplu5"
 ##sudo svn co svn://nnplus@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
-svn co svn://$INST_NEWZNAB_SVN_UID@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
+
+#svn co svn://$INST_NEWZNAB_SVN_UID@svn.newznab.com/nn/branches/nnplus /Users/Newznab/Sites/newznab
+svn co svn://svn.newznab.com/nn/branches/nnplus/ --username $INST_NEWZNAB_SVN_UID --password $INST_NEWZNAB_SVN_PW
 
 sudo mkdir /Users/Newznab/Sites/newznab/nzbfiles/tmpunrar
 sudo chmod 777 /Users/Newznab/Sites/newznab/www/lib/smarty/templates_c
