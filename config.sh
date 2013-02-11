@@ -23,15 +23,15 @@ export SED="/usr/local/bin/gsed"
 
 ############################################################
 
-## Apache Web Root path
+## Apache
 export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 
 ############################################################
 
-## NewzNAB paths
+## NewzNAB
 export INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
-export $INST_NEWZNAB_SVN_UID=""
-export $INST_NEWZNAB_SVN_PW=""
+export INST_NEWZNAB_SVN_UID='svnplus'
+export INST_NEWZNAB_SVN_PW='svnplu5'
 
 ############################################################
 
