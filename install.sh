@@ -46,7 +46,6 @@ WHITE=$(tput setaf 7)  #    7   White
 RESET=$(tput sgr0)
 col=40
 
-export CLICOLOR=1
 
 ##-----------------------------------------------------------------------------
 ## Check OS
@@ -78,6 +77,23 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ## Run software update and reboot
 #sudo softwareupdate --list
 #sudo softwareupdate --install --all
+
+
+#------------------------------------------------------------------------------
+# Dotfiles
+#------------------------------------------------------------------------------
+if [ -e ~/.bash_profile ] ; then
+    cp conf/bash_profile ~/.bash_profile
+else
+    echo "Creating default .bash_profile..."
+cat >> ~/.bash_profile <<'EOF'
+# Tell ls to be colourful
+export CLICOLOR=1
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+EOF
+fi
 
 
 #------------------------------------------------------------------------------
