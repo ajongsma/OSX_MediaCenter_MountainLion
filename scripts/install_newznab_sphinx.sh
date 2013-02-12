@@ -11,7 +11,7 @@ source ../config.sh
 if [ -e /usr/local/bin/searchd ] ; then
     printf 'local found\n' "$GREEN" $col '[OK]' "$RESET"
 else
-    printf 'Sphinx not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    printf 'Sphinx not installed, exiting...\n' "$RED" $col '[FAIL]' "$RESET"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     exit
