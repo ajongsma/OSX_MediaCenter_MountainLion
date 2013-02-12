@@ -40,7 +40,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [NewzNAB] (http://www.newznab.com/)
   * [jonnyboy/newznab-tmux] (https://github.com/jonnyboy/newznab-tmux)
 * [Sphinx] (http://www.sphinxsearch.com/downloads.html)
-* SpotWeb
+* [SpotWeb] (https://github.com/spotweb/spotweb/wiki)
 * [SabNZBD] (http://sabnzbd.org/)
   * [nzbToMedia] (https://github.com/clinton-hall/nzbToMedia)
 * [Cheetah] (http://www.cheetahtemplate.org/download)
