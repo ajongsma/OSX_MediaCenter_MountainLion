@@ -1,3 +1,22 @@
+
+#= 13-02-2013 ========================================================================
+
+### ERR: PEAR
+## Loading path resolves. php.ini ?
+
+
+### ERR:
+#### The requested URL /Users/Newznab/Sites/newznab/www/index.php was not found on this server.
+
+### ERR:
+### PHP Warning:  preg_match(): Unknown modifier '"' in /Users/Newznab/Sites/newznab/www/lib/releases.php on line 1530
+### PHP Stack trace:
+### PHP   1. {main}() /Users/Newznab/Sites/newznab/misc/update_scripts/update_releases.php:0
+### PHP   2. Releases->processReleases() /Users/Newznab/Sites/newznab/misc/update_scripts/update_releases.php:9
+### PHP   3. preg_match() /Users/Newznab/Sites/newznab/www/lib/releases.php:1530
+
+
+
 #= 12-02-2013 ========================================================================
 
 ANSI color codes to display colors in a terminal:
