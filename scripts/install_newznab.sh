@@ -65,7 +65,8 @@ echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : $INST_NEWZNAB_MYSQL_DB"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
-
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
 
 ## --- TESTING
 
