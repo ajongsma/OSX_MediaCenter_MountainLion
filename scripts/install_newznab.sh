@@ -149,9 +149,19 @@ fi
 cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 ./newznab_local.sh
 
+## Additional custom NewzNAB Themes
+echo "-----------------------------------------------------------"
+echo "| Installing additional NewzNAB themes..."
+echo "-----------------------------------------------------------"
+#mkdir -p ~/Github/
+#cd ~/Github/
+#git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
+#cp -r Newznab-Simple-Theme/simple /Users/Newznab/Sites/newznab/www/templates/simple
+#git clone https://github.com/sinfuljosh/bootstrapped.git
+#cp -r bootstrapped /Users/Newznab/Sites/newznab/www/templates/bootstrapped
 
-
-
+git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git $INST_NEWZNAB_PATH/www/templates/simple
+git clone https://github.com/sinfuljosh/bootstrapped.git $INST_NEWZNAB_PATH/www/templates/bootstrapped
 
 
 ## --- TESTING
@@ -176,13 +186,6 @@ open http://localhost/newznab/admin/site-edit.php
 #./newznab_local.sh
 #echo "ctrl-ad to detach screen"
 
-## Additional custom NewzNAB Themes
-mkdir -p ~/Github/
-cd ~/Github/
-git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
-cp -r Newznab-Simple-Theme/simple /Users/Newznab/Sites/newznab/www/templates/simple
-git clone https://github.com/sinfuljosh/bootstrapped.git
-cp -r bootstrapped /Users/Newznab/Sites/newznab/www/templates/bootstrapped
 
 ## Install custom NewzNAB Update Script
 ## - https://github.com/NNScripts/nn-custom-scripts
@@ -269,10 +272,6 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/
 ##
 ## Fatal error: Call to a member function fetch_assoc() on a non-object in /Users/Newznab/Sites/newznab/www/lib/framework/db.php on line 193
 ########
-
-
-
-
 
 
 ## http://newznab.readthedocs.org/en/latest/misc/sphinx/
