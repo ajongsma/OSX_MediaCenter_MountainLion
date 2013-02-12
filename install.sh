@@ -573,232 +573,38 @@ else
 fi
 
 
-
-
-
-
 #------------------------------------------------------------------------------
-# Checking system directories
+# Configure Sphinx for NewzNAB
 #------------------------------------------------------------------------------
-#if [ ! -e /var/log/devicemgr/ ] ; then
-#    echo "Creating directory: Sites"
-#    sudo mkdir -p /var/log/devicemgr/
-#else
-#    echo "Directory /var/log/devicemgr/                    [OK]"
-#fi
 
-#------------------------------------------------------------------------------
-# Colourize terminal
-#------------------------------------------------------------------------------
-http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
-if [ ! -e ~/.bash_profile ] ; then
-    echo "Creating default .bash_profile..."
-cat >> ~/.bash_profile <<'EOF'
-# Tell ls to be colourful
-export CLICOLOR=1
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
-EOF
+if [ ! -e $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then
+    printf 'NewzNAB Sphinx config found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newznab_sphinx.sh"
 else
-    echo ".bash_profile found, please add the following:"
-
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    subl ~/.bash_profile
+    printf 'NewzNAB Sphinx config found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-#------------------------------------------------------------------------------
-# Install fonts
-#------------------------------------------------------------------------------
-#cd ~/Downloads
-#wget http://www.levien.com/type/myfonts/Inconsolata.otf
-#open Inconsolata.otf
-#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
-#open Inconsolata-Powerline.otf
 
 #------------------------------------------------------------------------------
-# Git config
+# Install NewzNAB jonnyboy/newznab-tmux
 #------------------------------------------------------------------------------
-
-## git config
-# ?? Add a git alias for pretty logs from http://www.jukie.net/bart/blog/pimping-out-git-log
-# ?? git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-
-# color everything
-# ?? git config --global color.ui true
-git config --global user.name "$GIT_FULL_NAME"
-git config --global user.email "$GIT_EMAIL"
-
-git config -l | grep user.name
-git config -l | grep user.email
-
-## TESTING
-#if [ git config -l | grep user.name ] != $GIT_FULL_NAME ; then
-#    echo "diff"
-#else
-#    echo "OK"
-#fi
-
-
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "$COMPUTER_NAME"
-#sudo scutil --set HostName "$COMPUTER_NAME"
-#sudo scutil --set LocalHostName "$COMPUTER_NAME"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
-
-#### ??? REALLY NEEDED ??? ######
-##------------------------------------------------------------------------------
-## Install Bash Completion
-##------------------------------------------------------------------------------
-#brew install bash-completion
-#
-##Add the following lines to your ~/.bash_profile:
-##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-##    . $(brew --prefix)/etc/bash_completion
-##  fi
-#
-#sudo ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
-#
-##subl ~/.bash_profile
-#if [ -e ~/.bash_profile ] ; then
-#    echo "File .bash_profile found, please add the following manually:"
-#    echo "if [ -f 'brew --prefix'/etc/bash_completion ]; then"
-#    echo     "    . 'brew --prefix'/etc/bash_completion"
-#    echo "fi"
-#    subl ~/.bash_profile
-#else
-#    cat >> ~/.bash_profile << EOF
-#if [ -f 'brew --prefix'/etc/bash_completion ]; then
-#    . 'brew --prefix'/etc/bash_completion
-#fi
-#EOF
-#fi
-
-
-#### ??? REALLY NEEDED ??? ######
-##------------------------------------------------------------------------------
-## Install Ruby
-##------------------------------------------------------------------------------
-#cd ~/Github/
-
-## -- Try 1 --
-#git clone git://github.com/sstephenson/rbenv.git .rbenv
-#?echo 'eval "$(rbenv init -)"' >> ~/.extra
-#?source ~/.bashrc
-#mkdir -p ~/.rbenv/plugins
-#cd ~/.rbenv/plugins
-#git clone git://github.com/sstephenson/ruby-build.git
-#ERR: rbenv install 1.9.3-p194
-#ERR: rbenv global 1.9.3-p194
-#ERR: cat "rbenv global 1.9.3-p194" >> .extra
-#ruby -v
-
-## -- Try 2 --
-#git clone git://github.com/sstephenson/rbenv.git .rbenv
-#mkdir -p ~/.rbenv/plugins
-#cd ~/.rbenv/plugins
-#git clone git://github.com/sstephenson/ruby-build.git
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#rbenv rehash
-#rbenv install 1.9.3-p194
-#rbenv rehash
-#rbenv global 1.9.3-p194
-
-##------------------------------------------------------------------------------
-## Install Postgresql
-##------------------------------------------------------------------------------
-## You can now start the database server using:
-##    postgres -D /usr/local/var/postgres
-##    or
-##    pg_ctl -D /usr/local/var/postgres -l logfile start
-
-brew install postgresql --without-ossp-uuid
-initdb --locale=en_US.UTF-8 --encoding=UTF8 /usr/local/var/postgres
-mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/postgresql/9.2.2/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-
-if [ ! -e /var/pgsql_socket/ ] ; then
-    sudo mkdir /var/pgsql_socket/
+if [ ! -d $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux ] ; then
+    printf 'NewzNAB jonnyboy Tmux not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newznab_tmux.sh"
+else
+    printf 'NewzNAB jonnyboy Tmux scripts found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
-
-#echo "Enter the required role name: postgres"
-#createuser $POSTGRESQL_USER ENCRYPTED PASSWORD $POSTGRESQL_PASSWORD
-
-#createuser -s -U $USER
-#createuser -s -U $USER
-
-#psqlstart
-##psqlstop
-
-
-
-
-
 
 
 #------------------------------------------------------------------------------
-# Apache - Generic
+# Install NewzNAB Custom Scripts
 #------------------------------------------------------------------------------
-## /private/etc/apache2/extra/httpd-vhosts.conf
-## sudo apachectl -V
-
-sudo apachectl -V
-
-echo "Add/Change the following lines:"
-echo "ServerName localhost"
-sudo subl /private/etc/apache2/httpd.conf
-
-echo "Modify the <Directory>:"
-echo "<Directory />"
-echo "    Options FollowSymLinks"
-echo "    AllowOverride None"
-echo "    #Order deny,allow"
-echo "    #Deny from all"
-echo "</Directory>"
-
-echo "Modify the <Directory "/Library/WebServer/Documents">"
-echo "Options Indexes FollowSymLinks Multiviews -> Options Indexes FollowSymLinks ExecCGI Includes"
-echo "AllowOverride None -> AllowOverride All"
-
-
-## ??? (1)
-#echo "Add below the first </Directory>:"
-#echo "<Directory />"
-#echo "    Options FollowSymLinks"
-#echo "    AllowOverride None"
-#echo "    Order deny,allow"
-#echo "    Allow from all"
-#echo "</Directory>"
-
-## ??? (2)
-#echo "Add below the first </Directory>:"
-#echo "<Directory />"
-#echo "    Options FollowSymLinks"
-#echo "    AllowOverride All"
-#echo "    Order deny,allow"
-#echo "    Allow from all"
-#echo "</Directory>"
-
-sudo apachectl configtest
-sudo apachectl restart
-
-#------------------------------------------------------------------------------
-# Enable Apache Virtual Host
-#------------------------------------------------------------------------------
-## /private/etc/apache2/extra/httpd-vhosts.conf
-#
-#echo "# Virtual hosts"
-#echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
-#sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
+if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
+    printf 'NewzNAB Sphinx config not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newznab_script_custom.sh"
+else
+    printf 'NewzNAB Custom Scripts found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 
 #------------------------------------------------------------------------------
@@ -1048,6 +854,206 @@ EOF
 
 mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
+
+
+
+
+
+
+
+
+#------------------------------------------------------------------------------
+# Checking system directories
+#------------------------------------------------------------------------------
+#if [ ! -e /var/log/devicemgr/ ] ; then
+#    echo "Creating directory: Sites"
+#    sudo mkdir -p /var/log/devicemgr/
+#else
+#    echo "Directory /var/log/devicemgr/                    [OK]"
+#fi
+
+#------------------------------------------------------------------------------
+# Colourize terminal
+#------------------------------------------------------------------------------
+http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
+if [ ! -e ~/.bash_profile ] ; then
+    echo "Creating default .bash_profile..."
+cat >> ~/.bash_profile <<'EOF'
+# Tell ls to be colourful
+export CLICOLOR=1
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+EOF
+else
+    echo ".bash_profile found, please add the following:"
+
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
+    subl ~/.bash_profile
+fi
+
+#------------------------------------------------------------------------------
+# Install fonts
+#------------------------------------------------------------------------------
+#cd ~/Downloads
+#wget http://www.levien.com/type/myfonts/Inconsolata.otf
+#open Inconsolata.otf
+#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
+#open Inconsolata-Powerline.otf
+
+#------------------------------------------------------------------------------
+# Git config
+#------------------------------------------------------------------------------
+
+## git config
+# ?? Add a git alias for pretty logs from http://www.jukie.net/bart/blog/pimping-out-git-log
+# ?? git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# color everything
+# ?? git config --global color.ui true
+git config --global user.name "$GIT_FULL_NAME"
+git config --global user.email "$GIT_EMAIL"
+
+git config -l | grep user.name
+git config -l | grep user.email
+
+## TESTING
+#if [ git config -l | grep user.name ] != $GIT_FULL_NAME ; then
+#    echo "diff"
+#else
+#    echo "OK"
+#fi
+
+
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+#sudo scutil --set ComputerName "$COMPUTER_NAME"
+#sudo scutil --set HostName "$COMPUTER_NAME"
+#sudo scutil --set LocalHostName "$COMPUTER_NAME"
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Bash Completion
+##------------------------------------------------------------------------------
+#brew install bash-completion
+#
+##Add the following lines to your ~/.bash_profile:
+##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+##    . $(brew --prefix)/etc/bash_completion
+##  fi
+#
+#sudo ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
+#
+##subl ~/.bash_profile
+#if [ -e ~/.bash_profile ] ; then
+#    echo "File .bash_profile found, please add the following manually:"
+#    echo "if [ -f 'brew --prefix'/etc/bash_completion ]; then"
+#    echo     "    . 'brew --prefix'/etc/bash_completion"
+#    echo "fi"
+#    subl ~/.bash_profile
+#else
+#    cat >> ~/.bash_profile << EOF
+#if [ -f 'brew --prefix'/etc/bash_completion ]; then
+#    . 'brew --prefix'/etc/bash_completion
+#fi
+#EOF
+#fi
+
+
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Ruby
+##------------------------------------------------------------------------------
+#cd ~/Github/
+
+## -- Try 1 --
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#?echo 'eval "$(rbenv init -)"' >> ~/.extra
+#?source ~/.bashrc
+#mkdir -p ~/.rbenv/plugins
+#cd ~/.rbenv/plugins
+#git clone git://github.com/sstephenson/ruby-build.git
+#ERR: rbenv install 1.9.3-p194
+#ERR: rbenv global 1.9.3-p194
+#ERR: cat "rbenv global 1.9.3-p194" >> .extra
+#ruby -v
+
+## -- Try 2 --
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#mkdir -p ~/.rbenv/plugins
+#cd ~/.rbenv/plugins
+#git clone git://github.com/sstephenson/ruby-build.git
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#rbenv rehash
+#rbenv install 1.9.3-p194
+#rbenv rehash
+#rbenv global 1.9.3-p194
+
+
+#------------------------------------------------------------------------------
+# Apache - Generic
+#------------------------------------------------------------------------------
+## /private/etc/apache2/extra/httpd-vhosts.conf
+## sudo apachectl -V
+
+sudo apachectl -V
+
+echo "Add/Change the following lines:"
+echo "ServerName localhost"
+sudo subl /private/etc/apache2/httpd.conf
+
+echo "Modify the <Directory>:"
+echo "<Directory />"
+echo "    Options FollowSymLinks"
+echo "    AllowOverride None"
+echo "    #Order deny,allow"
+echo "    #Deny from all"
+echo "</Directory>"
+
+echo "Modify the <Directory "/Library/WebServer/Documents">"
+echo "Options Indexes FollowSymLinks Multiviews -> Options Indexes FollowSymLinks ExecCGI Includes"
+echo "AllowOverride None -> AllowOverride All"
+
+
+## ??? (1)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride None"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+
+## ??? (2)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride All"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+
+sudo apachectl configtest
+sudo apachectl restart
+
+#------------------------------------------------------------------------------
+# Enable Apache Virtual Host
+#------------------------------------------------------------------------------
+## /private/etc/apache2/extra/httpd-vhosts.conf
+#
+#echo "# Virtual hosts"
+#echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
+#sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
+
+
+
 
 #------------------------------------------------------------------------------
 # Install Cheetah
