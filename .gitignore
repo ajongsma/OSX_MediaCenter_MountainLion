@@ -12,6 +12,7 @@ config.sh
 ######################
 .htaccess
 .htpasswd
+*.lock
 .DS_Store
 .DS_Store?
 ._*
