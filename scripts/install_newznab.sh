@@ -134,18 +134,19 @@ if [[ $INST_NEWZNAB_API == "" ]]; then
 fi
 
 if [ -f $DIR/conf/newznab_local.sh ] ; then
-    sudo cp $DIR/conf/newznab_local.sh /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+    sudo cp $DIR/conf/newznab_local.sh $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 else
     echo "-----------------------------------------------------------"
     echo "| Update the following:"
-    echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
+    echo "| export NEWZNAB_PATH="$INST_NEWZNAB_PATH/misc/update_scripts""
     echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
+    cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
     cp newznab_screen.sh newznab_local.sh
     subl newznab_local.sh
 fi
 
 chmod +x newznab_local.sh
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 ./newznab_local.sh
 
 
@@ -165,19 +166,15 @@ echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
 
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts
+#cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php && php update_releases.php
 ##php update_binaries.php
 ##php update_releases.php
-
-
-
 
 # screen bash
 #screen
 #./newznab_local.sh
 #echo "ctrl-ad to detach screen"
-
 
 ## Additional custom NewzNAB Themes
 mkdir -p ~/Github/
