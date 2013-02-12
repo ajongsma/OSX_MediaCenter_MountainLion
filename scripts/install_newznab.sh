@@ -38,26 +38,14 @@ sudo chmod -R 777 $INST_NEWZNAB_PATH/nzbfiles/
 echo "----------------------------------------------------------"
 echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
 echo "| Create alias in Server Website"
-echo "|   Path      : /newzab"
-echo "|   Folder    : /Users/Newznab/Sites/newzab/www"
+echo "|   Path                        : /newzab"
+echo "|   Folder                      : /Users/Newznab/Sites/newzab/www"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
 read -n 1 -s
 
-#echo "-----------------------------------------------------------"
-#echo "Enter the following in MySQL:"
-##echo "CREATE DATABASE newznab;"
-##echo "CREATE USER 'newznab'@'localhost' IDENTIFIED BY 'mini_newznab';"
-##echo "GRANT ALL PRIVILEGES ON newznab.* TO newznab @'localhost' IDENTIFIED BY 'mini_newznab';"
-#
-#echo "CREATE USER '$INST_NEWZNAB_MYSQL_UID'@'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
-#echo "GRANT ALL PRIVILEGES ON newznab.* TO $INST_NEWZNAB_MYSQL_UID @'localhost' IDENTIFIED BY '$INST_NEWZNAB_MYSQL_PW';"
-#echo "FLUSH PRIVILEGES;"
-#echo "-----------------------------------------------------------"
-#open mysql -u root -p
-
-## Create the MySQL user and DB NewzNAB
+## Create the NewzNAB MySQL user and DB
 MYSQL=`which mysql`
 
 Q1="CREATE DATABASE IF NOT EXISTS $INST_NEWZNAB_MYSQL_DB;"
@@ -72,18 +60,12 @@ echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
 echo "| Hostname                      : localhost"
 echo "| Port                          : 3306"
-#echo "| Username                      : newznab"
-#echo "| Password                      : <password>"
 echo "| Username                      : $INST_NEWZNAB_MYSQL_UID"
 echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : newznab"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
-#echo "| Server                        : reader.xsnews.nl"
-#echo "| User Name                     : 105764"
-#echo "| Password                      : <password>"
-#echo "| Port                          : 563"
 echo "| Server                        : $INST_NEWSSERVER_SERVER"
 echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
 echo "| Password                      : $INST_NEWSSERVER_SERVER_PW"
