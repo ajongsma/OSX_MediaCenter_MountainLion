@@ -3,6 +3,10 @@ OSX_NewBox
 
 Shell scripts are currently used as a guideline document and should not be run as an install script.
 
+:Source: https://github.com/ajongsma/OSX_NewBox.git
+:Version: β
+
+
 <hr>
 
 # SETUP
