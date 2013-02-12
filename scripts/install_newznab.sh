@@ -151,7 +151,9 @@ else
 fi
 
 cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
-./newznab_local.sh
+sh ./newznab_local.sh
+#bash ./newznab_local.sh
+
 
 ## Additional custom NewzNAB Themes
 echo "-----------------------------------------------------------"
