@@ -21,14 +21,21 @@ Shell scripts are currently used as a guideline document and should not be run a
   * Apache
 * [Sublime Text 2](http://www.sublimetext.com)
 * [iTerm 2](http://http://www.iterm2.com)
+  * [Solarized for iTerm 2] (https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)
 * [Xlog](https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1)
 * [Tmux](http://tmux.sourceforge.net/)
   ~ ([Tmux crashcourse] (http://robots.thoughtbot.com/post/2641409235/a-tmux-crash-course))
+* [Github for Mac](http://mac.github.com)
+* [Dropbox] (http://www.dropbox.com/download?plat=mac)
+* Powerline
 * PHP 5.4
 * Python
+* Pear
 * MySQL
+  * MySQL Workbench (http://dev.mysql.com/downloads/workbench)
 * PostgreSQL
-* [pgadmin](http://www.pgadmin.org/download/macosx.php)
+  * [pgadmin] (http://www.pgadmin.org/download/macosx.php)
+  * [InductionApp] (http://inductionapp.com)
 * [HomeBrew] (http://mxcl.github.com/homebrew/)
 * [NewzNAB] (http://www.newznab.com/)
   * [jonnyboy/newznab-tmux] (https://github.com/jonnyboy/newznab-tmux)
@@ -65,9 +72,13 @@ Shell scripts are currently used as a guideline document and should not be run a
 <hr>
 
 # TO CHECK OUT
+* [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
+* [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
 * [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
-* [Solarized] (http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html)
+* [Solarized] (http://ethanschoonover.com/solarized)
+  * [HowTo] (http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html)
+  * [Solarized iTerm 2] (https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)
 * Bash Completion
 * Ruby
 * Spotweb as a Newznab Provider
