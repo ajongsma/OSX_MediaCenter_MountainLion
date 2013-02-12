@@ -76,6 +76,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * Powerline
   * [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
+  * [Powerline - Vim : Readme] (https://github.com/Lokaltog/vim-powerline/blob/develop/doc/Powerline.txt)
   * [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
   * [Powerline style prompt for Bash] (https://github.com/milkbikis/powerline-shell)
 * [Solarized] (http://ethanschoonover.com/solarized)
