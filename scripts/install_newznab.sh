@@ -81,14 +81,6 @@ echo "| NZB File Path Setup           : $INST_NEWZNAB_PATH/nzbfiles/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab
 
-echo "-----------------------------------------------------------"
-echo "| Enable categories:"
-echo "| a.b.teevee"
-echo "|"
-echo "| For extended testrun:"
-echo "| a.b.multimedia"
-echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin/group-list.php
 
 echo "-----------------------------------------------------------"
 echo "| Main Site Settings, HTML Layout, Tags"
@@ -107,6 +99,26 @@ echo "| Show Passworded Releases      : Show everything"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
 
+echo "-----------------------------------------------------------"
+echo "| Add the following newsgroup:"
+echo "| Name                          : alt.binaries.nl"
+echo "| Backfill Days                 : 1"
+echo "-----------------------------------------------------------"
+echo "| Add the following RegEx:"
+echo "| Group                         : alt.binaries.nl"
+echo "| RegEx                         : /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS""
+echo "| Ordinal                       : 5"
+open http://localhost/newznab/admin/group-edit.php
+
+echo "-----------------------------------------------------------"
+echo "| Enable categories:"
+echo "| a.b.teevee"
+echo "|"
+echo "| For extended testrun:"
+echo "| a.b.multimedia"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/group-list.php
+
 source ../config.sh
 if [[ $INST_NEWZNAB_API == "" ]]; then
     echo "| Main Site Settings, API:"
@@ -121,13 +133,23 @@ if [[ $INST_NEWZNAB_API == "" ]]; then
     done
 fi
 
+if [ -f $DIR/conf/newznab_local.sh ] ; then
+    sudo cp $DIR/conf/newznab_local.sh /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+else
+    echo "-----------------------------------------------------------"
+    echo "| Update the following:"
+    echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
+    echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
+    cp newznab_screen.sh newznab_local.sh
+    subl newznab_local.sh
+fi
 
-echo "-----------------------------------------------------------"
-echo "| Update the following:"
-echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
-echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
-cp newznab_screen.sh newznab_local.sh
-subl newznab_local.sh
+chmod +x newznab_local.sh
+cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
+./newznab_local.sh
+
+
+
 
 
 
@@ -150,24 +172,6 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts
 
 
 
-
-
-echo "-----------------------------------------------------------"
-echo "| Add the following newsgroup:"
-echo "| Name                          : alt.binaries.nl"
-echo "| Backfill Days                 : 1"
-open http://localhost/newznab/admin/group-edit.php
-
-echo "-----------------------------------------------------------"
-echo "| Add the following RegEx:"
-echo "| Group                         : alt.binaries.nl"
-echo "| RegEx                         : /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS""
-echo "| Ordinal                       : 5"
-open http://localhost/newznab/admin/group-edit.php
-
-chmod +x newznab_local.sh
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
-./newznab_local.sh
 
 # screen bash
 #screen
