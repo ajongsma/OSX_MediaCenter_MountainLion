@@ -60,6 +60,11 @@ export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 
 #-----------------------------------------------------------
 
+## SpotWeb
+export INST_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
+export INST_NEWZNAB_PSQL_DB="spotweb_db"
+export INST_NEWZNAB_PSQL_UID="spotweb_usr"
+export INST_NEWZNAB_PSQL_PW="mini_spotweb"
 
 #-----------------------------------------------------------
 
