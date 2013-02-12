@@ -72,6 +72,7 @@ export INST_NEWZNAB_PSQL_PW="mini_spotweb"
 ## SABnzbd
 export INST_SABNZBD_UID="sabnzbd"
 export INST_SABNZBD_PW="mini_sabnzbd"
+export INST_SABNZBD_API=""
 
 #-----------------------------------------------------------
 
@@ -81,14 +82,10 @@ export INST_GIT_FULL_NAME='Andries Jongsma'
 ## E-mail address for GIT
 export INST_GIT_EMAIL='a.jongsma@gmail.com'
 
-
 #-----------------------------------------------------------
 
 ## Apache
 export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
-
-
-
 
 ############################################################
 
