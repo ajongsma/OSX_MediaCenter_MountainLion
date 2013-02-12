@@ -1,13 +1,44 @@
-
 #= 12-02-2013 ========================================================================
 
 ANSI color codes to display colors in a terminal:
-## http://www.enigmacurry.com/2009/01/20/256-colors-on-the-linux-terminal/
+## http://blog.sanctum.geek.nz/tag/xterm-256color/
 
 tput colors
 
-Add to ~/.bashrc and/or ~/.bash_profile:
+Add to ~/.bashrc (and/or ~/.bash_profile):
+
 export TERM=xterm-256color
+
+----------
+Add to ~/.bashrc (and/or ~/.bash_profile):
+
+COLORS=$(tput colors)
+
+# Terminal supports 256 colours
+if [[ $COLORS -ge 256 ]]; then
+    COLOR_ROOT='\[\e[38;5;9m\]'
+    COLOR_USER='\[\e[38;5;10m\]'
+    COLOR_UNDO='\[\e[0m\]'
+
+# Terminal supports only eight colours
+elif [[ $COLORS -ge 8 ]]; then
+    COLOR_ROOT='\[\e[1;31m\]'
+    COLOR_USER='\[\e[1;32m\]'
+    COLOR_UNDO='\[\e[0m\]'
+
+# Terminal may not support colour at all
+else
+    COLOR_ROOT=
+    COLOR_USER=
+    COLOR_UNDO=
+fi
+
+if [[ $EUID -eq 0 ]]; then
+    PS1=${COLOR_ROOT}${PS1}${COLOR_UNDO}
+else
+    PS1=${COLOR_USER}${PS1}${COLOR_UNDO}
+fi
+
 
 -------------------------------------------------------------------------
 
