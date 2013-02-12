@@ -21,8 +21,11 @@ sudo -u andries psql -c "ALTER USER spotweb_user SET PASSWORD 'mini_spotweb';"
 #sudo git clone https://github.com/spotweb/spotweb.git
 #subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 
-sudo mkdir -p /Users/Spotweb/Sites/
-cd /Users/Spotweb/Sites/
+if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
+    sudo mkdir -p $INST_SPOTWEB_PATH
+    sudo chown `whoami` $INST_SPOTWEB_PATH
+fi
+cd $INST_SPOTWEB_PATH
 sudo git clone https://github.com/spotweb/spotweb.git
 
 echo "----------------------------------------------------------"
