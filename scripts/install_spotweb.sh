@@ -30,13 +30,10 @@ echo "|   Folder                      : $INST_SPOTWEB_PATH/www"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
+echo " --- press any key to continue ---"
 read -n 1 -s
 
 #sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
-## -------------> TODO
-
-open http://localhost/spotweb/install.php
-
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
@@ -46,9 +43,10 @@ echo "| Database                      : $INST_NEWZNAB_PSQL_DB"
 echo "| Username                      : $INST_NEWZNAB_PSQL_UID"
 echo "| Password                      : $INST_NEWZNAB_PSQL_PW"
 echo "-----------------------------------------------------------"
-echo "| Usenet Server                 : XsNews"
+echo "| Usenet Server                 : $INST_NEWSSERVER_NAME"
 echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
 echo "-----------------------------------------------------------"
+open http://localhost/spotweb/install.php
 
 sudo touch $INST_SPOTWEB_PATH/dbsettings.inc.php
 sudo subl $INST_SPOTWEB_PATH/dbsettings.inc.php
