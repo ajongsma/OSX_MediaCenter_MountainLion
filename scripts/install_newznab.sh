@@ -65,12 +65,6 @@ echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : $INST_NEWZNAB_MYSQL_DB"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-
-## --- TESTING
-
-echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
 echo "| Server                        : $INST_NEWSSERVER_SERVER"
 echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
@@ -102,7 +96,21 @@ echo "| Check For Passworded Releases : Deep"
 echo "| Delete Passworded Releases    : Yes"
 echo "| Show Passworded Releases      : Show everything"
 echo "-----------------------------------------------------------"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
 open http://localhost/newznab/admin/site-edit.php
+
+
+## --- TESTING
+
+echo "-----------------------------------------------------------"
+echo "| Enable categories:"
+echo "| a.b.teevee"
+echo "|"
+echo "| For extended testrun:"
+echo "| a.b.multimedia"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/group-list.php
 
 echo "-----------------------------------------------------------"
 echo "| Add the following newsgroup:"
@@ -114,15 +122,6 @@ echo "| Group                         : alt.binaries.nl"
 echo "| RegEx                         : /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS""
 echo "| Ordinal                       : 5"
 open http://localhost/newznab/admin/group-edit.php
-
-echo "-----------------------------------------------------------"
-echo "| Enable categories:"
-echo "| a.b.teevee"
-echo "|"
-echo "| For extended testrun:"
-echo "| a.b.multimedia"
-echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin/group-list.php
 
 source ../config.sh
 if [[ $INST_NEWZNAB_API == "" ]]; then
