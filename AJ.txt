@@ -1,10 +1,18 @@
+
+#= 12-02-2013 ========================================================================
+
+ANSI color codes to display colors in a terminal:
+## http://www.enigmacurry.com/2009/01/20/256-colors-on-the-linux-terminal/
+
+tput colors
+
+Add to ~/.bashrc and/or ~/.bash_profile:
+export TERM=xterm-256color
+
+-------------------------------------------------------------------------
+
+
 #= 08-02-2013 ========================================================================
-
-
--------------------------------------------------------------------------
-
-
--------------------------------------------------------------------------
 
 ps aux | sort -nk +4 | tail
 
@@ -14,13 +22,6 @@ echo -e "\n$(top -l 1 | awk '/PhysMem/';)\n"
 
 -------------------------------------------------------------------------
 
-##?? PostgresApp, instead of a Brew Install ??
-brew remove postgresql
-
-PostgreSQL on the Mac : Install: http://postgresapp.com/
-PostgreSQL GUI        : http://inductionapp.com/ (or perhaps still http://www.pgadmin.org/)
-
--------------------------------------------------------------------------
 ## https://github.com/erikw/tmux-powerline
 ## https://github.com/zolrath/dotfiles/blob/master/tmux.conf
 
