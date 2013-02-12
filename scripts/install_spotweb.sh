@@ -26,7 +26,7 @@ echo "----------------------------------------------------------"
 echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
 echo "| Create alias in Server Website"
 echo "|   Path                        : /spotweb"
-echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
+echo "|   Folder                      : $INST_SPOTWEB_PATH/www"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
@@ -36,22 +36,22 @@ read -n 1 -s
 ## -------------> TODO
 
 open http://localhost/spotweb/install.php
-subl /Users/Spotweb/Sites//spotweb/dbsettings.inc.php
+
 
 echo "-----------------------------------------------------------"
 echo "| Paste the information as seen in the installer:"
 echo "| Type                          : PostgreSQL"
 echo "| Server                        : localhost"
-echo "| Database                      : spotweb_db"
-echo "| Username                      : spotweb_user"
-echo "| Password                      : <password>"
+echo "| Database                      : $INST_NEWZNAB_PSQL_DB"
+echo "| Username                      : $INST_NEWZNAB_PSQL_UID"
+echo "| Password                      : $INST_NEWZNAB_PSQL_PW"
 echo "-----------------------------------------------------------"
 echo "| Usenet Server                 : XsNews"
-echo "| User Name                     : 105764"
+echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
 echo "-----------------------------------------------------------"
 
-sudo touch /Users/Spotweb/Sites/spotweb/dbsettings.inc.php
-sudo subl /Users/Spotweb/Sites/spotweb/dbsettings.inc.php
+sudo touch $INST_SPOTWEB_PATH/dbsettings.inc.php
+sudo subl $INST_SPOTWEB_PATH/dbsettings.inc.php
 
 #/Library/WebServer/Documents/spotweb/retrieve.php
 #sh php /Library/WebServer/Documents/spotweb/retrieve.php
