@@ -16,6 +16,7 @@ Shell scripts are currently used as a guideline document and should not be run a
   * unrar
 * [Xcode](http://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 * Xcode Command Line Tools
+* [Xquartz] (http://xquartz.macosforge.org/landing)
 * [OSX Server 2.0](https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12)
   * Apache
 * [Sublime Text 2](http://www.sublimetext.com)
