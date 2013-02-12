@@ -107,6 +107,27 @@ echo "| Show Passworded Releases      : Show everything"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
 
+source ../config.sh
+if [[ $INST_NEWZNAB_API == "" ]]; then
+    echo "| Main Site Settings, API:"
+    echo "| Please add the NewzNAB API key to config.sh"
+    echo "-----------------------------------------------------------"
+    open  http://localhost/newznab/admin/site-edit.php
+    while ( [[ $INST_NEWZNAB_API == "" ]] )
+    do
+        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+        source ../config.sh
+    done
+fi
+
+
+echo "-----------------------------------------------------------"
+echo "| Update the following:"
+echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
+echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
+cp newznab_screen.sh newznab_local.sh
+subl newznab_local.sh
 
 
 
@@ -127,13 +148,9 @@ cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php
 ##php update_releases.php
 
-cp newznab_screen.sh newznab_local.sh
 
-echo "-----------------------------------------------------------"
-echo "| Update the following:"
-echo "| export NEWZNAB_PATH="/Users/Newznab/Sites/newznab/misc/update_scripts""
-echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
-subl newznab_local.sh
+
+
 
 echo "-----------------------------------------------------------"
 echo "| Add the following newsgroup:"
