@@ -109,15 +109,17 @@ open http://localhost/newznab/admin/site-edit.php
 
 
 
+
 ## --- TESTING
 
-
 ## SabNZBD - AFTER SabNZBD INSTALL
+echo "-----------------------------------------------------------"
 echo "|*Integration Type              : Site Wide"
 echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
 echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
 echo "| Api Key Type                  : Full Api Key"
-
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/site-edit.php
 
 
 cd /Users/Newznab/Sites/newznab/misc/update_scripts
