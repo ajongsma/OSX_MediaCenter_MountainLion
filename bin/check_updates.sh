@@ -1,20 +1,10 @@
 #!/usr/bin/env bash
 
-SOURCE="${BASH_SOURCE[0]}"
-DIR="$( dirname "$SOURCE" )"
-while [ -h "$SOURCE" ]
-do
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-  DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-
-# Make sure only root can run our script
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+## Make sure only root can run our script
+#if [[ $EUID -ne 0 ]]; then
+#   echo "This script must be run as root" 1>&2
+#   exit 1
+#fi
 
 source ../defaults.sh
 
@@ -22,6 +12,13 @@ echo "-----------------------------------------------------------"
 echo "| Checking for updates on GIT"
 echo "-----------------------------------------------------------"
 cd ~/Github/
+
+## https://github.com/jonnyboy/Newznab-Simple-Theme.git
+# $INST_NEWZNAB_PATH/www/templates/simple
+
+## https://github.com/sinfuljosh/bootstrapped.git
+# $INST_NEWZNAB_PATH/www/templates/bootstrapped
+
 #git pul
 
 
