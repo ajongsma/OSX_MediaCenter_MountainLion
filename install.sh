@@ -620,19 +620,10 @@ osascript -e 'tell app "Terminal"
     do script "php $INST_SPOTWEB_PATH/retrieve.php"
 end tell'
 
-#==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
-exit
-#==============================================================================
-
 
 #------------------------------------------------------------------------------
 # Install SABnzbd+
 #------------------------------------------------------------------------------
-
-mkdir -p ~/Downloads/Usenet/Incomplete
-mkdir -p ~/Downloads/Usenet/Complete
-mkdir -p ~/Downloads/Usenet/Watch
 
 if [ ! -e /Applications/SABnzbd.app ] ; then
     echo "SABnzbd not installed, please install..."
@@ -646,266 +637,10 @@ else
     echo "SABnzbd found                               [OK]"
 fi
 
-echo "-----------------------------------------------------------"
-echo "| News Server Setup:"
-echo "| Server            : reader.xsnews.nl"
-echo "| Port              : 563"
-echo "| User Name         : 105764"
-echo "| Password          : <password>"
-echo "| SSL               : Enable"
-echo "-----------------------------------------------------------"
-echo "| Step 2"
-echo "| Access            : I want SABnzbd to be viewable by any pc on my network."
-echo "| Password          : Enable"
-echo "| HTTPS             : Enable"
-echo "| Launch            : Disable"
-echo "-----------------------------------------------------------"
-
-open https://localhost:8080/sabnzbd/ 
-
-echo "-----------------------------------------------------------"
-echo "| Folders:"
-echo "1G"
-echo "/Users/Andries/Downloads/Usenet/Incomplete"
-echo "/Users/Andries/Downloads/Usenet/Complete"
-echo "/Users/Andries/Downloads/Usenet/Watch"
-echo "300"
-echo "/Users/Andries/Library/Application Support/SABnzbd/scripts"
-echo "-----------------------------------------------------------"
-echo "| Categories:"
-echo "| anime, Default, Default, Default"
-echo "| apps, Default, Default, Default"
-echo "| books, Default, Default, Default"
-echo "| consoles, Default, Default, Default"
-echo "| games, Default, Default, Default"
-echo "| movies, Default, Default, Default"
-echo "| music, Default, Default, Default"
-echo "| pda, Default, Default, Default"
-echo "| tv, Default, Default, Default"
-echo "-----------------------------------------------------------"
-
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.sabnzbd.SABnzbd.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>com.sabnzbd.SABnzbd</string>
-  <key>ProgramArguments</key>
-  <array>
-     <string>/usr/bin/open</string>
-     <string>-a</string>
-      <string>/Applications/SABnzbd.app</string>
-  </array>
-  <key>RunAtLoad</key>
-  <true/>
-</dict>
-</plist>
-EOF
-
-mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
-launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
-
-
-
-
-
-
-
-
-#------------------------------------------------------------------------------
-# Checking system directories
-#------------------------------------------------------------------------------
-#if [ ! -e /var/log/devicemgr/ ] ; then
-#    echo "Creating directory: Sites"
-#    sudo mkdir -p /var/log/devicemgr/
-#else
-#    echo "Directory /var/log/devicemgr/                    [OK]"
-#fi
-
-#------------------------------------------------------------------------------
-# Colourize terminal
-#------------------------------------------------------------------------------
-http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
-if [ ! -e ~/.bash_profile ] ; then
-    echo "Creating default .bash_profile..."
-cat >> ~/.bash_profile <<'EOF'
-# Tell ls to be colourful
-export CLICOLOR=1
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
-EOF
-else
-    echo ".bash_profile found, please add the following:"
-
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    subl ~/.bash_profile
-fi
-
-#------------------------------------------------------------------------------
-# Install fonts
-#------------------------------------------------------------------------------
-#cd ~/Downloads
-#wget http://www.levien.com/type/myfonts/Inconsolata.otf
-#open Inconsolata.otf
-#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
-#open Inconsolata-Powerline.otf
-
-#------------------------------------------------------------------------------
-# Git config
-#------------------------------------------------------------------------------
-
-## git config
-# ?? Add a git alias for pretty logs from http://www.jukie.net/bart/blog/pimping-out-git-log
-# ?? git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-
-# color everything
-# ?? git config --global color.ui true
-git config --global user.name "$GIT_FULL_NAME"
-git config --global user.email "$GIT_EMAIL"
-
-git config -l | grep user.name
-git config -l | grep user.email
-
-## TESTING
-#if [ git config -l | grep user.name ] != $GIT_FULL_NAME ; then
-#    echo "diff"
-#else
-#    echo "OK"
-#fi
-
-
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-#------------------------------------------------------------------------------
-# Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "$COMPUTER_NAME"
-#sudo scutil --set HostName "$COMPUTER_NAME"
-#sudo scutil --set LocalHostName "$COMPUTER_NAME"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
-
-#### ??? REALLY NEEDED ??? ######
-##------------------------------------------------------------------------------
-## Install Bash Completion
-##------------------------------------------------------------------------------
-#brew install bash-completion
-#
-##Add the following lines to your ~/.bash_profile:
-##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-##    . $(brew --prefix)/etc/bash_completion
-##  fi
-#
-#sudo ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
-#
-##subl ~/.bash_profile
-#if [ -e ~/.bash_profile ] ; then
-#    echo "File .bash_profile found, please add the following manually:"
-#    echo "if [ -f 'brew --prefix'/etc/bash_completion ]; then"
-#    echo     "    . 'brew --prefix'/etc/bash_completion"
-#    echo "fi"
-#    subl ~/.bash_profile
-#else
-#    cat >> ~/.bash_profile << EOF
-#if [ -f 'brew --prefix'/etc/bash_completion ]; then
-#    . 'brew --prefix'/etc/bash_completion
-#fi
-#EOF
-#fi
-
-
-#### ??? REALLY NEEDED ??? ######
-##------------------------------------------------------------------------------
-## Install Ruby
-##------------------------------------------------------------------------------
-#cd ~/Github/
-
-## -- Try 1 --
-#git clone git://github.com/sstephenson/rbenv.git .rbenv
-#?echo 'eval "$(rbenv init -)"' >> ~/.extra
-#?source ~/.bashrc
-#mkdir -p ~/.rbenv/plugins
-#cd ~/.rbenv/plugins
-#git clone git://github.com/sstephenson/ruby-build.git
-#ERR: rbenv install 1.9.3-p194
-#ERR: rbenv global 1.9.3-p194
-#ERR: cat "rbenv global 1.9.3-p194" >> .extra
-#ruby -v
-
-## -- Try 2 --
-#git clone git://github.com/sstephenson/rbenv.git .rbenv
-#mkdir -p ~/.rbenv/plugins
-#cd ~/.rbenv/plugins
-#git clone git://github.com/sstephenson/ruby-build.git
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#rbenv rehash
-#rbenv install 1.9.3-p194
-#rbenv rehash
-#rbenv global 1.9.3-p194
-
-
-#------------------------------------------------------------------------------
-# Apache - Generic
-#------------------------------------------------------------------------------
-## /private/etc/apache2/extra/httpd-vhosts.conf
-## sudo apachectl -V
-
-sudo apachectl -V
-
-echo "Add/Change the following lines:"
-echo "ServerName localhost"
-sudo subl /private/etc/apache2/httpd.conf
-
-echo "Modify the <Directory>:"
-echo "<Directory />"
-echo "    Options FollowSymLinks"
-echo "    AllowOverride None"
-echo "    #Order deny,allow"
-echo "    #Deny from all"
-echo "</Directory>"
-
-echo "Modify the <Directory "/Library/WebServer/Documents">"
-echo "Options Indexes FollowSymLinks Multiviews -> Options Indexes FollowSymLinks ExecCGI Includes"
-echo "AllowOverride None -> AllowOverride All"
-
-
-## ??? (1)
-#echo "Add below the first </Directory>:"
-#echo "<Directory />"
-#echo "    Options FollowSymLinks"
-#echo "    AllowOverride None"
-#echo "    Order deny,allow"
-#echo "    Allow from all"
-#echo "</Directory>"
-
-## ??? (2)
-#echo "Add below the first </Directory>:"
-#echo "<Directory />"
-#echo "    Options FollowSymLinks"
-#echo "    AllowOverride All"
-#echo "    Order deny,allow"
-#echo "    Allow from all"
-#echo "</Directory>"
-
-sudo apachectl configtest
-sudo apachectl restart
-
-#------------------------------------------------------------------------------
-# Enable Apache Virtual Host
-#------------------------------------------------------------------------------
-## /private/etc/apache2/extra/httpd-vhosts.conf
-#
-#echo "# Virtual hosts"
-#echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
-#sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
-
-
-
+#==============================================================================
+#=== FORCED EXIT DUE TO TESTING ===============================================
+exit
+#==============================================================================
 
 #------------------------------------------------------------------------------
 # Install Cheetah
@@ -1231,6 +966,195 @@ open http://localhost:7000
 
 
 
+#------------------------------------------------------------------------------
+# Checking system directories
+#------------------------------------------------------------------------------
+#if [ ! -e /var/log/devicemgr/ ] ; then
+#    echo "Creating directory: Sites"
+#    sudo mkdir -p /var/log/devicemgr/
+#else
+#    echo "Directory /var/log/devicemgr/                    [OK]"
+#fi
+
+#------------------------------------------------------------------------------
+# Colourize terminal
+#------------------------------------------------------------------------------
+http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
+if [ ! -e ~/.bash_profile ] ; then
+    echo "Creating default .bash_profile..."
+cat >> ~/.bash_profile <<'EOF'
+# Tell ls to be colourful
+export CLICOLOR=1
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+EOF
+else
+    echo ".bash_profile found, please add the following:"
+
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
+    subl ~/.bash_profile
+fi
+
+#------------------------------------------------------------------------------
+# Install fonts
+#------------------------------------------------------------------------------
+#cd ~/Downloads
+#wget http://www.levien.com/type/myfonts/Inconsolata.otf
+#open Inconsolata.otf
+#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
+#open Inconsolata-Powerline.otf
+
+#------------------------------------------------------------------------------
+# Git config
+#------------------------------------------------------------------------------
+
+## git config
+# ?? Add a git alias for pretty logs from http://www.jukie.net/bart/blog/pimping-out-git-log
+# ?? git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# color everything
+# ?? git config --global color.ui true
+git config --global user.name "$GIT_FULL_NAME"
+git config --global user.email "$GIT_EMAIL"
+
+git config -l | grep user.name
+git config -l | grep user.email
+
+## TESTING
+#if [ git config -l | grep user.name ] != $GIT_FULL_NAME ; then
+#    echo "diff"
+#else
+#    echo "OK"
+#fi
+
+
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+#------------------------------------------------------------------------------
+# Set computer name (as done via System Preferences → Sharing)
+#sudo scutil --set ComputerName "$COMPUTER_NAME"
+#sudo scutil --set HostName "$COMPUTER_NAME"
+#sudo scutil --set LocalHostName "$COMPUTER_NAME"
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Bash Completion
+##------------------------------------------------------------------------------
+#brew install bash-completion
+#
+##Add the following lines to your ~/.bash_profile:
+##  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+##    . $(brew --prefix)/etc/bash_completion
+##  fi
+#
+#sudo ln -s /usr/local/Library/Contributions/brew_bash_completion.sh /usr/local/etc/bash_completion.d
+#
+##subl ~/.bash_profile
+#if [ -e ~/.bash_profile ] ; then
+#    echo "File .bash_profile found, please add the following manually:"
+#    echo "if [ -f 'brew --prefix'/etc/bash_completion ]; then"
+#    echo     "    . 'brew --prefix'/etc/bash_completion"
+#    echo "fi"
+#    subl ~/.bash_profile
+#else
+#    cat >> ~/.bash_profile << EOF
+#if [ -f 'brew --prefix'/etc/bash_completion ]; then
+#    . 'brew --prefix'/etc/bash_completion
+#fi
+#EOF
+#fi
+
+
+#### ??? REALLY NEEDED ??? ######
+##------------------------------------------------------------------------------
+## Install Ruby
+##------------------------------------------------------------------------------
+#cd ~/Github/
+
+## -- Try 1 --
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#?echo 'eval "$(rbenv init -)"' >> ~/.extra
+#?source ~/.bashrc
+#mkdir -p ~/.rbenv/plugins
+#cd ~/.rbenv/plugins
+#git clone git://github.com/sstephenson/ruby-build.git
+#ERR: rbenv install 1.9.3-p194
+#ERR: rbenv global 1.9.3-p194
+#ERR: cat "rbenv global 1.9.3-p194" >> .extra
+#ruby -v
+
+## -- Try 2 --
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#mkdir -p ~/.rbenv/plugins
+#cd ~/.rbenv/plugins
+#git clone git://github.com/sstephenson/ruby-build.git
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#rbenv rehash
+#rbenv install 1.9.3-p194
+#rbenv rehash
+#rbenv global 1.9.3-p194
+
+
+#------------------------------------------------------------------------------
+# Apache - Generic
+#------------------------------------------------------------------------------
+## /private/etc/apache2/extra/httpd-vhosts.conf
+## sudo apachectl -V
+
+sudo apachectl -V
+
+echo "Add/Change the following lines:"
+echo "ServerName localhost"
+sudo subl /private/etc/apache2/httpd.conf
+
+echo "Modify the <Directory>:"
+echo "<Directory />"
+echo "    Options FollowSymLinks"
+echo "    AllowOverride None"
+echo "    #Order deny,allow"
+echo "    #Deny from all"
+echo "</Directory>"
+
+echo "Modify the <Directory "/Library/WebServer/Documents">"
+echo "Options Indexes FollowSymLinks Multiviews -> Options Indexes FollowSymLinks ExecCGI Includes"
+echo "AllowOverride None -> AllowOverride All"
+
+
+## ??? (1)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride None"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+
+## ??? (2)
+#echo "Add below the first </Directory>:"
+#echo "<Directory />"
+#echo "    Options FollowSymLinks"
+#echo "    AllowOverride All"
+#echo "    Order deny,allow"
+#echo "    Allow from all"
+#echo "</Directory>"
+
+sudo apachectl configtest
+sudo apachectl restart
+
+#------------------------------------------------------------------------------
+# Enable Apache Virtual Host
+#------------------------------------------------------------------------------
+## /private/etc/apache2/extra/httpd-vhosts.conf
+#
+#echo "# Virtual hosts"
+#echo "Include /private/etc/apache2/extra/httpd-vhosts.conf"
+#sudo subl /private/etc/apache2/extra/httpd-vhosts.conf
 
 
 # ?????????????????????????????????????????????????????????????????????????????

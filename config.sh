@@ -69,6 +69,12 @@ export INST_NEWZNAB_PSQL_PW="mini_spotweb"
 
 #-----------------------------------------------------------
 
+## SABnzbd
+export INST_SABNZBD_UID="sabnzbd"
+export INST_SABNZBD_PW="mini_sabnzbd"
+
+#-----------------------------------------------------------
+
 ## Full User Name for GIT
 export INST_GIT_FULL_NAME='Andries Jongsma'
 
