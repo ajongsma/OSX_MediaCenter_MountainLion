@@ -74,8 +74,10 @@ Shell scripts are currently used as a guideline document and should not be run a
 # TO CHECK OUT
 * [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
-* [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
-* [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
+* Powerline
+  * [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
+  * [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
+  * [Powerline style prompt for Bash] (https://github.com/milkbikis/powerline-shell)
 * [Solarized] (http://ethanschoonover.com/solarized)
   * [HowTo] (http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html)
   * [Solarized iTerm 2] (https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)
