@@ -196,16 +196,6 @@ open http://localhost/newznab/admin/site-edit.php
 #echo "ctrl-ad to detach screen"
 
 
-## Install custom NewzNAB Update Script
-## - https://github.com/NNScripts/nn-custom-scripts
-mkdir -p /Users/Newznab/Sites/newznab/misc/custom
-git clone https://github.com/NNScripts/nn-custom-scripts.git /Users/Newznab/Sites/newznab/misc/custom
-echo "-----------------------------------------------------------"
-echo "| Change the following settings:"
-echo "| define('REMOVE', false);           : define('REMOVE', true);"
-echo "-----------------------------------------------------------"
-subl /Users/Newznab/Sites/newznab/misc/custom/remove_blacklist_releases.php
-
 
 
 ## http://newznab.readthedocs.org/en/latest/misc/sphinx/
