@@ -3,6 +3,8 @@
 #------------------------------------------------------------------------------
 #export PATH=$PATH:/usr/local/opt/postgresql/bin
 
+source ../config.sh
+
 #sudo -u andries psql postgres -c "create database spotweb_db"
 #sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 #sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
@@ -10,9 +12,10 @@
 sudo -u andries psql postgres -c "create database spotweb_db"
 sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
+sudo -u andries psql -c "ALTER USER spotweb_user SET PASSWORD 'mini_spotweb';"
 
-open /Applications/pgAdmin3.app
-echo "Open pgAdmin and set the password of user: spotweb_user"
+#?? open /Applications/pgAdmin3.app
+#?? echo "Open pgAdmin and set the password of user: spotweb_user"
 
 #cd /Library/WebServer/Documents/
 #sudo git clone https://github.com/spotweb/spotweb.git
