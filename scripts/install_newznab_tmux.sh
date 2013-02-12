@@ -11,9 +11,9 @@ brew install htop
 brew install iftop
 brew install watch
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/
-git clone https://github.com/jonnyboy/newznab-tmux.git tmux
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux
+#cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
+git clone https://github.com/jonnyboy/newznab-tmux.git $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux
+cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux
 
 echo "-----------------------------------------------------------"
 echo "| Backing up current MySQL database..."
@@ -22,7 +22,7 @@ mysqldump --opt -u root -p newznab > ~/newznab_backup.sql
 
 echo "-----------------------------------------------------------"
 echo "| Change the following settings:"
-echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
+echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="$INST_NEWZNAB_PATH/newznab""
 echo "| export BINARIES="false"            : export BINARIES="true""
 echo "| *export BINARIES_THREADS="false"   : export BINARIES_THREADS="true""
 echo "| export RELEASES="false"            : export RELEASES="true""
@@ -52,20 +52,20 @@ subl defaults.sh
 
 echo "-----------------------------------------------------------"
 echo "| Change the following settings:"
-echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="/Users/Newznab/Sites/newznab""
+echo "| export NEWZPATH="/var/www/newznab" : export NEWZPATH="$INST_NEWZNAB_PATH""
 echo "-----------------------------------------------------------"
-subl /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts/check_svn.sh 
+subl $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux/scripts/check_svn.sh 
 
 echo "-----------------------------------------------------------"
 export NEWZPATH="/Users/Newznab/Sites/newznab"
 export PASSWORD="<password>"
 echo "-----------------------------------------------------------"
-subl /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts/update_svn.sh 
+subl $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux/scripts/update_svn.sh 
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/scripts
+cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux/scripts
 sudo ./set_perms.sh
 
-cd /Users/Newznab/Sites/newznab/misc/update_scripts/nix_scripts/tmux/
+cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux/
 ./start.sh
 
 ### ERR:
