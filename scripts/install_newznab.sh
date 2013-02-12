@@ -65,6 +65,11 @@ echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
 echo "| Database                      : $INST_NEWZNAB_MYSQL_DB"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
+
+
+## --- TESTING
+
+echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
 echo "| Server                        : $INST_NEWSSERVER_SERVER"
 echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
@@ -80,7 +85,6 @@ echo "-----------------------------------------------------------"
 echo "| NZB File Path Setup           : $INST_NEWZNAB_PATH/nzbfiles/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab
-
 
 echo "-----------------------------------------------------------"
 echo "| Main Site Settings, HTML Layout, Tags"
@@ -164,7 +168,10 @@ git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git $INST_NEWZNAB_PAT
 git clone https://github.com/sinfuljosh/bootstrapped.git $INST_NEWZNAB_PATH/www/templates/bootstrapped
 
 
-## --- TESTING
+
+
+
+
 
 ## SabNZBD - AFTER SabNZBD INSTALL
 echo "-----------------------------------------------------------"
