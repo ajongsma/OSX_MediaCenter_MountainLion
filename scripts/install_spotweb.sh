@@ -2,6 +2,11 @@
 # Install Spotweb
 #------------------------------------------------------------------------------
 #export PATH=$PATH:/usr/local/opt/postgresql/bin
+
+#sudo -u andries psql postgres -c "create database spotweb_db"
+#sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
+#sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
+
 sudo -u andries psql postgres -c "create database spotweb_db"
 sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
@@ -9,27 +14,25 @@ sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to
 open /Applications/pgAdmin3.app
 echo "Open pgAdmin and set the password of user: spotweb_user"
 
-
-## Not used, postgresql instead of MySQL
-#echo "-----------------------------------------------------------"
-#echo "Enter the following in MySQL:"
-#echo "CREATE DATABASE spotweb;"
-#echo "CREATE USER spotweb@'localhost' IDENTIFIED BY 'mini_spotweb';"
-#echo "GRANT ALL PRIVILEGES ON spotweb.* TO spotweb @'localhost' IDENTIFIED BY 'mini_spotweb';"
-#echo "flush privileges;"
-#echo "quit"
-#echo "-----------------------------------------------------------"
-
 #cd /Library/WebServer/Documents/
 #sudo git clone https://github.com/spotweb/spotweb.git
 #subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 
 sudo mkdir -p /Users/Spotweb/Sites/
-sudo mkdir -p /Users/Spotweb/Sites/log/
 cd /Users/Spotweb/Sites/
 sudo git clone https://github.com/spotweb/spotweb.git
 
-sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
+echo "----------------------------------------------------------"
+echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
+echo "| Create alias in Server Website"
+echo "|   Path                        : /spotweb"
+echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
+echo "| Enable overrides using .htaccess files"
+echo "-----------------------------------------------------------"
+open /Applications/Server.app
+read -n 1 -s
+
+#sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
 ## -------------> TODO
 
 open http://localhost/spotweb/install.php
