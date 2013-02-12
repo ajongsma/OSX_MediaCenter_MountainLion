@@ -52,6 +52,7 @@ INST_NEWZNAB_API=''
 #-----------------------------------------------------------
 
 ## News Server Provider
+export INST_NEWSSERVER_NAME='XsNews'
 export INST_NEWSSERVER_SERVER='reader.xsnews.nl'
 export INST_NEWSSERVER_SERVER_UID='105764'
 export INST_NEWSSERVER_SERVER_PW=''
