@@ -13,6 +13,8 @@ echo "| Checking for updates on GIT"
 echo "-----------------------------------------------------------"
 cd ~/Github/
 
+## https://github.com/jonnyboy/newznab-tmux.git
+
 ## https://github.com/jonnyboy/Newznab-Simple-Theme.git
 # $INST_NEWZNAB_PATH/www/templates/simple
 
