@@ -142,10 +142,10 @@ else
     echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
     cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
     cp newznab_screen.sh newznab_local.sh
+    chmod +x newznab_local.sh
     subl newznab_local.sh
 fi
 
-chmod +x newznab_local.sh
 cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 ./newznab_local.sh
 
