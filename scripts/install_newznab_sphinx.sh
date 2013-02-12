@@ -72,13 +72,13 @@ else
 fi
 
 echo "-----------------------------------------------------------"
-echo "| Configure Sphinx:"
+echo "| Sphinx Settings:"
 echo "| Use Sphinx                 : Yes"
 #echo "| Sphinx Configuration Path  : /Users/Newznab/Sites/newznab/db/sphinxdata/sphinx.conf"
 echo "| Sphinx Configuration Path  : $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf"
 echo "| Sphinx Binaries Path       : /usr/local/bin/"
 echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin
+open http://localhost/newznab/admin/site-edit.php
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install Sphinx for NewzNAB complete."

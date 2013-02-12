@@ -117,33 +117,40 @@ echo "| Add the following newsgroup:"
 echo "| Name                          : alt.binaries.nl"
 echo "| Backfill Days                 : 1"
 echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/group-edit.php
+
+echo "-----------------------------------------------------------"
 echo "| Add the following RegEx:"
 echo "| Group                         : alt.binaries.nl"
 echo "| RegEx                         : /^.*?"(?P<name>.*?)\.(sample|mkv|Avi|mp4|vol|ogm|par|rar|sfv|nfo|nzb|web|rmvb|srt|ass|mpg|txt|zip|wmv|ssa|r\d{1,3}|7z|tar|cbr|cbz|mov|divx|m2ts|rmvb|iso|dmg|sub|idx|rm|t\d{1,2}|u\d{1,3})/iS""
 echo "| Ordinal                       : 5"
-open http://localhost/newznab/admin/group-edit.php
+echo "-----------------------------------------------------------"
+http://localhost/newznab/admin/regex-edit.php?action=add
 
-source ../config.sh
-if [[ $INST_NEWZNAB_API == "" ]]; then
-    echo "| Main Site Settings, API:"
-    echo "| Please add the NewzNAB API key to config.sh"
-    echo "-----------------------------------------------------------"
-    open  http://localhost/newznab/admin/site-edit.php
-    while ( [[ $INST_NEWZNAB_API == "" ]] )
-    do
-        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-        source ../config.sh
-    done
-fi
+## Lost API Reference - prob SabNZBD
+#source ../config.sh
+#if [[ $INST_NEWZNAB_API == "" ]]; then
+#    echo "| Main Site Settings, API:"
+#    echo "| Please add the NewzNAB API key to config.sh"
+#    echo "-----------------------------------------------------------"
+#    open  http://localhost/newznab/admin/site-edit.php
+#    while ( [[ $INST_NEWZNAB_API == "" ]] )
+#    do
+#        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+#        sleep 15
+#        source ../config.sh
+#    done
+#fi
 
-if [ -f $DIR/conf/newznab_local.sh ] ; then
-    sudo cp $DIR/conf/newznab_local.sh $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
+if [ -f $DIR/bin/newznab_local.sh ] ; then
+    sudo cp $DIR/bin/newznab_local.sh $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 else
     echo "-----------------------------------------------------------"
     echo "| Update the following:"
     echo "| export NEWZNAB_PATH="$INST_NEWZNAB_PATH/misc/update_scripts""
-    echo "| /usr/bin/php5 => /usr/local/Cellar/php54/5.4.11/bin/php"
+
+    echo "| Modify all PHP5 references"
+    echo "| /usr/bin/php5 ... => php ..."
     cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
     cp newznab_screen.sh newznab_local.sh
     chmod +x newznab_local.sh
@@ -159,31 +166,27 @@ sh ./newznab_local.sh
 echo "-----------------------------------------------------------"
 echo "| Installing additional NewzNAB themes..."
 echo "-----------------------------------------------------------"
+#git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git $INST_NEWZNAB_PATH/www/templates/simple
+#git clone https://github.com/sinfuljosh/bootstrapped.git $INST_NEWZNAB_PATH/www/templates/bootstrapped
+
 #mkdir -p ~/Github/
-#cd ~/Github/
-#git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
-#cp -r Newznab-Simple-Theme/simple /Users/Newznab/Sites/newznab/www/templates/simple
-#git clone https://github.com/sinfuljosh/bootstrapped.git
-#cp -r bootstrapped /Users/Newznab/Sites/newznab/www/templates/bootstrapped
-
-git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git $INST_NEWZNAB_PATH/www/templates/simple
-git clone https://github.com/sinfuljosh/bootstrapped.git $INST_NEWZNAB_PATH/www/templates/bootstrapped
+cd ~/Github/
+git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
+cp -r Newznab-Simple-Theme/simple $INST_NEWZNAB_PATH/www/templates/simple
+git clone https://github.com/sinfuljosh/bootstrapped.git
+cp -r bootstrapped $INST_NEWZNAB_PATH/www/templates/bootstrapped
 
 
 
 
-
-
-
-## SabNZBD - AFTER SabNZBD INSTALL
-echo "-----------------------------------------------------------"
-echo "|*Integration Type              : Site Wide"
-echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
-echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
-echo "| Api Key Type                  : Full Api Key"
-echo "-----------------------------------------------------------"
-open http://localhost/newznab/admin/site-edit.php
-
+## ## SabNZBD - AFTER SabNZBD INSTALL
+## echo "-----------------------------------------------------------"
+## echo "|*Integration Type              : Site Wide"
+## echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
+## echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
+## echo "| Api Key Type                  : Full Api Key"
+## echo "-----------------------------------------------------------"
+## open http://localhost/newznab/admin/site-edit.php
 
 #cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php && php update_releases.php

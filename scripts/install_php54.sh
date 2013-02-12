@@ -19,6 +19,8 @@
 
 ## brew unlink php53 && brew link php54
 
+#?? error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+
 brew tap josegonzalez/homebrew-php
 brew update
 brew upgrade

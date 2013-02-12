@@ -33,9 +33,8 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 /usr/local/Cellar/mysql/5.5.29/bin/mysql_secure_installation
 
-## ??? REALLY NEEDED ???
-#sudo mkdir /var/mysql
-#sudo ln -s /private/tmp/mysql.sock /var/mysql/mysql.sock
+sudo mkdir /var/mysql
+sudo ln -s /private/tmp/mysql.sock /var/mysql/mysql.sock
 
 
 ## ??? ERROR DUE TO MY.CONF ???
