@@ -58,6 +58,19 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 echo "-----------------------------------------------------------"
+echo "| Switches"
+echo "| Queue:"
+echo "| Abort jobs that cannot be completed     : Enable"
+echo "| Check before download                   : Enable"
+echo "| Pause Downloading durig post-processing : Enable"
+echo "| Post processing:"
+echo "| Ignore Samples                          : Delete"
+echo "-----------------------------------------------------------"
+open http://localhost:8080/config/switches/
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+
+echo "-----------------------------------------------------------"
 echo "| Create the following categories:"
 echo "| anime, Default, Default, Default"
 echo "| apps, Default, Default, Default"

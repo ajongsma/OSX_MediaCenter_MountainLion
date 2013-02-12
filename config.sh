@@ -72,8 +72,8 @@ export INST_NEWZNAB_PSQL_PW="mini_spotweb"
 ## SABnzbd
 export INST_SABNZBD_UID="sabnzbd"
 export INST_SABNZBD_PW="mini_sabnzbd"
-export INST_SABNZBD_API=""
-
+export INST_SABNZBD_KEY_API=""
+export INST_SABNZBD_KEY_NZB=""
 #-----------------------------------------------------------
 
 ## Full User Name for GIT
