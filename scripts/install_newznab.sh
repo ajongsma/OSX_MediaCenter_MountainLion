@@ -39,7 +39,7 @@ echo "----------------------------------------------------------"
 echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
 echo "| Create alias in Server Website"
 echo "|   Path                        : /newzab"
-echo "|   Folder                      : /Users/Newznab/Sites/newzab/www"
+echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
@@ -62,7 +62,7 @@ echo "| Hostname                      : localhost"
 echo "| Port                          : 3306"
 echo "| Username                      : $INST_NEWZNAB_MYSQL_UID"
 echo "| Password                      : $INST_NEWZNAB_MYSQL_PW"
-echo "| Database                      : newznab"
+echo "| Database                      : $INST_NEWZNAB_MYSQL_DB"
 echo "| DB Engine                     : MyISAM"
 echo "-----------------------------------------------------------"
 echo "| News Server Setup:"
@@ -77,7 +77,7 @@ echo "| Caching Type                  : Memcache"
 echo "-----------------------------------------------------------"
 echo "| Admin Setup:"
 echo "-----------------------------------------------------------"
-echo "| NZB File Path Setup           : /Users/Newznab/Sites/newznab/nzbfiles/"
+echo "| NZB File Path Setup           : $INST_NEWZNAB_PATH/nzbfiles/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab
 
@@ -89,7 +89,6 @@ echo "| For extended testrun:"
 echo "| a.b.multimedia"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/group-list.php
-
 
 echo "-----------------------------------------------------------"
 echo "| Main Site Settings, HTML Layout, Tags"
@@ -107,6 +106,9 @@ echo "| Delete Passworded Releases    : Yes"
 echo "| Show Passworded Releases      : Show everything"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
+
+
+
 ## --- TESTING
 
 
