@@ -19,6 +19,8 @@ cd ~/Github/
 ## https://github.com/sinfuljosh/bootstrapped.git
 # $INST_NEWZNAB_PATH/www/templates/bootstrapped
 
+## https://github.com/spotweb/spotweb.git
+
 #git pul
 
 
