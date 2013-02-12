@@ -602,6 +602,9 @@ fi
 
 ## open -a iTerm.app $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh
 
+osascript -e 'tell app "Terminal"
+    do script "$INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh"
+end tell'
 
 #------------------------------------------------------------------------------
 # Install Spotweb
@@ -612,6 +615,10 @@ if [ ! -d /Users/Newznab/Sites/spotweb ] ; then
 else
     printf 'Spotweb found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+osascript -e 'tell app "Terminal"
+    do script "php $INST_SPOTWEB_PATH/retrieve.php"
+end tell'
 
 #==============================================================================
 #=== FORCED EXIT DUE TO TESTING ===============================================

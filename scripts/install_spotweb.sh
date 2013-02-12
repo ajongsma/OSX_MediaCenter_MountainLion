@@ -9,10 +9,13 @@ source ../config.sh
 #sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
 #sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
 
-sudo -u andries psql postgres -c "create database spotweb_db"
-sudo -u andries psql postgres -c "create user spotweb_user with password 'spotweb_user'"
-sudo -u andries psql postgres -c "grant all privileges on database spotweb_db to spotweb_user"
-sudo -u andries psql -c "ALTER USER spotweb_user SET PASSWORD 'mini_spotweb';"
+sudo -u andries psql postgres -c "create database $INST_NEWZNAB_PSQL_DB"
+sudo -u andries psql postgres -c "create user $INST_NEWZNAB_PSQL_UID with password '"$INST_NEWZNAB_PSQL_PW"'"
+sudo -u andries psql postgres -c "grant all privileges on database $INST_NEWZNAB_PSQL_DB to $INST_NEWZNAB_PSQL_UID"
+
+### ERROR:  syntax error at or near "'mini_spotweb'"
+### sudo -u andries psql -c ALTER USER spotweb_usr SET PASSWORD 'mini_spotweb';
+sudo -u andries psql -c "ALTER USER $INST_NEWZNAB_PSQL_UID SET PASSWORD '"$INST_NEWZNAB_PSQL_PW"';"
 
 #?? open /Applications/pgAdmin3.app
 #?? echo "Open pgAdmin and set the password of user: spotweb_user"
@@ -21,18 +24,20 @@ sudo -u andries psql -c "ALTER USER spotweb_user SET PASSWORD 'mini_spotweb';"
 #sudo git clone https://github.com/spotweb/spotweb.git
 #subl /Library/WebServer/Documents/spotweb/dbsettings.inc.php
 
-if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
-    sudo mkdir -p $INST_SPOTWEB_PATH
-    sudo chown `whoami` $INST_SPOTWEB_PATH
+if [ ! -d $INST_SPOTWEB_PATH ] ; then
+    sudo mkdir -p $INST_SPOTWEB_PATH    
 fi
-cd $INST_SPOTWEB_PATH
+cd $INST_SPOTWEB_PATH/../
+sudo rmdir spotweb
+
 sudo git clone https://github.com/spotweb/spotweb.git
+sudo chown `whoami` $INST_SPOTWEB_PATH
 
 echo "----------------------------------------------------------"
 echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
 echo "| Create alias in Server Website"
 echo "|   Path                        : /spotweb"
-echo "|   Folder                      : $INST_SPOTWEB_PATH/www"
+echo "|   Folder                      : $INST_SPOTWEB_PATH"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
@@ -53,9 +58,15 @@ echo "| Usenet Server                 : $INST_NEWSSERVER_NAME"
 echo "| User Name                     : $INST_NEWSSERVER_SERVER_UID"
 echo "-----------------------------------------------------------"
 open http://localhost/spotweb/install.php
+echo " --- press any key to continue ---"
+read -n 1 -s
 
+echo "-----------------------------------------------------------"
+echo "| After finishing all steps, copy/paste the information as during the last phase"
 sudo touch $INST_SPOTWEB_PATH/dbsettings.inc.php
 sudo subl $INST_SPOTWEB_PATH/dbsettings.inc.php
+echo " --- press any key to continue ---"
+read -n 1 -s
 
 #/Library/WebServer/Documents/spotweb/retrieve.php
 #sh php /Library/WebServer/Documents/spotweb/retrieve.php
@@ -63,9 +74,9 @@ sudo subl $INST_SPOTWEB_PATH/dbsettings.inc.php
 
 open http://localhost/spotweb
 
-osascript -e 'tell app "Terminal"
-    do script "php /Users/Spotweb/Sites/spotweb/retrieve.php"
-end tell'
+#osascript -e 'tell app "Terminal"
+#    do script "php /Users/Spotweb/Sites/spotweb/retrieve.php"
+#end tell'
 
 ### FORCED QUIT ####
 #exit 1
