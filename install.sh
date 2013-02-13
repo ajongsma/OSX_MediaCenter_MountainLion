@@ -660,7 +660,7 @@ echo " TODO: Check for specific variables"
 echo " Till then, forced run:"
 echo "   $DIR/scripts/install_sickbeard_nzbtomedia.sh"
 
-open $DIR/scripts/install_sickbeard_nzbtomedia.sh"
+source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -684,7 +684,7 @@ echo " TODO: Check for specific variables"
 echo " Till then, forced run:"
 echo "   $DIR/scripts/install_sabnzbd_sickbeard.sh"
 
-open $DIR/scripts/install_sabnzbd_sickbeard.sh
+source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -723,7 +723,7 @@ echo " TODO: Check for specific variables"
 echo " Till then, forced run:"
 echo "   $DIR/scripts/install_couchpotato_nzbtomedia.sh"
 
-open $DIR/scripts/install_couchpotato_nzbtomedia.sh
+source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -747,7 +747,7 @@ echo " TODO: Check for specific variables"
 echo " Till then, forced run:"
 echo "   $DIR/scripts/install_sabnzbd_couchpotato.sh"
 
-open $DIR/scripts/install_sabnzbd_couchpotato.sh
+source "$DIR/scripts/install_sabnzbd_couchpotato.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
