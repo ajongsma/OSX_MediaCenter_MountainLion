@@ -32,6 +32,8 @@ mount|grep -q "^/dev/sdb1 " || mount /mnt/datastore
 if [ -z "$emptystring" ]; then
 * The above condition is true if $emptystring is an empty string or an uninitialized variable. 
 
+if [[ -a *.sh ]]; then
+* The above condition will return true only if there is a file in the working directory called “*.sh”, no matter what other .sh files exist. The asterisk is taken literally, because the double-bracket syntax does not expand filenames.
 -------------------------------------------------------------------------
 
 #= 12-02-2013 ========================================================================
