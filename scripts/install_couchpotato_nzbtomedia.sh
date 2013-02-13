@@ -3,6 +3,7 @@
 echo "#------------------------------------------------------------------------------"
 echo "# Configuring nzbToMedia for CouchPotato"
 echo "#------------------------------------------------------------------------------"
+## https://github.com/clinton-hall/nzbToMedia
 
 source ../config.sh
 
@@ -21,6 +22,7 @@ echo "| host                                    : localhost"
 echo "| Port                                    : 8082"
 echo "| username                                : $INST_COUCHPOTATO_UID"
 echo "| password                                : $INST_COUCHPOTATOD_PW"
+echo "| API                                     : $INST_COUCHPOTATOD_API"
 echo "-----------------------------------------------------------"
 subl ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
