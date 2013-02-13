@@ -765,44 +765,17 @@ fi
 #------------------------------------------------------------------------------
 # Install Auto-Sub
 #------------------------------------------------------------------------------
-echo "Download latest Auto-Sub:"
-#open http://couchpotatoapp.com
-open http://code.google.com/p/auto-sub/
-
-sudo mv ~/Downloads/auto-sub /Applications/
-sudo python /Applications/auto-sub/AutoSub.py
-
-echo "-----------------------------------------------------------"
-echo "| Click main menu item Config (niet sub-menu item(s)), General:"
-echo "| Rootpath          : /TV/Series"
-echo "| Subtitle English  : nl"
-
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.autosub.autosub.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.autosub.autosub</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/python</string>
-        <string>AutoSub.py</string>
-        <string>--config</string>
-        <string>/Applications/auto-sub/config.properties</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>WorkingDirectory</key>
-    <string>/Applications/auto-sub</string>
-</dict>
-</plist>
-EOF
-
-sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
-launchctl load ~/Library/LaunchAgents/com.autosub.autosub.plist
-#launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
+if [ ! -e /Applications/auto-sub.app ] ; then
+    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_autosub.sh"
+    while ( [ ! -e /Applications/auto-sub.app ] )
+    do
+        echo "Waiting for Auto-Sub to be installed..."
+        sleep 15
+    done
+else
+    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Install Maraschino
