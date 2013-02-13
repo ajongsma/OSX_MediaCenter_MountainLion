@@ -22,15 +22,16 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
+[ -d ~/Github ] || mkdir -p ~/Github
 #if [ ! -d ~/Github/ ] ; then
 #    mkdir ~/Github/
 #fi
-[ -d ~/Github ] || mkdir -p ~/Github
+
 
 cd ~/Github/
 
 git clone https://github.com/clinton-hall/nzbToMedia
-cp -R ~/Andries/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
+cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
 #cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
 
 cd ~/Library/Application\ Support/SABnzbd/scripts/
