@@ -44,7 +44,7 @@ sudo chown `whoami` $INST_SPOTWEB_PATH
 #echo " --- press any key to continue ---"
 #read -n 1 -s
 
-sudo ln -s /Users/Newznab/Sites/spotweb /Library/Server/Web/Data/Sites/Default/spotweb
+sudo ln -s /Users/Spotweb/Sites/spotweb /Library/Server/Web/Data/Sites/Default/spotweb
 #sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
 
 echo "-----------------------------------------------------------"
