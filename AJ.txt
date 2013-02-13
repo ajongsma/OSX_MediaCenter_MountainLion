@@ -7,7 +7,14 @@ http://pinehead.tv/linux/conditions-in-bash-scripting-if-statements/		: BASH - F
 
 ### ERR: PEAR
 ----------
-##  => Loading path resolves. Edit include php.ini ?
+##  => ?? pear.php
+Do a php -i, open the file and note down the value for include_path.
+If it contains valid /path/to/the/folder/that/contains/PEAR.php then problem is somewhere else.
+Otherwise you just need to add/edit the path in the php.ini file.
+
+php.ini: include_path = ".:/etc/config/php"
+                include_path = ".:/opt/share/pear:/etc/config/php"
+
 
 ### ERR:
 #### The requested URL /Users/Newznab/Sites/newznab/www/index.php was not found on this server.
