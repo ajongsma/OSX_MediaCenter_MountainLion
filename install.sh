@@ -656,154 +656,51 @@ fi
 # Configuring Sickbeard for SABnzbd - nzbToMedia"
 #------------------------------------------------------------------------------"
 if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+    printf 'Sick-Beard: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     exit    
 else
-    printf 'SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Sick-Beard: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
-## http://christopher-williams.net/2011/02/automating-your-movie-downloads-with-sabnzbd-and-couchpotato/
 
-echo "Download latest CouchPotato:"
-#open http://couchpotatoapp.com
-open https://couchpota.to/updates/latest/osx/
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO: Check for specific variables"
+echo " Till then, run script manually:"
+echo "   $DIR/scripts/install_couchpotato.sh"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-sudo mv ~/Downloads/CouchPotato.app /Applications
-open /Applications/CouchPotato.app
+if [ ! -e /Applications/CouchPotato.app ] ; then
+    printf 'CouchPotato not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_couchpotato.sh"
+    while ( [ ! -e /Applications/CouchPotato.app ] )
+    do
+        echo "Waiting for CouchPotato to be installed..."
+        sleep 15
+    done
+else
+    printf 'CouchPotato found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
-#?? python ~/Downloads/CouchPotato.app/CouchPotato.py -d
-
-echo "-----------------------------------------------------------"
-echo "| Enter the following settings:"
-echo "| username          : couchpotato"
-echo "| password          : <password>"
-echo "| port              : 8082"
-echo "| Lauch Browser     : Uncheck"
-echo "-----------------------------------------------------------"
-echo "| Download Apps:"
-echo "| SABNnzbd:"
-echo "| SABnzbd URL       : localhost:8080"
-echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)"
-echo "| SABnzbd Category  : movies"
-echo "-----------------------------------------------------------"
-
-## --- MODIFIED ---
-echo "-----------------------------------------------------------"
-echo " Settings, Searcher :"
-echo " Preferrd Words     : dutch"
-echo " Ignored Words      : <remove dutch>"
-echo " Retention          : 1000"
-echo "-----------------------------------------------------------"
-open http://localhost:8082
-
-echo "-----------------------------------------------------------"
-echo "| Modify the following:"
-echo "| port=8082"
-echo "| username=couchpotato"
-echo "| password=<password>"
-echo "| apikey = <Couchpotato API Key>"
-echo "-----------------------------------------------------------"
-subl autoProcessMovie.cfg 
-
-echo "-----------------------------------------------------------"
-echo "| Menu, Config, Categories:"
-echo "| movies, Default, Default, nzbToCouchpotato.py"
-echo "-----------------------------------------------------------"
-open http://localhost:8080/config/switches/
-
-
-### --- TESTING ---
-#echo "Creating Lauch Agent file:"
-#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.couchpotato.couchpotato</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#      <string>/usr/local/bin/python</string>
-#      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
-#EOF
-
-#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#    <key>Label</key>
-#    <string>com.couchpotato.couchpotato</string>
-#    <key>ProgramArguments</key>
-#    <array>
-#        <string>/usr/bin/python</string>
-#        <string>CouchPotato.py</string>
-#        <string>--quiet</string>
-#        <string>--daemon</string>
-#    </array>
-#    <key>RunAtLoad</key>
-#    <true/>
-#    <key>WorkingDirectory</key>
-#    <string>/Applications/CouchPotato.app</string>
-#</dict>
-#</plist>
-#EOF
-
-#
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#    <key>Label</key>
-#    <string>com.couchpotato.couchpotato</string>
-#    <key>OnDemand</key>
-#    <false/>
-#    <key>ProgramArguments</key>
-#    <array>
-#    <string>python</string>
-#    <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#    </array>
-#    <key>RunAtLoad</key>
-#    <true/>
-#    <key>WorkingDirectory</key>
-#    <string>/Applications/CouchPotato.app/</string>
-#    <key>ServiceDescription</key>
-#    <string>CouchPotato</string>
-#</dict>
-#</plist>
-
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.couchpotato.couchpotato</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#     <string>/usr/local/bin/python</string>
-#     <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
-#
-
-#mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
-#launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
-#
-#launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
+#------------------------------------------------------------------------------"
+# Configuring CouchPotato for SABnzbd - nzbToMedia"
+#------------------------------------------------------------------------------"
+if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit    
+else
+    printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Install Auto-Sub
