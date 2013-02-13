@@ -12,7 +12,9 @@ http://pinehead.tv/linux/conditions-in-bash-scripting-if-statements/		: BASH - F
 ### ERR:
 #### The requested URL /Users/Newznab/Sites/newznab/www/index.php was not found on this server.
 ----------
-##  => ??
+##  => httpd     : LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+##  => .htaccess : (newznab/www) en RewriteBase / aanpassen naar RewriteBase newznab/ (bijvoorbeeld)
+##  => AllowOverride
 
 ### ERR:
 ### PHP Warning:  preg_match(): Unknown modifier '"' in /Users/Newznab/Sites/newznab/www/lib/releases.php on line 1530
