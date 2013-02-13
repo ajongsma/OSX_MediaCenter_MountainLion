@@ -63,15 +63,6 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 echo "-----------------------------------------------------------"
-echo "| Modify the following:"
-echo "| port=8082"
-echo "| username=couchpotato"
-echo "| password=<password>"
-echo "| apikey = <Couchpotato API Key>"
-echo "-----------------------------------------------------------"
-subl autoProcessMovie.cfg 
-
-echo "-----------------------------------------------------------"
 echo "| Menu, Config, Categories:"
 echo "| movies, Default, Default, nzbToCouchpotato.py"
 echo "-----------------------------------------------------------"
