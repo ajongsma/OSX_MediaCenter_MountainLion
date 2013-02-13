@@ -558,7 +558,7 @@ fi
 # Install NewzNAB - Custom Scripts
 #------------------------------------------------------------------------------
 if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
-    printf 'NewzNAB Sphinx config not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+    printf 'NewzNAB Custom Scripts not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_newznab_script_custom.sh"
 else
     printf 'NewzNAB Custom Scripts found\n' "$GREEN" $col '[OK]' "$RESET"
@@ -599,20 +599,13 @@ else
     printf 'SABnzbd found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-#==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
-exit
-#==============================================================================
-
 #------------------------------------------------------------------------------
 # Install SABnzbd+ - nzbToMedia
 #------------------------------------------------------------------------------
 if [[ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ]]; then
-#if [ ! -e /Applications/SABnzbd.app ] ; then
     printf 'SABnzbd nzbToMedia not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sabnzbd_nzbtomedia.sh"
     while ( [ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ] )
-    #while ( [ ! -e /Applications/SABnzbd.app ] )
     do
         echo "Waiting for SABnzbd+ nzbToMediato be installed..."
         sleep 15
@@ -639,10 +632,10 @@ fi
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/Sick-Beard/sickbeard.py ] ; then
+if [ ! -d /Applications/Sick-Beard ] ; then
     printf 'Sick-Beard not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sickbeard"
-    while ( [ ! -e /Applications/Sick-Beard/sickbeard.py ] )
+    while ( [ ! -d /Applications/Sick-Beard ] )
     do
         echo "Waiting for Sick-Beard to be installed..."
         sleep 15
@@ -650,6 +643,12 @@ if [ ! -e /Applications/Sick-Beard/sickbeard.py ] ; then
 else
     printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+#==============================================================================
+#=== FORCED EXIT DUE TO TESTING ===============================================
+exit
+#==============================================================================
+
 
 #------------------------------------------------------------------------------"
 # Configuring Sickbeard for SABnzbd - nzbToMedia"
@@ -786,13 +785,26 @@ fi
 ##?? ensure that the php5-svn module is installed, on ubuntu/debian you can install with 'sudo apt-get install php5-svn'.
 ##?? NewzDash will function without this but you will not see version information.
 
-sudo mkdir -p /Users/Newzdash/Sites/
+sudo mkdir -p /Users/Newzdash/Sites/newzdash/
 
 #git clone https://github.com/mrkipling/maraschino.git
-git clone git@github.com:tssgery/newzdash.git /Users/Newzdash/Sites/
+#git clone git@github.com:tssgery/newzdash.git /Users/Newzdash/Sites/
+sudo git clone https://github.com/tssgery/newzdash.git /Users/Newzdash/Sites/newzdash
+sudo chown -R `whoami`:staff /Users/Newzdash/Sites/newzdash
+touch /Users/Newzdash/Sites/newzdash config.php
+chmod 777 /Users/Newzdash/Sites/newzdash config.php
 
-echo "Configure apache to serve newzdash"
+sudo ln -s /Users/Newzdash/Sites/newzdash /Library/Server/Web/Data/Sites/Default/newzdash
+
+echo "-----------------------------------------------------------"
+echo "| Configuration:"
+echo "| NewzNab Directory             : $INST_NEWZNAB_PATH"
+echo "| NewzNab URL                   : http://localhost/newznab"
+echo "| --------------------"
+echo "| Save changes"
 open http://localhost/newzdash
+
+
 
 
 #------------------------------------------------------------------------------

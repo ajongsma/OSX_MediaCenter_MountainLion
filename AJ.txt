@@ -5,6 +5,26 @@ http://pinehead.tv/linux/conditions-in-bash-scripting-if-statements/		: BASH - F
 
 -------------------------------------------------------------------------
 
+/Library/Server/Web/Config/apache2/httpd_server_app.conf
+
+
+httpd -V
+ -D SERVER_CONFIG_FILE=" -D SERVER_CONFIG_FILE="/private/etc/apache2/httpd.conf""
+
+
+
+sudo serveradmin fullstatus web
+sudo serveradmin start web
+sudo serveradmin stop web
+
+sudo serveradmin settings web
+
+sudo serveradmin settings web | grep fileName
+web:defaultSite:fileName = "/Library/Server/Web/Config/apache2/sites/0000_any_80_.conf"
+web:defaultSecureSite:fileName = "/Library/Server/Web/Config/apache2/sites/0000_any_443_.conf"
+
+-------------------------------------------------------------------------
+
 ### ERR: PEAR
 ----------
 ##  => ?? pear.php
@@ -30,7 +50,7 @@ php.ini: include_path = ".:/etc/config/php"
 ### PHP   2. Releases->processReleases() /Users/Newznab/Sites/newznab/misc/update_scripts/update_releases.php:9
 ### PHP   3. preg_match() /Users/Newznab/Sites/newznab/www/lib/releases.php:1530
 ----------
-##  => ??
+##  => Regex a.b.nl ?? => Disable to test
 
 -------------------------------------------------------------------------
 

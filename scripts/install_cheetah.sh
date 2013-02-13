@@ -18,7 +18,7 @@ do
 done
 
 tar xvzf Cheetah-2.4.4.tar
-cd Cheetah-2.4.4.tar
+cd Cheetah-2.4.4
 sudo python setup.py install
 
 echo "#------------------------------------------------------------------------------"

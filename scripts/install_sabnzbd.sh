@@ -63,6 +63,7 @@ echo "| Queue:"
 echo "| Abort jobs that cannot be completed     : Enable"
 echo "| Check before download                   : Enable"
 echo "| Pause Downloading durig post-processing : Enable"
+echo "|"
 echo "| Post processing:"
 echo "| Ignore Samples                          : Delete"
 echo "-----------------------------------------------------------"
@@ -90,57 +91,29 @@ source ../config.sh
 #if [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]]; then
 if [[ -z $INST_SABNZBD_KEY_API ]] || [[ -z $INST_SABNZBD_KEY_NZB ]]; then
     echo "-----------------------------------------------------------"
-    echo "| Main Site Settings, API:"
-    echo "| Please add the SabNZBD API key and NZB key to config.sh"
+    echo "| SABnzbd Web Server:"
+    echo "| Please add the SABnzbd Web Server API key and NZB key to config.sh"
+    echo "| API Key                              : INST_SABNZBD_KEY_API=<paste value> "
+    echo "| NZB Key                              : INST_SABNZBD_KEY_NZB=<paste value>"
     echo "-----------------------------------------------------------"
-    open http://localhost/newznab/admin/site-edit.php
+    #open http://localhost/newznab/admin/site-edit.php
+    open http://localhost:8080/config/general/
     subl ../config.sh
 
-    while ( [[ $INST_SABNZBD_KEY_API == "" ]] && [[ $INST_SABNZBD_KEY_NZB == "" ]])
+    while ( [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]])
     do
         printf 'Waiting for NewzNAB API and NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
+        sleep 2
         source ../config.sh
     done
 fi
 
-#if [[ $INST_SABNZBD_KEY_API == "" ]]; then
-#    echo "-----------------------------------------------------------"
-#    echo "| Main Site Settings, API:"
-#    echo "| Please add the SabNZBD API key and NZB key to config.sh"
-#    echo "-----------------------------------------------------------"
-#    open http://localhost/newznab/admin/site-edit.php
-#    subl ../config.sh
-#    while ( [[ $INST_SABNZBD_KEY_API == "" ]] )
-#    do
-#        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-#        sleep 15
-#        source ../config.sh
-#    done
-#fi
-#
-#if [[ $INST_SABNZBD_KEY_NZB == "" ]]; then
-#    echo "-----------------------------------------------------------"
-#    echo "| Main Site Settings, API:"
-#    echo "| Please add the SabNZBD NZB key to config.sh"
-#    echo "-----------------------------------------------------------"
-#    open http://localhost/newznab/admin/site-edit.php
-#    subl ../config.sh
-#    while ( [[ $INST_SABNZBD_KEY_NZB == "" ]] )
-#    do
-#        printf 'Waiting for NewzNAB NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-#        sleep 15
-#        source ../config.sh
-#    done
-#fi
-
-
 echo "-----------------------------------------------------------"
-echo "| Add SabNZBD support to NewzNAB:
-echo "|*Integration Type              : Site Wide"
+echo "| Add SabNZBD support to NewzNAB:"
+echo "|*Integration Type              : User"
 echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
-echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
-echo "| Api Key Type (full)           : $INST_SABNZBD_KEY_API"
+echo "| SABnzbd Api Key               : $INST_SABNZBD_KEY_API"
+echo "| Api Key Type (full)           : Full"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"

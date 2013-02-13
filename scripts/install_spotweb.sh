@@ -33,17 +33,18 @@ sudo rmdir spotweb
 sudo git clone https://github.com/spotweb/spotweb.git
 sudo chown `whoami` $INST_SPOTWEB_PATH
 
-echo "----------------------------------------------------------"
-echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
-echo "| Create alias in Server Website"
-echo "|   Path                        : /spotweb"
-echo "|   Folder                      : $INST_SPOTWEB_PATH"
-echo "| Enable overrides using .htaccess files"
-echo "-----------------------------------------------------------"
-open /Applications/Server.app
-echo " --- press any key to continue ---"
-read -n 1 -s
+#echo "----------------------------------------------------------"
+#echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
+#echo "| Create alias in Server Website"
+#echo "|   Path                        : /spotweb"
+#echo "|   Folder                      : $INST_SPOTWEB_PATH"
+#echo "| Enable overrides using .htaccess files"
+#echo "-----------------------------------------------------------"
+#open /Applications/Server.app
+#echo " --- press any key to continue ---"
+#read -n 1 -s
 
+sudo ln -s /Users/Newznab/Sites/spotweb /Library/Server/Web/Data/Sites/Default/spotweb
 #sudo ln -s /Users/Spotweb/Sites/spotweb/ /Library/WebServer/Documents/spotweb
 
 echo "-----------------------------------------------------------"

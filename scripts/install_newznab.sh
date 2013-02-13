@@ -35,16 +35,18 @@ sudo chmod -R 777 $INST_NEWZNAB_PATH/nzbfiles/
 #echo "-----------------------------------------------------------"
 #sudo subl /etc/apache2/httpd.conf
 
-echo "----------------------------------------------------------"
-echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
-echo "| Create alias in Server Website"
-echo "|   Path                        : /newzab"
-echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
-echo "| Enable overrides using .htaccess files"
-echo "-----------------------------------------------------------"
-open /Applications/Server.app
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
+#echo "----------------------------------------------------------"
+#echo "| Add an alias and enable htaccess for NewzNAB to the default website:"
+#echo "| Create alias in Server Website"
+#echo "|   Path                        : /newzab"
+#echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
+#echo "| Enable overrides using .htaccess files"
+#echo "-----------------------------------------------------------"
+#open /Applications/Server.app
+#echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+#read -n 1 -s
+
+sudo ln -s /Users/Newznab/Sites/newznab/www /Library/Server/Web/Data/Sites/Default/newznab
 
 ## Create the NewzNAB MySQL user and DB
 MYSQL=`which mysql`

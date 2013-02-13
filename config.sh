@@ -60,7 +60,7 @@ export INST_NEWSSERVER_SERVER_UID='105764'
 export INST_NEWSSERVER_SERVER_PW=''
 export INST_NEWSSERVER_SERVER_PORT=''
 export INST_NEWSSERVER_SERVER_PORT_SSL='563'
-
+export INST_NEWSSERVER_RETENTION='876'
 #-----------------------------------------------------------
 
 ## SpotWeb
@@ -74,14 +74,15 @@ export INST_NEWZNAB_PSQL_PW="mini_spotweb"
 ## SABnzbd
 export INST_SABNZBD_UID="sabnzbd"
 export INST_SABNZBD_PW="mini_sabnzbd"
-export INST_SABNZBD_KEY_API=""
-export INST_SABNZBD_KEY_NZB=""
+export INST_SABNZBD_KEY_API="062df8bae5c1b9434b51914ae0ac3684"
+export INST_SABNZBD_KEY_NZB="be2bae3025532711a35e1a91e63514bd"
 
 #-----------------------------------------------------------
 
 ## Sick-Beard
 export INST_SICKBEARD_UID="sickbeard"
 export INST_SICKBEARD_PW="mini_sickbeard"
+export INST_SICKBEARD_KEY_API="404d0302b924328464f83a593a7d155c"
 
 #-----------------------------------------------------------
 

@@ -8,12 +8,8 @@ echo "#-------------------------------------------------------------------------
 source ../config.sh
 
 [ -d ~/Github ] || mkdir -p ~/Github
-#if [ ! -d ~/Github/ ] ; then
-#    mkdir ~/Github/
-#fi
 
 cd ~/Github/
-
 git clone https://github.com/clinton-hall/nzbToMedia
 cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
 #cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
