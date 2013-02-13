@@ -43,6 +43,7 @@ echo "|   Folder                      : $INST_NEWZNAB_PATH/www"
 echo "| Enable overrides using .htaccess files"
 echo "-----------------------------------------------------------"
 open /Applications/Server.app
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 ## Create the NewzNAB MySQL user and DB
