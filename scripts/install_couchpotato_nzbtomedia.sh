@@ -17,7 +17,7 @@ else
 fi
 
 echo "-----------------------------------------------------------"
-echo "| Add the following to [CouchPotato]:
+echo "| Add the following to [CouchPotato]:"
 echo "| host                                    : localhost"
 echo "| Port                                    : 8082"
 echo "| username                                : $INST_COUCHPOTATO_UID"
