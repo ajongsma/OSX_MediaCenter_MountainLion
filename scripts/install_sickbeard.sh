@@ -51,7 +51,11 @@ sudo chown `whoami` /Applications/Sick-Beard/
 #sudo chown -R andries:staff /Applications/Sick-Beard/
 cd Sick-Beard
 #?? python /Applications/Sick-Beard/CouchPotato.py sickbeard.py  -d -q
-python /Applications/Sick-Beard/sickbeard.py
+
+osascript -e 'tell app "Terminal"
+    do script "python /Applications/Sick-Beard/sickbeard.py"
+end tell'
+#python /Applications/Sick-Beard/sickbeard.py
 
 echo "-----------------------------------------------------------"
 echo "| Menu, Config, General:"
