@@ -30,6 +30,7 @@ mount|grep -q "^/dev/sdb1 " || mount /mnt/datastore
 [ -d /tmp/mydir/work ] || mkdir -p /tmp/mydir/work
 
 if [ -z "$emptystring" ]; then
+* The above condition is true if $emptystring is an empty string or an uninitialized variable. 
 
 -------------------------------------------------------------------------
 
