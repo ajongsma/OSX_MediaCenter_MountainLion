@@ -79,6 +79,12 @@ export INST_SABNZBD_KEY_NZB=""
 
 #-----------------------------------------------------------
 
+## Sick-Beard
+export INST_SICKBEARD_UID="sickbeard"
+export INST_SICKBEARD_PW="mini_sickbeard"
+
+#-----------------------------------------------------------
+
 ## Couchpotato
 export INST_COUCHPOTATO_UID="couchpotato"
 export INST_COUCHPOTATO_PW="mini_couchpotato"
