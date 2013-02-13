@@ -16,7 +16,7 @@ else
 fi
 
 echo "-----------------------------------------------------------"
-echo "| Add the following to [SickBeard]:
+echo "| Add the following to [SickBeard]:"
 echo "| host                                    : localhost"
 echo "| Port                                    : 8081"
 echo "| username                                : $INST_SICKBEARD_UID"
