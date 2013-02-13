@@ -778,6 +778,24 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Install NewzDash
+#------------------------------------------------------------------------------
+## https://github.com/tssgery/newzdash
+
+##?? NewzDash
+##?? ensure that the php5-svn module is installed, on ubuntu/debian you can install with 'sudo apt-get install php5-svn'.
+##?? NewzDash will function without this but you will not see version information.
+
+sudo mkdir -p /Users/Newzdash/Sites/
+
+#git clone https://github.com/mrkipling/maraschino.git
+git clone git@github.com:tssgery/newzdash.git /Users/Newzdash/Sites/
+
+echo "Configure apache to serve newzdash"
+open http://localhost/newzdash
+
+
+#------------------------------------------------------------------------------
 # Install Maraschino
 #------------------------------------------------------------------------------
 cd /Applications
