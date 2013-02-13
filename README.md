@@ -72,6 +72,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 <hr>
 
 # TO CHECK OUT
+* [Newzdash (NewzNab dashboard)] (https://github.com/tssgery/newzdash)
 * [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * Powerline
