@@ -29,6 +29,8 @@ mount|grep -q "^/dev/sdb1 " || mount /mnt/datastore
 [ $(date +%w) -eq 6 ] && echo "do something on Saturdays" || echo "do different things on other days"
 [ -d /tmp/mydir/work ] || mkdir -p /tmp/mydir/work
 
+if [ -z "$emptystring" ]; then
+
 -------------------------------------------------------------------------
 
 #= 12-02-2013 ========================================================================
