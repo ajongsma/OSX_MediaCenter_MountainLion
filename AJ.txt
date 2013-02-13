@@ -1,5 +1,6 @@
 #= 13-02-2013 ========================================================================
 
+INFO:
 BASH - File-based conditions: http://pinehead.tv/linux/conditions-in-bash-scripting-if-statements/
 
 -------------------------------------------------------------------------
