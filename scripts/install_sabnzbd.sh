@@ -110,7 +110,8 @@ mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
 
 source ../config.sh
-if [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]]; then
+#if [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]]; then
+if [[ -z $INST_SABNZBD_KEY_API ]] || [[ -z $INST_SABNZBD_KEY_NZB ]]; then
     echo "-----------------------------------------------------------"
     echo "| Main Site Settings, API:"
     echo "| Please add the SabNZBD API key and NZB key to config.sh"
