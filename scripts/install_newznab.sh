@@ -177,17 +177,6 @@ git clone https://github.com/sinfuljosh/bootstrapped.git
 cp -r bootstrapped $INST_NEWZNAB_PATH/www/templates/bootstrapped
 
 
-
-
-## ## SabNZBD - AFTER SabNZBD INSTALL
-## echo "-----------------------------------------------------------"
-## echo "|*Integration Type              : Site Wide"
-## echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
-## echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
-## echo "| Api Key Type                  : Full Api Key"
-## echo "-----------------------------------------------------------"
-## open http://localhost/newznab/admin/site-edit.php
-
 #cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php && php update_releases.php
 ##php update_binaries.php
