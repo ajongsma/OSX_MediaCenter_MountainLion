@@ -109,6 +109,20 @@ EOF
 mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
 
+
+## SabNZBD - AFTER SabNZBD INSTALL
+echo "-----------------------------------------------------------"
+echo "| Add SabNZBD support to NewzNAB:
+echo "|*Integration Type              : Site Wide"
+echo "| SABnzbd Url                   : http://localhost:8080/sabnzbd/"
+echo "| SABnzbd Api Key               : (http://localhost:8080/config/general/)"
+echo "| Api Key Type                  : Full Api Key"
+echo "-----------------------------------------------------------"
+open http://localhost/newznab/admin/site-edit.php
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+
+
 echo "#------------------------------------------------------------------------------"
 echo "# Installation SabNZBD Complete"
 echo "#------------------------------------------------------------------------------"
