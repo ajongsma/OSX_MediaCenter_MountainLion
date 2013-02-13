@@ -27,33 +27,31 @@ source ../config.sh
 #    mkdir ~/Github/
 #fi
 
-
-cd ~/Github/
-
-git clone https://github.com/clinton-hall/nzbToMedia
-cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
-#cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
-
-cd ~/Library/Application\ Support/SABnzbd/scripts/
-cp autoProcessTV.cfg.sample autoProcessTV.cfg 
-cp autoProcessMovie.cfg.sample autoProcessMovie.cfg
-echo "-----------------------------------------------------------"
-echo "| Modify the following:"
-echo "| port=8081"
-echo "| username=couchpotato"
-echo "| password=<password>"
-echo "| web_root="
-echo "-----------------------------------------------------------"
-subl autoProcessTV.cfg 
+#cd ~/Github/
+#
+#git clone https://github.com/clinton-hall/nzbToMedia
+#cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
+##cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
+#
+#cd ~/Library/Application\ Support/SABnzbd/scripts/
+#cp autoProcessTV.cfg.sample autoProcessTV.cfg 
+#cp autoProcessMovie.cfg.sample autoProcessMovie.cfg
+#echo "-----------------------------------------------------------"
+#echo "| Modify the following:"
+#echo "| port=8081"
+#echo "| username=couchpotato"
+#echo "| password=<password>"
+#echo "| web_root="
+#echo "-----------------------------------------------------------"
+#subl autoProcessTV.cfg 
 
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
-sudo chown -R andries:staff /Applications/Sick-Beard/
+sudo chown `whoami` /Applications/Sick-Beard/
+#sudo chown -R andries:staff /Applications/Sick-Beard/
 cd Sick-Beard
 #?? python /Applications/Sick-Beard/CouchPotato.py sickbeard.py  -d -q
 python /Applications/Sick-Beard/sickbeard.py
-
-#open http://localhost:8081
 
 echo "-----------------------------------------------------------"
 echo "| Menu, Config, General:"
@@ -85,7 +83,10 @@ echo "-----------------------------------------------------------"
 echo "| Menu, Config, Categories:"
 echo "| tv, Default, Default, nzbToSickBeard.py"
 echo "-----------------------------------------------------------"
-open http://localhost:8080/config/switches/
+open http://localhost:8081
+
+#open http://localhost:8080/config/switches/
+
 
 ##### ????
 ## http://jetshred.com/2012/07/31/configuring-sickbeard-to-work-with-sabnzbd-plus/
