@@ -41,20 +41,20 @@ sudo mv ~/Downloads/CouchPotato.app /Applications
 
 echo "-----------------------------------------------------------"
 echo "| Enter the following settings:"
-echo "| username          : couchpotato"
-echo "| password          : <password>"
+echo "| username          : $INST_COUCHPOTATO_UID"
+echo "| password          : $INST_COUCHPOTATO_PW"
 echo "| port              : 8082"
 echo "| Lauch Browser     : Uncheck"
 echo "-----------------------------------------------------------"
 echo "| Download Apps:"
 echo "| SABNnzbd:"
 echo "| SABnzbd URL       : localhost:8080"
-echo "| SABnzbd API Key   : (from SABnzb (http://localhost:8080/config/general/)"
+echo "| SABnzbd API Key   : $INST_SABNZBD_KEY_API"
 echo "| SABnzbd Category  : movies"
 echo "-----------------------------------------------------------"
 echo "-----------------------------------------------------------"
 echo " Settings, Searcher :"
-echo " Preferrd Words     : dutch"
+echo " Preferredd Words   : dutch"
 echo " Ignored Words      : <remove dutch>"
 echo " Retention          : 1000"
 echo "-----------------------------------------------------------"
@@ -69,7 +69,7 @@ if [[ -z $INST_COUCHPOTATOD_API ]] ; then
     echo "| Main Site Settings, API:"
     echo "| Please add the CouchPotato API key to config.sh"
     echo "-----------------------------------------------------------"
-    open http://localhost/newznab/admin/site-edit.php
+    open http://localhost:8082
     subl ../config.sh
 
     while ( [[ $INST_COUCHPOTATOD_API == "" ]] )
