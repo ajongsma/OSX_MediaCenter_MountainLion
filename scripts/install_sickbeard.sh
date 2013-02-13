@@ -22,9 +22,11 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-if [ ! -d ~/Github/ ] ; then
-    mkdir ~/Github/
-fi
+#if [ ! -d ~/Github/ ] ; then
+#    mkdir ~/Github/
+#fi
+[ -d ~/Github ] || mkdir -p ~/Github
+
 cd ~/Github/
 
 git clone https://github.com/clinton-hall/nzbToMedia
