@@ -46,7 +46,6 @@ WHITE=$(tput setaf 7)  #    7   White
 RESET=$(tput sgr0)
 col=40
 
-
 ##-----------------------------------------------------------------------------
 ## Check OS
 ##-----------------------------------------------------------------------------
@@ -59,7 +58,6 @@ else
   exit 1
 fi
 
-
 #------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
@@ -69,7 +67,6 @@ sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 
 #------------------------------------------------------------------------------
 # Checking if system is up-to-date
@@ -101,7 +98,6 @@ else
     nano ~/.bash_profile
 fi
 source ~/.bash_profile
-
 
 #------------------------------------------------------------------------------
 # Show the ~/Library folder
@@ -143,7 +139,6 @@ else
     printf 'Xcode found' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
@@ -158,7 +153,6 @@ if [ ! -e /usr/bin/gcc ] ; then
 else
     printf 'GCC found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Check for XQuartz
@@ -180,7 +174,6 @@ else
     printf 'XQuartz found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Java
 #------------------------------------------------------------------------------
@@ -194,7 +187,6 @@ if [ ! -e /usr/bin/java ] ; then
 else
     printf 'Java found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
@@ -241,7 +233,6 @@ else
     printf 'Backup file libphp5.org found\n' "YELLOW" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for iTerm 2
 #------------------------------------------------------------------------------
@@ -259,8 +250,6 @@ if [[ $INST_ITERM2 == "true" ]]; then
         printf 'iTerm found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
-
-
 
 #------------------------------------------------------------------------------
 # Check for Sublime Text
@@ -289,7 +278,6 @@ if [[ $INST_SUBLIMETEXT == "true" ]]; then
     fi
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Xlog
 #------------------------------------------------------------------------------
@@ -309,7 +297,6 @@ if [[ $INST_XLOG == "true" ]]; then
     fi
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for GitHub for Mac
 #------------------------------------------------------------------------------
@@ -328,7 +315,6 @@ if [[ $INST_MACGITHUB == "true" ]]; then
     fi
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for Dropbox
 #------------------------------------------------------------------------------
@@ -346,7 +332,6 @@ if [[ $INST_DROPBOX == "true" ]]; then
         printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
-
 
 ##------------------------------------------------------------------------------
 ## Install HomeBrew
@@ -371,7 +356,6 @@ else
     printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 ##------------------------------------------------------------------------------
 ## Install several tools via Brew
 ##------------------------------------------------------------------------------
@@ -395,7 +379,6 @@ echo "PATH=/usr/local/bin:/usr/local/sbin:$PATH"
 echo "# GNU coreutils"
 echo "PATH=/opt/local/libexec/gnubin/:$PATH"
 
-
 if [ ! -f ~/.bashrc ] ; then
     echo "Copying default .bashrc..."
     cp conf/bashrc ~/.bashrc
@@ -412,7 +395,6 @@ else
 fi
 source ~/.bashrc
 
-
 ##------------------------------------------------------------------------------
 ## Install MySQL
 ##------------------------------------------------------------------------------
@@ -422,7 +404,6 @@ if [ ! -e /usr/local/bin/mysql ] ; then
 else
     printf 'MySQL found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Install MySQL Workbench
@@ -444,7 +425,6 @@ if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
     fi
 fi
 
-
 #------------------------------------------------------------------------------
 # Check for PostgreSQL
 #------------------------------------------------------------------------------
@@ -454,7 +434,6 @@ if [ ! -d /usr/local/var/postgres ] ; then
 else
     printf 'PostgreSQL found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Install pgAdmin (http://www.pgadmin.org/download/macosx.php)
@@ -472,7 +451,6 @@ if [[ $INST_PGADMIN == "true" ]]; then
         printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
-
 
 #------------------------------------------------------------------------------
 # Install for InductionApp (http://inductionapp.com)
@@ -493,7 +471,6 @@ if [[ $INST_INDUCTIONAPP == "true" ]]; then
     fi
 fi
 
-
 ##------------------------------------------------------------------------------
 ## Install PHP 5.4
 ##------------------------------------------------------------------------------
@@ -505,7 +482,6 @@ else
     printf 'PHP 5.4 found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 ##------------------------------------------------------------------------------
 ## Install Python
 ##------------------------------------------------------------------------------
@@ -515,7 +491,6 @@ if [ ! -e /usr/bin/python ] ; then
 else
     printf 'Python found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 ##------------------------------------------------------------------------------
 ## Install PEAR
@@ -527,7 +502,6 @@ else
     printf 'Pear found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Install Sphinx
 #------------------------------------------------------------------------------
@@ -538,7 +512,6 @@ else
     printf 'local found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 ##------------------------------------------------------------------------------
 ## Install Powerline
 ##------------------------------------------------------------------------------
@@ -548,7 +521,6 @@ if [ ! -d /usr/local/share/tmux-powerline ] ; then
 else
     printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Install NewzNAB
@@ -562,7 +534,6 @@ else
     printf 'NewzNAB found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Configure Sphinx for NewzNAB
 #------------------------------------------------------------------------------
@@ -574,7 +545,6 @@ else
     printf 'NewzNAB Sphinx config found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Install NewzNAB - jonnyboy/newznab-tmux
 #------------------------------------------------------------------------------
@@ -584,7 +554,6 @@ if [ ! -d $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux ] ; then
 else
     printf 'NewzNAB jonnyboy Tmux scripts found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
 
 #------------------------------------------------------------------------------
 # Install NewzNAB - Custom Scripts
@@ -615,7 +584,6 @@ fi
 osascript -e 'tell app "Terminal"
     do script "php $INST_SPOTWEB_PATH/retrieve.php"
 end tell'
-
 
 #------------------------------------------------------------------------------
 # Install SABnzbd+
@@ -669,7 +637,6 @@ else
     printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
@@ -685,6 +652,18 @@ else
     printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------"
+# Configuring Sickbeard for SABnzbd - nzbToMedia"
+#------------------------------------------------------------------------------"
+if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    printf 'SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit    
+else
+    printf 'SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Install CouchPotato
