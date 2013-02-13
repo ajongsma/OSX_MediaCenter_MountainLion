@@ -621,7 +621,7 @@ end tell'
 # Install SABnzbd+
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/SABnzbd.app ] ; then
-    echo "SABnzbd not installed, please install..."
+    printf 'SABnzbd not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sabnzbd.sh"
     while ( [ ! -e /Applications/SABnzbd.app ] )
     do
@@ -629,7 +629,7 @@ if [ ! -e /Applications/SABnzbd.app ] ; then
         sleep 15
     done
 else
-    echo "SABnzbd found                               [OK]"
+    printf 'SABnzbd found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #==============================================================================
@@ -641,15 +641,15 @@ exit
 # Install Cheetah
 #------------------------------------------------------------------------------
 if [ ! -e /usr/local/bin/cheetah ] ; then
-    echo "Cheetah not installed, please install..."
-    open http://sabnzbd.org/
-    while ( [ ! -e /usr/local/bin/python ] )
+    printf 'SABnzbd not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_cheetah.sh"
+    while ( [ ! -e /usr/local/bin/cheetah ] )
     do
         echo "Waiting for Cheetah to be installed..."
         sleep 15
     done
 else
-    echo "Cheetah found                               [OK]"
+    printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 
