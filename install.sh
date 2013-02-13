@@ -638,6 +638,23 @@ exit
 #==============================================================================
 
 #------------------------------------------------------------------------------
+# Install SABnzbd+ - nzbToMedia
+#------------------------------------------------------------------------------
+if [[ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ]]; then
+#if [ ! -e /Applications/SABnzbd.app ] ; then
+    printf 'SABnzbd nzbToMedia not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_sabnzbd_nzbtomedia.sh"
+    while ( [ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ] )
+    #while ( [ ! -e /Applications/SABnzbd.app ] )
+    do
+        echo "Waiting for SABnzbd+ nzbToMediato be installed..."
+        sleep 15
+    done
+else
+    printf 'SABnzbd+ nzbToMedia found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------
 # Install Cheetah
 #------------------------------------------------------------------------------
 if [ ! -e /usr/local/bin/cheetah ] ; then
