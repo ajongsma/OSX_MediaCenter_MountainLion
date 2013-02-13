@@ -110,6 +110,36 @@ mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
 
 
+source ../config.sh
+if [[ $INST_SABNZBD_KEY_API == "" ]]; then
+    echo "| Main Site Settings, API:"
+    echo "| Please add the SabNZBD API key and NZB key to config.sh"
+    echo "-----------------------------------------------------------"
+    open http://localhost/newznab/admin/site-edit.php
+    subl ../config.sh
+    while ( [[ $INST_SABNZBD_KEY_API == "" ]] )
+    do
+        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+        source ../config.sh
+    done
+fi
+
+if [[ $INST_SABNZBD_KEY_NZB == "" ]]; then
+    echo "| Main Site Settings, API:"
+    echo "| Please add the SabNZBD NZB key to config.sh"
+    echo "-----------------------------------------------------------"
+    open http://localhost/newznab/admin/site-edit.php
+    subl ../config.sh
+    while ( [[ $INST_SABNZBD_KEY_NZB == "" ]] )
+    do
+        printf 'Waiting for NewzNAB NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+        source ../config.sh
+    done
+fi
+
+
 ## SabNZBD - AFTER SabNZBD INSTALL
 echo "-----------------------------------------------------------"
 echo "| Add SabNZBD support to NewzNAB:
