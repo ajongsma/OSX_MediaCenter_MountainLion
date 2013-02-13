@@ -23,10 +23,8 @@ echo "#-------------------------------------------------------------------------
 source ../config.sh
 
 [ -d ~/Github ] || mkdir -p ~/Github
-#if [ ! -d ~/Github/ ] ; then
-#    mkdir ~/Github/
-#fi
-
+[ -d ~/Media/Series ] || mkdir -p ~/Media/Series
+[ -d /Volumes/Media/Media/Series ] || ln -s /Volumes/Media/Media/Series ~/Media/Series\ ext
 #cd ~/Github/
 #
 #git clone https://github.com/clinton-hall/nzbToMedia
@@ -81,18 +79,25 @@ echo "| SABnzbd Category  : tv"
 echo "|-------------------"
 echo "| Test and Save Changes"
 echo "-----------------------------------------------------------"
-echo "| Menu, Config, Search Providers"
+echo "| Config, Search Providers"
 echo "| Sick Beard Index  : Enable"
 echo "|-------------------"
 echo "| Save Changes"
 echo "-----------------------------------------------------------"
-echo "| Menu, Config, Post Processing"
+echo "| Config, Post Processing"
 echo "| Keep original files : Uncheck"
 echo "| Name Pattern        : Custom"
 echo "|                     : Season %0S/%SN S%0SE%0E %QN-%RG"
 echo "| Multi-Episode       : Extend"
 echo "|-------------------"
 echo "| Save Changes"
+echo "-----------------------------------------------------------"
+echo "| Home, Add Show"
+echo "| - Add Existing Show"
+echo "|   - New"
+echo "| Choose Directory    : $HOME/Media/Series"
+echo "|-------------------"
+echo "| Submit"
 echo "-----------------------------------------------------------"
 open http://localhost:8081
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"

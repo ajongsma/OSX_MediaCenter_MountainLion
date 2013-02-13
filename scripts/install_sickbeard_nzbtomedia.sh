@@ -21,6 +21,7 @@ echo "| host                                    : localhost"
 echo "| Port                                    : 8081"
 echo "| username                                : $INST_SICKBEARD_UID"
 echo "| password                                : $INST_SICKBEARD_PW"
+echo "| destination                             : $HOME/Media/Series"
 echo "-----------------------------------------------------------"
 subl ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
