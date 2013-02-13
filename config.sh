@@ -88,6 +88,7 @@ export INST_SICKBEARD_PW="mini_sickbeard"
 ## Couchpotato
 export INST_COUCHPOTATO_UID="couchpotato"
 export INST_COUCHPOTATO_PW="mini_couchpotato"
+export INST_COUCHPOTATOD_API=""
 
 #-----------------------------------------------------------
 
