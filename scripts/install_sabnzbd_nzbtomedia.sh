@@ -1,9 +1,11 @@
-source ../config.sh
+#!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
 echo "# Installing SABnzbd - nzbToMedia"
 echo "#------------------------------------------------------------------------------"
 ## https://github.com/clinton-hall/nzbToMedia
+
+source ../config.sh
 
 [ -d ~/Github ] || mkdir -p ~/Github
 #if [ ! -d ~/Github/ ] ; then
