@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Sickbeard for SABnzbd - nzbToMedia"
+echo "# Configuring nzbToMedia for Sick-Beard"
 echo "#------------------------------------------------------------------------------"
 
 source ../config.sh
@@ -28,5 +28,5 @@ read -n 1 -s
 
 
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Sickbeard for SABnzbd - nzbToMedia - Complete"
+echo "# Configuring nzbToMedia for Sick-Beard - Complete"
 echo "#------------------------------------------------------------------------------"
