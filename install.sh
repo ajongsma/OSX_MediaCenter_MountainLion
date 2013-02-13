@@ -444,11 +444,6 @@ if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
     fi
 fi
 
-## ERROR ON CONNECTING:
-##  Error: /usr/local/mysql/support-files/mysql.server start is invalid
-##  Operation failed: /usr/local/mysql/support-files/mysql.server start is invalid
-##  Operation failed: /usr/local/mysql/support-files/mysql.server start is invalid
-
 
 #------------------------------------------------------------------------------
 # Check for PostgreSQL
@@ -477,6 +472,7 @@ if [[ $INST_PGADMIN == "true" ]]; then
         printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
+
 
 #------------------------------------------------------------------------------
 # Install for InductionApp (http://inductionapp.com)
@@ -580,7 +576,7 @@ fi
 
 
 #------------------------------------------------------------------------------
-# Install NewzNAB jonnyboy/newznab-tmux
+# Install NewzNAB - jonnyboy/newznab-tmux
 #------------------------------------------------------------------------------
 if [ ! -d $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux ] ; then
     printf 'NewzNAB jonnyboy Tmux not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
@@ -591,7 +587,7 @@ fi
 
 
 #------------------------------------------------------------------------------
-# Install NewzNAB Custom Scripts
+# Install NewzNAB - Custom Scripts
 #------------------------------------------------------------------------------
 if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
     printf 'NewzNAB Sphinx config not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
@@ -624,7 +620,6 @@ end tell'
 #------------------------------------------------------------------------------
 # Install SABnzbd+
 #------------------------------------------------------------------------------
-
 if [ ! -e /Applications/SABnzbd.app ] ; then
     echo "SABnzbd not installed, please install..."
     open http://sabnzbd.org/
