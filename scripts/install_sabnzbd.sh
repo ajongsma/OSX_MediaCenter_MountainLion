@@ -119,21 +119,9 @@ if [[ -z $INST_SABNZBD_KEY_API ]] || [[ -z $INST_SABNZBD_KEY_NZB ]]; then
     open http://localhost/newznab/admin/site-edit.php
     subl ../config.sh
 
-    while ( [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]])
+    while ( [[ $INST_SABNZBD_KEY_API == "" ]] && [[ $INST_SABNZBD_KEY_NZB == "" ]])
     do
         printf 'Waiting for NewzNAB API and NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-        source ../config.sh
-    done
-    while ( [[ $INST_SABNZBD_KEY_API == "" ]] )
-    do
-        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sleep 15
-        source ../config.sh
-    done
-    while ( [[ $INST_SABNZBD_KEY_NZB == "" ]] )
-    do
-        printf 'Waiting for NewzNAB NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
         source ../config.sh
     done
