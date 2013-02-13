@@ -22,10 +22,11 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-echo "Install latest Sick-Beard:"
+if [ ! -d ~/Github/ ] ; then
+    mkdir ~/Github/
+fi
+cd ~/Github/
 
-mkdir -p ~/Andries/Github/
-cd ~/Andries/Github/
 git clone https://github.com/clinton-hall/nzbToMedia
 cp -R ~/Andries/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
 #cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
