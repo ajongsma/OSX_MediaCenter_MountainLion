@@ -62,6 +62,25 @@ open http://localhost:8082
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
+source ../config.sh
+#if [[ $INST_COUCHPOTATOD_API == "" ]]; then
+if [[ -z $INST_COUCHPOTATOD_API ]] ; then
+    echo "-----------------------------------------------------------"
+    echo "| Main Site Settings, API:"
+    echo "| Please add the CouchPotato API key to config.sh"
+    echo "-----------------------------------------------------------"
+    open http://localhost/newznab/admin/site-edit.php
+    subl ../config.sh
+
+    while ( [[ $INST_COUCHPOTATOD_API == "" ]] )
+    do
+        printf 'Waiting for the CouchPotato API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+        source ../config.sh
+    done
+fi
+
+
 echo "-----------------------------------------------------------"
 echo "| Menu, Config, Categories:"
 echo "| movies, Default, Default, nzbToCouchpotato.py"
