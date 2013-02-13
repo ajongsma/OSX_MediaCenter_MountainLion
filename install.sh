@@ -657,8 +657,10 @@ fi
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo " TODO: Check for specific variables"
-echo " Till then, run script manually:"
+echo " Till then, forced run:"
 echo "   $DIR/scripts/install_sickbeard_nzbtomedia.sh"
+
+open $DIR/scripts/install_sickbeard_nzbtomedia.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -742,8 +744,10 @@ fi
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo " TODO: Check for specific variables"
-echo " Till then, run script manually:"
+echo " Till then, forced run:"
 echo "   $DIR/scripts/install_sabnzbd_couchpotato.sh"
+
+open $DIR/scripts/install_sabnzbd_couchpotato.sh
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
