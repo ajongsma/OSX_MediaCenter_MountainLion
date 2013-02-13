@@ -76,6 +76,13 @@ export INST_SABNZBD_UID="sabnzbd"
 export INST_SABNZBD_PW="mini_sabnzbd"
 export INST_SABNZBD_KEY_API=""
 export INST_SABNZBD_KEY_NZB=""
+
+#-----------------------------------------------------------
+
+## Couchpotato
+export INST_COUCHPOTATO_UID="couchpotato"
+export INST_COUCHPOTATO_PW="mini_couchpotato"
+
 #-----------------------------------------------------------
 
 ## Full User Name for GIT
