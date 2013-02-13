@@ -85,7 +85,7 @@ fi
 #------------------------------------------------------------------------------
 ## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
 
-if [ ! -e ~/.bash_profile ] ; then
+if [ ! -f ~/.bash_profile ] ; then
     echo "Creating default .bash_profile..."
     cp conf/bash_profile ~/.bash_profile
 else
@@ -112,14 +112,14 @@ chflags nohidden ~/Library
 #------------------------------------------------------------------------------
 # Checking existence directories
 #------------------------------------------------------------------------------
-if [ ! -e ~/Sites/ ] ; then
+if [ ! -d ~/Sites/ ] ; then
     printf 'Creating directory ~/Sites…\n' "YELLOW" $col '[WAIT]' "$RESET"
     mkdir -p ~/Sites/
 else
     printf 'Directory ~/Sites/ found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-if [ ! -e ~/Github/ ] ; then
+if [ ! -d ~/Github/ ] ; then
     printf 'Creating directory ~/Github…\n' "YELLOW" $col '[WAIT]' "$RESET"
     mkdir -p ~/Github/
 else
@@ -396,7 +396,7 @@ echo "# GNU coreutils"
 echo "PATH=/opt/local/libexec/gnubin/:$PATH"
 
 
-if [ ! -e ~/.bashrc ] ; then
+if [ ! -f ~/.bashrc ] ; then
     echo "Copying default .bashrc..."
     cp conf/bashrc ~/.bashrc
 else
@@ -416,7 +416,7 @@ source ~/.bashrc
 ##------------------------------------------------------------------------------
 ## Install MySQL
 ##------------------------------------------------------------------------------
-if [ ! -f /usr/local/bin/mysql ] ; then
+if [ ! -e /usr/local/bin/mysql ] ; then
     printf 'MySQL not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_mysql.sh"
 else
@@ -567,7 +567,7 @@ fi
 # Configure Sphinx for NewzNAB
 #------------------------------------------------------------------------------
 
-if [ ! -e $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then
+if [ ! -f $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then
     printf 'NewzNAB Sphinx config found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_newznab_sphinx.sh"
 else
@@ -622,7 +622,7 @@ end tell'
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/SABnzbd.app ] ; then
     echo "SABnzbd not installed, please install..."
-    open http://sabnzbd.org/
+    source "$DIR/scripts/install_sabnzbd.sh"
     while ( [ ! -e /Applications/SABnzbd.app ] )
     do
         echo "Waiting for SABnzbd to be installed..."
@@ -640,12 +640,18 @@ exit
 #------------------------------------------------------------------------------
 # Install Cheetah
 #------------------------------------------------------------------------------
-echo "Download latest Cheetah:"
-open http://www.cheetahtemplate.org/download
+if [ ! -e /usr/local/bin/cheetah ] ; then
+    echo "Cheetah not installed, please install..."
+    open http://sabnzbd.org/
+    while ( [ ! -e /usr/local/bin/python ] )
+    do
+        echo "Waiting for Cheetah to be installed..."
+        sleep 15
+    done
+else
+    echo "Cheetah found                               [OK]"
+fi
 
-tar xvzf Cheetah-2.4.4.tar
-cd Cheetah-2.4.4.tar
-sudo python setup.py install
 
 #------------------------------------------------------------------------------
 # Install Sick-Beard
