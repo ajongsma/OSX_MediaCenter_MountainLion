@@ -94,3 +94,6 @@ Shell scripts are currently used as a guideline document and should not be run a
   * http://mac.tutsplus.com/tutorials/customization/5-ways-to-make-your-macs-desktop-better-with-geektool/
 * NewzNAB
   * [NewzNAB - Custom Content Page - Mini NZB Feed Compare] (http://www.newznabforums.com/index.php?topic=623.0)
+  * [Theme: Xihuitl] (https://github.com/Xihuitl/Newznab_Themes) ``` http://www.newznabforums.com/index.php?topic=600.0 ```
+  * [Theme: Baffi - Blue version] (http://www.newznabforums.com/index.php?topic=376.0)
+  * 
