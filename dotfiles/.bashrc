@@ -1,7 +1,5 @@
 # PATH additions
 for another_bin in \
-    /usr/local/bin
-    /usr/local/sbin
     /usr/X11/bin
     $(brew --prefix coreutils)/libexec/gnubin \
     $HOME/bin \
@@ -10,3 +8,4 @@ for another_bin in \
 do
     [[ -e $another_bin ]] && export PATH=$another_bin:$PATH
 done
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
