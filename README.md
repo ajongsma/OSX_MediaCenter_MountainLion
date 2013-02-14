@@ -8,7 +8,6 @@ Shell scripts are currently used as a guideline document and should not be run a
 # SETUP
 * OS X Mountain Lion
   * Updated GNU core utilities
-  * coreutils
   * findutils
   * bash 4
   * apple-gcc42
