@@ -31,7 +31,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * Python
 * Pear
 * MySQL
-  * MySQL Workbench (http://dev.mysql.com/downloads/workbench)
+  * [MySQL Workbench] (http://dev.mysql.com/downloads/workbench)
 * PostgreSQL
   * [pgadmin] (http://www.pgadmin.org/download/macosx.php)
   * [InductionApp] (http://inductionapp.com)
