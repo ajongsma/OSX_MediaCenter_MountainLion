@@ -1,5 +1,23 @@
 #= 14-02-2013 ========================================================================
 
+DOTFILES:
+-bash: __git_ps1: command not found
+
+-------------------------------------------------------------------------
+
+/Users/Newznab/Sites/newznab/misc/testing/update_parsing.php
+$echo = true; => $echo = false;
+
+-------------------------------------------------------------------------
+
+Blacklist:
+Group         : alt.binaries.*
+Regex         : Croatian|Spanish|Turkish|german|German|GERMAN|danish|flemish|french|swedish|swesub|deutsch|norwegian|\.ita\. FR|DE|ITA|sie|seit|ihn|ihm|haben|besitzen|sein|kriegen|nehmen|welche|jenes|von|auf|gegen|nach|das|sein|der|und|fuer|ersten|leicht|meinem|zum|aus|dem|blitzlicht|alle|grosse|zed|ich|sed|blitzen
+Message Field : Subject
+Active        : Yes
+Type          : Black
+-------------------------------------------------------------------------
+
 #!/bin/bash
 
 RED=$(tput setaf 1)
