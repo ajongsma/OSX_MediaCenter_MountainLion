@@ -5,5 +5,7 @@ PATH=$PATH:/usr/X11/bin
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # GNU coreutils
 PATH=/opt/local/libexec/gnubin/:$PATH
+# PHP 5.4
+PATH="$(brew --prefix josegonzalez/php/php54)/bin":$PATH
 
 #PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
