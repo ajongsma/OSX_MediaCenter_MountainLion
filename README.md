@@ -36,7 +36,7 @@ Shell scripts are currently used as a guideline document and should not be run a
   * [pgadmin] (http://www.pgadmin.org/download/macosx.php)
   * [InductionApp] (http://inductionapp.com)
 * [HomeBrew] (http://mxcl.github.com/homebrew/)
-* [NewzNAB] (http://www.newznab.com/)
+* [NewzNAB] (http://www.newznab.com/) ``` [NewzNAB Forum] (http://http://www.newznabforums.com) ```
   * [jonnyboy/newznab-tmux] (https://github.com/jonnyboy/newznab-tmux)
   * [Newzdash (NewzNab dashboard)] (https://github.com/tssgery/newzdash)
 * [Sphinx] (http://www.sphinxsearch.com/downloads.html)
@@ -48,7 +48,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Auto-Sub] (http://code.google.com/p/auto-sub/)
 * [Couch Potato] (https://couchpota.to/)
 * [Maraschino] (http://www.maraschinoproject.com/)
-  ``` [Maraschino Forum] (http://forums.maraschinoproject.com/) ```
+  ``` [Maraschino Forum] (http://forums.maraschinoproject.com) ```
 
 * 
 # ADDENDUM
