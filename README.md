@@ -48,6 +48,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Auto-Sub] (http://code.google.com/p/auto-sub/)
 * [Couch Potato] (https://couchpota.to/)
 * [Maraschino] (http://www.maraschinoproject.com/)
+  ``` [Maraschino Forum] (http://forums.maraschinoproject.com/) ```
 
 * 
 # ADDENDUM
