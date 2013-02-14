@@ -39,6 +39,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [HomeBrew] (http://mxcl.github.com/homebrew/)
 * [NewzNAB] (http://www.newznab.com/)
   * [jonnyboy/newznab-tmux] (https://github.com/jonnyboy/newznab-tmux)
+  * [Newzdash (NewzNab dashboard)] (https://github.com/tssgery/newzdash)
 * [Sphinx] (http://www.sphinxsearch.com/downloads.html)
 * [SpotWeb] (https://github.com/spotweb/spotweb/wiki)
 * [SabNZBD] (http://sabnzbd.org/)
@@ -49,6 +50,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Couch Potato] (https://couchpota.to/)
 * [Maraschino] (http://www.maraschinoproject.com/)
 
+* 
 # ADDENDUM
 
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
@@ -72,8 +74,6 @@ Shell scripts are currently used as a guideline document and should not be run a
 <hr>
 
 # TO CHECK OUT
-* [Newzdash (NewzNab dashboard)] (https://github.com/tssgery/newzdash)
-  * [Live dashboard] (http://www.kayroebnrosie.info/index.php)
 * [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * Powerline
