@@ -1,3 +1,58 @@
+
+#= 14-02-2013 ========================================================================
+
+https://github.com/lhunath/tunmgrd/blob/master/bashlib
+
+# Variables for global internal operation.
+bobber=(     '.' 'o' 'O' 'o' )
+spinner=(    '-' \\  '|' '/' )
+crosser=(    '+' 'x' '+' 'x' )
+runner=(     '> >'           \
+             '>> '           \
+             '>>>'           \
+             ' >>'           )
+
+# Variables for terminal requests.
+hide=$(      tput vi       2>/dev/null ||: )
+show=$(      tput vs       2>/dev/null ||: )
+save=$(      tput sc       2>/dev/null ||: )
+load=$(      tput rc       2>/dev/null ||: )
+bold=$(      tput bold     2>/dev/null ||: )
+reset=$(     tput sgr0     2>/dev/null ||: )
+#blink=$(    tput blink    2>/dev/null ||: )
+italic=$(    tput sitm     2>/dev/null ||: )
+red=$(       tput setaf 1  2>/dev/null ||: )
+green=$(     tput setaf 2  2>/dev/null ||: )
+yellow=$(    tput setaf 3  2>/dev/null ||: )
+blue=$(      tput setaf 4  2>/dev/null ||: )
+magenta=$(   tput setaf 5  2>/dev/null ||: )
+cyan=$(      tput setaf 6  2>/dev/null ||: )
+white=$(     tput setaf 7  2>/dev/null ||: )
+default=$(   tput op       2>/dev/null ||: )
+eed=$(       tput ed       2>/dev/null ||: )
+eel=$(       tput el       2>/dev/null ||: )
+ebl=$(       tput el1      2>/dev/null ||: )
+ewl=$(       tput el       2>/dev/null ||: ;
+             tput el1      2>/dev/null ||: )
+draw=$(      tput enacs    2>/dev/null ||: ;
+             tput smacs    2>/dev/null ||: ;
+             tput acsc     2>/dev/null ||: ;
+             tput rmacs    2>/dev/null ||: )
+back=$'\b'
+
+graphics=( "${bobber[@]}" )  ;;
+graphics=( "${crosser[@]}" ) ;;
+graphics=( "${runner[@]}" )  ;;
+graphics=( "${spinner[@]}" ) ;;
+
+printf "$reset $style$color$blue%s %s$reset" \
+                "${graphics[i++ % 4]}" "$text"                      >&$fd
+
+-------------------------------------------------------------------------
+
+
+
+
 #= 13-02-2013 ========================================================================
 
 INFO:
