@@ -91,3 +91,5 @@ Shell scripts are currently used as a guideline document and should not be run a
   * http://lifehacker.com/5834676/build-an-attractive-informative-mac-desktop-with-geektool
   * http://mac.appstorm.net/roundups/utilities-roundups/over-46-powerful-geeklets-and-scripts-for-the-geek-within-you/
   * http://mac.tutsplus.com/tutorials/customization/5-ways-to-make-your-macs-desktop-better-with-geektool/
+* NewzNAB
+  * [NewzNAB - Custom Content Page - Mini NZB Feed Compare] (http://www.newznabforums.com/index.php?topic=623.0)
