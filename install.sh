@@ -535,6 +535,25 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Installing additional NewzNAB themes
+#------------------------------------------------------------------------------
+for another_newznab_theme in \
+    $INST_NEWZNAB_PATH/www/templates/simple \
+    $INST_NEWZNAB_PATH/www/templates/bootstrapped \
+    $INST_NEWZNAB_PATH/www/templates/carbon \
+    $INST_NEWZNAB_PATH/www/templates/dusplic
+do
+    [[ -e $another_newznab_theme ]] && echo "Found theme: $another_newznab_theme" && [[ $INST_NEWZNAB_THEMES != "false" ]] && export INST_NEWZNAB_THEMES="true" || export INST_NEWZNAB_THEMES="true"
+done
+
+if [[ $INST_NEWZNAB_THEMES == "true" ]]; then
+    printf 'NewzNAB thems not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newznab_themes.sh"
+else
+    printf 'NewzNAB themes found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------
 # Configure Sphinx for NewzNAB
 #------------------------------------------------------------------------------
 if [ ! -f $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then

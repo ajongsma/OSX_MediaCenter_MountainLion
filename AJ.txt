@@ -6,18 +6,16 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 
-col=$(tput cols)
+
+col=80 # change this to whatever column you want the output to start at
+#col=$(tput cols)
 #col=$(tput hpa)
 #col=$(tput cup)
-#col=80 # change this to whatever column you want the output to start at
 
-NN_PID_PATH="/var/run/" 
-PIDFILE="newznab_sh.pid"
-if [ -f ${NN_PID_PATH}${PIDFILE} ]
-if <some condition here>; then
-  printf '%s%*s%s' "$GREEN" $col "[OK]" "$NORMAL"
+if [ $INST_NEWZNAB_THEMES == "true" ]; then
+  printf '%s%s%*s%s\n' "NewzNAB themes" "$GREEN" $col "[OK]" "$NORMAL"
 else
-  printf '%s%*s%s' "$RED" $col "[FAIL]" "$NORMAL"
+  printf '%s%s%*s%s\n' "NewzNAB themes" "$RED" $col "[FAIL]" "$NORMAL"
 fi
 
 -------------------------------------------------------------------------

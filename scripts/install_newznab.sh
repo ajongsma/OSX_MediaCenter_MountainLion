@@ -164,22 +164,6 @@ cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 sh ./newznab_local.sh
 #bash ./newznab_local.sh
 
-
-## Additional custom NewzNAB Themes
-echo "-----------------------------------------------------------"
-echo "| Installing additional NewzNAB themes..."
-echo "-----------------------------------------------------------"
-#git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git $INST_NEWZNAB_PATH/www/templates/simple
-#git clone https://github.com/sinfuljosh/bootstrapped.git $INST_NEWZNAB_PATH/www/templates/bootstrapped
-
-#mkdir -p ~/Github/
-cd ~/Github/
-git clone https://github.com/jonnyboy/Newznab-Simple-Theme.git
-cp -r Newznab-Simple-Theme/simple $INST_NEWZNAB_PATH/www/templates/simple
-git clone https://github.com/sinfuljosh/bootstrapped.git
-cp -r bootstrapped $INST_NEWZNAB_PATH/www/templates/bootstrapped
-
-
 #cd /Users/Newznab/Sites/newznab/misc/update_scripts
 ##php update_binaries.php && php update_releases.php
 ##php update_binaries.php
