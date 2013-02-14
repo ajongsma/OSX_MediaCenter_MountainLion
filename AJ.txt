@@ -104,6 +104,11 @@ echo'
 (_)\_)(____)(__/\__)(____)(_)\_)(__)(__)(____/  |_|  
 '
 
+-------------------------------------------------------------------------
+
+NewzNAB API:
+You can obtain this by going to your newznab home screen, click on your userid that is displayed in the upper right corner, and your api key will be displayed with your account info. 
+
 #= 13-02-2013 ========================================================================
 
 INFO:
