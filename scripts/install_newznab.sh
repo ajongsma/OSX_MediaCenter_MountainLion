@@ -82,19 +82,16 @@ echo "| Admin Setup:"
 echo "-----------------------------------------------------------"
 echo "| NZB File Path Setup           : $INST_NEWZNAB_PATH/nzbfiles/"
 echo "-----------------------------------------------------------"
-open http://localhost/newznab
-
-echo "-----------------------------------------------------------"
 echo "| Main Site Settings, HTML Layout, Tags"
 echo "| newznab ID                    : <nnplus id>"
 echo "| "
 echo "| 3rd Party Application Paths"
 echo "| Unrar Path                    : /usr/local/bin/unrar"
-
+echo "| "
 echo "| Usenet Settings"
 echo "| Minimum Completion Percent    : 95"
 echo "| Start new groups              : Days, 1"
-
+echo "| "
 echo "| Check For Passworded Releases : Deep"
 echo "| Delete Passworded Releases    : Yes"
 echo "| Show Passworded Releases      : Show everything"
@@ -130,20 +127,19 @@ echo "| Ordinal                       : 5"
 echo "-----------------------------------------------------------"
 http://localhost/newznab/admin/regex-edit.php?action=add
 
-## Lost API Reference - prob SabNZBD
-#source ../config.sh
-#if [[ $INST_NEWZNAB_API == "" ]]; then
-#    echo "| Main Site Settings, API:"
-#    echo "| Please add the NewzNAB API key to config.sh"
-#    echo "-----------------------------------------------------------"
-#    open  http://localhost/newznab/admin/site-edit.php
-#    while ( [[ $INST_NEWZNAB_API == "" ]] )
-#    do
-#        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
-#        sleep 15
-#        source ../config.sh
-#    done
-#fi
+source ../config.sh
+if [[ $INST_NEWZNAB_KEY_API == "" ]]; then
+    echo "| Main Site Settings, API:"
+    echo "| Please add the NewzNAB API key to config.sh"
+    echo "-----------------------------------------------------------"
+    open  http://localhost/newznab/admin/site-edit.php
+    while ( [[ $INST_NEWZNAB_KEY_API == "" ]] )
+    do
+        printf 'Waiting for NewzNAB API key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        sleep 15
+        source ../config.sh
+    done
+fi
 
 if [ -f $DIR/bin/newznab_local.sh ] ; then
     sudo cp $DIR/bin/newznab_local.sh $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
