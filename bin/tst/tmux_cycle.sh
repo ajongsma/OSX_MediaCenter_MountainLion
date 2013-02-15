@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export TST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
+export TST_SPOTWEB_PATH="/Users/Andries/Github/OSX_NewBox/bin"
 
 #This script assumes you have used the following 2 guides
 # 1) http://www.tiag.me/how-to-backfill-newznab-safely-without-bloating-your-database/
@@ -19,18 +20,21 @@ sleep 3
 
 #NewzNab Panes
 tmux send-keys -tNewzNab:0 'cd $TST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/' C-m
-tmux send-keys -tNewzNab:0 'sh newznab_screen_backfill.sh' C-m
+tmux send-keys -tNewzNab:0 'sh newznab_local.sh' C-m
 tmux splitw -h -p 50
-tmux send-keys -tNewzNab:0 'cd $TST_NEWZNAB_PATH/misc/update_scripts/' C-m
-tmux send-keys -tNewzNab:0 'php justpostprocessing.php' C-m
- 
+#tmux send-keys -tNewzNab:0 'cd $TST_NEWZNAB_PATH/misc/update_scripts/' C-m
+#tmux send-keys -tNewzNab:0 'php justpostprocessing.php' C-m
+tmux send-keys -tNewzNab:0 'cd $TST_SPOTWEB_PATH' C-m
+tmux send-keys -tNewzNab:0 'sh spotweb_cycle.sh' C-m 
+
 #Monitoring Panes
 tmux select-pane -t 0
 tmux splitw -v -p 50
 tmux send-keys -tNewzNab:0 'top' C-m
 tmux select-pane -t 2
 tmux splitw -v -p 50
-tmux send-keys -tNewzNab:0 'iostat -xd sda 1' C-m
+#tmux send-keys -tNewzNab:0 'iostat -xd sda 1' C-m
+tmux send-keys -tNewzNab:0 'iostat -K -w 5' C-m
 tmux splitw -v -p 50
 tmux send-keys -tNewzNab:0 'ifstat -S' C-m
  

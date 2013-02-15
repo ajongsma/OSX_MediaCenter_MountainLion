@@ -56,7 +56,7 @@ echo "| Menu, Config, Search Providers:"
 echo "| "
 echo "| Configure Custom Newznab Providers:"
 echo "| Provider Name                           : NewzNAB"
-echo "| Site URL                                : http://localhost:8081/"
+echo "| Site URL                                : http://localhost/newznab/"
 echo "| API Key                                 : $INST_SICKBEARD_KEY_API_NEWZNAB"
 echo "-----------------------------------------------------------"
 open http://localhost:8081/config/providers/

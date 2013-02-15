@@ -525,6 +525,18 @@ else
     printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+##------------------------------------------------------------------------------
+## Install Powerline for Bash
+##------------------------------------------------------------------------------
+if [[ $INST_POWERLINE_SHELL == "true" ]]; then
+    if [ ! -e /usr/local/bin/powerline-shell.py ] ; then
+        printf 'Powerline for Bash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_powerline_bash.sh"
+    else
+        printf 'Powerline for Bash found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+fi
+
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
