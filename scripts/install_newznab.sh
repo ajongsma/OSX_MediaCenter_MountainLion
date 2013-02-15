@@ -23,7 +23,6 @@ sudo chmod 777 $INST_NEWZNAB_PATH/www/install
 sudo chmod 777 $INST_NEWZNAB_PATH/db
 sudo chmod -R 777 $INST_NEWZNAB_PATH/nzbfiles/
 
-
 #echo "-----------------------------------------------------------"
 #echo "Enter the httpd.conf:"
 #echo "<Directory /Library/WebServer/Documents/newznab>"
@@ -100,7 +99,6 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 open http://localhost/newznab/admin/site-edit.php
 
-
 ## --- TESTING
 
 echo "-----------------------------------------------------------"
@@ -147,7 +145,7 @@ else
     echo "-----------------------------------------------------------"
     echo "| Update the following:"
     echo "| export NEWZNAB_PATH="$INST_NEWZNAB_PATH/misc/update_scripts""
-
+    echo "|"
     echo "| Modify all PHP5 references"
     echo "| /usr/bin/php5 ... => php ..."
     cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
@@ -155,6 +153,13 @@ else
     chmod +x newznab_local.sh
     subl newznab_local.sh
 fi
+
+echo "-----------------------------------------------------------"
+echo "| Update file update_parsing.php:"
+echo "| \$echo = true;                 : \$echo = false;
+echo "| Delete Passworded Releases    : Yes"
+echo "-----------------------------------------------------------"
+subl $INST_NEWZNAB_PATH/misc/testing/update_parsing.php
 
 cd $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/
 sh ./newznab_local.sh
@@ -170,6 +175,7 @@ sh ./newznab_local.sh
 #./newznab_local.sh
 #echo "ctrl-ad to detach screen"
 
-
-echo "Install NewzNAB complete."
+#------------------------------------------------------------------------------
+# Install NewzNAB - Complete
+#------------------------------------------------------------------------------
 
