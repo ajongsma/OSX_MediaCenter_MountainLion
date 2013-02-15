@@ -157,7 +157,6 @@ fi
 echo "-----------------------------------------------------------"
 echo "| Update file update_parsing.php:"
 echo "| \$echo = true;                 : \$echo = false;
-echo "| Delete Passworded Releases    : Yes"
 echo "-----------------------------------------------------------"
 subl $INST_NEWZNAB_PATH/misc/testing/update_parsing.php
 
