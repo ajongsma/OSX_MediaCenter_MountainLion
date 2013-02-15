@@ -130,6 +130,7 @@ if [[ $INST_NEWZNAB_KEY_API == "" ]]; then
     echo "| Main Site Settings, API:"
     echo "| Please add the NewzNAB API key to config.sh"
     echo "-----------------------------------------------------------"
+    subl ../config.sh
     open  http://localhost/newznab/admin/site-edit.php
     while ( [[ $INST_NEWZNAB_KEY_API == "" ]] )
     do

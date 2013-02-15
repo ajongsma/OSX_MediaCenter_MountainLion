@@ -714,6 +714,31 @@ else
     printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------"
+# Configuring NewzNAB as provider for Sickbeard"
+#------------------------------------------------------------------------------"
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO: Check for specific variables"
+echo " Till then, forced run:"
+echo "   $DIR/scripts/install_sickbeard_newznab.sh"
+
+source "$DIR/scripts/install_sickbeard_newznab.sh"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    printf 'NewzNAB as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_sickbeard_newznab.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit    
+else
+    printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+
 #==============================================================================
 #=== FORCED EXIT DUE TO TESTING ===============================================
 exit
