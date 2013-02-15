@@ -13,6 +13,16 @@ echo "| Checking for updates on GIT"
 echo "-----------------------------------------------------------"
 cd ~/Github/
 
+echo "#------------------------------------------------------------------------------"
+echo "# Checking SABnzbd - nzbToMedia"
+echo "#------------------------------------------------------------------------------"
+~/Github/nzbToMedia
+
+git status
+
+git pull
+cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
+
 ## https://github.com/jonnyboy/newznab-tmux.git
 
 ## https://github.com/jonnyboy/Newznab-Simple-Theme.git
