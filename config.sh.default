@@ -54,9 +54,7 @@ export INST_NEWZNAB_SVN_PW=""
 export INST_NEWZNAB_MYSQL_DB="newznab"
 export INST_NEWZNAB_MYSQL_UID="newznab"
 export INST_NEWZNAB_MYSQL_PW="mini_newznab"
-
-## NewzNAB API Key - (check NewzNAB)
-INST_NEWZNAB_API=""
+export INST_NEWZNAB_KEY_API=""
 
 #-----------------------------------------------------------
 
@@ -73,16 +71,17 @@ export INST_NEWSSERVER_RETENTION="876"
 
 ## SpotWeb
 export INST_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
-export INST_NEWZNAB_PSQL_DB="spotweb_db"
-export INST_NEWZNAB_PSQL_UID="spotweb_usr"
-export INST_NEWZNAB_PSQL_PW="mini_spotweb"
-export INST_NEWZNAB_KEY_API=""
+export INST_SPOTWEB_PSQL_DB="spotweb_db"
+export INST_SPOTWEB_PSQL_UID="spotweb_usr"
+export INST_SPOTWEB_PSQL_PW="mini_spotweb"
+export INST_SPOTWEB_KEY_API=""
 
 #-----------------------------------------------------------
 
 ## SABnzbd
 export INST_SABNZBD_UID="sabnzbd"
 export INST_SABNZBD_PW="mini_sabnzbd"
+export INST_SABNZBD_PORT="8080"
 export INST_SABNZBD_KEY_API=""
 export INST_SABNZBD_KEY_NZB=""
 
@@ -91,6 +90,7 @@ export INST_SABNZBD_KEY_NZB=""
 ## Sick-Beard
 export INST_SICKBEARD_UID="sickbeard"
 export INST_SICKBEARD_PW="mini_sickbeard"
+export INST_SICKBEARD_PORT="8081"
 export INST_SICKBEARD_KEY_API=""
 
 #-----------------------------------------------------------
@@ -98,7 +98,8 @@ export INST_SICKBEARD_KEY_API=""
 ## Couchpotato
 export INST_COUCHPOTATO_UID="couchpotato"
 export INST_COUCHPOTATO_PW="mini_couchpotato"
-export INST_COUCHPOTATOD_API=""
+export INST_COUCHPOTATO_PORT="8082"
+export INST_COUCHPOTATOD_KEY_API=""
 
 #-----------------------------------------------------------
 
