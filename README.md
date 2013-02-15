@@ -94,8 +94,6 @@ Shell scripts are currently used as a guideline document and should not be run a
   * http://mac.tutsplus.com/tutorials/customization/5-ways-to-make-your-macs-desktop-better-with-geektool/
 * NewzNAB
   * [NewzNAB - Custom Content Page - Mini NZB Feed Compare] (http://www.newznabforums.com/index.php?topic=623.0)
-
-* NewzNAB
   * [Post Processing script: Auto release assembler suite] (http://www.newznabforums.com/index.php?topic=631.msg5625#msg5625)
   * RegEx ``` a.b.teevee ```
   ``` Disable all except: /^(\[|)(?P<name>.*?)(\]|) (\- |)\[(?P<parts>\d{1,3}\/\d{1,3})\] \- \".*?xvid.*?\"/i ```
@@ -103,7 +101,6 @@ Shell scripts are currently used as a guideline document and should not be run a
   ``` Category 720p WEB-DL (Ordinal 3): /^(RE\: |)\[.*?\](\-\[FULL\]|)\-\[\#.*?\](\-\[FULL\]|)\-\[(?P<name>.*?(720[a-zA-Z].WEB.DL).*?)\]( |)\-\[(?P<parts>\d{1,3}\/\d{1,3})\]/ ```
   ``` Category HD (Ordinal 4): /^(RE\: |)\[.*?\](\-\[FULL\]|)\-\[\#.*?\](\-\[FULL\]|)\-\[(?P<name>.*?(720[a-zA-Z].HDTV.[a-zA-Z]264).*?)\]( |)\-\[(?P<parts>\d{1,3}\/\d{1,3})\]/ ```
   ``` Category SD (Ordinal 5): /^(RE\: |)\[.*?\](\-\[FULL\]|)\-\[\#.*?\](\-\[FULL\]|)\-\[(?P<name>.*?(HDTV.[a-zA-Z]264).*?)\]( |)\-\[(?P<parts>\d{1,3}\/\d{1,3})\]/ ```
-
   * Blacklist:
   ``` fina|wrestling|nba|mma|Croatian|Spanish|Turkish|TNA|NFL|WWE|EPL|National.Geographic|wtcc|nba|olympics|xxx|german|danish|flemish|dutch|french|swedish|swesub|deutsch|nl\.?sub|norwegian|\.ita\. FR|DE|ITA|sie|seit|ihn|ihm|haben|besitzen|sein|kriegen|nehmen|welche|jenes|von|auf|gegen|nach|das|sein|der|und|fuer|ersten|leicht|meinem|zum|aus|dem|blitzlicht|alle|grosse|zed|ich|sed|blitzen|NCAA Basketball ```
 
