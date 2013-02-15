@@ -102,7 +102,7 @@ if [[ -z $INST_SABNZBD_KEY_API ]] || [[ -z $INST_SABNZBD_KEY_NZB ]]; then
 
     while ( [[ $INST_SABNZBD_KEY_API == "" ]] || [[ $INST_SABNZBD_KEY_NZB == "" ]])
     do
-        printf 'Waiting for NewzNAB API and NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf 'Waiting for SabNZBD API and NZB key to be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 2
         source ../config.sh
     done
