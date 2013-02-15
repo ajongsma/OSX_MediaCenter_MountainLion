@@ -10,6 +10,9 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
+if [ -L config.sh ]; then
+  rm config.sh
+fi
 if [ ! -f config.sh ]; then
   clear
   echo "No config.sh found. Creating file, and please edit the required values"
