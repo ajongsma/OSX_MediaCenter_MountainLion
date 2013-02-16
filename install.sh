@@ -876,6 +876,35 @@ fi
 exit
 #==============================================================================
 
+#------------------------------------------------------------------------------
+# Install Plex Server
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/maraschino ] ; then
+    printf 'Plex Server not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_plex_server.sh"
+    while ( [ ! -d /Applications/maraschino ] )
+    do
+        echo "Waiting for Plex Server to be installed..."
+        sleep 15
+    done
+else
+    printf 'Plex Server found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------
+# Install Plex Client
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/maraschino ] ; then
+    printf 'Plex Client not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_plex_client.sh"
+    while ( [ ! -d /Applications/maraschino ] )
+    do
+        echo "Waiting for Plex Client to be installed..."
+        sleep 15
+    done
+else
+    printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 
 
