@@ -1,46 +1,29 @@
 #!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
-echo "# Install Plex Client"
+echo "# Installing Plex Media Client"
 echo "#------------------------------------------------------------------------------"
 
 source ../config.sh
 
 cd ~/Downloads
 
-if [ ! -e ~/Downloads/PlexMediaServer-* ] ; then
-    echo "Plex Server not installed, please install..."
-    #open http://www.plexapp.com/download/plex-media-center.php
-    while ( [ ! -e ~/Downloads/PlexMediaServer-* ] )
+if [ ! -e ~/Downloads/Plex.app ] ; then
+    echo "Plex Media Client not installed, please install..."
+    open http://www.plexapp.com/download/plex-media-center.php
+    while ( [ ! -e ~/Downloads/Plex.app ] )
     do
-        echo "Waiting for Plex Server to be downloaded..."
+        echo "Waiting for Plex Media Client to be downloaded..."
         sleep 15
     done
 else
-    echo "Plex Server download found                           [OK]"
+    echo "Plex Media Client download found                           [OK]"
 fi
 
-for i in ~/Downloads/PlexMediaServer-*; do
-    if [ -f "$i" ]; then
-        #echo "Found : $i"
-        open $i
-        if [ -e /Volumes/PlexMediaServer/Plex\ Media\ Server.app ] ; then
-            cp -R /Volumes/PlexMediaServer/Plex\ Media\ Server.app/ /Applications/
-        fi
-    fi
-done
+cp -R ~/Downloads/Plex.app /Applications/
 
-if [ -e /Applications/Plex\ Media\ Server.app ] ; then
-    printf 'Plex Server found\n' "$GREEN" $col '[OK]' "$RESET"
-    open /Applications/Plex\ Media\ Server.app
-else
-    printf 'Plex Server not installed, something went wrong\n' "$RED" $col '[FAIL]' "$RESET"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit
-fi
-
+#open /Applications/Plex.app
 
 echo "#------------------------------------------------------------------------------"
-echo "# Install Plex Client - Complete"
+echo "# Install Plex Media Client - Complete"
 echo "#------------------------------------------------------------------------------"

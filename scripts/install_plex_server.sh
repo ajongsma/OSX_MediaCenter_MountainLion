@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
-echo "# Install Plex server"
+echo "# Install Plex Media Server"
 echo "#------------------------------------------------------------------------------"
 #AutoSub.py  ExamplePostProcess.py  README.txt  autosub changelog.xml  cherrypy  init.ubuntu  interface  library
 
@@ -43,5 +43,5 @@ fi
 
 
 echo "#------------------------------------------------------------------------------"
-echo "# Install Plex Server - Complete"
+echo "# Install Plex Media Server - Complete"
 echo "#------------------------------------------------------------------------------"
