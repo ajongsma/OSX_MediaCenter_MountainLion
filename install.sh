@@ -846,12 +846,6 @@ else
     printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-#==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
-exit
-#==============================================================================
-
-
 #------------------------------------------------------------------------------
 # Install NewzDash
 #------------------------------------------------------------------------------
@@ -862,16 +856,25 @@ else
     printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
 #------------------------------------------------------------------------------
 # Install Maraschino
 #------------------------------------------------------------------------------
-cd /Applications
-git clone https://github.com/mrkipling/maraschino.git
-cd maraschino
-sudo python /Applications/maraschino/Maraschino.py
+if [ ! -d /Applications/maraschino ] ; then
+    printf 'Maraschino not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_marachino.sh"
+    while ( [ ! -d /Applications/maraschino ] )
+    do
+        echo "Waiting for Maraschino to be installed..."
+        sleep 15
+    done
+else
+    printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
-open http://localhost:7000
+#==============================================================================
+#=== FORCED EXIT DUE TO TESTING ===============================================
+exit
+#==============================================================================
 
 
 
