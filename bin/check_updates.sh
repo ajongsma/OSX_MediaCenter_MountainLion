@@ -36,7 +36,6 @@ cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
 
 #git pul
 
-
 echo "-----------------------------------------------------------"
 echo "| Checking for updates on SVN"
 echo "-----------------------------------------------------------"
@@ -46,4 +45,11 @@ echo "| Checking for updates NewzNAB:"
 #svn update
 svn info svn://svn.newznab.com/nn/branches/nnplus $INST_NEWZNAB_PATH/
 
+echo "-----------------------------------------------------------"
+echo "| Checking for updates on HG"
+echo "-----------------------------------------------------------"
+echo "| Checking for updates Auto-Sub:"
+
+hg status /Applications/auto-sub
+#hg update /Applications/auto-sub
 

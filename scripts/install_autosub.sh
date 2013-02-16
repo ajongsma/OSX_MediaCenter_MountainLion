@@ -3,23 +3,40 @@
 echo "#------------------------------------------------------------------------------"
 echo "# Install Auto-Sub"
 echo "#------------------------------------------------------------------------------"
+#AutoSub.py  ExamplePostProcess.py  README.txt  autosub changelog.xml  cherrypy  init.ubuntu  interface  library
 
 source ../config.sh
 
-echo "Download latest Auto-Sub from http://code.google.com/p/auto-sub/"
-open http://code.google.com/p/auto-sub/
+brew install hg
 
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-sudo mv ~/Downloads/auto-sub /Applications/
+#echo "Download latest Auto-Sub from http://code.google.com/p/auto-sub/"
+#open http://code.google.com/p/auto-sub/downloads/list
+#
+#while ( [ ! -e ~/Downloads/auto-sub ] )
+#do
+#    printf 'Waiting for Auto-Sub to be downloaded…\n' "YELLOW" $col '[WAIT]' "$RESET"
+#    sleep 15
+#done
+#sleep 3
+#sudo mv ~/Downloads/auto-sub /Applications/
 
-sudo chown `whoami` /Applications/auto-sub
+cd /Applications
+hg clone https://code.google.com/p/auto-sub/
+sudo chown `whoami`:wheel -R /Applications/auto-sub
 
 echo "-----------------------------------------------------------"
 echo "| Click main menu item Config (niet sub-menu item(s)), General:"
-echo "| Rootpath          : /TV/Series"
-echo "| Subtitle English  : nl"
+echo "| Rootpath            : /Users/Andries/Media/Series"
+echo "| Launchbrowser       : Disabled"
+echo "| Fallback to English : Disabled"
+echo "| Subtitle English    : nl"
+echo "| Notify English      : Disabled"
+echo "| Notify Dutch        : Disabled"
+echo "-----------------------"
+echo "| Save"
 echo "-----------------------------------------------------------"
+
+cd /Applications/auto-sub
 osascript -e 'tell app "Terminal"
     do script "python /Applications/auto-sub/AutoSub.py"
 end tell'
