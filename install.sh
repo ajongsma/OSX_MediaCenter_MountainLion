@@ -537,6 +537,18 @@ if [[ $INST_POWERLINE_SHELL == "true" ]]; then
     fi
 fi
 
+##------------------------------------------------------------------------------
+## Install Apache Frontpage
+##------------------------------------------------------------------------------
+if [[ $INST_APACHE_WWW_FRONTPAGE == "true" ]]; then
+    if [ ! -f $INST_APACHE_SYSTEM_WEB_ROOT/menubar.html ] ; then
+        printf 'Apache Frontpage not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_apache_frontpage.sh"
+    else
+        printf 'Apache Frontpage found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+fi
+
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
@@ -666,6 +678,15 @@ fi
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO:"
+echo " - Autostart Python Sickbeard script via Screen ??"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# ??? TODO: Screen the Sickbeard.py ???
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 if [ ! -d /Applications/Sick-Beard ] ; then
     printf 'Sick-Beard not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sickbeard"
@@ -759,6 +780,14 @@ exit
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO:"
+echo " - Autostart CouchPotato"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 if [ ! -e /Applications/CouchPotato.app ] ; then
     printf 'CouchPotato not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_couchpotato.sh"

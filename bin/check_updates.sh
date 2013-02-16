@@ -19,6 +19,7 @@ echo "#-------------------------------------------------------------------------
 ~/Github/nzbToMedia
 
 git status
+#git status | grep nothing
 
 git pull
 cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/

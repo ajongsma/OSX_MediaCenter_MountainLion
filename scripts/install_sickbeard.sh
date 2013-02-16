@@ -23,25 +23,8 @@ echo "#-------------------------------------------------------------------------
 source ../config.sh
 
 [ -d ~/Github ] || mkdir -p ~/Github
-[ -d ~/Media/Series ] || mkdir -p ~/Media/Series
+[ -d $INST_FOLDER_SERIES_COMPLETE ] || mkdir -p $INST_FOLDER_SERIES_COMPLETE
 [ -d /Volumes/Media/Media/Series ] || ln -s /Volumes/Media/Media/Series ~/Media/Series\ ext
-#cd ~/Github/
-#
-#git clone https://github.com/clinton-hall/nzbToMedia
-#cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
-##cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
-#
-#cd ~/Library/Application\ Support/SABnzbd/scripts/
-#cp autoProcessTV.cfg.sample autoProcessTV.cfg 
-#cp autoProcessMovie.cfg.sample autoProcessMovie.cfg
-#echo "-----------------------------------------------------------"
-#echo "| Modify the following:"
-#echo "| port=8081"
-#echo "| username=couchpotato"
-#echo "| password=<password>"
-#echo "| web_root="
-#echo "-----------------------------------------------------------"
-#subl autoProcessTV.cfg 
 
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git
@@ -95,7 +78,7 @@ echo "-----------------------------------------------------------"
 echo "| Home, Add Show"
 echo "| - Add Existing Show"
 echo "|   - New"
-echo "| Choose Directory    : $HOME/Media/Series"
+echo "| Choose Directory    : $INST_FOLDER_SERIES_COMPLETE"
 echo "|-------------------"
 echo "| Submit"
 echo "-----------------------------------------------------------"
@@ -109,7 +92,7 @@ if [[ -z $INST_SICKBEARD_KEY_API ]]; then
     echo "-----------------------------------------------------------"
     echo "| API:"
     echo "| Please add the Sickbeard API key to config.sh"
-    echo "| API Key                              : INST_SICKBEARD_KEY_API=<paste value> "
+    echo "| API Key                              : INST_SICKBEARD_KEY_API=<paste value>"
     echo "-----------------------------------------------------------"
     #open http://localhost/newznab/admin/site-edit.php
     http://localhost:8081/config/general/
@@ -122,6 +105,35 @@ if [[ -z $INST_SICKBEARD_KEY_API ]]; then
         source ../config.sh
     done
 fi
+
+#####
+## sudo cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/ 
+#autoProcessTV.cfg.sample
+#autoProcessTV.py
+#hellaToSickBeard.py
+#sabToSickBeard.py
+#
+## Original
+#[SickBeard]
+#host=localhost
+#port=8081
+#username=
+#password=
+#web_root=
+#
+## nzbToMedia
+#[SickBeard]
+#host=localhost
+#port=8081
+#username=sickbeard
+#password=mini_sickbeard
+#web_root=
+#ssl=0
+#watch_dir= /Users/Andries/Downloads/Usenet/Complete
+#failed_fork=0
+#category = tv
+#destination = /Users/Andries/Media/Series
+#####
 
 #echo "-----------------------------------------------------------"
 #echo "| Menu, Config, Categories:"
@@ -141,6 +153,11 @@ fi
 
 #sudo python /Applications/Sick-Beard/sickbeard.py –d
 #sudo python /Applications/Sick-Beard/sickbeard.py -q --nolaunch
+
+
+#####
+## ??? Screen the SickBeard.py ???
+#####
 
 echo "Creating Lauch Agent file:"
 cat >> /tmp/com.sickbeard.sickbeard.plist <<'EOF'
