@@ -771,12 +771,6 @@ else
     printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-
-#==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
-exit
-#==============================================================================
-
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
@@ -803,17 +797,6 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring CouchPotato for SABnzbd - nzbToMedia"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_couchpotato_nzbtomedia.sh"
-
-source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
     printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
@@ -847,6 +830,14 @@ if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] 
 else
     printf 'Configuring SABnzbd for CouchPotato - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+
+
+#==============================================================================
+#=== FORCED EXIT DUE TO TESTING ===============================================
+exit
+#==============================================================================
+
 
 #------------------------------------------------------------------------------
 # Install Auto-Sub
