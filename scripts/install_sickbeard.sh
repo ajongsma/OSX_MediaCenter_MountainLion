@@ -24,7 +24,6 @@ source ../config.sh
 
 [ -d ~/Github ] || mkdir -p ~/Github
 [ -d $INST_FOLDER_SERIES_COMPLETE ] || mkdir -p $INST_FOLDER_SERIES_COMPLETE
-[ -d /Volumes/Media/Media/Series ] || ln -s /Volumes/Media/Media/Series ~/Media/Series\ ext
 
 cd /Applications
 sudo git clone git://github.com/midgetspy/Sick-Beard.git

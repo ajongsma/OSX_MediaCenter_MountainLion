@@ -772,6 +772,21 @@ else
 fi
 
 #------------------------------------------------------------------------------
+# Install Auto-Sub
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/auto-sub.app ] ; then
+    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_autosub.sh"
+    while ( [ ! -e /Applications/auto-sub.app ] )
+    do
+        echo "Waiting for Auto-Sub to be installed..."
+        sleep 15
+    done
+else
+    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
 
@@ -855,20 +870,33 @@ else
     printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
-#------------------------------------------------------------------------------
-# Install Auto-Sub
-#------------------------------------------------------------------------------
-if [ ! -e /Applications/auto-sub.app ] ; then
-    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_autosub.sh"
-    while ( [ ! -e /Applications/auto-sub.app ] )
-    do
-        echo "Waiting for Auto-Sub to be installed..."
-        sleep 15
-    done
-else
-    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+#------------------------------------------------------------------------------"
+# Configuring CouchPotato to support Trakt.TV"
+#------------------------------------------------------------------------------"
+
+if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
+
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_couchpotato_trakttv.sh"
+
+    source "$DIR/scripts/install_couchpotato_trakttv.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 fi
+
+#if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+#    printf 'CouchPotato support for Trakt.TV is not configured\n' "$RED" $col '[FAIL]' "$RESET"
+#    source "$DIR/scripts/install_couchpotato_trakttv.sh"
+#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+#    read -n 1 -s
+#    exit    
+#else
+#    printf 'CouchPotato support for Trakt.TV is configured\n' "$GREEN" $col '[OK]' "$RESET"
+#fi
 
 #------------------------------------------------------------------------------
 # Install NewzDash
