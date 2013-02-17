@@ -771,6 +771,24 @@ else
     printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------"
+# Configuring Sickbeard to support Trakt.TV"
+#------------------------------------------------------------------------------"
+
+if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
+
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_sickbeard_trakttv.sh"
+
+    source "$DIR/scripts/install_sickbeard_trakttv.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+fi
+
 #------------------------------------------------------------------------------
 # Install Auto-Sub
 #------------------------------------------------------------------------------
