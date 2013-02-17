@@ -49,10 +49,11 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Auto-Sub] (http://code.google.com/p/auto-sub/)
 * [Couch Potato] (https://couchpota.to/)
   * [TraktTV integration] (https://trakt.tv/)
+* [Periscope] (http://code.google.com/p/periscope/)
 * [Maraschino] (http://www.maraschinoproject.com/)
   ``` [Maraschino Forum] (http://forums.maraschinoproject.com) ```
 
-* 
+
 # ADDENDUM
 
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
