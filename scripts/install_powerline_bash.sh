@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "#------------------------------------------------------------------------------"
+echo "# Installing Bash Powerline"
+echo "#------------------------------------------------------------------------------"
 ### https://github.com/xiaq/powerline-bash
 
 source ~/.bashrc
@@ -28,3 +31,6 @@ source ~/.bashrc
 #echo "export PROMPT_COMMAND="_update_ps1""
 #subl .bashrc
 
+echo "#------------------------------------------------------------------------------"
+echo "# Installing Bash Powerline - Complete"
+echo "#------------------------------------------------------------------------------"

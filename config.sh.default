@@ -14,6 +14,22 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export INST_OSX_UPDATES="false"
 
 #-----------------------------------------------------------
+## Folders
+export INST_FOLDER_USENET_WATCH="$HOME/Downloads/Usenet/Watch"
+export INST_FOLDER_USENET_INCOMPLETE="$HOME/Downloads/Usenet/InComplete"
+export INST_FOLDER_USENET_COMPLETE="$HOME/Downloads/Usenet/Complete"
+export INST_FOLDER_SERIES_COMPLETE="$HOME/Media/Series"
+export INST_FOLDER_MOVIES_COMPLETE="$HOME/Media/Movies"
+
+#export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
+export INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
+
+#-----------------------------------------------------------
+
+# Trakt.tv integration (http://http://trakt.tv) - (true/false)
+export INST_INTEGRATION_TRAKT="true"
+
+#-----------------------------------------------------------
 
 ## Install optional software
 # Install iTerm 2 (http://www.iterm2.com) - (true/false)
@@ -37,8 +53,17 @@ export INST_MYSQL_WORKBENCH="true"
 #Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
 export INST_PGADMIN="true"
 
-# Install InductionApp (http://inductionapp.com) - (true/false)
+# Install for InductionApp (http://inductionapp.com) - (true/false)
 export INST_INDUCTIONAPP="false"
+
+# Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
+export INST_POWERLINE_SHELL="false"
+
+# Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
+export INST_PERISCOPE="false"
+
+# Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
+export INST_SUBLIMINAL="false"
 
 #-----------------------------------------------------------
 
@@ -53,34 +78,34 @@ export INST_NEWZNAB_SVN_UID="svnplus"
 export INST_NEWZNAB_SVN_PW=""
 export INST_NEWZNAB_MYSQL_DB="newznab"
 export INST_NEWZNAB_MYSQL_UID="newznab"
-export INST_NEWZNAB_MYSQL_PW="mini_newznab"
-export INST_NEWZNAB_KEY_API=""
+export INST_NEWZNAB_MYSQL_PW=""
+export INST_NEWZNAB_KEY_API
+export INST_NEWZNAB_KEY_API_SICKBEARD=""
+export INST_NEWZNAB_KEY_API_COUCHPOTATO=""
 
 #-----------------------------------------------------------
 
 ## News Server Provider
-export INST_NEWSSERVER_NAME="XsNews"
-export INST_NEWSSERVER_SERVER="reader.xsnews.nl"
-export INST_NEWSSERVER_SERVER_UID="105764"
-export INST_NEWSSERVER_SERVER_PW=""
-export INST_NEWSSERVER_SERVER_PORT=""
-export INST_NEWSSERVER_SERVER_PORT_SSL="563"
-export INST_NEWSSERVER_RETENTION="876"
-
+export INST_NEWSSERVER_NAME='XsNews'
+export INST_NEWSSERVER_SERVER='reader.xsnews.nl'
+export INST_NEWSSERVER_SERVER_UID=''
+export INST_NEWSSERVER_SERVER_PW=''
+export INST_NEWSSERVER_SERVER_PORT=''
+export INST_NEWSSERVER_SERVER_PORT_SSL='563'
+export INST_NEWSSERVER_RETENTION='876'
 #-----------------------------------------------------------
 
 ## SpotWeb
 export INST_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
-export INST_SPOTWEB_PSQL_DB="spotweb_db"
-export INST_SPOTWEB_PSQL_UID="spotweb_usr"
-export INST_SPOTWEB_PSQL_PW="mini_spotweb"
-export INST_SPOTWEB_KEY_API=""
+export INST_NEWZNAB_PSQL_DB="spotweb_db"
+export INST_NEWZNAB_PSQL_UID="spotweb_usr"
+export INST_NEWZNAB_PSQL_PW=""
 
 #-----------------------------------------------------------
 
 ## SABnzbd
 export INST_SABNZBD_UID="sabnzbd"
-export INST_SABNZBD_PW="mini_sabnzbd"
+export INST_SABNZBD_PW=""
 export INST_SABNZBD_PORT="8080"
 export INST_SABNZBD_KEY_API=""
 export INST_SABNZBD_KEY_NZB=""
@@ -89,7 +114,7 @@ export INST_SABNZBD_KEY_NZB=""
 
 ## Sick-Beard
 export INST_SICKBEARD_UID="sickbeard"
-export INST_SICKBEARD_PW="mini_sickbeard"
+export INST_SICKBEARD_PW=""
 export INST_SICKBEARD_PORT="8081"
 export INST_SICKBEARD_KEY_API=""
 
@@ -97,27 +122,35 @@ export INST_SICKBEARD_KEY_API=""
 
 ## Couchpotato
 export INST_COUCHPOTATO_UID="couchpotato"
-export INST_COUCHPOTATO_PW="mini_couchpotato"
+export INST_COUCHPOTATO_PW=""
 export INST_COUCHPOTATO_PORT="8082"
 export INST_COUCHPOTATOD_KEY_API=""
 
 #-----------------------------------------------------------
 
-## GIT
-export INST_GIT_FULL_NAME="Andries Jongsma"
-export INST_GIT_EMAIL="a.jongsma@gmail.com"
+## Trakt
+export INST_TRAKT_UID=""
+export INST_TRAKT_PW=""
+export INST_TRAKT_KEY_API=""
 
 #-----------------------------------------------------------
 
-## Apache
-export INST_APACHE_SYSTEM_WEB_ROOT=/"Library/WebServer/Documents/"
+## Full User Name for GIT
+export INST_GIT_FULL_NAME='Andries Jongsma'
+
+## E-mail address for GIT
+export INST_GIT_EMAIL='a.jongsma@gmail.com'
+
+#-----------------------------------------------------------
+
+## WWW Frontpage
+export INST_APACHE_WWW_FRONTPAGE="true"
 
 ############################################################
 
 ## By using this script you understand that the programmer is not responsible for any loss of data, users, or sanity.
 ## You also agree that you were smart enough to make a backup of your database and files. Do you agree? yes/no
-
-export AGREED="yes"
+export AGREED="no"
 
 
 ##END OF EDITS##
@@ -126,8 +159,8 @@ export AGREED="yes"
 ############################################################
 
 ##Should not need to change
-export INST_NEWZNAB_UPDATE_PATH="$NEWZNAB_PATH/misc/update_scripts"
-export INST_NEWZNAB_TESTING_PATH="$NEWZNAB_PATH/misc/testing"
-export INST_NEWZNAB_ADMIN_PATH="$NEWZNAB_PATH/www/admin"
+export INST_NEWZNAB_UPDATE_PATH=$NEWZNAB_PATH"/misc/update_scripts"
+export INST_NEWZNAB_TESTING_PATH=$NEWZNAB_PATH"/misc/testing"
+export INST_NEWZNAB_ADMIN_PATH=$NEWZNAB_PATH"/www/admin"
 
 ############################################################

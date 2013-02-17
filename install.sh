@@ -617,6 +617,16 @@ osascript -e 'tell app "Terminal"
 end tell'
 
 #------------------------------------------------------------------------------
+# Install NewzDash
+#------------------------------------------------------------------------------
+if [ ! -d /Library/Server/Web/Data/Sites/Default/newzdash ] ; then
+    printf 'NewzDash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_newzdash.sh"
+else
+    printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------
 # Install Spotweb
 #------------------------------------------------------------------------------
 if [ ! -d /Users/Newznab/Sites/spotweb ] ; then
@@ -867,7 +877,6 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring NewzNAB as provider for CouchPotato"
 #------------------------------------------------------------------------------"
-
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo " TODO: Check for specific variables"
 echo " Till then, forced run:"
@@ -891,7 +900,6 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring CouchPotato to support Trakt.TV"
 #------------------------------------------------------------------------------"
-
 if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -916,15 +924,38 @@ fi
 #    printf 'CouchPotato support for Trakt.TV is configured\n' "$GREEN" $col '[OK]' "$RESET"
 #fi
 
-#------------------------------------------------------------------------------
-# Install NewzDash
-#------------------------------------------------------------------------------
-if [ ! -d /Library/Server/Web/Data/Sites/Default/newzdash ] ; then
-    printf 'NewzDash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_newzdash.sh"
+##------------------------------------------------------------------------------
+## Install Periscope
+##------------------------------------------------------------------------------
+if [ ! -e /usr/local/bin/periscope ] ; then
+    printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_periscope.sh"
+    while ( [ ! -e /usr/local/bin/periscope ] )
+    do
+	echo "Waiting for Periscope to be installed..."
+	sleep 15
+    done
 else
-    printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+
+##------------------------------------------------------------------------------
+## Install Subliminal
+##------------------------------------------------------------------------------
+#if [ ! -e /Applications/auto-sub.app ] ; then
+#    printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+#    source "$DIR/scripts/install_hmm_subliminal.sh"
+#    while ( [ ! -e /Applications/auto-sub.app ] )
+#    do
+#        echo "Waiting for Periscope to be installed..."
+#        sleep 15
+#    done
+#else
+#    printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
+#fi
+
+
 
 #------------------------------------------------------------------------------
 # Install Maraschino
@@ -940,11 +971,6 @@ if [ ! -d /Applications/maraschino ] ; then
 else
     printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
-
-#==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
-exit
-#==============================================================================
 
 #------------------------------------------------------------------------------
 # Install Plex Server
@@ -964,6 +990,7 @@ fi
 #------------------------------------------------------------------------------
 # Install Plex Client
 #------------------------------------------------------------------------------
+## http://wiki.plexapp.com/index.php/Keyboard
 if [ ! -e /Applications/Plex.app ] ; then
     printf 'Plex Client not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_plex_client.sh"
@@ -975,6 +1002,13 @@ if [ ! -e /Applications/Plex.app ] ; then
 else
     printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+
+
+#==============================================================================
+#=== FORCED EXIT DUE TO TESTING ===============================================
+exit
+#==============================================================================
 
 
 #------------------------------------------------------------------------------
@@ -1011,14 +1045,6 @@ else
     subl ~/.bash_profile
 fi
 
-#------------------------------------------------------------------------------
-# Install fonts
-#------------------------------------------------------------------------------
-#cd ~/Downloads
-#wget http://www.levien.com/type/myfonts/Inconsolata.otf
-#open Inconsolata.otf
-#wget https://dl.dropbox.com/u/4073777/Inconsolata-Powerline.otf
-#open Inconsolata-Powerline.otf
 
 #------------------------------------------------------------------------------
 # Git config
