@@ -55,12 +55,18 @@ http://www.newznabforums.com/index.php?topic=231.0
 
 http://www.newznabforums.com/index.php?action=dlattach;topic=231.0;attach=43
 
-#= 14-02-2013 ========================================================================
-
-DOTFILES:
--bash: __git_ps1: command not found
-
 -------------------------------------------------------------------------
+
+#!/bin/bash
+FILE="/etc/resolv.conf"
+OUT=$(awk '{ print $2 }' $FILE)
+echo "*** Nameserver IP ***"
+for ip in $OUT
+do
+   echo $ip
+done
+
+#= 14-02-2013 ========================================================================
 
 /Users/Newznab/Sites/newznab/misc/testing/update_parsing.php
 $echo = true; => $echo = false;
