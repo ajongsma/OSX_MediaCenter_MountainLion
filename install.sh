@@ -10,9 +10,9 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [ -L config.sh ]; then
-  rm config.sh
-fi
+#if [ -L config.sh ]; then
+#  rm config.sh
+#fi
 if [ ! -f config.sh ]; then
   clear
   echo "No config.sh found. Creating file, and please edit the required values"
@@ -47,7 +47,10 @@ MAGENTA=$(tput setaf 5)  #  5   Magenta
 CYAN=$(tput setaf 6)  #     6   Cyan
 WHITE=$(tput setaf 7)  #    7   White
 RESET=$(tput sgr0)
-col=40
+
+PRINTF_MASK="%-50s %s %10s %s\n"
+
+#printf "$PRINTF_MASK" "|This field is 50 characters wide...|" "$GREEN" "[OK]" "$RESET"
 
 ##-----------------------------------------------------------------------------
 ## Check OS
@@ -55,9 +58,11 @@ col=40
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   OS="Mac"
   APP_PATH="/Applications"
-  printf 'OS X Detected\n' "$GREEN" $col '[OK]' "$RESET"
+  #printf 'OS X Detected\n' "$GREEN" $col '[OK]' "$RESET"
+  printf "$PRINTF_MASK" "OS X Detected" "$GREEN" "[OK]" "$RESET"
 else
-  printf 'Linux unsupported.\n' "$RED" $col '[FAIL]' "$RESET"
+  #printf 'Linux unsupported.\n' "$RED" $col '[FAIL]' "$RESET"
+  printf "$PRINTF_MASK" "Linux unsupported." "$RED" "[ERR]" "$RESET"
   exit 1
 fi
 
@@ -65,8 +70,11 @@ fi
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
 # Ask for the administrator password upfront
-echo -e "Please enter root password"
+echo "----------------------------------"
+echo "| Please enter root password     |"
+echo "----------------------------------"
 sudo -v
+echo "----------------------------------"
 
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -89,13 +97,15 @@ if [ ! -f ~/.bash_profile ] ; then
     echo "Creating default .bash_profile..."
     cp conf/bash_profile ~/.bash_profile
 else
-    echo "File ~/.bash_profile found, please add the following manually..."
+    echo
+    echo "File ~/.bash_profile found, please add the following manually:"
+    echo "------------ START ---------------"
     echo "# Tell ls to be colourful"
     echo "export CLICOLOR=1"
     echo ""
     echo "# Tell grep to highlight matches"
     echo "export GREP_OPTIONS='--color=auto'"
-    echo " --- press any key to continue ---"
+    echo "------------ END -----------------"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     nano ~/.bash_profile
@@ -112,111 +122,117 @@ chflags nohidden ~/Library
 # Checking existence directories
 #------------------------------------------------------------------------------
 if [ ! -d ~/Sites/ ] ; then
-    printf 'Creating directory ~/Sites…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    printf "$PRINTF_MASK" "Creating directory ~/Sites…" "$YELLOW" "[WAIT]" "$RESET"
     mkdir -p ~/Sites/
 else
-    printf 'Directory ~/Sites/ found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Directory ~/Sites found" "$GREEN" "[OK]" "$RESET"
+
 fi
 
 if [ ! -d ~/Github/ ] ; then
-    printf 'Creating directory ~/Github…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    printf "$PRINTF_MASK" "Creating directory ~/Github…" "$YELLOW" "[WAIT]" "$RESET"
     mkdir -p ~/Github/
 else
-    printf 'Directory ~/Github/ found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Directory ~/Github found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Xcode.app ] ; then
-    printf 'Xcode not installed, please install..\n' "$RED" $col '[FAIL]' "$RESET"
-
+    printf "$PRINTF_MASK" "Xcode not installed, please install..." "$RED" "[FAIL]" "$RESET"
     open http://itunes.apple.com/nl/app/xcode/id497799835?mt=12
     while ( [ ! -e /Applications/Xcode.app ] )
     do
-        printf 'Waiting for Xcode to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for Xcode to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 else
-    printf 'Xcode found' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Xcode found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for Command Line Tools via GCC check
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/gcc ] ; then
-    printf 'GCC not installed, please Command Line tools..\n' "$RED" $col '[FAIL]' "$RESET"
+    printf "$PRINTF_MASK" "GCC not installed, please install..." "$RED" "[FAIL]" "$RESET"
     open https://developer.apple.com/downloads/index.action#
     while ( [ ! -e /usr/bin/gcc ] )
     do
-        printf 'Waiting for GCC to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for GCC to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
 else
-    printf 'GCC found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "GCC found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for XQuartz
 #------------------------------------------------------------------------------
 if [ ! -d /opt/X11/ ] ; then
-    printf 'XQuartz not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    printf "$PRINTF_MASK" "XQuartz not installed, please install..." "$RED" "[FAIL]" "$RESET"
     open http://xquartz.macosforge.org/landing/
     while ( [ ! -d /opt/X11/ ] )
     do
-        printf 'Waiting for XQuartz to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for XQuartz to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
 
-    #echo -e "${BLUE} ---      Restart needed       --- ${RESET}"
-    #echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    #read -n 1 -s
-    sudo shutdown -r +1 "Server is rebooting in 1 minute..."
+    echo -e "${BLUE} ---      Restart needed       --- ${RESET}"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    sudo shutdown -r +1 "Rebooting in 1 minute..."
 else
-    printf 'XQuartz found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "XQuartz found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for Java
 #------------------------------------------------------------------------------
 if [ ! -e /usr/bin/java ] ; then
-    printf 'Java not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    printf "$PRINTF_MASK" "Java not installed, please install..." "$RED" "[FAIL]" "$RESET"
     while ( [ ! -e /usr/bin/java ] )
     do
-        printf 'Waiting for Java to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for Java to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
 else
-    printf 'Java found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Java found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for OS X Server 2.0
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/Server.app ] ; then
-    printf 'OS X Server not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    printf "$PRINTF_MASK" "OS X Server not installed, please install..." "$RED" "[FAIL]" "$RESET"
     open https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12
     while ( [ ! -e /Applications/Server.app ] )
     do
-        printf 'Waiting for OS X Server to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for OS X Server to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
+    printf "$PRINTF_MASK" "Please enable:" "$YELLOW" "[WAIT]" "$RESET"
+    printf "$PRINTF_MASK" "- Websites…" "$YELLOW" "[WAIT]" "$RESET"
+    printf "$PRINTF_MASK" "- PHP Web Applications…" "$YELLOW" "[WAIT]" "$RESET"
     open /Applications/Server.app
-    printf 'Please enable:\n' "BLUE" $col '[WAIT]' "$RESET"
-    printf ' * Websites…\n' "BLUE" $col '[WAIT]' "$RESET"
-    printf ' * PHP Web Applications…\n' "BLUE" $col '[WAIT]' "$RESET"
+
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
 else
-    printf 'OS X Server found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "OS X Server found" "$GREEN" "[OK]" "$RESET"
 fi
 
 SERVICE='httpd'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
+    #printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
+    printf "$PRINTF_MASK" "$SERVICE' is running" "$GREEN" "[OK]" "$RESET"
 else
-    printf $SERVICE' is not running\n' "$RED" $col '[FAIL]' "$NORMAL"
+    #printf $SERVICE' is not running\n' "$RED" $col '[FAIL]' "$NORMAL"
+    printf "$PRINTF_MASK" "$SERVICE' is not running" "$RED" "[FAIL]" "$RESET"
+
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
 fi
 
 #------------------------------------------------------------------------------
@@ -224,16 +240,15 @@ fi
 #------------------------------------------------------------------------------
 #sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 if [ ! -e /usr/libexec/apache2/libphp5.so.org ] ; then
-    printf 'Backup file libphp5.org not found, copying file…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    printf "$PRINTF_MASK" "Backup file libphp5.org not found, copying file…" "$YELLOW" "[WAIT]" "$RESET"
     sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
     if [ -e /usr/libexec/apache2/libphp5.so.org ] ; then
-        printf 'Backup file libphp5.org found\n' "YELLOW" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "Backup file libphp5.org found" "$GREEN" "[OK]" "$RESET"
     else
-        echo "No file libphp5 found                             [ERR]"
-        printf 'No backup of file libphp5.so found\n' "$RED" $col '[FAIL]' "$NORMAL"
+        printf "$PRINTF_MASK" "No backup of file libphp5.so found" "$RED" "[FAIL]" "$RESET"
     fi
 else
-    printf 'Backup file libphp5.org found\n' "YELLOW" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Backup file libphp5.org found" "$GREEN" "[OK]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -241,16 +256,16 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_ITERM2 == "true" ]]; then
     if [ ! -e /Applications/iTerm.app ] ; then
-        printf 'iTerm not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf "$PRINTF_MASK" "iTerm not found, please install…" "$RED" "[FAIL]" "$RESET"
         open http://www.iterm2.com
         while ( [ ! -e /Applications/iTerm.app ] )
         do
-            printf 'Waiting for iTerm to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            printf "$PRINTF_MASK" "Waiting for iTerm to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
         open /Applications/iTerm.app
     else
-        printf 'iTerm found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "iTerm found" "$GREEN" "[OK]" "$RESET"
     fi
 fi
 
@@ -259,25 +274,28 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_SUBLIMETEXT == "true" ]]; then
     if [ ! -e /Applications/Sublime\ Text\ 2.app ] ; then
-        printf 'Sublime Text not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf "$PRINTF_MASK" "Sublime Text not found, please install…" "$RED" "[FAIL]" "$RESET"
         open http://www.sublimetext.com
         while ( [ ! -e /Applications/Sublime\ Text\ 2.app ] )
         do
-            printf 'Waiting for Sublime Text to be installed...\n' "YELLOW" $col '[WAIT]' "$RESET"
+            printf "$PRINTF_MASK" "Waiting for Sublime Text to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
         open /Applications/Sublime\ Text\ 2.app
     else
-        printf 'Sublime Text found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "Sublime Text found" "$GREEN" "[OK]" "$RESET"
     fi
-    if [ ! -e /usr/local/bin/subl ] ; then
-        printf 'Symbolic link to Sublime Text not found, creating...\n' "$RED" $col '[FAIL]' "$RESET"
+    if [ ! -L /usr/local/bin/subl ] ; then
+        printf "$PRINTF_MASK" "Symbolic link to Sublime Text not found, creating…" "$YELLOW" "[WAIT]" "$RESET"
         if [ ! -d /usr/local/bin ] ; then
+            printf "$PRINTF_MASK" "Directory /usr/local/bin/ does not exist, creating…" "$YELLOW" "[WAIT]" "$RESET"
             sudo mkdir -p /usr/local/bin/ 
+        else
+            printf "$PRINTF_MASK" "Directory /usr/local/bin/ exist" "$GREEN" "[OK]" "$RESET"
         fi
         sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
     else
-        printf 'Sublime Text link found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "Sublime Text link found" "$GREEN" "[OK]" "$RESET"
     fi
 fi
 
@@ -287,16 +305,16 @@ fi
 #https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
 if [[ $INST_XLOG == "true" ]]; then
     if [ ! -e /Applications/Xlog.app ] ; then
-        printf 'Xlog not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf "$PRINTF_MASK" "Xlog not found, please install…" "$RED" "[FAIL]" "$RESET"
         open https://itunes.apple.com/us/app/xlog/id430304898?mt=12&ls=1
         while ( [ ! -e /Applications/Xlog.app ] )
         do
-            printf 'Waiting for Xlog to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            printf "$PRINTF_MASK" "Waiting for Xlog to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
         open /Applications/Xlog.app
     else
-        printf 'Xlog found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "Xlog found" "$GREEN" "[OK]" "$RESET"
     fi
 fi
 
@@ -305,16 +323,16 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_MACGITHUB == "true" ]]; then
     if [ ! -e /Applications/GitHub.app ] ; then
-        printf 'Github not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf "$PRINTF_MASK" "Github not found, please install…" "$RED" "[FAIL]" "$RESET"
         open http://mac.github.com
         while ( [ ! -e /Applications/GitHub.app ] )
         do
-            printf 'Waiting for Github to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            printf "$PRINTF_MASK" "Waiting for Github to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
         #open /Applications/GitHub.app
     else
-        printf 'GitHub found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "GitHub found" "$GREEN" "[OK]" "$RESET"
     fi
 fi
 
@@ -323,16 +341,16 @@ fi
 #------------------------------------------------------------------------------
 if [[ $INST_DROPBOX == "true" ]]; then
     if [ ! -d /Library/DropboxHelperTools ] ; then
-        printf 'Dropbox not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        printf "$PRINTF_MASK" "Dropbox not found, please install…" "$RED" "[FAIL]" "$RESET"
         open https://www.dropbox.com/download?plat=mac
         while ( [ ! -d /Library/DropboxHelperTools ] )
         do
-            printf 'Waiting for Dropbox to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+            printf "$PRINTF_MASK" "Waiting for Dropbox to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
         #open /Applications/GitHub.app
     else
-        printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
+        printf "$PRINTF_MASK" "Dropbox found" "$GREEN" "[OK]" "$RESET"
     fi
 fi
 
@@ -347,16 +365,16 @@ fi
 ## Don’t forget to add /usr/local/Cellar/coreutils/8.20/libexec/gnubin to $PATH
 
 if [ ! -e /usr/local/bin/brew ] ; then
-    printf 'HomeBrew not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+    printf "$PRINTF_MASK" "HomeBrew not found, please install…" "$RED" "[FAIL]" "$RESET"
     source "$DIR/scripts/install_brew.sh"
     while ( [ ! -e /usr/local/bin/brew ] )
     do
-        printf 'Waiting for HomeBrew to be installed…\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf "$PRINTF_MASK" "Waiting for HomeBrew to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
     #open /Applications/GitHub.app
 else
-    printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "HomeBrew found" "$GREEN" "[OK]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
