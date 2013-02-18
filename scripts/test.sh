@@ -16,6 +16,9 @@ printf($mask, "d", "4567890", "[PROCESSING");
 
 echo "#----------------------------------------------------------\n"
 
+exit
+
+echo "#----------------------------------------------------------\n"
 
 shell_exec("./check_process.sh mediainfo {$array['KILL_PROCESS']}");
 shell_exec("./check_process.sh ffmpeg {$array['KILL_PROCESS']}");
