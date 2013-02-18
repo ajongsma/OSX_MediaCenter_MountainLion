@@ -17,7 +17,7 @@ echo "#-------------------------------------------------------------------------
 ##  Restart nautilus by running the following command:
 ##    nautilus -q
 
-source ~/.bashrc
+source ../config.sh
 
 sudo pip install beautifulsoup
 sudo pip install beautifulsoup4
@@ -26,8 +26,6 @@ sudo pip install periscope
 #sudo svn checkout https://github.com/patrickdessalle/periscope/trunk/ /usr/local/share/periscope
 
 mkdir ~/.config
-
-
 
 echo "#------------------------------------------------------------------------------"
 echo "# To check for available subtitles via Periscope type:"
