@@ -516,13 +516,15 @@ else
 fi
 
 ##------------------------------------------------------------------------------
-## Install Powerline
+## Install Powerline Tmux
 ##------------------------------------------------------------------------------
-if [ ! -d /usr/local/share/tmux-powerline ] ; then
-    printf 'Powerline not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_powerline_tmux.sh"
-else
-    printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_POWERLINE_TMUX == "true" ]]; then
+    if [ ! -d /usr/local/share/tmux-powerline ] ; then
+        printf 'Powerline not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_powerline_tmux.sh"
+    else
+        printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 ##------------------------------------------------------------------------------
