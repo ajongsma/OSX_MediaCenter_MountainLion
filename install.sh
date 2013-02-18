@@ -927,35 +927,36 @@ fi
 ##------------------------------------------------------------------------------
 ## Install Periscope
 ##------------------------------------------------------------------------------
-if [ ! -e /usr/local/bin/periscope ] ; then
-    printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_periscope.sh"
-    while ( [ ! -e /usr/local/bin/periscope ] )
-    do
-	echo "Waiting for Periscope to be installed..."
-	sleep 15
-    done
-else
-    printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_PERISCOPE == "true" ]]; then
+    if [ ! -e /usr/local/bin/periscope ] ; then
+        printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_periscope.sh"
+        while ( [ ! -e /usr/local/bin/periscope ] )
+        do
+    	echo "Waiting for Periscope to be installed..."
+	    sleep 15
+        done
+    else
+        printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
-
 
 ##------------------------------------------------------------------------------
 ## Install Subliminal
 ##------------------------------------------------------------------------------
-#if [ ! -e /Applications/auto-sub.app ] ; then
-#    printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-#    source "$DIR/scripts/install_hmm_subliminal.sh"
-#    while ( [ ! -e /Applications/auto-sub.app ] )
-#    do
-#        echo "Waiting for Periscope to be installed..."
-#        sleep 15
-#    done
-#else
-#    printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
+#if [[ $INST_INST_SUBLIMINAL == "true" ]]; then
+#    if [ ! -e /Applications/auto-sub.app ] ; then
+#        printf 'Periscope not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+#        source "$DIR/scripts/install_hmm_subliminal.sh"
+#        while ( [ ! -e /Applications/auto-sub.app ] )
+#        do
+#            echo "Waiting for Periscope to be installed..."
+#            sleep 15
+#        done
+#    else
+#        printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
+#    fi
 #fi
-
-
 
 #------------------------------------------------------------------------------
 # Install Maraschino
