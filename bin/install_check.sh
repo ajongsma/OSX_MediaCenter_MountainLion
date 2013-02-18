@@ -1,6 +1,26 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ## http://www.howtogeek.com/120285/how-to-build-your-own-usenet-indexer/
+
+SOURCE="${BASH_SOURCE[0]}"
+DIR="$( dirname "$SOURCE" )"
+while [ -h "$SOURCE" ]
+do
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+## Make sure only root can run our script
+#if [[ $EUID -ne 0 ]]; then
+#   echo "This script must be run as root" 1>&2
+#   exit 1
+#fi
+
+source ../defaults.sh
+eval $( $SED -n "/^define/ { s/.*('\([^']*\)', '*\([^']*\)'*);/export \1=\"\2\"/; p }" "$NEWZPATH"/www/config.php )
+
 
 PHP_INI_1=/private/etc/php.ini
 PHP_INI_2=/usr/local/etc/php/5.4/php.ini
@@ -36,6 +56,9 @@ col=40
 #fi
 
 ## -----------------------------------------------
+
+command -v brew >/dev/null 2>&1 || { echo >&2 "I require Homebrew but it's not installed.     [ERR]"; } && { echo >&2 "Homebrew installed      [OK]"; }
+
 
 echo "============================================"
 echo "`date +%Y-%m-%d\ %H:%M` : Starting check"
