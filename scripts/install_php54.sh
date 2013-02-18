@@ -21,6 +21,8 @@
 
 #?? error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
 
+#command -v brew >/dev/null 2>&1|| { echo >&2 "I require Homebrew but it's not installed.  Aborting."; exit 1; }
+
 brew tap josegonzalez/homebrew-php
 brew update
 brew upgrade
