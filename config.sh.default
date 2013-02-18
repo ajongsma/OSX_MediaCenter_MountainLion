@@ -131,6 +131,11 @@ export INST_COUCHPOTATOD_KEY_API=""
 
 #-----------------------------------------------------------
 
+## Headphones
+export INST_HEADPHONES_PATH="/Users/Headphones/Sites/headphones"
+
+#-----------------------------------------------------------
+
 ## Trakt
 export INST_TRAKT_UID=""
 export INST_TRAKT_PW=""
