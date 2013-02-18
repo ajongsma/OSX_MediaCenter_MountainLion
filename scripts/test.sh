@@ -1,20 +1,35 @@
 source ../config.sh
 
-## TESTING: Aligned printing
+BOLD=$(tput bold)
+BLACK=$(tput setaf 0) #   0  Black
+RED=$(tput setaf 1)  #  1   Red
+GREEN=$(tput setaf 2)  #    2   Green
+YELLOW=$(tput setaf 3)  #   3   Yellow
+BLUE=$(tput setaf 4)  #     4   Blue
+MAGENTA=$(tput setaf 5)  #  5   Magenta
+CYAN=$(tput setaf 6)  #     6   Cyan
+WHITE=$(tput setaf 7)  #    7   White
+RESET=$(tput sgr0)
 
-echo "#----------------------------------------------------------\n"
+mask="%-80s %s %10s %s\n"
 
-$mask = "%20s %20.20s %20.20s\n";
-printf("\033[1;33m\n");
-printf($mask, "Category", "State", "Reason");
-printf($mask, "==================", "==================", "==================");
-printf("\033[38;5;214m");
-printf($mask, "aaaa", "123123", "[OK]");
-printf($mask, "bbbbbbbbbbbbb", "234", "[ERR]");
-printf($mask, "cc", "34567", "[FAIL]");
-printf($mask, "d", "4567890", "[PROCESSING");
+printf "$mask" "|This field is 50 characters wide...|" "$GREEN" "[OK]" "$RESET"
 
-echo "#----------------------------------------------------------\n"
+
+exit
+
+echo "#----------------------------------------------------------"
+export mask="%20s %20.20s %20.20s\n"
+printf "\033[1;33m\n"
+printf $mask, "Category", "State", "Reason"
+printf $mask, "==================", "==================", "=================="
+printf "\033[38;5;214m"
+printf $mask, "aaaa", "123123", "[OK]"
+printf $mask, "bbbbbbbbbbbbb", "234", "[ERR]"
+printf $mask, "cc", "34567", "[FAIL]"
+printf $mask, "d", "4567890", "[PROCESSING"
+
+echo "#----------------------------------------------------------"
 
 exit
 

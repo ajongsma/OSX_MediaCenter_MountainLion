@@ -953,6 +953,11 @@ echo "   $DIR/scripts/install_headphones_newznab.sh"
 source "$DIR/scripts/install_headphones_newznab.sh"
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# /Users/Headphones/Sites/headphones/config.ini
+#  [SABnzbd]
+#  sab_host = http://localhost/8080
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
