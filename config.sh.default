@@ -59,6 +59,9 @@ export INST_INDUCTIONAPP="false"
 # Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
 export INST_POWERLINE_SHELL="false"
 
+# Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
+export INST_POWERLINE_TMUX="true"
+
 # Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
 export INST_PERISCOPE="false"
 
