@@ -394,6 +394,7 @@ brew install bash
 brew install wget
 brew install tmux
 brew install ffmpeg  ## Also installs: texi2html, yasm, x264, faac, lame, xvid
+brew install mediainfo
 
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 echo "# homebrew"
