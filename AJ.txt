@@ -1,3 +1,29 @@
+#= 18-02-2013 ========================================================================
+
+?? tmux sh newznab_screen_local.sh
+
+-------------------------------------------------------------------------
+
+Spotweb API
+http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
+
+(1) httpd.conf:
+<Directory /Users/Spotweb/Sites/spotweb/>
+	RewriteEngine on
+	RewriteCond %{REQUEST_URI} !api/
+	RewriteRule ^api/?$ index.php?page=newznabapi [QSA,L]
+	Options Indexes FollowSymLinks Multiviews
+	AllowOverride None
+	Order allow,deny
+	allow from all
+</Directory>
+
+(2) Webpage
+http://localhost/spotweb/api?t=c 
+
+
+
+
 #= 15-02-2013 ========================================================================
 
 NewzNAB
