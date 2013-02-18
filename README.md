@@ -50,6 +50,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Couch Potato] (https://couchpota.to/)
   * [TraktTV integration] (https://trakt.tv/)
 * [Periscope] (http://code.google.com/p/periscope/)
+* [Headphones] (https://github.com/rembo10/headphones)
 * [Maraschino] (http://www.maraschinoproject.com/)
   ``` [Maraschino Forum] (http://forums.maraschinoproject.com) ```
 
