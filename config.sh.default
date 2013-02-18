@@ -20,6 +20,7 @@ export INST_FOLDER_USENET_INCOMPLETE="$HOME/Downloads/Usenet/InComplete"
 export INST_FOLDER_USENET_COMPLETE="$HOME/Downloads/Usenet/Complete"
 export INST_FOLDER_SERIES_COMPLETE="$HOME/Media/Series"
 export INST_FOLDER_MOVIES_COMPLETE="$HOME/Media/Movies"
+export INST_FOLDER_MUSIC_COMPLETE="$HOME/Media/Music"
 
 #export INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 export INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
@@ -85,6 +86,7 @@ export INST_NEWZNAB_MYSQL_PW=""
 export INST_NEWZNAB_KEY_API
 export INST_NEWZNAB_KEY_API_SICKBEARD=""
 export INST_NEWZNAB_KEY_API_COUCHPOTATO=""
+export INST_NEWZNAB_KEY_API_HEADPHONES=""
 
 #-----------------------------------------------------------
 
