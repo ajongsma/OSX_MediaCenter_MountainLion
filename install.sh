@@ -22,8 +22,12 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [ -L config.sh ]; then
-  rm config.sh
+if [ $HOSTNAME != "pooky.local"]; then
+    if [ -L config.sh ]; then
+      rm config.sh
+    fi
+else
+    echo "=> Pooky"
 fi
 
 if [ ! -f config.sh ]; then
@@ -401,31 +405,37 @@ fi
 
 ######## PLAY TIME ##############
 #/usr/local/bin/
-
-CMDS="apple-gcc42 \
-      gnu-sed \
-      coreutils \
-      autoconf \
-      automake \
-      findutils \
-      bash \
-      wget \
-      tmux \
-      texi2html \
-      yasm \
-      x264 \
-      faac \
-      lame \
-      xvid \
-      ffmpeg \
-      mediainfo \
-      "
- 
-for i in $CMDS
-do
-    # command -v will return >0 when the $i is not found
-    command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
-done
+#
+#CMDS="apple-gcc42 \
+#      gnu-sed \
+#      coreutils \
+#      autoconf \
+#      automake \
+#      findutils \
+#      bash \
+#      wget \
+#      tmux \
+#      texi2html \
+#      yasm \
+#      x264 \
+#      faac \
+#      lame \
+#      xvid \
+#      ffmpeg \
+#      mediainfo \
+#      "
+#
+#for i in $CMDS
+#do
+#        # command -v will return >0 when the $i is not found
+#    command -v $i >/dev/null && continue || { echo "$i command not found."; exit 1; }
+#done
+# 
+#for i in $CMDS;
+#do
+#    # command -v will return >0 when the $i is not found
+#    command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
+#done
 #
 ######## PLAY TIME - END ######## 
 
@@ -703,7 +713,7 @@ fi
 #------------------------------------------------------------------------------
 # Install Spotweb
 #------------------------------------------------------------------------------
-if [ ! -d /Users/Newznab/Sites/spotweb ] ; then
+if [ ! -d /Users/Spotweb/Sites/spotweb ] ; then
     printf 'Spotweb not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_spotweb.sh"
 else

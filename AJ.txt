@@ -27,7 +27,10 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
         logger.log('Could not retrieve number of columns settings. Defaulting to 3.' , 'WARNING')
         num_columns = 3
 
+-------------------------------------------------------------------------
 
+CouchPotato:
+[hpotato.core.plugins.base] Opening multipart url: http://127.0.0.1/newznab/api?nzbname=130096-FULL-a.b.moovee-+Dredd.2012.DVDRip.XviD.AC3.iNT-iTCH+-010121+-+dredd.dvdrip.xvid-itch.nfo+yE.cp%28tt1343727%29&apikey=xxx&mode=addfile&cat=movies, params: ['nzbfile']
 
 #= ERRORS - END ======================================================================
 
