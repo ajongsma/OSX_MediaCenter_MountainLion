@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 
-### TO TEST #######
+######## PLAY TIME ##############
 ### Exit the script if any statement returns a non-true return value.
 #set -o errexit
 ##set -e
 #
 ### ?? Check for uninitialised variables ??
 ##set -o nounset
-####################
+#
+######## PLAY TIME - END ########
 
 
 SOURCE="${BASH_SOURCE[0]}"
@@ -392,6 +393,8 @@ fi
 ##------------------------------------------------------------------------------
 ### Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
 
+
+######## PLAY TIME ##############
 #/usr/local/bin/
 
 CMDS="apple-gcc42 \
@@ -418,7 +421,8 @@ do
     # command -v will return >0 when the $i is not found
     command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
 done
-
+#
+######## PLAY TIME - END ######## 
 
 brew tap homebrew/dupes
 brew install apple-gcc42
