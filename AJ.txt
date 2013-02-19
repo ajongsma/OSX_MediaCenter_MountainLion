@@ -1,6 +1,5 @@
 
-
-#= 18-02-2013 ========================================================================
+#= ERRORS============================================================================
 
 Spotweb:
 
@@ -20,6 +19,13 @@ Marachino:
 
 ERR:
 WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
+#= ERRORS - END ======================================================================
+
+#= 18-02-2013 ========================================================================
+
+http://www.cyberciti.biz/faq/unix-linux-sed-match-replace-the-entire-line-command/
+sed -i 's/^acl verizonfios.*/acl verizonfios src 202.1.2.3/' /etc/squid/squid.conf
+
 
 
 #= 18-02-2013 ========================================================================
