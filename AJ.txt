@@ -1,8 +1,28 @@
+
+
 #= 18-02-2013 ========================================================================
 
-?? tmux sh newznab_screen_local.sh
+Spotweb:
+
+ERR:
+PHP Notice:  Undefined variable: messageid in /Users/Spotweb/Sites/spotweb/lib/dao/Base/Dao_Base_Spot.php on line 566
+PHP Stack trace:
+PHP   1. {main}() /Users/Spotweb/Sites/spotweb/retrieve.php:0
+PHP   2. SpotRetriever_Abs->perform() /Users/Spotweb/Sites/spotweb/retrieve.php:160
+PHP   3. SpotRetriever_Abs->loopTillEnd() /Users/Spotweb/Sites/spotweb/lib/retriever/SpotRetriever_Abs.php:230
+PHP   4. SpotRetriever_Spots->updateLastRetrieved() /Users/Spotweb/Sites/spotweb/lib/retriever/SpotRetriever_Abs.php:183
+PHP   5. SpotDb->removeExtraSpots() /Users/Spotweb/Sites/spotweb/lib/retriever/SpotRetriever_Spots.php:79
+PHP   6. Dao_Base_Spot->removeExtraSpots() /Users/Spotweb/Sites/spotweb/lib/SpotDb.php:430
 
 -------------------------------------------------------------------------
+
+Marachino:
+
+ERR:
+WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
+
+
+#= 18-02-2013 ========================================================================
 
 Spotweb API
 http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
@@ -20,9 +40,6 @@ http://mar2zz.tweakblogs.net/blog/6724/spotweb-als-provider.html#more
 
 (2) Webpage
 http://localhost/spotweb/api?t=c 
-
-
-
 
 #= 15-02-2013 ========================================================================
 
