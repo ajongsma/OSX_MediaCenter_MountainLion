@@ -307,6 +307,11 @@ if [[ $INST_SUBLIMETEXT == "true" ]]; then
             printf "$PRINTF_MASK" "Directory /usr/local/bin/ exist" "$GREEN" "[OK]" "$RESET"
         fi
         sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+        if [ "$?"-ne 0]; then
+            printf "$PRINTF_MASK" "Symbolic link created" "$GREEN" "[OK]" "$RESET"
+        else
+            printf "$PRINTF_MASK" "Symbolic link creation failed!" "$RED" "[FAIL]" "$RESET"
+        fi
     else
         printf "$PRINTF_MASK" "Sublime Text link found" "$GREEN" "[OK]" "$RESET"
     fi
