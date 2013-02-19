@@ -1,4 +1,3 @@
-
 #= ERRORS============================================================================
 
 Spotweb:
@@ -19,6 +18,17 @@ Marachino:
 
 ERR:
 WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
+----------
+=> index.py
+    try:
+        num_columns = int(num_columns)
+
+    except:
+        logger.log('Could not retrieve number of columns settings. Defaulting to 3.' , 'WARNING')
+        num_columns = 3
+
+
+
 #= ERRORS - END ======================================================================
 
 #= 18-02-2013 ========================================================================
