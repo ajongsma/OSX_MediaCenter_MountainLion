@@ -393,6 +393,33 @@ fi
 ### Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
 
 #/usr/local/bin/
+
+CMDS="apple-gcc42 \
+      gnu-sed \
+      coreutils \
+      autoconf \
+      automake \
+      findutils \
+      bash \
+      wget \
+      tmux \
+      texi2html \
+      yasm \
+      x264 \
+      faac \
+      lame \
+      xvid \
+      ffmpeg \
+      mediainfo \
+      "
+ 
+for i in $CMDS
+do
+    # command -v will return >0 when the $i is not found
+    command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
+done
+
+
 brew tap homebrew/dupes
 brew install apple-gcc42
 brew install gnu-sed
