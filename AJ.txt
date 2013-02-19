@@ -32,13 +32,17 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
 CouchPotato:
 [hpotato.core.plugins.base] Opening multipart url: http://127.0.0.1/newznab/api?nzbname=130096-FULL-a.b.moovee-+Dredd.2012.DVDRip.XviD.AC3.iNT-iTCH+-010121+-+dredd.dvdrip.xvid-itch.nfo+yE.cp%28tt1343727%29&apikey=xxx&mode=addfile&cat=movies, params: ['nzbfile']
 
+-------------------------------------------------------------------------
+
+NewzNAB: update_releases.php
+Error fetching part number <XGecvTOsSlMN0ZJHI4T3@JBinUp.local> in alt.binaries.movies.divx (Server response: No such article found)
+
 #= ERRORS - END ======================================================================
 
 #= 18-02-2013 ========================================================================
 
 http://www.cyberciti.biz/faq/unix-linux-sed-match-replace-the-entire-line-command/
 sed -i 's/^acl verizonfios.*/acl verizonfios src 202.1.2.3/' /etc/squid/squid.conf
-
 
 
 #= 18-02-2013 ========================================================================
