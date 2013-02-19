@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+
+### TO TEST #######
+### Exit the script if any statement returns a non-true return value.
+#set -o errexit
+##set -e
+#
+### ?? Check for uninitialised variables ??
+##set -o nounset
+####################
+
+
 SOURCE="${BASH_SOURCE[0]}"
 DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
@@ -10,9 +21,10 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-#if [ -L config.sh ]; then
-#  rm config.sh
-#fi
+if [ -L config.sh ]; then
+  rm config.sh
+fi
+
 if [ ! -f config.sh ]; then
   clear
   echo "No config.sh found. Creating file, and please edit the required values"
@@ -28,14 +40,6 @@ if [[ $AGREED == "no" ]]; then
 fi
 
 ## ----------------------------------------------------------------------------
-## -= Used git's =-
-## Postprocessing scripts:
-## git clone https://github.com/clinton-hall/nzbToMedia
-## https://github.com/jonnyboy/newznab
-
-## ?? https://github.com/roderik/dotfiles
-## ?? https://github.com/mathiasbynens/dotfiles
-## ----------------------------------------------------------------------------
 
 BOLD=$(tput bold)
 BLACK=$(tput setaf 0) #   0  Black
@@ -50,18 +54,14 @@ RESET=$(tput sgr0)
 
 PRINTF_MASK="%-50s %s %10s %s\n"
 
-#printf "$PRINTF_MASK" "|This field is 50 characters wide...|" "$GREEN" "[OK]" "$RESET"
-
 ##-----------------------------------------------------------------------------
 ## Check OS
 ##-----------------------------------------------------------------------------
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   OS="Mac"
   APP_PATH="/Applications"
-  #printf 'OS X Detected\n' "$GREEN" $col '[OK]' "$RESET"
   printf "$PRINTF_MASK" "OS X Detected" "$GREEN" "[OK]" "$RESET"
 else
-  #printf 'Linux unsupported.\n' "$RED" $col '[FAIL]' "$RESET"
   printf "$PRINTF_MASK" "Linux unsupported." "$RED" "[ERR]" "$RESET"
   exit 1
 fi
@@ -117,21 +117,29 @@ source ~/.bash_profile
 #------------------------------------------------------------------------------
 chflags nohidden ~/Library
 
-
 #------------------------------------------------------------------------------
 # Checking existence directories
 #------------------------------------------------------------------------------
 if [ ! -d ~/Sites/ ] ; then
     printf "$PRINTF_MASK" "Creating directory ~/Sites…" "$YELLOW" "[WAIT]" "$RESET"
     mkdir -p ~/Sites/
+    if [ "$?"-ne 0]; then
+        printf "$PRINTF_MASK" "Directory ~/Sites found" "$GREEN" "[OK]" "$RESET"
+    else
+        printf "$PRINTF_MASK" "Creating directory ~/Sites failed!" "$RED" "[FAIL]" "$RESET"
+    fi
 else
     printf "$PRINTF_MASK" "Directory ~/Sites found" "$GREEN" "[OK]" "$RESET"
-
 fi
 
 if [ ! -d ~/Github/ ] ; then
     printf "$PRINTF_MASK" "Creating directory ~/Github…" "$YELLOW" "[WAIT]" "$RESET"
     mkdir -p ~/Github/
+    if [ "$?"-ne 0]; then
+        printf "$PRINTF_MASK" "Directory ~/Github found" "$GREEN" "[OK]" "$RESET"
+    else
+        printf "$PRINTF_MASK" "Creating directory ~/Github failed!" "$RED" "[ERR]" "$RESET"
+    fi
 else
     printf "$PRINTF_MASK" "Directory ~/Github found" "$GREEN" "[OK]" "$RESET"
 fi
@@ -181,6 +189,7 @@ if [ ! -d /opt/X11/ ] ; then
 
     echo -e "${BLUE} ---      Restart needed       --- ${RESET}"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    echo -e "${BLUE} --- or press CTRC+C to abort  --- ${RESET}"
     read -n 1 -s
     sudo shutdown -r +1 "Rebooting in 1 minute..."
 else
@@ -225,10 +234,8 @@ fi
 
 SERVICE='httpd'
 if ps ax | grep -v grep | grep $SERVICE > /dev/null ; then
-    #printf $SERVICE' is running\n' "$GREEN" $col '[OK]' "$NORMAL"
     printf "$PRINTF_MASK" "$SERVICE' is running" "$GREEN" "[OK]" "$RESET"
 else
-    #printf $SERVICE' is not running\n' "$RED" $col '[FAIL]' "$NORMAL"
     printf "$PRINTF_MASK" "$SERVICE' is not running" "$RED" "[FAIL]" "$RESET"
 
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
@@ -289,7 +296,12 @@ if [[ $INST_SUBLIMETEXT == "true" ]]; then
         printf "$PRINTF_MASK" "Symbolic link to Sublime Text not found, creating…" "$YELLOW" "[WAIT]" "$RESET"
         if [ ! -d /usr/local/bin ] ; then
             printf "$PRINTF_MASK" "Directory /usr/local/bin/ does not exist, creating…" "$YELLOW" "[WAIT]" "$RESET"
-            sudo mkdir -p /usr/local/bin/ 
+            sudo mkdir -p /usr/local/bin/
+            if [ "$?"-ne 0]; then
+                printf "$PRINTF_MASK" "Directory /usr/local/bin found" "$GREEN" "[OK]" "$RESET"
+            else
+                printf "$PRINTF_MASK" "Creating directory /usr/local/bin failed!" "$RED" "[FAIL]" "$RESET"
+            fi
         else
             printf "$PRINTF_MASK" "Directory /usr/local/bin/ exist" "$GREEN" "[OK]" "$RESET"
         fi
@@ -348,7 +360,6 @@ if [[ $INST_DROPBOX == "true" ]]; then
             printf "$PRINTF_MASK" "Waiting for Dropbox to be installed…" "$YELLOW" "[WAIT]" "$RESET"
             sleep 15
         done
-        #open /Applications/GitHub.app
     else
         printf "$PRINTF_MASK" "Dropbox found" "$GREEN" "[OK]" "$RESET"
     fi
@@ -372,7 +383,6 @@ if [ ! -e /usr/local/bin/brew ] ; then
         printf "$PRINTF_MASK" "Waiting for HomeBrew to be installed…" "$YELLOW" "[WAIT]" "$RESET"
         sleep 15
     done
-    #open /Applications/GitHub.app
 else
     printf "$PRINTF_MASK" "HomeBrew found" "$GREEN" "[OK]" "$RESET"
 fi
@@ -393,7 +403,13 @@ brew install findutils
 brew install bash
 brew install wget
 brew install tmux
-brew install ffmpeg  ## Also installs: texi2html, yasm, x264, faac, lame, xvid
+brew install texi2html
+brew install yasm
+brew install x264
+brew install faac
+brew install lame
+brew install xvid
+brew install ffmpeg
 brew install mediainfo
 
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
