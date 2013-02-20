@@ -35,7 +35,7 @@ CURRTIME=`date +%s`
 cd ${NEWZNAB_PATH}
 printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[update_binaries]" "$RESET"
 php ${NEWZNAB_PATH}/update_binaries.php
-if [ "$?"-ne 0]; then
+if [ $? == 0 ] ; then
     printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[update_binaries]" "$RESET"
 else
     printf "$PRINTF_MASK" "Processing failed!" "$ERROR" "[update_binaries]" "$RESET"
@@ -56,7 +56,7 @@ if [[ $RUN_PARSING == "true" ]]; then
 	echo "---------------------------------------------------------------------------"
 	printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[update_parsing]" "$RESET"
 	php ${NEWZNAB_TESTING_PATH}/update_parsing.php
-	if [ "$?"-ne 0]; then
+	if [ $? == 0 ] ; then
 	    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[update_releases]" "$RESET"
 	else
 	    printf "$PRINTF_MASK" "Processing failed!" "$RED" "[update_releases]" "$RESET"
@@ -67,7 +67,7 @@ if [[ $REMOVESPECIAL == "true" ]]; then
 	echo "---------------------------------------------------------------------------"
 	printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[removespecial" "$RESET"
 	php ${NEWZNAB_TESTING_PATH}/removespecial.php
-	if [ "$?"-ne 0]; then
+	if [ $? == 0 ] ; then
 	    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[removespecial]" "$RESET"
 	else
 	    printf "$PRINTF_MASK" "Processing failed!" "$RED" "[removespecial]" "$RESET"
@@ -83,7 +83,7 @@ then
 	echo "---------------------------------------------------------------------------"
 	printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[optimise_db" "$RESET"
 	php php ${NEWZNAB_PATH}/optimise_db.php
-	if [ "$?"-ne 0]; then
+	if [ $? == 0 ] ; then
 	    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[optimise_db]" "$RESET"
 	else
 	    printf "$PRINTF_MASK" "Processing failed!" "$RED" "[optimise_db]" "$RESET"
@@ -92,7 +92,7 @@ then
 	echo "---------------------------------------------------------------------------"
 	printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[update_tvschedule]" "$RESET"
 	php ${NEWZNAB_PATH}/update_tvschedule.php
-	if [ "$?"-ne 0]; then
+	if [ $? == 0 ] ; then
 	    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[update_tvschedule]" "$RESET"
 	else
 	    printf "$PRINTF_MASK" "Processing failed!" "$RED" "[update_tvschedule]" "$RESET"
@@ -101,7 +101,7 @@ then
 	echo "---------------------------------------------------------------------------"
 	printf "$PRINTF_MASK" "Starting process" "$YELLOW" "[update_theaters]" "$RESET"
 	php ${NEWZNAB_PATH}/update_theaters.php
-	if [ "$?"-ne 0]; then
+	if [ $? == 0 ] ; then
 	    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "[update_theaters]" "$RESET"
 	else
 	    printf "$PRINTF_MASK" "Processing failed!" "$RED" "[update_theaters]" "$RESET"
