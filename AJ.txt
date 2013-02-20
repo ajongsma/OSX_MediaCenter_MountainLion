@@ -39,6 +39,37 @@ Error fetching part number <XGecvTOsSlMN0ZJHI4T3@JBinUp.local> in alt.binaries.m
 
 #= ERRORS - END ======================================================================
 
+
+#= 19-02-2013 ========================================================================
+
+If you run
+plutil -lint on your plist
+This will check the syntax for you and also handily report back the line on which the error occurred.
+
+-------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>RunAtLoad</key>  
+    <true/>  
+    <key>KeepAlive</key>  
+    <true/>  
+    <key>Label</key>
+    <string>com.stackexchange.apple.837</string>
+    <key>Program</key>
+    <string>/Users/username/Library/Scripts/open applications.sh</string>
+</dict>
+</plist>
+
+applications.sh
+#!/bin/bash
+
+open -jg -a FastScripts -a Mail
+osascript -e 'launch app "Alfred"'
+
+
 #= 18-02-2013 ========================================================================
 
 http://www.cyberciti.biz/faq/unix-linux-sed-match-replace-the-entire-line-command/
