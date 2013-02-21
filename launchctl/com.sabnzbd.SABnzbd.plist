@@ -6,9 +6,9 @@
   <string>com.sabnzbd.SABnzbd</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/open</string>
-	  <string>-a</string>
-	   <string>/Applications/SABnzbd.app</string>
+     <string>/usr/bin/open</string>
+     <string>-a</string>
+      <string>/Applications/SABnzbd.app</string>
   </array>
   <key>RunAtLoad</key>
   <true/>

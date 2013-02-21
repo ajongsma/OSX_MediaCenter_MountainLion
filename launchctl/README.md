@@ -21,6 +21,7 @@ Install/Reinstall Launchctl Item:
     sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
     sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
     plutil -lint com.<something><something>.plist
+    sudo launchctl load com.<something><something>.plist
     launchctl start org.<something><something>.plist
 
     sudo launchctl stop org.<something><something>
