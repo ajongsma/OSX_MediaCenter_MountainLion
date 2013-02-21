@@ -437,7 +437,15 @@ fi
 #    command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
 #done
 #
+# ---------------------------------------------
+#
+#if ! type autoconf >/dev/null 2>&1; then
+#    echo 'Error: autoconf command not found' 2>&1
+#    #exit 1
+#fi
+#
 ######## PLAY TIME - END ######## 
+
 
 brew tap homebrew/dupes
 brew install apple-gcc42
