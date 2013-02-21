@@ -36,4 +36,3 @@ If your paths are different, you'll need to manually change both the plist file 
 
 Other Info
 ---
-
