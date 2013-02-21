@@ -15,7 +15,7 @@ PATH_LOG='/var/log/test.log'
 TST_PORT=80
 
 StartService(){
-  /usr/local//bin/<something><something> run --logpath=$PATH_LOG --port $TST_PORT > /dev/null 2>&1 &
+  /usr/local/bin/<something><something> run --logpath=$PATH_LOG --port $TST_PORT > /dev/null 2>&1 &
 }
 
 StopService() {

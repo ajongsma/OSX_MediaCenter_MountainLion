@@ -67,8 +67,30 @@ fi
 plutil -lint com.autosub.autosub.plist
 if [ -f ~/Library/LaunchAgents/com.autosub.autosub.plist ] ; then
     printf "$PRINTF_MASK" "com.autosub.autosub.plist found" "$GREEN" "[OK]" "$RESET"
+
     echo "PID	Status	Label"
     launchctl list | grep com.autosub.autosub
 else
     printf "$PRINTF_MASK" "com.autosub.autosub.plist not found" "$YELLOW" "[FAIL]" "$RESET"
+
+    cp com.autosub.autosub.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.autosub.autosub.plist
+
+    launchctl list | grep com.autosub.autosub
 fi
+
+plutil -lint com.sickbeard.sickbeard.plist
+if [ -f ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist ] ; then
+    printf "$PRINTF_MASK" "com.sickbeard.sickbeard.plist found" "$GREEN" "[OK]" "$RESET"
+
+    echo "PID   Status  Label"
+    launchctl list | grep com.sickbeard.sickbeard
+else
+    printf "$PRINTF_MASK" "com.sickbeard.sickbeard.plist not found" "$YELLOW" "[FAIL]" "$RESET"
+
+    cp com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
+
+    launchctl list | grep com.sickbeard.sickbeard
+fi
+

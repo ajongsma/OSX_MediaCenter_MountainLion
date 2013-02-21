@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 # 
 # Shows network bandwidth usage.
 # 

@@ -1,4 +1,4 @@
-#!bin/sh
+#!/usr/bin/env bash
 
 PROCCHECKDELAY=1
 RUNCHECKDELAY=2
