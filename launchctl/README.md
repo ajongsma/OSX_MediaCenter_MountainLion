@@ -16,12 +16,11 @@ Create the directories and a log file
     sudo mkdir -p /var/log
     sudo touch /var/log/filename.log
 
-These locations were chosen because that is how most of the other stuff like **mysql** and **redis** gets installed.
-
 Install/Reinstall Launchctl Item:
 ---
     sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
     sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
+    plutil -lint com.<something><something>.plist
     launchctl start org.<something><something>.plist
 
     sudo launchctl stop org.<something><something>
