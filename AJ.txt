@@ -41,6 +41,19 @@ Error fetching part number <XGecvTOsSlMN0ZJHI4T3@JBinUp.local> in alt.binaries.m
 
 #= 20-02-2013 ========================================================================
 
+Auto release assembler suite:
+
+
+ERR: Fatal error: Call to undefined function mb_internal_encoding() in C:\UniServer\www\nnplus\misc\update_scripts\misc_sorter2.php on line 473
+==>: Enabling mbstring Library in PHP.ini, extension=php_mbstring.dll
+
+update_binaries
+automake_threaded
+update_releases
+
+
+-------------------------------------------------------------------------
+
 LaunchControl: http://www.soma-zone.com/LaunchControl/
 
 -------------------------------------------------------------------------
