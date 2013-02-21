@@ -6,8 +6,8 @@
   <string>com.sickbeard.sickbeard</string>
   <key>ProgramArguments</key>
   <array>
-     <string>/usr/local/bin/python</string>
-	   <string>/Applications/SickBeard/SickBeard.py</string>
+     <string>/usr/bin/python</string>
+	   <string>/Applications/Sick-Beard/SickBeard.py</string>
 	   <string>-q</string>
 	   <string>-d</string>
   </array>
