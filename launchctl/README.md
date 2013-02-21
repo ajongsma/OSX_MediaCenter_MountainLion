@@ -22,18 +22,7 @@ Install/Reinstall Launchctl Item:
 ---
     sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
     sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
-
-    sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
-    sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
-
-    sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
-    sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
-
-    sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
-    sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
-
-    sudo cp org.<something><something>.plist /System/Library/LaunchDaemons/
-    sudo chown root:wheel /System/Library/LaunchDaemons/org.<something><something>.plist
+    launchctl start org.<something><something>.plist
 
     sudo launchctl stop org.<something><something>
     sudo launchctl unload /System/Library/LaunchDaemons/org.<something><something>.plist
