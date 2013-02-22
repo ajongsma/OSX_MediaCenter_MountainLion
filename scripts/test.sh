@@ -20,12 +20,27 @@ LASTOPTIMIZE=`date +%s`
 
 command -v brew >/dev/null 2>&1 || { echo >&2 "I require Homebrew but it's not installed.     [ERR]"; } && { echo >&2 "Homebrew installed      [OK]"; }
 
-cd ${NEWZNAB_PATH}
-printf "$PRINTF_MASK" "Starting process" "$YELLOW" "111" "$RESET"
-php ${NEWZNAB_PATH}/update_binaries1.php
-#if [ "$?"-ne 0]; then
-if [ $? == 0 ] ; then
-    printf "$PRINTF_MASK" "Processing complete" "$GREEN" "aaa" "$RESET"
-else
-    printf "$PRINTF_MASK" "Processing failed!" "$ERROR" "bbb" "$RESET"
-fi
+function log () {
+  echo -e "$1"
+  #echo -e $@ >> $LOGFILE
+}
+
+function homebrew_checkinstall_recipe () {
+  brew list $1 &> /dev/null
+  if [ $? == 0 ]; then
+    log "${SUCCESS}Your $package$1 ${SUCCESS}installation is fine. Doing nothing"
+  else
+    install_homebrew $1
+  fi
+}
+
+function install_homebrew () {
+  log "${notice}Installing ${component}Homebrew ${notice}recipe ${package}$1"
+  if [ $DEBUG == 0 ]; then
+    HOMEBREW_OUTPUT=`brew install $1 2>&1`
+    handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
+  fi
+}
+
+check_command_dependency brew
+
