@@ -60,7 +60,20 @@ BOLD=$(tput bold)
 UNDERLINE=$(tput sgr 0 1)
 RESET=$(tput sgr0)
 
+NOTICE=$RESET$BOLD$BLUE
+SUCCESS=$RESET$BOLD$GREEN
+FAILURE=$RESET$BOLD$RED
+ATTENTION=$RESET$BOLD$ORANGE
+INFORMATION=$RESET$BOLD$GREY
+
 PRINTF_MASK="%-50s %s %10s %s\n"
+
+TIMESTAMP=`date +%Y%m%d%H%M%S`
+LOGFILE=$DIR/install-$TIMESTAMP.log
+
+# Set to non-zero value for debugging
+DEBUG=0
+
 
 ##-----------------------------------------------------------------------------
 ## Check OS
@@ -447,6 +460,38 @@ fi
 #    #exit 1
 #fi
 #
+
+## https://github.com/New-Bamboo/Hermes/blob/master/install.bash
+
+# NOTICE
+# SUCCESS
+# FAILURE
+# ATTENTION
+# INFORMATION
+
+
+function log () {
+  echo -e "$1"
+  echo -e $@ >> $LOGFILE
+}
+
+function homebrew_checkinstall_recipe () {
+  brew list $1 &> /dev/null
+  if [ $? == 0 ]; then
+    log "${SUCCESS}Your $package$1 ${SUCCESS}installation is fine. Doing nothing"
+  else
+    install_homebrew $1
+  fi
+}
+
+function install_homebrew () {
+  log "${notice}Installing ${component}Homebrew ${notice}recipe ${package}$1"
+  if [ $DEBUG == 0 ]; then
+    HOMEBREW_OUTPUT=`brew install $1 2>&1`
+    handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
+  fi
+}
+
 ######## PLAY TIME - END ######## 
 
 
