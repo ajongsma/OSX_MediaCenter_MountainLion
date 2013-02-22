@@ -16,7 +16,7 @@ export TERM=xterm-256color
 export CLICOLOR=1
 
 # Colors for Dark Terminal Themes:
-export LSCOLORS=GxFxCxDxBxegedabagaced
+#export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Colors for Light Terminal Themes:
 #export LSCOLORS=ExFxBxDxCxegedabagacad

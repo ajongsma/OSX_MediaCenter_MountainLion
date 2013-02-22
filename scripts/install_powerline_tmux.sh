@@ -11,24 +11,24 @@ brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 brew install macvim --env-std --override-system-vim
 brew linkapps
 
-mkdir -p ~/Github
-cd ~/Github/
-git clone https://github.com/Lokaltog/powerline-fonts
-#open ~/Github/powerline-fonts/DejaVuSansMono/DejaVu\ Sans\ Mono\ for\ Powerline.otf
-open ~/Github/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf
-open ~/Github/powerline-fonts/Inconsolata/Inconsolata\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Menlo/Menlo\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline.otf
-#open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ Regular\ for\ Powerline.otf
+#mkdir -p ~/Github
+#cd ~/Github/
+#git clone https://github.com/Lokaltog/powerline-fonts
+##open ~/Github/powerline-fonts/DejaVuSansMono/DejaVu\ Sans\ Mono\ for\ Powerline.otf
+#open ~/Github/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf
+#open ~/Github/powerline-fonts/Inconsolata/Inconsolata\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Menlo/Menlo\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ M\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline.otf
+##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ Regular\ for\ Powerline.otf
 
 cd /usr/local/share
-git clone https://github.com/Lokaltog/powerline.git
+#git clone https://github.com/Lokaltog/powerline.git
 git clone git://github.com/erikw/tmux-powerline.git
-ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
+#ln -s /usr/local/share/tmux-powerline/powerline.sh /usr/local/bin/tmux-powerline
 
 printf 'Copying default theme to mytheme ...\n'
 cd /usr/local/share/tmux-powerline/
