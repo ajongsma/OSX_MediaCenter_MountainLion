@@ -29,6 +29,19 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
 
 -------------------------------------------------------------------------
 
+Tmux Powerline not rendering as advertized:
+=> https://github.com/erikw/tmux-powerline/issues/145
+* bash -x powerline.sh left
+* You need to set your LANG and LC_* environment variables to a UTF-8 locale (e.g. LANG=en_US.utf8).
+
+Font: PragmataPro™ 0.812
+http://www.fsd.it/fonts/imm/pr+/img/pragmatapro_screenshots.zip
+
+Powerline.readthedocs
+https://powerline.readthedocs.org/en/latest/overview.html#requirements
+
+-------------------------------------------------------------------------
+
 CouchPotato:
 [hpotato.core.plugins.base] Opening multipart url: http://127.0.0.1/newznab/api?nzbname=130096-FULL-a.b.moovee-+Dredd.2012.DVDRip.XviD.AC3.iNT-iTCH+-010121+-+dredd.dvdrip.xvid-itch.nfo+yE.cp%28tt1343727%29&apikey=xxx&mode=addfile&cat=movies, params: ['nzbfile']
 
