@@ -52,10 +52,31 @@ Error fetching part number <XGecvTOsSlMN0ZJHI4T3@JBinUp.local> in alt.binaries.m
 
 #= ERRORS - END ======================================================================
 
-#= 20-02-2013 ========================================================================
+#= 22-02-2013 ========================================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sickbeard.sickbeard</string>
+  <key>ProgramArguments</key>
+  <array>
+       <string>/usr/bin/python</string>
+       <string>/Applications/SickBeard.app/Contents/SickBeard.py</string>
+       <string>--pidfile=/Applications/SickBeard.app/Contents/sickbeard.pid</string>
+       <string>--datadir=/Applications/SickBeard.app/Contents</string>
+       <string>--quiet</string>
+       <string>--nolaunch</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist
+
+#= 21-02-2013 ========================================================================
 
 Auto release assembler suite:
-
 
 ERR: Fatal error: Call to undefined function mb_internal_encoding() in C:\UniServer\www\nnplus\misc\update_scripts\misc_sorter2.php on line 473
 ==>: Enabling mbstring Library in PHP.ini, extension=php_mbstring.dll
