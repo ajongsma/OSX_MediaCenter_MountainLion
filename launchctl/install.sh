@@ -6,15 +6,20 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
+LAUNCHAGENTS_DIR=$HOME/Library/LaunchAgents
+
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+GREY=$(tput setaf 238)
+ORANGE=$(tput setaf 172)
 BOLD=$(tput bold)
-BLACK=$(tput setaf 0) #   0  Black
-RED=$(tput setaf 1)  #  1   Red
-GREEN=$(tput setaf 2)  #    2   Green
-YELLOW=$(tput setaf 3)  #   3   Yellow
-BLUE=$(tput setaf 4)  #     4   Blue
-MAGENTA=$(tput setaf 5)  #  5   Magenta
-CYAN=$(tput setaf 6)  #     6   Cyan
-WHITE=$(tput setaf 7)  #    7   White
+UNDERLINE=$(tput sgr 0 1)
 RESET=$(tput sgr0)
 
 PRINTF_MASK="%-50s %s %10s %s\n"
