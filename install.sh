@@ -74,6 +74,42 @@ LOGFILE=$DIR/install-$TIMESTAMP.log
 # Set to non-zero value for debugging
 DEBUG=0
 
+##-----------------------------------------------------------------------------
+## Functions
+##-----------------------------------------------------------------------------
+function log () {
+  echo -e "$1"
+  #echo -e $@ >> $LOGFILE
+}
+
+function handle_error () {
+  if [ "$?" != "0" ]; then
+    log "${failure}$2 $1"
+    exit 1
+  fi
+}
+
+function homebrew_checkinstall_recipe () {
+  brew list $1 &> /dev/null
+  if [ $? == 0 ]; then
+    log "${SUCCESS}Your $package$1 ${SUCCESS}installation is fine. Doing nothing"
+  else
+    install_homebrew $1
+  fi
+}
+
+function check_command_dependency () {
+  $1 --version &> /dev/null
+  handle_error $1 'There was a problem with:'
+}
+
+function install_homebrew () {
+  log "${notice}Installing ${component}Homebrew ${notice}recipe ${package}$1"
+  if [ $DEBUG == 0 ]; then
+    HOMEBREW_OUTPUT=`brew install $1 2>&1`
+    handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
+  fi
+}
 
 ##-----------------------------------------------------------------------------
 ## Check OS
@@ -418,101 +454,52 @@ fi
 ##------------------------------------------------------------------------------
 ### Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
 
+#brew tap homebrew/dupes
+#brew install apple-gcc42
+#brew install gnu-sed
+#brew install coreutils
+#brew install autoconf
+#brew install automake
+#brew install findutils
+#brew install bash
+#brew install wget
+#brew install tmux
+#brew install texi2html
+#brew install yasm
+#brew install x264
+#brew install faac
+#brew install lame
+#brew install xvid
+#brew install ffmpeg
+#brew install mediainfo
 
-######## PLAY TIME ##############
-#/usr/local/bin/
-#
-#CMDS="apple-gcc42 \
-#      gnu-sed \
-#      coreutils \
-#      autoconf \
-#      automake \
-#      findutils \
-#      bash \
-#      wget \
-#      tmux \
-#      texi2html \
-#      yasm \
-#      x264 \
-#      faac \
-#      lame \
-#      xvid \
-#      ffmpeg \
-#      mediainfo \
-#      "
-#
-#for i in $CMDS
-#do
-#        # command -v will return >0 when the $i is not found
-#    command -v $i >/dev/null && continue || { echo "$i command not found."; exit 1; }
-#done
-# 
-#for i in $CMDS;
-#do
-#    # command -v will return >0 when the $i is not found
-#    command -v $i >/dev/null && { printf "$PRINTF_MASK" "$1 found" "$GREEN" "[OK]" "$RESET" } || { printf "$PRINTF_MASK" "$1 not found" "RED" "[FAIL]" "$RESET"; exit 1; }
-#done
-#
-# ---------------------------------------------
-#
-#if ! type autoconf >/dev/null 2>&1; then
-#    echo 'Error: autoconf command not found' 2>&1
-#    #exit 1
-#fi
-#
+check_command_dependency brew
 
-## https://github.com/New-Bamboo/Hermes/blob/master/install.bash
+INSTALL="apple-gcc42 \
+        gnu-sed \
+        coreutils \
+        autoconf \
+        automake \
+        findutils \
+        bash \
+        bash-completion \
+        wget \
+        tmux \
+        texi2html \
+        yasm \
+        x264 \
+        faac \
+        lame \
+        xvid \
+        ffmpeg \
+        mediainfo \
+        "
 
-# NOTICE
-# SUCCESS
-# FAILURE
-# ATTENTION
-# INFORMATION
-
-
-function log () {
-  echo -e "$1"
-  echo -e $@ >> $LOGFILE
-}
-
-function homebrew_checkinstall_recipe () {
-  brew list $1 &> /dev/null
-  if [ $? == 0 ]; then
-    log "${SUCCESS}Your $package$1 ${SUCCESS}installation is fine. Doing nothing"
-  else
-    install_homebrew $1
-  fi
-}
-
-function install_homebrew () {
-  log "${notice}Installing ${component}Homebrew ${notice}recipe ${package}$1"
-  if [ $DEBUG == 0 ]; then
-    HOMEBREW_OUTPUT=`brew install $1 2>&1`
-    handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
-  fi
-}
-
-######## PLAY TIME - END ######## 
-
-
-brew tap homebrew/dupes
-brew install apple-gcc42
-brew install gnu-sed
-brew install coreutils
-brew install autoconf
-brew install automake
-brew install findutils
-brew install bash
-brew install wget
-brew install tmux
-brew install texi2html
-brew install yasm
-brew install x264
-brew install faac
-brew install lame
-brew install xvid
-brew install ffmpeg
-brew install mediainfo
+for i in $INSTALL
+do
+        # command -v will return >0 when the $i is not found
+    homebrew_checkinstall_recipe $i || { echo "$i command not found."; exit 1; }
+done
 
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 echo "# homebrew"
