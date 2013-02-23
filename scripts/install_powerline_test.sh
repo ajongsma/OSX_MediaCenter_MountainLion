@@ -26,7 +26,7 @@ source ~/.bashrc
 
 pip install --user git+git://github.com/Lokaltog/powerline
 
-curl -O http://www.fsd.it/fonts/imm/pr+/img/pragmatapro_screenshots.zip
+#curl -O http://www.fsd.it/fonts/imm/pr+/img/pragmatapro_screenshots.zip
 #cd /usr/local/share
 #sudo git clone https://github.com/milkbikis/powerline-shell
 #

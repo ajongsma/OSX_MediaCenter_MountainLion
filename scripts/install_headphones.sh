@@ -6,12 +6,11 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-[ -d $INST_FOLDER_MUSIC_COMPLETE ] || mkdir -p $INST_FOLDER_MUSIC_COMPLETE
+[ -d $INST_FOLDER_MUSIC_COMPLETE ] || mkdir -p $INST_FOLDER_MUSIC_COMPLETE && sudo chown -R `whoami`:wheel $INST_HEADPHONES_PATH
 [ -d $INST_HEADPHONES_PATH ] || sudo mkdir -p $INST_HEADPHONES_PATH
 
 #cd $INST_HEADPHONES_PATH
 sudo git clone https://github.com/rembo10/headphones.git $INST_HEADPHONES_PATH
-sudo chown -R `whoami`:wheel $INST_HEADPHONES_PATH
 
 cd $INST_HEADPHONES_PATH
 osascript -e 'tell app "Terminal"

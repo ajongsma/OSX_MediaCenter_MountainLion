@@ -201,6 +201,18 @@ else
     printf "$PRINTF_MASK" "Directory ~/Github found" "$GREEN" "[OK]" "$RESET"
 fi
 
+if [ ! -d ~/Applications/ ] ; then
+    printf "$PRINTF_MASK" "Creating directory ~/Applications" "$YELLOW" "[WAIT]" "$RESET"
+    mkdir -p ~/Applications/
+    if [ "$?"-ne 0]; then
+        printf "$PRINTF_MASK" "Directory ~/Applications found" "$GREEN" "[OK]" "$RESET"
+    else
+        printf "$PRINTF_MASK" "Creating directory ~/Applications failed!" "$RED" "[ERR]" "$RESET"
+    fi
+else
+    printf "$PRINTF_MASK" "Directory ~/Applications found" "$GREEN" "[OK]" "$RESET"
+fi
+
 #------------------------------------------------------------------------------
 # Check for installation Xcode
 #------------------------------------------------------------------------------
@@ -485,6 +497,10 @@ INSTALL="apple-gcc42 \
         bash-completion \
         wget \
         tmux \
+        ack \
+        ifstat \
+        macvim --env-std --override-system-vim \
+        --use-gcc fontforge \
         texi2html \
         yasm \
         x264 \
@@ -494,6 +510,11 @@ INSTALL="apple-gcc42 \
         ffmpeg \
         mediainfo \
         "
+
+#brew install --use-gcc fontforge
+#brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+#brew install 
+brew linkapps
 
 for i in $INSTALL
 do
@@ -906,6 +927,30 @@ if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] 
     exit    
 else
     printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+#------------------------------------------------------------------------------"
+# Configuring Spotweb as provider for Sickbeard"
+#------------------------------------------------------------------------------"
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO: Check for specific variables"
+echo " Till then, forced run:"
+echo "   $DIR/scripts/install_sickbeard_spotweb.sh"
+
+source "$DIR/scripts/install_sickbeard_spotweb.sh"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    printf 'Spotweb as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_sickbeard_spotweb.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit    
+else
+    printf 'Spotweb as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------"

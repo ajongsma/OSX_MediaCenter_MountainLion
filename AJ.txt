@@ -40,6 +40,11 @@ http://www.fsd.it/fonts/imm/pr+/img/pragmatapro_screenshots.zip
 Powerline.readthedocs
 https://powerline.readthedocs.org/en/latest/overview.html#requirements
 
+subl ~/.tmux.conf
+subl ~/.tmux-powerlinerc
+tmux source-file ~/.tmux
+
+
 -------------------------------------------------------------------------
 
 CouchPotato:

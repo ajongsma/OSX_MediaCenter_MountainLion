@@ -98,13 +98,16 @@ export INST_NEWSSERVER_SERVER_PW=''
 export INST_NEWSSERVER_SERVER_PORT=''
 export INST_NEWSSERVER_SERVER_PORT_SSL='563'
 export INST_NEWSSERVER_RETENTION='876'
+
 #-----------------------------------------------------------
 
 ## SpotWeb
 export INST_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
-export INST_NEWZNAB_PSQL_DB="spotweb_db"
-export INST_NEWZNAB_PSQL_UID="spotweb_usr"
-export INST_NEWZNAB_PSQL_PW=""
+export INST_SPOTWEB_UID="spotweb"
+export INST_SPOTWEB_KEY_API=""
+export INST_SPOTWEB_PSQL_DB="spotweb_db"
+export INST_SPOTWEB_PSQL_UID="spotweb_usr"
+export INST_SPOTWEB_PSQL_PW=""
 
 #-----------------------------------------------------------
 

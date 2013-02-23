@@ -4,13 +4,6 @@
 ## https://github.com/jonnyboy/newznab-tmux/tree/master/powerline
 ## https://github.com/jonnyboy/newznab-tmux/blob/master/conf/tmux.conf
 
-brew install --use-gcc fontforge
-brew install ack
-brew install ifstat
-brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
-brew install macvim --env-std --override-system-vim
-brew linkapps
-
 #mkdir -p ~/Github
 #cd ~/Github/
 #git clone https://github.com/Lokaltog/powerline-fonts
@@ -33,30 +26,35 @@ git clone git://github.com/erikw/tmux-powerline.git
 printf 'Copying default theme to mytheme ...\n'
 cd /usr/local/share/tmux-powerline/
 cp themes/default.sh themes/mytheme.sh
-subl /usr/local/share/tmux-powerline/themes/mytheme.sh
+#subl /usr/local/share/tmux-powerline/themes/mytheme.sh
 
-if [ ! -e ~/.tmux.conf ] ; then
+if [ -e ~/.tmux.conf ] ; then
     cp $DIR/conf/tmux.conf ~/.tmux.conf
 else
-	printf 'set -g default-terminal "screen-256color"\n'
-	printf '#Powerline\n'
-	printf 'set-option -g status on\n'
-	printf 'set-option -g status-interval 2\n'
-	printf 'set-option -g status-utf8 on'
-	printf 'set-option -g status-justify "centre"\n'
-	printf 'set-option -g status-left-length 60\n'
-	printf 'set-option -g status-right-length 90\n'
-	printf 'set-option -g status-left "#(/usr/local/share/tmux-powerline/powerline.sh left)"\n'
-	printf 'set-option -g status-right "#(/usr/local/share/tmux-powerline/powerline.sh right)"\n'
-	printf ''
-	printf '#Add Powerline\n'
-	printf 'set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"'
-	printf '\n'
-	printf '#You can bind a toggle of the visibility for the statusbars by adding the following lines:\n'
-	printf 'bind C-[ run '/usr/local/share/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.\n'
-	printf 'bind C-] run '/usr/local/share/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.\n'
-	subl ~/.tmux.conf
+cat >> /tmp/.tmux.conf <<'EOF'
+set -g default-terminal "screen-256color"
+
+#Powerline
+set-option -g status on
+set-option -g status-interval 2
+set-option -g status-utf8 on
+set-option -g status-justify "centre"
+set-option -g status-left-length 60
+set-option -g status-right-length 90
+set-option -g status-left "#(/usr/local/share/tmux-powerline/powerline.sh left)"
+set-option -g status-right "#(/usr/local/share/tmux-powerline/powerline.sh right)"
+
+#Add Powerline
+set-window-option -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"
+EOF
 fi
+mv /tmp/.tmux.conf ~/
+#subl ~/.tmux.conf
+
+printf '#You can bind a toggle of the visibility for the statusbars by adding the following lines:\n'
+printf 'bind C-[ run '/usr/local/share/tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.\n'
+printf 'bind C-] run '/usr/local/share/tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.\n'
+
 printf 'Reloading tmux.conf...\n'
 tmux source-file ~/.tmux.conf
 
