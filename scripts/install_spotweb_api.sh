@@ -105,10 +105,12 @@ if [ ! -d $INST_SPOTWEB_PATH ] ; then
     exit 1;
 fi
 
+if [ ! -d ~/Library/Internet\ Plug-Ins/XML\ View\ Plugin.webplugin ] ; then
 cd ~/Downloads
 curl -O http://www2.entropy.ch/download/xmlviewplugin.zip
 unzip xmlviewplugin.zip
 mv XML\ View\ Plugin.webplugin/ ~/Library/Internet\ Plug-Ins/
+fi
 
 #open http://localhost/spotweb/api?t=c
 

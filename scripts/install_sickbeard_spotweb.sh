@@ -110,7 +110,9 @@ fi
 RES=`grep -i "Spotweb API Index" ${TMPFILE}`
 if [ "$?" -ne "0" ];
 then
-  echo "String Spotweb API Index not found in ${URL}"
+  echo "Spotweb API Index not found in ${URL}, check if the Spotweb API is working"
+  echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+  read -n 1 -s
   exit 1;
 else
   echo "Spotweb API Index found"
@@ -119,9 +121,31 @@ fi
 echo "-----------------------------------------------------------"
 echo "| Tab Grouplist, click the plus icon"
 echo "| Name                                    : API"
+echo "|-------------------"
+echo "| Add"
+echo "|-------------------"
 echo "|"
-echo "| Click Permissions"
-echo "| Use Download API                        : Add"
+echo "| Click Permissions pencil - grouplist API"
+
+echo "| TESTING - specific privileges for API"
+echo "| Display overview of spots               : Add"
+echo "| Log in                                  : Add"
+echo "| Perform a search                        : Add"
+echo "| View spot in detail                     : Add"
+echo "| Retrieve NZB file                       : Add"
+echo "| Download manager integration            : Add"
+echo "| Mark spots as read                      : Add"
+echo "| RSS feed                                : Add"
+echo "| Static resources                        : Add"
+echo "| Log out                                 : Add"
+echo "| Use downloads manager API               : Add"
+echo "| Keep watchlist                          : Add"
+echo "| Keep downloadlist                       : Add"
+echo "| Keep seenlist                           : Add"
+echo "| Use Spotweb using an API key            : Add"
+echo "| Send notifications (per service)        : Add"
+echo "| Send notifications (per type)           : Add"
+echo "-----------------------------------------------------------"
 http://localhost/spotweb/?page=render&tplname=usermanagement
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
@@ -143,12 +167,16 @@ read -n 1 -s
 
 echo "-----------------------------------------------------------"
 echo "| Tab Userlist, select Username $INST_SPOTWEB_UID""_api"
-echo "| Anonymous user - open system            : disable"
-echo "| API                                     : enable"
 echo "|"
-echo "| Click Permissions"
-echo "| Use Download API                        : Add"
-echo "| "
+echo "| GROUP                                     MEMBER"
+echo "| -----                                     --------"
+echo "| Anonymous user - closed system          : disabled"
+echo "| Anonymous user - open system            : disabled"
+echo "| Authenticated users                     : enabled"
+echo "| Trusted users                           : disabled"
+echo "| Administrators                          : disabled"
+echo "| API                                     : enabled"
+echo "|"
 echo "| Add the shown API Key to config.sh      : INST_SPOTWEB_KEY_API_SICKBEARD"
 echo "-----------------------------------------------------------"
 #994afffb2c109cad9b13ceeda9be02f1
