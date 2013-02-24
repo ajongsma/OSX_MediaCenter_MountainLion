@@ -118,6 +118,9 @@ else
   echo "Spotweb API Index found"
 fi
 
+#
+http://localhost/spotweb/api?ep=02%2F10&apikey=d8cb4515951e36ea0f2976c8e3aee157&limit=100&t=tvsearch&season=2013
+
 echo "-----------------------------------------------------------"
 echo "| Tab Grouplist, click the plus icon"
 echo "| Name                                    : API"
@@ -125,26 +128,18 @@ echo "|-------------------"
 echo "| Add"
 echo "|-------------------"
 echo "|"
-echo "| Click Permissions pencil - grouplist API"
-
-echo "| TESTING - specific privileges for API"
+echo "| Click Permissions pencil - grouplist API:"
 echo "| Display overview of spots               : Add"
-echo "| Log in                                  : Add"
 echo "| Perform a search                        : Add"
-echo "| View spot in detail                     : Add"
 echo "| Retrieve NZB file                       : Add"
 echo "| Download manager integration            : Add"
-echo "| Mark spots as read                      : Add"
 echo "| RSS feed                                : Add"
-echo "| Static resources                        : Add"
-echo "| Log out                                 : Add"
 echo "| Use downloads manager API               : Add"
-echo "| Keep watchlist                          : Add"
-echo "| Keep downloadlist                       : Add"
-echo "| Keep seenlist                           : Add"
 echo "| Use Spotweb using an API key            : Add"
 echo "| Send notifications (per service)        : Add"
 echo "| Send notifications (per type)           : Add"
+echo "|-------------------"
+echo "| Add"
 echo "-----------------------------------------------------------"
 http://localhost/spotweb/?page=render&tplname=usermanagement
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
