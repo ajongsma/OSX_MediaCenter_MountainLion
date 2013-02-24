@@ -963,18 +963,7 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring Spotweb as provider for Sickbeard"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_sickbeard_spotweb.sh"
-
-source "$DIR/scripts/install_sickbeard_spotweb.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+if [[ -z $INST_SPOTWEB_KEY_API_SICKBEARD ]]; then
     printf 'Spotweb as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sickbeard_spotweb.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
@@ -987,7 +976,6 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring Sickbeard to support Trakt.TV"
 #------------------------------------------------------------------------------"
-
 if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1020,14 +1008,6 @@ fi
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO:"
-echo " - Autostart CouchPotato"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 if [ ! -e /Applications/CouchPotato.app ] ; then
     printf 'CouchPotato not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_couchpotato.sh"
@@ -1090,14 +1070,27 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'NewzNAB as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_couchpotato_newznab.sh"
+#if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+#    printf 'NewzNAB as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
+#    source "$DIR/scripts/install_couchpotato_newznab.sh"
+#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+#    read -n 1 -s
+#    exit    
+#else
+#    printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
+#fi
+
+#------------------------------------------------------------------------------"
+# Configuring CouchPotato as provider for Sickbeard"
+#------------------------------------------------------------------------------"
+if [[ -z $INST_SPOTWEB_KEY_API_COUCHPOTATO ]]; then
+    printf 'Spotweb as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_couchpotato_spotweb.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     exit    
 else
-    printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Spotweb as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1114,7 +1107,6 @@ if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 fi
 
 #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then

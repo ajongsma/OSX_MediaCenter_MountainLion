@@ -1,5 +1,5 @@
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Spotweb as provider for Sickbeard"
+echo "# Configuring Spotweb as provider for Couchpotato"
 echo "#------------------------------------------------------------------------------"
 # ?????????????????????????????????????????????????????????????????????????????
 #------------------------------------------------------------------------------
@@ -76,11 +76,11 @@ echo "#-------------------------------------------------------------------------
 ## Check for XML output:
 ## open http://localhost/spotweb/api?t=c
 ##
-## Sick Beard:
-## 1. Bij Provider Name kun je zelf bepalen hoe je het wilt noemen, bijvoorbeeld Spotweb.
-## 2. Bij Site URL vul je http://server/spotweb/ in (uiteraard na aanpassing aan de eigen omgeving).
-## 3. Bij API Key vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
-## open http://localhost:8081/config/providers/
+## CouchPotato:
+## 1. Bij Host vul je server/spotweb in (uiteraard na aanpassing aan de eigen omgeving).
+## 2. Bij Apikey vul je de API-key van Spotweb in. Deze is in Spotweb te vinden onder Gebruiker wijzigen
+## Op de pagina http://url.naar.couchpotato/config/ en klik op Providers. Op die pagina staat het onderdeel Newznab. Hier dien je een host en een API-key op te geven.
+##  open http://localhost:8081/config
 ##
 ## Headphones:
 ## 1. Vink Newznab aan.
@@ -141,10 +141,10 @@ read -n 1 -s
 echo "-----------------------------------------------------------"
 echo "| In the top-right corner, user icon, add user"
 echo "|"
-echo "| Username                                : $INST_SICKBEARD_UID""_api" 
-echo "| First Name                              : $INST_SICKBEARD_UID"
+echo "| Username                                : $INST_COUCHPOTATO_UID""_api" 
+echo "| First Name                              : $INST_COUCHPOTATO_UID"
 echo "| Last Name                               : API"
-echo "| E-mail address                          : $INST_SICKBEARD_UID@localhost.local"
+echo "| E-mail address                          : $INST_COUCHPOTATO_UID@localhost.local"
 echo "-----------------------------------------------------------"
 open http://localhost/spotweb
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
@@ -152,7 +152,7 @@ read -n 1 -s
 
 echo "-----------------------------------------------------------"
 echo "| Config, User and Group Management:"
-echo "| Tab Userlist, select Username $INST_SICKBEARD_UID""_api"
+echo "| Tab Userlist, select Username $INST_COUCHPOTATO_UID""_api"
 echo "|"
 echo "| GROUP                                     MEMBER"
 echo "| -----                                     --------"
@@ -175,37 +175,36 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 source ../config.sh
-if [[ -z $INST_SPOTWEB_KEY_API_SICKBEARD ]]; then
+if [[ -z $INST_SPOTWEB_KEY_API_COUCHPOTATO ]]; then
     echo "-----------------------------------------------------------"
     echo "| Please add the Sickbeard Spotweb API key to config.sh"
-    echo "| API Key                              : INST_SPOTWEB_KEY_API_SICKBEARD <paste value> "
+    echo "| API Key                              : INST_SPOTWEB_KEY_API_COUCHPOTATO <paste value> "
     echo "-----------------------------------------------------------"
     #open http://localhost/newznab/admin/site-edit.php
     http://localhost/spotweb/?page=render&tplname=usermanagement
     subl ../config.sh
 
-    while ( [[ $INST_SPOTWEB_KEY_API_SICKBEARD == "" ]] )
+    while ( [[ $INST_SPOTWEB_KEY_API_COUCHPOTATO == "" ]] )
     do
-        printf 'Waiting for Sickbeard Spotweb API be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
+        printf 'Waiting for Couchpotato Spotweb API be added to config.sh...\n' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 2
         source ../config.sh
     done
 fi
 
 echo "-----------------------------------------------------------"
-echo "| Menu, Config, Search Providers:"
+echo "| Config, Settings, Searcher, Providers:"
 echo "| "
-echo "| Configure Custom Newznab Providers:"
-echo "| Provider Name                           : Spotweb"
-echo "| Site URL                                : http://localhost/spotweb/"
-echo "| API Key                                 : $INST_SPOTWEB_KEY_API_SICKBEARD"
+echo "| Newznab:"
+echo "| Host                                    : http://localhost/spotweb/"
+echo "| API Key                                 : $INST_SPOTWEB_KEY_API_COUCHPOTATO"
 echo "-------------------------------"
 echo "| Save changes"
 echo "-----------------------------------------------------------"
-open http://localhost:8081/config/providers/
+http://localhost:8082/settings/searcher/providers/
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Spotweb as provider for Sickbeard - Complete"
+echo "# Configuring Spotweb as provider for Couchpotato - Complete"
 echo "#------------------------------------------------------------------------------"

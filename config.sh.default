@@ -108,6 +108,9 @@ export INST_SPOTWEB_KEY_API=""
 export INST_SPOTWEB_PSQL_DB="spotweb_db"
 export INST_SPOTWEB_PSQL_UID="spotweb_usr"
 export INST_SPOTWEB_PSQL_PW=""
+export INST_SPOTWEB_KEY_API_SICKBEARD=""
+export INST_SPOTWEB_KEY_API_COUCHPOTATO=""
+export INST_SPOTWEB_KEY_API_HEADPHONES=""
 
 #-----------------------------------------------------------
 
