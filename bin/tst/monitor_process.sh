@@ -46,7 +46,7 @@ then
  i=0;
  UNIX95= ps -p $PROCID -o vsz,pid,ruser,rss,pcpu,pmem,args 2>/dev/null
 else
- UNIX95= ps -p $PROCID -o vsz,pid,ruser,rss,pcpu,pmem,args 2>/dev/null|tail +2
+ UNIX95= ps -p $PROCID -o vsz,pid,ruser,rss,pcpu,pmem,args 2>/dev/null | tail -n +2
 fi
 if [ ! -z "$PROCID" ]
 then

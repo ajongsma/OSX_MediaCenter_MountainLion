@@ -77,9 +77,14 @@ DEBUG=0
 ##-----------------------------------------------------------------------------
 ## Functions
 ##-----------------------------------------------------------------------------
-function log () {
-  echo -e "$1"
-  #echo -e $@ >> $LOGFILE
+#function log () {
+#  echo -e "$1"
+#  #echo -e $@ >> $LOGFILE
+#}
+
+function log()  {
+    printf "$*\n" ;
+    return $? ;
 }
 
 function handle_error () {
@@ -87,6 +92,26 @@ function handle_error () {
     log "${failure}$2 $1"
     exit 1
   fi
+}
+
+function fail() {
+    log "\nERROR: $*\n" ;
+    exit 1 ; 
+}
+
+function to_lower()
+{
+    echo $1 | tr '[A-Z]' '[a-z]'
+}
+#USER_LC=$(to_lower $curr_user)
+
+function check_system() {
+    # Check for supported system
+    kernel=`uname -s`
+    case $kernel in
+        Darwin|Linux) ;;
+        *) fail "Sorry, $kernel is not supported." ;;
+    esac
 }
 
 function homebrew_checkinstall_recipe () {
@@ -114,14 +139,16 @@ function install_homebrew () {
 ##-----------------------------------------------------------------------------
 ## Check OS
 ##-----------------------------------------------------------------------------
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  OS="Mac"
-  APP_PATH="/Applications"
-  printf "$PRINTF_MASK" "OS X Detected" "$GREEN" "[OK]" "$RESET"
-else
-  printf "$PRINTF_MASK" "Linux unsupported." "$RED" "[ERR]" "$RESET"
-  exit 1
-fi
+#if [[ "$OSTYPE" =~ ^darwin ]]; then
+#  OS="Mac"
+#  APP_PATH="/Applications"
+#  printf "$PRINTF_MASK" "OS X Detected" "$GREEN" "[OK]" "$RESET"
+#else
+#  printf "$PRINTF_MASK" "Linux unsupported." "$RED" "[ERR]" "$RESET"
+#  exit 1
+#fi
+
+check_system
 
 #------------------------------------------------------------------------------
 # Keep-alive: update existing sudo time stamp until finished
@@ -140,10 +167,12 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Checking if system is up-to-date
 #------------------------------------------------------------------------------
 ## Run software update and reboot
-if [[ $INST_OSX_UPDATES == "true" ]]; then
-    sudo softwareupdate --list
-    sudo softwareupdate --install --all
-fi
+#if [[ $INST_OSX_UPDATES == "true" ]]; then
+#    sudo softwareupdate --list
+#    sudo softwareupdate --install --all
+#fi
+
+check_system
 
 #------------------------------------------------------------------------------
 # Dotfiles
@@ -151,7 +180,9 @@ fi
 ## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
 
 if [ ! -f ~/.bash_profile ] ; then
-    echo "Creating default .bash_profile..."
+    log "Creating default .bash_profile..."
+    #echo "Creating default .bash_profile..."
+
     cp conf/bash_profile ~/.bash_profile
 else
     echo
