@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
 SOURCE="${BASH_SOURCE[0]}"
 DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
@@ -16,6 +15,7 @@ export DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 export TMUX_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
 export TMUX_SPOTWEB_SESSION="Newznab"
+export TMUX_SPOTWEB_POWERLINE="false"
 
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed.  Aborting."; exit 1; } && export TMUX_SPOTWEB_CMD=`command -v tmux`
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && export TMUX_SPOTWEB_MYSQL=`command -v mysql`
@@ -25,14 +25,12 @@ command -v nice >/dev/null 2>&1 || { echo >&2 "Nice required but it's not instal
 #command -v php5 >/dev/null 2>&1 && export PHP=`command -v php5` || { export PHP=`command -v php`; }
 ##
 
-#if [[ $POWERLINE == "true" ]]; then
-#  #export TMUX_CONF="powerline/tmux.conf"
-#  export TMUX_SPOTWEB_CONF="powerline/tmux_spotweb_cycle.conf"
-#else
-#  #export TMUX_CONF="conf/tmux.conf"
-#  export TMUX_SPOTWEB_CONF="conf/tmux_spotweb_cycle.conf"
-#fi
-TMUX_SPOTWEB_CONF="~/.tmux.conf"
+if [[ $TMUX_SPOTWEB_POWERLINE == "true" ]]; then
+  export TMUX_SPOTWEB_CONF="conf/tmux_spotweb_powerline.conf"
+else
+  export TMUX_SPOTWEB_CONF="conf/tmux_spotweb_bash.conf"
+fi
+#TMUX_SPOTWEB_CONF="~/.tmux.conf"
 
 cd $TMUX_SPOTWEB_PATH
 
