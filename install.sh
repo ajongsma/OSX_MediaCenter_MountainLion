@@ -109,7 +109,7 @@ function check_system() {
     # Check for supported system
     kernel=`uname -s`
     case $kernel in
-        Darwin|Linux) ;;
+        Darwin) ;;
         *) fail "Sorry, $kernel is not supported." ;;
     esac
 }
