@@ -96,6 +96,15 @@ $ plutil -lint unison_sync.plist
 unison_sync.plist: OK
 $ launchctl load unison_sync.plis
 
+#= 24-02-2013 ========================================================================
+
+newznab provider icm couchpotato i (details) button - http://ip-adres/spotweb/details/D99irBZNtIchd7lUAKWKg@spot.net.
+http://www.dereferer.org/?http://ip-adres/spotweb/details/D99irBZNtIchd7lUAKWKg%40spot.net resulteerd in een HTTP 404.
+https://github.com/spotweb/spotweb/issues/1707
+
+=> Heb het opgelost door een RewriteRule aan te maken in apache's config:
+    RewriteRule details/([^/]+) spotweb/?page=getspot&messageid=$1 [L]
+
 #= 22-02-2013 ========================================================================
 
 <?xml version="1.0" encoding="UTF-8"?>
