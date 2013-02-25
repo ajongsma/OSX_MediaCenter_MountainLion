@@ -19,14 +19,13 @@ stat_process()
  _mypid=
  while [ true ]
  do
-   _mypid=`ps -e 2>/dev/null|grep $1|head -n1|awk '{ print $1 }'`;
-   if [ ! -z "$_mypid" ]
-   then
+   #_mypid=`ps -e 2>/dev/null|grep $1|head -n1|awk '{ print $1 }'`;
+   _mypid=`pgrep -f $1|head -n1|awk '{ print $1 }'`;
+   if [ ! -z "$_mypid" ]; then
      PROCNORUN=
      break;
    fi
-   if [ -z "$PROCNORUN" ] ;
-   then
+   if [ -z "$PROCNORUN" ]; then
      PROCNORUN=yes
      echo "$1 is not running"
      echo "recheck after $RUNCHECKDELAY seconds";

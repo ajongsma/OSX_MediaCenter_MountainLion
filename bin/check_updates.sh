@@ -16,10 +16,11 @@ cd ~/Github/
 echo "#------------------------------------------------------------------------------"
 echo "# Checking SABnzbd - nzbToMedia"
 echo "#------------------------------------------------------------------------------"
-~/Github/nzbToMedia
 
-git status
-#git status | grep nothing
+#nothing to commit (working directory clean)
+
+cd ~/Github/nzbToMedia
+git_status=`git status | tail -n +2`
 
 git pull
 cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/

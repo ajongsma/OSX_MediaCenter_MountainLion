@@ -51,6 +51,13 @@ tmux source-file ~/.tmux
 
 #= 25-02-2013 ========================================================================
 
+PATTERN="'/bin/sh /Users/Andries/Github/OSX_NewBox/bin/newznab_cycle.sh\$'"
+pgrep -f $PATTERN
+echo pgrep -f $PATTERN
+
+PATTERN="'/bin/sh /Users/Andries/Github/OSX_NewBox/bin/spotweb_cycle.sh\$'"
+pgrep -f $PATTERN
+echo pgrep -f $PATTERN
 
 -------------------------------------------------------------------------
 
