@@ -47,15 +47,54 @@ tmux source-file ~/.tmux
 
 -------------------------------------------------------------------------
 
-CouchPotato:
-[hpotato.core.plugins.base] Opening multipart url: http://127.0.0.1/newznab/api?nzbname=130096-FULL-a.b.moovee-+Dredd.2012.DVDRip.XviD.AC3.iNT-iTCH+-010121+-+dredd.dvdrip.xvid-itch.nfo+yE.cp%28tt1343727%29&apikey=xxx&mode=addfile&cat=movies, params: ['nzbfile']
+#= ERRORS - END ======================================================================
+
+#= 25-02-2013 ========================================================================
+
 
 -------------------------------------------------------------------------
 
-NewzNAB: update_releases.php
-Error fetching part number <XGecvTOsSlMN0ZJHI4T3@JBinUp.local> in alt.binaries.movies.divx (Server response: No such article found)
+Unison OS X launchd plist
 
-#= ERRORS - END ======================================================================
+unison_sync.sh:
+----------------------------
+#!/bin/bash
+pref=my_unison_pref
+pid=`pgrep unison`
+
+[ -z $pid ] && $HOME/bin/unison $pref -auto -batch
+----------------------------
+
+unison_sync.plist
+----------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>unison_sync</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/MY_USER/bin/unison_sync.sh</string>
+    </array>
+    <key>StandardOutPath</key>
+    <string>/Users/MY_USER/Library/Logs/unison_sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/MY_USER/Library/Logs/unison_sync.err</string>
+    <key>LowPriorityIO</key>
+    <true/>
+    <key>Nice</key>
+    <integer>1</integer>
+    <key>StartInterval</key>
+    <integer>300</integer>
+  </dict>
+</plist>
+----------------------------
+
+$ cd ~/Library/LaunchAgents
+$ plutil -lint unison_sync.plist
+unison_sync.plist: OK
+$ launchctl load unison_sync.plis
 
 #= 22-02-2013 ========================================================================
 
