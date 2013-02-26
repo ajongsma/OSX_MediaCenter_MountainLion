@@ -15,6 +15,12 @@ export TERM=xterm-256color
 # Tell bash to be colourful
 export CLICOLOR=1
 
+# Default colors
+export LSCOLORS=exfxcxdxbxegedabagacad
+
+# Default colors - Bold variant
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
 # Colors for Dark Terminal Themes:
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 
