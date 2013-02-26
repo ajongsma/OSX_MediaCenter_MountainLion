@@ -3,6 +3,7 @@
 echo "-----------------------------------------------------------"
 echo "| Installing additional NewzNAB themes..."
 echo "-----------------------------------------------------------"
+###  ToAdd ? https://github.com/Frikish/Baffi-Theme--Newznab-
 
 source ../config.sh
 
