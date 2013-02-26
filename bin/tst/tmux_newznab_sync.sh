@@ -22,24 +22,22 @@
 # Ctrl-b      : command mode.
 # Ctrl-b <nr> : Change to tab <nr>
 
-## tmux attach-session -d -t Spotweb
-
 SOURCE="${BASH_SOURCE[0]}"
-TMUX_CURRENT_DIR="$( dirname "$SOURCE" )"
+DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
 do
   SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$TMUX_CURRENT_DIR/$SOURCE"
-  TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
 done
-TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+export DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-#export TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
-TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
-#export TMUX_SESSION="Spotweb"
-TMUX_SESSION="Spotweb"
-#export TMUX_POWERLINE="true"
-TMUX_POWERLINE="true"
+## Process COMMAND:
+## tmux attach-session -d -t Spotweb
+
+export TMUX_APP_PATH="/Users/Andries/Github/OSX_NewBox/bin"
+export TMUX_SESSION="Newznab"
+export TMUX_POWERLINE="true"
 
 command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed.  Aborting."; exit 1; } && export TMUX_SH=`command -v sh`
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed.  Aborting."; exit 1; } && export TMUX_CMD=`command -v tmux`
@@ -48,15 +46,13 @@ command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { export PHP=`c
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && export TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
-  #export TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_powerline.conf"
-  TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_powerline.conf"
+  export TMUX_CONF="$DIR/conf/tmux_powerline.conf"
 else
-  #export TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_bash.conf"
-  TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_bash.conf"
+  export TMUX_CONF="$DIR/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
-#cd $TMUX_APP_PATH
+cd $TMUX_APP_PATH
 
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
 	printf "1 $TMUX_SESSION"
@@ -66,6 +62,7 @@ else
 	printf "2 $TMUX_SESSION"
 	printf "\033]0; $TMUX_SESSION\007\003\n"
 	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "Spinning up..." && $NICE -n 19 $PHP monitor.php'
+
 fi
 
 #tmux new-session -d -s $TMUX_SESSION -n cycle
@@ -73,17 +70,12 @@ tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
 
 tmux select-pane -t 0
 tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH' C-m
-#tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_APP_PATH" C-m
-#tmux send-keys -t $TMUX_SESSION:0 '"cd $TMUX_APP_PATH"' C-m
-#tmux send-keys -t $TMUX_SESSION:0 'cd "$TMUX_APP_PATH"' C-m
-#tmux send-keys -t $TMUX_SESSION:0 'cd '$TMUX_APP_PATH C-m
-
 tmux send-keys -t $TMUX_SESSION:0 'clear' C-m
-tmux send-keys -t $TMUX_SESSION:0 '$TMUX_NICE -n 19 $TMUX_SH spotweb_cycle.sh' C-m
+tmux send-keys -t $TMUX_SESSION:0 '$TMUX_NICE -n 19 $TMUX_SH newznab_cycle.sh' C-m
 
 tmux splitw -v -p 25
 tmux select-pane -t 1
-tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_CURRENT_DIR; $TMUX_SH monitor_process.sh "tmux attach-session -d -t $TMUX_SESSION"' C-m
+tmux send-keys -t $TMUX_SESSION:0 'cd $DIR; $TMUX_SH monitor_process.sh "tmux attach-session -d -t $TMUX_SESSION"' C-m
 
 ## Create extra tab
 #tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
@@ -91,4 +83,3 @@ tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_CURRENT_DIR; $TMUX_SH monitor_proces
 ## Attach session
 #tmux select-window -t $TMUX_SESSION:0
 #tmux attach-session -d -t $TMUX_SESSION
-
