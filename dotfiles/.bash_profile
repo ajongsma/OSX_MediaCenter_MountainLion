@@ -16,10 +16,10 @@ export TERM=xterm-256color
 export CLICOLOR=1
 
 # Default colors
-export LSCOLORS=exfxcxdxbxegedabagacad
+#export LSCOLORS=exfxcxdxbxegedabagacad
 
 # Default colors - Bold variant
-export LSCOLORS=ExFxBxDxCxegedabagacad
+#export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Colors for Dark Terminal Themes:
 #export LSCOLORS=GxFxCxDxBxegedabagaced
