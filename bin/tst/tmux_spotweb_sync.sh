@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+# tmux kill-server
+# tmux start-server
+# tmux list-sessions
+
+# tmux source-file /absolute/path/to/your/.tmux.conf
+
+# Ctrl-b      : the prefix that sends a keybinding to tmux instead of to the shell or program running in tmux.
+# Ctrl-b c    : create a new window.
+# Ctrl-b "    : split the window horizontally.
+# Ctrl-b %    : split the window vertically.
+# Ctrl-b s    : list sessions.
+# Ctrl-b d    : detach a session.
+# Ctrl-b [    : start copy.
+# Ctrl-Space  : start selection.
+# Ctrl-w      : copy text from selection.
+# Ctrl-b ]    : paste.
+# Ctrl-b w    : select from windows.
+# Ctrl-b l    : last window.
+# Ctrl-b n    : next window.
+# Ctrl-b      : command mode.
+# Ctrl-b <nr> : Change to tab <nr>
+
 SOURCE="${BASH_SOURCE[0]}"
 DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
@@ -17,12 +39,11 @@ export TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
 export TMUX_SESSION="Spotweb"
 export TMUX_POWERLINE="false"
 
+command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed.  Aborting."; exit 1; } && export TMUX_SH=`command -v sh`
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed.  Aborting."; exit 1; } && export TMUX_CMD=`command -v tmux`
 command -v nice >/dev/null 2>&1 || { echo >&2 "Nice required but it's not installed.  Aborting."; exit 1; } && export TMUX_NICE=`command -v nice`
-command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed.  Aborting."; exit 1; } && export TMUX_SH=`command -v sh`
 command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { export PHP=`command -v php`; }
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && export TMUX_MYSQL=`command -v mysql`
-
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
   export TMUX_CONF="conf/tmux_powerline.conf"
@@ -32,8 +53,6 @@ fi
 #TMUX_CONF="~/.tmux.conf"
 
 cd $TMUX_APP_PATH
-
-#tmux start-server
 
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
 	$TMUX_CMD attach-session -t $TMUX_SESSION
@@ -45,7 +64,7 @@ fi
 
 tmux new-session -d -s $TMUX_SESSION -n cycle
 tmux select-pane -t 0
-tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH; clear; $TMUX_SH spotweb_cycle.sh' C-m
+tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH; clear; $NICE -n 19 $TMUX_SH spotweb_cycle.sh' C-m
 
 tmux splitw -v -p 25
 tmux select-pane -t 1
@@ -57,3 +76,4 @@ tmux send-keys -t $TMUX_SESSION:0 'cd $DIR; $TMUX_SH monitor_process.sh "tmux at
 ## Attach session
 #tmux select-window -t $TMUX_SESSION:0
 #tmux attach-session -d -t $TMUX_SESSION
+
