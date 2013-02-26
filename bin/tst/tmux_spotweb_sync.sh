@@ -37,7 +37,7 @@ export DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 export TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
 export TMUX_SESSION="Spotweb"
-export TMUX_POWERLINE="false"
+export TMUX_POWERLINE="true"
 
 command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed.  Aborting."; exit 1; } && export TMUX_SH=`command -v sh`
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed.  Aborting."; exit 1; } && export TMUX_CMD=`command -v tmux`
@@ -46,25 +46,32 @@ command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { export PHP=`c
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && export TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
-  export TMUX_CONF="conf/tmux_powerline.conf"
+  export TMUX_CONF="$DIR/conf/tmux_powerline.conf"
 else
-  export TMUX_CONF="conf/tmux_bash.conf"
+  export TMUX_CONF="$DIR/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
 cd $TMUX_APP_PATH
 
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
+	printf "1 $TMUX_SESSION"
+	printf "\033]0; $TMUX_SESSION\007\003\n"
 	$TMUX_CMD attach-session -t $TMUX_SESSION
 else
+	printf "2 $TMUX_SESSION"
 	printf "\033]0; $TMUX_SESSION\007\003\n"
-	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "It might take a minute for everything to spinup......" && $NICE -n 19 $PHP monitor.php'
+	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "Spinning up..." && $NICE -n 19 $PHP monitor.php'
 
 fi
 
-tmux new-session -d -s $TMUX_SESSION -n cycle
+#tmux new-session -d -s $TMUX_SESSION -n cycle
+tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
+
 tmux select-pane -t 0
-tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH; clear; $NICE -n 19 $TMUX_SH spotweb_cycle.sh' C-m
+tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH' C-m
+tmux send-keys -t $TMUX_SESSION:0 'clear' C-m
+tmux send-keys -t $TMUX_SESSION:0 '$TMUX_NICE -n 19 $TMUX_SH spotweb_cycle.sh' C-m
 
 tmux splitw -v -p 25
 tmux select-pane -t 1
