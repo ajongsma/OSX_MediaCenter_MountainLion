@@ -7,14 +7,24 @@ Shell scripts are currently used as a guideline document and should not be run a
 
 # SETUP
 * OS X Mountain Lion
-  * Updated GNU core utilities
-  * findutils
-  * bash 4
+  * Updated GNU core utilities (coreutils)
   * apple-gcc42
+  * gnu-sed
+  * autoconf
+  * automake
+  * findutils
+  * bash
   * wget
-  * unrar
+  * texi2html
+  * yasm
+  * x264
+  * faac
+  * lame
+  * xvid
+  * ffmpeg
+  * mediainfo
 * [Xcode](http://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-* Xcode Command Line Tools
+* [Xcode Command Line Tools] (https://developer.apple.com/)
 * [Xquartz] (http://xquartz.macosforge.org/landing)
 * [OSX Server 2.0](https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12)
   * Apache
@@ -45,12 +55,18 @@ Shell scripts are currently used as a guideline document and should not be run a
   * [nzbToMedia] (https://github.com/clinton-hall/nzbToMedia)
 * [Cheetah] (http://www.cheetahtemplate.org/download)
 * [SickBeard] (http://sickbeard.com/)
+  * NewzNAB as a Newznab Provider
+  * Spotweb as a Newznab Provider
   * [TraktTV integration] (https://trakt.tv/)
 * [Auto-Sub] (http://code.google.com/p/auto-sub/)
 * [Couch Potato] (https://couchpota.to/)
+  * NewzNAB as a Newznab Provider
+  * Spotweb als Newznab Provider
   * [TraktTV integration] (https://trakt.tv/)
 * [Periscope] (http://code.google.com/p/periscope/)
 * [Headphones] (https://github.com/rembo10/headphones)
+  * NewzNAB as a Newznab Provider
+  * Spotweb als Newznab Provider
 * [Maraschino] (http://www.maraschinoproject.com/)
   ``` [Maraschino Forum] (http://forums.maraschinoproject.com) ```
 
@@ -91,7 +107,6 @@ Shell scripts are currently used as a guideline document and should not be run a
   * [Solarized iTerm 2] (https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)
 * Bash Completion
 * Ruby
-* Spotweb as a Newznab Provider
 * [GeekTool] (http://projects.tynsoe.org/en/geektool)
   * http://lifehacker.com/5834676/build-an-attractive-informative-mac-desktop-with-geektool
   * http://mac.appstorm.net/roundups/utilities-roundups/over-46-powerful-geeklets-and-scripts-for-the-geek-within-you/
