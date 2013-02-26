@@ -98,6 +98,7 @@ Shell scripts are currently used as a guideline document and should not be run a
   * http://mac.tutsplus.com/tutorials/customization/5-ways-to-make-your-macs-desktop-better-with-geektool/
 * NewzNAB
   * [NewzNAB - Custom Content Page - Mini NZB Feed Compare] (http://www.newznabforums.com/index.php?topic=623.0)
+  * [Baffi-Theme] (https://github.com/Frikish/Baffi-Theme--Newznab-)
   * [Post Processing script: Auto release assembler suite] (http://www.newznabforums.com/index.php?topic=631.msg5625#msg5625)
   * RegEx ``` a.b.teevee ```
   ``` Disable all except: /^(\[|)(?P<name>.*?)(\]|) (\- |)\[(?P<parts>\d{1,3}\/\d{1,3})\] \- \".*?xvid.*?\"/i ```
