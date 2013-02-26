@@ -92,6 +92,11 @@ endif
 #set term=xterm-256color
 ----------------------------
 
+Yet another terminal theme:
+#http://kimlindberg.com/blog/2012/10/13/my-osx-terminal-irssi-and-vim-setup
+
+http://kimlindberg.com/wp-content/uploads/2012/10/KimLindberg.terminal.zip
+
 -------------------------------------------------------------------------
 
 
