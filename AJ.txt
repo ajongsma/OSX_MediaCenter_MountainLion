@@ -44,10 +44,49 @@ subl ~/.tmux.conf
 subl ~/.tmux-powerlinerc
 tmux source-file ~/.tmux
 
+#= ERRORS - END ======================================================================
+
+#= 26-02-2013 ========================================================================
+
+https://gist.github.com/baopham/1838072
+You're using a Linux font when you need a Mac font.
+Try using this one: https://gist.github.com/baopham/1838072
+
+https://gist.github.com/qrush/1595572
+Inconsolata-dz-Powerline.otf
+Menlo-Powerline.otf
+mensch-Powerline.otf
+
+
+The values returned by these commands should be utf-8:
+set encoding?
+set termencoding?
+
+Changing Powerline_symbols requires the cache to be cleared:
+rm /tmp/Powerline.cache
+
+----------------------------
+
+wget https://github.com/Lokaltog/powerline-fonts/raw/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf
+fontforge -script Source+Code+Pro+for+Powerline.otf /Library/Fonts/SourceCodePro-Regular.ttf 
+
+----------------------------
+
+~/.vimrc:
+----------------------------
+if has("gui_running")
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Monaco\ for\ Powerline
+   endif
+endif
+
+#set term=xterm-256color
+----------------------------
 
 -------------------------------------------------------------------------
 
-#= ERRORS - END ======================================================================
+
 
 #= 25-02-2013 ========================================================================
 
