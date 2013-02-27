@@ -196,5 +196,5 @@ fi
 #launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
 echo "#------------------------------------------------------------------------------"
-echo "# Installing CouchPotato - Complete"
+echo "# Install CouchPotato - Complete"
 echo "#------------------------------------------------------------------------------"
