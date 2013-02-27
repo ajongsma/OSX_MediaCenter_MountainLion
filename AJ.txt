@@ -164,7 +164,7 @@ Try using this one: https://gist.github.com/baopham/1838072
 https://github.com/adobe/source-sans-pro/downloads
 Font: source-sans-pro
 
-https://github.com/mneorr/powerline-fonts/tree/bfcb152306902c09b62be6e4a5eec7763e46d62d
+https://github.com/mneorr/powerline-fonts.git
 Font: DejaVuSansMono
 Font: DroidSansMono
 Font: Inconsolata
