@@ -194,32 +194,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 check_system
 
 #------------------------------------------------------------------------------
-# Dotfiles
-#------------------------------------------------------------------------------
-## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
-
-if [ ! -f ~/.bash_profile ] ; then
-    log "Creating default .bash_profile..."
-    #echo "Creating default .bash_profile..."
-
-    cp conf/bash_profile ~/.bash_profile
-else
-    echo
-    echo "File ~/.bash_profile found, please add the following manually:"
-    echo "------------ START ---------------"
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-    echo ""
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    echo "------------ END -----------------"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    nano ~/.bash_profile
-fi
-source ~/.bash_profile
-
-#------------------------------------------------------------------------------
 # Show the ~/Library folder
 #------------------------------------------------------------------------------
 chflags nohidden ~/Library
@@ -262,6 +236,32 @@ if [ ! -d ~/Applications/ ] ; then
 else
     printf "$PRINTF_MASK" "Directory ~/Applications found" "$GREEN" "[OK]" "$RESET"
 fi
+
+#------------------------------------------------------------------------------
+# Dotfiles
+#------------------------------------------------------------------------------
+## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
+
+if [ ! -f ~/.bash_profile ] ; then
+    log "Creating default .bash_profile..."
+    #echo "Creating default .bash_profile..."
+
+    cp conf/bash_profile ~/.bash_profile
+else
+    echo
+    echo "File ~/.bash_profile found, please add the following manually:"
+    echo "------------ START ---------------"
+    echo "# Tell ls to be colourful"
+    echo "export CLICOLOR=1"
+    echo ""
+    echo "# Tell grep to highlight matches"
+    echo "export GREP_OPTIONS='--color=auto'"
+    echo "------------ END -----------------"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    nano ~/.bash_profile
+fi
+source ~/.bash_profile
 
 #------------------------------------------------------------------------------
 # Check for installation Xcode

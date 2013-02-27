@@ -7,6 +7,8 @@ echo "#-------------------------------------------------------------------------
 
 source ~/.bashrc
 
+[ -d ~/.tmux ] || mkdir -p ~/.tmux
+
 cd /usr/local/share
 sudo git clone https://github.com/milkbikis/powerline-shell
 

@@ -18,6 +18,8 @@
 ##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline.otf
 ##open ~/Github/powerline-fonts/Meslo/Meslo\ LG\ S\ Regular\ for\ Powerline.otf
 
+[ -d ~/.tmux ] || mkdir -p ~/.tmux
+
 cd /usr/local/share
 #git clone https://github.com/Lokaltog/powerline.git
 git clone git://github.com/erikw/tmux-powerline.git
