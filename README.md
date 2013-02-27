@@ -1,7 +1,11 @@
 OSX_NewBox
 ==========
+(Mac Mini media center)
 
-Main shell script is currently used as a guideline document and could generate errors. The called install scripts for installing required functionality is the current focus point.  
+----------
+Main shell script is currently used as a guideline document and could generate errors.
+
+Having the called install scripts functioning as intended is the current focus point.  
 
 <hr>
 
