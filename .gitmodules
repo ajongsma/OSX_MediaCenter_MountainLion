@@ -1,3 +1,9 @@
 [submodule "src/spotweb"]
   path = src/spotweb
   url = https://github.com/spotweb/spotweb.git
+[submodule "src/tmux-colors-solarized"]
+  path = src/tmux-colors-solarized
+	url = https://github.com/seebi/tmux-colors-solarized
+[submodule "src/tmux-powerline"]
+	path = src/tmux-powerline
+	url = https://github.com/XayOn/tmux-powerline
