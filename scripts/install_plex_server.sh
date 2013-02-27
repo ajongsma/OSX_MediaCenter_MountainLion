@@ -7,7 +7,7 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-cd ~/Downloads
+#cd ~/Downloads
 
 if [ ! -e ~/Downloads/PlexMediaServer-* ] ; then
     echo "Plex Server not installed, please install..."
