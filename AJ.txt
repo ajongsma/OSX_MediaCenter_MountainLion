@@ -122,6 +122,11 @@ echo pgrep -f $PATTERN
 
 -------------------------------------------------------------------------
 
+Plist files:
+http://christopher-williams.net/2010/09/automating-your-tv-show-downloads-with-sabnzbd-and-sick-beard-part-2-mac-os-x/
+
+-------------------------------------------------------------------------
+
 Unison OS X launchd plist
 
 unison_sync.sh:
