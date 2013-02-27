@@ -46,12 +46,86 @@ tmux source-file ~/.tmux
 
 #= ERRORS - END ======================================================================
 
-#= 26-02-2013 ========================================================================
+#= 27-02-2013 ========================================================================
+My terminal locale settings were set to ASCII. Once I changed them to UTF-8, everything is good:
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
 
-Prompt:
-${PWD/#$HOME/~}
+----------------------------
 
+>> ./status-left.sh 
+#[bg=colour148] #[fg=colour148, bg=colour148]#[fg=colour234,bg=colour148]0:1.1 #[fg=colour148, bg=colour33]⮀#    
+[fg=colour0,bg=colour33]   ilab #[fg=colour33, bg=colour24]⮀#[fg=colour255,bg=colour24]   ⓛ 10.50.203.149   #[fg=white,   
+bg=colour24]⮁#[fg=colour255,bg=colour24]   ⓦ 212.201.44.246   #[fg=colour24, bg=colour235]⮀#[fg=red,bg=colour235]   #
+[default]
+
+>> ./status-right.sh
+#[fg=colour237, bg=colour235]⮂#[fg=colour167,bg=colour237]    0.65 0.84 0.86 #[fg=colour37, bg=colour237]⮂#  
+[fg=colour255,bg=colour37]   ✈ 26°C    #[fg=colour235, bg=colour37]⮂#[fg=colour136,bg=colour235]   Sat #[fg=default,   
+bg=colour235]⮃#[fg=colour136,bg=colour235]   2012-07-28 #[fg=default, bg=colour235]⮃#[fg=colour136,bg=colour235]   14:07  
+#[default]
+
+
+tmux.conf
+----------------------------
+# split panes
+bind | split-window -h
+bind - split-window -v
+
+# resize panes
+bind -r h resize-pane -L 5
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r l resize-pane -R 5
+
+# enable 256-colors
+set -g default-terminal "screen-256color"
+
+# enable utf-8 on status bar
+set -g status on
+set -g status-utf8 on
+
+# status refresh interval
+set -g status-interval 2
+
+# status left
+set -g status-left-length 60
+set -g status-left "#(~/.tmux/tmux-powerline/status-left.sh)"
+
+# status right
+set -g status-right-length 90
+set -g status-right "#(~/.tmux/tmux-powerline/status-right.sh)"
+
+# solarized theme
+source ~/.tmux/tmux-colors-solarized/tmuxcolors.conf
+
+# window and pane start index
+set -g base-index 1
+set -g pane-base-index 1
+
+# center the window list
+set -g status-justify centre
+
+# vi mode for the buffer
+setw -g mode-keys vi
+
+# command sequence for nested tmux session
+bind-key a send-prefix
+
+# remap prefix to ctrl-a
+set -g prefix C-a
+----------------------------
 -------------------------------------------------------------------------
+
+
+
+#= 26-02-2013 ========================================================================
 
 https://gist.github.com/baopham/1838072
 You're using a Linux font when you need a Mac font.
