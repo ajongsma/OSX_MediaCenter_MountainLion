@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo "#------------------------------------------------------------------------------"
+echo "# Installing HomeBrew"
+echo "#------------------------------------------------------------------------------"
+
 ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 
 if [ ! -e /usr/local/bin/brew ] ; then
@@ -19,4 +23,6 @@ brew doctor
 # Remove outdated versions from the cellar
 brew cleanup
 
-echo "Install Homebrew complete."
+echo "#------------------------------------------------------------------------------"
+echo "# Install HomeBrew - Complete"
+echo "#------------------------------------------------------------------------------"
