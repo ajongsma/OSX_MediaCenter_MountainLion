@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
-echo "# Install Auto-Sub"
+echo "# Installing Auto-Sub"
 echo "#------------------------------------------------------------------------------"
 #AutoSub.py  ExamplePostProcess.py  README.txt  autosub changelog.xml  cherrypy  init.ubuntu  interface  library
 
