@@ -47,6 +47,13 @@ tmux source-file ~/.tmux
 #= ERRORS - END ======================================================================
 
 #= 27-02-2013 ========================================================================
+
+-------------------------------------------------------------------------
+
+http://chrisjean.com/2009/04/20/git-submodules-adding-using-removing-and-updating/
+
+-------------------------------------------------------------------------
+
 My terminal locale settings were set to ASCII. Once I changed them to UTF-8, everything is good:
 LANG="en_US.UTF-8"
 LC_COLLATE="en_US.UTF-8"
