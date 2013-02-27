@@ -1,7 +1,7 @@
 OSX_NewBox
 ==========
 
-Main shell script is currently used as a guideline document and could generate errors. The called install scripts for installing required functionality is where the focus is currently on.  
+Main shell script is currently used as a guideline document and could generate errors. The called install scripts for installing required functionality is where the current focus point.  
 
 <hr>
 
