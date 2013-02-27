@@ -60,8 +60,7 @@ BOLD=$(tput bold)
 UNDERLINE=$(tput sgr 0 1)
 RESET=$(tput sgr0)
 
-###############
-### TO TEST ###
+######## PLAY TIME ##############
 function get_color(){
     document "get_color" "Return a color, either a colorcode or one of the color list" "colorname" && return
     [[ $1 < 254 ]] && { echo $1; } || { echo ${colors[$1]} ; } ; }
@@ -77,7 +76,7 @@ function colorize(){
     [[ ${ef} != "0" ]] && tput $ef
     echo -en "$2"; tput sgr0
 }
-###############
+######## PLAY TIME - END ########
 
 
 NOTICE=$RESET$BOLD$BLUE
