@@ -1,7 +1,7 @@
 OSX_NewBox
 ==========
 
-Shell scripts are currently used as a guideline document and should not be run as an install script.
+Main shell script is currently used as a guideline document and could generate errors. The called install scripts for installing required functionality is where the focus is currently on.  
 
 <hr>
 
