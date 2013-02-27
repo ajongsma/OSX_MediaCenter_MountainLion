@@ -68,6 +68,13 @@ cp /usr/local/share/tmux-powerline/themes/default.sh ~/.tmux/tmthemes/default.sh
 http://chrisjean.com/2009/04/20/git-submodules-adding-using-removing-and-updating/
 
 -------------------------------------------------------------------------
+
+=> Running tmux with tmux -u, which tells tmux to assume utf8 is supported by the terminal and so it 
+   displays the characters like it should.
+
+tmux -u
+----------------------------
+
 ##https://github.com/erikw/tmux-powerline/issues/33
 
 My terminal locale settings were set to ASCII. Once I changed them to UTF-8, everything is good:
