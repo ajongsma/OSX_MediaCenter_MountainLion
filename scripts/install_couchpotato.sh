@@ -108,91 +108,94 @@ if [[ -z $INST_COUCHPOTATOD_API ]] ; then
     done
 fi
 
-### --- TESTING ---
-#echo "Creating Lauch Agent file:"
-#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.couchpotato.couchpotato</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#      <string>/usr/local/bin/python</string>
-#      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
-#EOF
+if [ -f $DIR/launchctl/com.couchpotato.couchpotato.plist ] ; then
+    cp $DIR/launchctl/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+else
+    ### --- TESTING ---
+    #echo "Creating Lauch Agent file:"
+    #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
+    #<?xml version="1.0" encoding="UTF-8"?>
+    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    #<plist version="1.0">
+    #<dict>
+    #  <key>Label</key>
+    #  <string>com.couchpotato.couchpotato</string>
+    #  <key>ProgramArguments</key>
+    #  <array>
+    #      <string>/usr/local/bin/python</string>
+    #      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+    #  </array>
+    #  <key>RunAtLoad</key>
+    #  <true/>
+    #</dict>
+    #</plist>
+    #EOF
+    
+    #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
+    #<?xml version="1.0" encoding="UTF-8"?>
+    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    #<plist version="1.0">
+    #<dict>
+    #    <key>Label</key>
+    #    <string>com.couchpotato.couchpotato</string>
+    #    <key>ProgramArguments</key>
+    #    <array>
+    #        <string>/usr/bin/python</string>
+    #        <string>CouchPotato.py</string>
+    #        <string>--quiet</string>
+    #        <string>--daemon</string>
+    #    </array>
+    #    <key>RunAtLoad</key>
+    #    <true/>
+    #    <key>WorkingDirectory</key>
+    #    <string>/Applications/CouchPotato.app</string>
+    #</dict>
+    #</plist>
+    #EOF
+    
+    #
+    #<?xml version="1.0" encoding="UTF-8"?>
+    #<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    #<plist version="1.0">
+    #<dict>
+    #    <key>Label</key>
+    #    <string>com.couchpotato.couchpotato</string>
+    #    <key>OnDemand</key>
+    #    <false/>
+    #    <key>ProgramArguments</key>
+    #    <array>
+    #    <string>python</string>
+    #    <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+    #    </array>
+    #    <key>RunAtLoad</key>
+    #    <true/>
+    #    <key>WorkingDirectory</key>
+    #    <string>/Applications/CouchPotato.app/</string>
+    #    <key>ServiceDescription</key>
+    #    <string>CouchPotato</string>
+    #</dict>
+    #</plist>
+    
+    #<?xml version="1.0" encoding="UTF-8"?>
+    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    #<plist version="1.0">
+    #<dict>
+    #  <key>Label</key>
+    #  <string>com.couchpotato.couchpotato</string>
+    #  <key>ProgramArguments</key>
+    #  <array>
+    #     <string>/usr/local/bin/python</string>
+    #     <string>/Applications/CouchPotato.app/CouchPotato.py</string>
+    #  </array>
+    #  <key>RunAtLoad</key>
+    #  <true/>
+    #</dict>
+    #</plist>
 
-#cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#    <key>Label</key>
-#    <string>com.couchpotato.couchpotato</string>
-#    <key>ProgramArguments</key>
-#    <array>
-#        <string>/usr/bin/python</string>
-#        <string>CouchPotato.py</string>
-#        <string>--quiet</string>
-#        <string>--daemon</string>
-#    </array>
-#    <key>RunAtLoad</key>
-#    <true/>
-#    <key>WorkingDirectory</key>
-#    <string>/Applications/CouchPotato.app</string>
-#</dict>
-#</plist>
-#EOF
+    #mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+fi
 
-#
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#    <key>Label</key>
-#    <string>com.couchpotato.couchpotato</string>
-#    <key>OnDemand</key>
-#    <false/>
-#    <key>ProgramArguments</key>
-#    <array>
-#    <string>python</string>
-#    <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#    </array>
-#    <key>RunAtLoad</key>
-#    <true/>
-#    <key>WorkingDirectory</key>
-#    <string>/Applications/CouchPotato.app/</string>
-#    <key>ServiceDescription</key>
-#    <string>CouchPotato</string>
-#</dict>
-#</plist>
-
-#<?xml version="1.0" encoding="UTF-8"?>
-#<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-#<plist version="1.0">
-#<dict>
-#  <key>Label</key>
-#  <string>com.couchpotato.couchpotato</string>
-#  <key>ProgramArguments</key>
-#  <array>
-#     <string>/usr/local/bin/python</string>
-#     <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-#  </array>
-#  <key>RunAtLoad</key>
-#  <true/>
-#</dict>
-#</plist>
-#
-
-#mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
-#launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
-#
+launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
 #launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
 echo "#------------------------------------------------------------------------------"
