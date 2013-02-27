@@ -22,5 +22,5 @@ cd Cheetah-2.4.4
 sudo python setup.py install
 
 echo "#------------------------------------------------------------------------------"
-echo "# Installing Cheeta complete"
+echo "# Install Cheeta - Complete"
 echo "#------------------------------------------------------------------------------"
