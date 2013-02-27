@@ -23,14 +23,14 @@
 # Ctrl-b <nr> : Change to tab <nr>
 
 SOURCE="${BASH_SOURCE[0]}"
-DIR="$( dirname "$SOURCE" )"
+TMUX_CURRENT_DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
 do
   SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-  DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
+  [[ $SOURCE != /* ]] && SOURCE="$TMUX_CURRENT_DIR/$SOURCE"
+  TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
 done
-export DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 ## Process COMMAND:
 ## tmux attach-session -d -t Spotweb
@@ -46,9 +46,11 @@ command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { export PHP=`c
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && export TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
-  export TMUX_CONF="$DIR/conf/tmux_powerline.conf"
+  #export TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_powerline.conf"
+  TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_powerline.conf"
 else
-  export TMUX_CONF="$DIR/conf/tmux_bash.conf"
+  #export TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_bash.conf"
+  TMUX_CONF="$TMUX_CURRENT_DIR/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
@@ -75,7 +77,7 @@ tmux send-keys -t $TMUX_SESSION:0 '$TMUX_NICE -n 19 $TMUX_SH spotweb_cycle.sh' C
 
 tmux splitw -v -p 25
 tmux select-pane -t 1
-tmux send-keys -t $TMUX_SESSION:0 'cd $DIR; $TMUX_SH monitor_process.sh "tmux attach-session -d -t $TMUX_SESSION"' C-m
+tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_CURRENT_DIR; $TMUX_SH monitor_process.sh "tmux attach-session -d -t $TMUX_SESSION"' C-m
 
 ## Create extra tab
 #tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
