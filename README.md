@@ -72,7 +72,7 @@ Shell scripts are currently used as a guideline document and should not be run a
 * [Plex] (http://www.plexapp.com/)
   * [Plex Media Server] (http://plex.r.worldssl.net/PlexMediaServer/0.9.7.12.407-db37d6d/PlexMediaServer-0.9.7.12.407-db37d6d-OSX.dmg)
   * [Plex Media Center Client] (http://www.plexapp.com/download/plex-media-center.php)
-  * [Plex Mobile] 9http://www.plexapp.com/ios.php)
+  * [Plex Mobile] [http://www.plexapp.com/ios.php)
 
 
 # ADDENDUM
