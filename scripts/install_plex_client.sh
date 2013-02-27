@@ -6,7 +6,7 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-cd ~/Downloads
+#cd ~/Downloads
 
 if [ ! -e ~/Downloads/Plex.app ] ; then
     echo "Plex Media Client not installed, please install..."
