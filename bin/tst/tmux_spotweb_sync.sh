@@ -22,6 +22,8 @@
 # Ctrl-b      : command mode.
 # Ctrl-b <nr> : Change to tab <nr>
 
+## tmux attach-session -d -t Spotweb
+
 SOURCE="${BASH_SOURCE[0]}"
 TMUX_CURRENT_DIR="$( dirname "$SOURCE" )"
 while [ -h "$SOURCE" ]
@@ -32,12 +34,12 @@ do
 done
 TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-## Process COMMAND:
-## tmux attach-session -d -t Spotweb
-
-export TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
-export TMUX_SESSION="Spotweb"
-export TMUX_POWERLINE="true"
+#export TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
+TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
+#export TMUX_SESSION="Spotweb"
+TMUX_SESSION="Spotweb"
+#export TMUX_POWERLINE="true"
+TMUX_POWERLINE="true"
 
 command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed.  Aborting."; exit 1; } && export TMUX_SH=`command -v sh`
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed.  Aborting."; exit 1; } && export TMUX_CMD=`command -v tmux`
@@ -72,6 +74,11 @@ tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
 
 tmux select-pane -t 0
 tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_APP_PATH' C-m
+#tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_APP_PATH" C-m
+#tmux send-keys -t $TMUX_SESSION:0 '"cd $TMUX_APP_PATH"' C-m
+#tmux send-keys -t $TMUX_SESSION:0 'cd "$TMUX_APP_PATH"' C-m
+#tmux send-keys -t $TMUX_SESSION:0 'cd '$TMUX_APP_PATH C-m
+
 tmux send-keys -t $TMUX_SESSION:0 'clear' C-m
 tmux send-keys -t $TMUX_SESSION:0 '$TMUX_NICE -n 19 $TMUX_SH spotweb_cycle.sh' C-m
 
