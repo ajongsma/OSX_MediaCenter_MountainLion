@@ -8,6 +8,12 @@ echo "#-------------------------------------------------------------------------
 source ~/.bashrc
 
 [ -d ~/.tmux ] || mkdir -p ~/.tmux
+#cp -v conf/tmux/* ~/.tmux
+[ -f ~/.tmux/tmux_bash.conf ] || cp -v conf/tmux/tmux_bash.conf ~/.tmux/
+[ -f ~/.tmux/tmux_powerline.conf ] || cp -v conf/tmux/tmux_powerline.conf ~/.tmux/
+[ -f ~/.tmux/tmux.bindings.conf ] || cp -v conf/tmux/tmux.bindings.conf ~/.tmux/
+[ -f ~/.tmux/tmux.mouse.conf ] || cp -v conf/tmux/tmux.mouse.conf ~/.tmux/
+[ -f ~/.tmux/tmux.powerline.conf ] || cp -v tmux.powerline.conf ~/.tmux/
 
 cd /usr/local/share
 sudo git clone https://github.com/milkbikis/powerline-shell
