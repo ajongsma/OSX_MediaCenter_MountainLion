@@ -77,6 +77,7 @@ Having the called install scripts functioning as intended is the current focus p
   * [Plex Media Server] (http://plex.r.worldssl.net/PlexMediaServer/0.9.7.12.407-db37d6d/PlexMediaServer-0.9.7.12.407-db37d6d-OSX.dmg)
   * [Plex Media Center Client] (http://www.plexapp.com/download/plex-media-center.php)
   * [Plex Mobile] (http://www.plexapp.com/ios.php)
+  * Additional Plex themes
 
 
 # ADDENDUM
