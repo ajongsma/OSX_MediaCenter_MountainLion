@@ -43,9 +43,11 @@ stat_process $PROCNAME;
 if [ $i -eq $PAGEROWS ] ;
 then
  i=0;
- UNIX95= clear; ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem,args 2>/dev/null
+ #UNIX95= clear; ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem,args 2>/dev/null
+ UNIX95= clear; ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem 2>/dev/null
 else
- UNIX95= ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem,args 2>/dev/null | tail -n +2
+ #UNIX95= ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem,args 2>/dev/null | tail -n +2
+ UNIX95= ps -p $PROCID -o etime,vsz,pid,rss,pcpu,pmem 2>/dev/null | tail -n +2
 fi
 if [ ! -z "$PROCID" ]
 then
