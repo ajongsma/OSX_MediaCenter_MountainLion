@@ -7,7 +7,7 @@ echo "#-------------------------------------------------------------------------
 set -e
 
 ## Example: /Users/NewzDash/Sites/newzdash
-export UPD_NEWZDASH_PATH=""
+export UPD_NEWZDASH_PATH="/Users/Newzdash/Sites/newzdash"
 
 if [ -z "${UPD_NEWZDASH_PATH}" ] || [ ! -d "${UPD_NEWZDASH_PATH}" ]; then
   echo "Directory $NEWZDASH_PATH not found. Aborting ..."
@@ -77,7 +77,7 @@ __vcs_branch() {
     ref=$(svn info "$base_dir" | awk '/^URL/ { sub(".*/","",$0); r=$0 } /^Revision/ { sub("[^0-9]*","",$0); print r":"$0 }')
     vcs="svn"
     pr="($vcs|$ref)"
-}
+  }
 
   svk_dir() {
     [ -f ~/.svk/config ] || return 1
@@ -156,44 +156,38 @@ txtrst='\033[m'   # Text Reset
 
 test -n "$(git status --porcelain)"
 if [ -n "$(git status --porcelain)" ]; then 
-  echo "there are changes"; 
+  echo "Updates available"; 
 else 
-  echo "no changes";
+  echo "No updates available";
 fi
 
-git status | grep 'nothing to commit' && echo 'you are clean''
-
-current_branch = `git branch | grep '*'`.split.last
-
-git status --porcelain | egrep "^D" | sed -e 's/^D  //' )
-
-git status -s | grep -q '^.M'
-
-
-exit
-
+#git status | grep 'nothing to commit' && echo 'you are clean'
+#git status --porcelain | egrep "^D" | sed -e 's/^D  //'
+#git status -s | grep -q '^.M'
 
 # Check existance PID
 if [ -f "${UPD_NEWZDASH_PATH}/.upgrade.newzdash" ]; then
-    echo "PID file exists."
-    echo "If needed, please remove file ${UPD_NEWZDASH_PATH}/.upgrade.newzdash manually"
-    exit 1
+  echo "PID file exists."
+  echo "If needed, please remove file ${UPD_NEWZDASH_PATH}/.upgrade.newzdash manually"
+  exit 1
 else
-    cd "${UPD_NEWZDASH_PATH}"
+  cd "${UPD_NEWZDASH_PATH}"
 
-    git status
-    if git status -s | grep -q '^.M'
-    then
-      # ...
-    fi
+  if [ -n "$(git status --porcelain)" ]; then 
+    echo "Updates available"; 
+  else 
+    echo "No updates available";
+  fi
+
+#echo \u\[${txtpur}\]@\[${txtrst}\]\h\[${txtpur}\]:\[${txtrst}\]\w\["'$(__vcs_status)'"\]"'$(__vcs_branch)'"\[${txtrst}\]\[${txtpur}\]\$ \[${txtrst}\]
 
 exit
 
-    touch "${UPD_NEWZDASH_PATH}/.upgrade.newzdash"
-    git stash
-    git pull
+  touch "${UPD_NEWZDASH_PATH}/.upgrade.newzdash"
+  git stash
+  git pull
 
-    rm "${UPD_NEWZDASH_PATH}/.upgrade.newzdash"
+  rm "${UPD_NEWZDASH_PATH}/.upgrade.newzdash"
 fi
 
 echo "#------------------------------------------------------------------------------"

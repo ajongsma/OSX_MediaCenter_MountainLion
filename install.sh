@@ -1270,6 +1270,26 @@ else
     printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------
+# Install Plex Themes
+#------------------------------------------------------------------------------
+for another_plex_theme in \
+    ~/Library/Application\ Support/Plex/addons/Blur \
+    ~/Library/Application\ Support/Plex/addons/Carbon \
+    ~/Library/Application\ Support/Plex/addons/Metropolis \
+    ~/Library/Application\ Support/Plex/addons/PlexAeon \
+    ~/Library/Application\ Support/Plex/addons/Quicksilver \
+    ~/Library/Application\ Support/Plex/addons/Retroplex
+do
+    [[ -e $another_plex_theme ]] && echo "Found theme: $another_plex_theme" && [[ $INST_PLEX_THEMES != "false" ]] && export INST_PLEX_THEMES="true" || export INST_PLEX_THEMES="true"
+done
+
+if [[ $INST_PLEX_THEMES == "true" ]]; then
+    printf 'Plex themes not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_plex_themes.sh"
+else
+    printf 'Plex themes found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
 
 
 #==============================================================================
