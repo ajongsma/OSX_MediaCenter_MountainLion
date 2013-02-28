@@ -33,6 +33,10 @@ cp -r Blur $PLEX_SKINS_FOLDER
 git clone https://github.com/reddragon220/Quicksilver.git
 cp -r Quicksilver $PLEX_SKINS_FOLDER
 
+## https://github.com/kevinlekiller/Newznab-Carbon-Theme.git
+git clone https://github.com/kevinlekiller/Newznab-Carbon-Theme.git
+cp -r Newznab-Carbon-Theme/Carbon $PLEX_SKINS_FOLDER/Carbon
+
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install Themes for Plex Media Client - Complete"
