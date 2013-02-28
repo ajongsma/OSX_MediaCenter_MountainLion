@@ -546,7 +546,6 @@ INSTALL="apple-gcc42 \
         bash \
         bash-completion \
         wget \
-        tmux \
         ack \
         ifstat \
         macvim --env-std --override-system-vim \
@@ -708,8 +707,20 @@ if [ ! -e /usr/local/bin/searchd ] ; then
     printf 'Sphinx not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_sphinx.sh"
 else
-    printf 'local found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'Sphinx found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+##------------------------------------------------------------------------------
+## Install Tmux
+##------------------------------------------------------------------------------
+if [ ! -e /usr/bin/tmux ] ; then
+    printf 'Tmux not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_tmux.sh"
+else
+    printf 'Tmux found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+tmux
 
 ##------------------------------------------------------------------------------
 ## Install Powerline Tmux
