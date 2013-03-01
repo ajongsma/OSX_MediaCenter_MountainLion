@@ -156,7 +156,7 @@ txtrst='\033[m'   # Text Reset
 
 test -n "$(git status --porcelain)"
 if [ -n "$(git status --porcelain)" ]; then 
-  echo "Updates available"; 
+  echo "Updates available";
 else 
   echo "No updates available";
 fi
@@ -182,6 +182,14 @@ else
 #echo \u\[${txtpur}\]@\[${txtrst}\]\h\[${txtpur}\]:\[${txtrst}\]\w\["'$(__vcs_status)'"\]"'$(__vcs_branch)'"\[${txtrst}\]\[${txtpur}\]\$ \[${txtrst}\]
 
 exit
+
+  read -p "Are you sure? (y/n) " -n 1
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+      doIt
+  else
+    exit
+  fi
 
   touch "${UPD_NEWZDASH_PATH}/.upgrade.newzdash"
   git stash
