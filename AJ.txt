@@ -79,6 +79,8 @@ echo $PROCID
 PROCID=`ps ax | grep " -Dcatalina.base=${appname} " | grep -v grep | awk '{print $1}'`
 echo $PROCID
 
+-------------------------------------------------------------------------
+
 https://github.com/ajongsma/dotfile
 
 #= 27-02-2013 ========================================================================
