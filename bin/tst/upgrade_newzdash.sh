@@ -151,6 +151,8 @@ txtrst='\033[m'   # Text Reset
 ##export PS1='\u@\h:\w''$(__git_ps1 " (%s)")''\$ '
 #export PS1="\u\[${txtpur}\]@\[${txtrst}\]\h\[${txtpur}\]:\[${txtrst}\]\w\["'$(__vcs_status)'"\]"'$(__vcs_branch)'"\[${txtrst}\]\[${txtpur}\]\$ \[${txtrst}\]"
 
+echo -e "$(__vcs_status)$(__vcs_branch)${txtrst}"
+#\[${txtrst}\]\[${txtpur}\]\$ \[${txtrst}\]"
 
 #---------
 
@@ -160,6 +162,7 @@ if [ -n "$(git status --porcelain)" ]; then
 else 
   echo "No updates available";
 fi
+
 
 #git status | grep 'nothing to commit' && echo 'you are clean'
 #git status --porcelain | egrep "^D" | sed -e 's/^D  //'
@@ -172,14 +175,6 @@ if [ -f "${UPD_NEWZDASH_PATH}/.upgrade.newzdash" ]; then
   exit 1
 else
   cd "${UPD_NEWZDASH_PATH}"
-
-  if [ -n "$(git status --porcelain)" ]; then 
-    echo "Updates available"; 
-  else 
-    echo "No updates available";
-  fi
-
-#echo \u\[${txtpur}\]@\[${txtrst}\]\h\[${txtpur}\]:\[${txtrst}\]\w\["'$(__vcs_status)'"\]"'$(__vcs_branch)'"\[${txtrst}\]\[${txtpur}\]\$ \[${txtrst}\]
 
 exit
 
