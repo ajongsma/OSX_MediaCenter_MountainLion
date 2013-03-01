@@ -79,9 +79,11 @@ echo $PROCID
 PROCID=`ps ax | grep " -Dcatalina.base=${appname} " | grep -v grep | awk '{print $1}'`
 echo $PROCID
 
+https://github.com/ajongsma/dotfile
+
 #= 27-02-2013 ========================================================================
 
-## https://github.com/runkmc/dotfiles
+## https://github.com/isohybrid/dotfile.git
 
 ~/tmux-powerlinerc:
 ---- Change ----
