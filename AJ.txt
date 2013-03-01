@@ -46,6 +46,39 @@ tmux source-file ~/.tmux
 
 #= ERRORS - END ======================================================================
 
+#= 01-03-2013 ========================================================================
+
+PROCID=`ps -ef | grep Spotweb | cut -c9-15`
+echo $PROCID
+
+#cut -d” ” -f1. What it does is to break the line into columns (-d ” ” is delimiter) and sends back the first column to output.
+PROCID=`ps -ef | grep Spotweb | cut -d" " -f1-3`
+echo $PROCID
+
+PROCID=`ps auxwww | \
+	grep Spotweb | \
+	sed 's/  */ /g' | \
+	sed 's/-q /-q/g' | \
+	sed 's/.*/& /g' | \
+	grep " \-q$1 " | \
+	awk '{print $2}'`
+echo $PROCID
+
+PROCID=`ps -elf | \
+	grep Spotweb | \
+	sed 's/  */ /g' | \
+	sed 's/-q /-q/g' | \
+	sed 's/.*/& /g' | \
+	grep " \-q$1 " | \
+	awk '{print $4}'`;;
+echo $PROCID
+
+PROCID=`ps -ef | grep Spotweb | grep -v grep | awk '{print $2}'`
+echo $PROCID
+
+PROCID=`ps ax | grep " -Dcatalina.base=${appname} " | grep -v grep | awk '{print $1}'`
+echo $PROCID
+
 #= 27-02-2013 ========================================================================
 
 ## https://github.com/runkmc/dotfiles
