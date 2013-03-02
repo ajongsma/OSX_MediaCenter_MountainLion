@@ -73,7 +73,21 @@ read -n 1 -s
 #sh php /Library/WebServer/Documents/spotweb/retrieve.php
 #/bin/bash php /Library/WebServer/Documents/spotweb/retrieve.php
 
+echo "-----------------------------------------------------------"
+echo "| Click on the Cogwheel top-right and enter the following settings:"
+echo "| "
+echo "| NZB Handeling"
+echo "| What shall we do with NZB files           : Call SABnzbd through HTTP by Spotweb"
+echo "| What shall we do with multiple NZB files? : Merge NZB files"
+echo "| URL to SABnzbd                            : localhost:$INST_SABNZBD_PORT"
+echo "| API key for SABnzbd                       : $INST_SABNZBD_KEY_API"
+echo "-----------------------------------------------------------"
+echo "| Change"
+echo "-----------------------------------------------------------"
 open http://localhost/spotweb
+
+echo " --- press any key to continue ---"
+read -n 1 -s
 
 #osascript -e 'tell app "Terminal"
 #    do script "php /Users/Spotweb/Sites/spotweb/retrieve.php"

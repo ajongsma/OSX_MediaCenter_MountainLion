@@ -834,20 +834,6 @@ else
 fi
 
 #------------------------------------------------------------------------------
-# Install Spotweb
-#------------------------------------------------------------------------------
-if [ ! -d /Users/Spotweb/Sites/spotweb ] ; then
-    printf 'Spotweb not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_spotweb.sh"
-else
-    printf 'Spotweb found\n' "$GREEN" $col '[OK]' "$RESET"
-fi
-
-osascript -e 'tell app "Terminal"
-    do script "php $INST_SPOTWEB_PATH/retrieve.php"
-end tell'
-
-#------------------------------------------------------------------------------
 # Install SABnzbd+
 #------------------------------------------------------------------------------
 if [ ! -e /Applications/SABnzbd.app ] ; then
@@ -876,6 +862,20 @@ if [[ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ]]; then
 else
     printf 'SABnzbd+ nzbToMedia found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
+
+#------------------------------------------------------------------------------
+# Install Spotweb
+#------------------------------------------------------------------------------
+if [ ! -d /Users/Spotweb/Sites/spotweb ] ; then
+    printf 'Spotweb not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_spotweb.sh"
+else
+    printf 'Spotweb found\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
+osascript -e 'tell app "Terminal"
+    do script "php $INST_SPOTWEB_PATH/retrieve.php"
+end tell'
 
 #------------------------------------------------------------------------------
 # Install Cheetah
