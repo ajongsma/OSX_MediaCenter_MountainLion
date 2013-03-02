@@ -1148,7 +1148,7 @@ fi
 #fi
 
 #------------------------------------------------------------------------------
-# Install CouchPotato
+# Install Headphones
 #------------------------------------------------------------------------------
 if [ ! -d $INST_HEADPHONES_PATH ] ; then
     printf 'Headphones not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
@@ -1189,6 +1189,33 @@ read -n 1 -s
 #else
 #    printf 'NewzNAB as provider for Headphones configured\n' "$GREEN" $col '[OK]' "$RESET"
 #fi
+
+#------------------------------------------------------------------------------"
+# Configuring Headphones for SABnzbd"
+# "
+# Perhaps even:"
+# Configuring Headphones for SABnzbd - nzbToMedia"
+#------------------------------------------------------------------------------"
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo " TODO: Check for specific variables"
+echo " Till then, forced run:"
+echo "   $DIR/scripts/install_headphones_nzbtomedia.sh"
+
+source "$DIR/scripts/install_headphones_nzbtomedia.sh"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    printf 'Headphones: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+    source "$DIR/scripts/install_headphones_nzbtomedia.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit    
+else
+    printf 'Headphones: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+fi
+
 
 ##------------------------------------------------------------------------------
 ## Install Periscope

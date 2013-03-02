@@ -40,7 +40,7 @@ echo "| SABnzbd Username                     : $INST_SABNZBD_UID"
 echo "| SABnzbd Password                     : $INST_SABNZBD_PW"
 echo "| SABnzbd API                          : $INST_SABNZBD_KEY_API"
 echo "| SABnzbd Category                     : Music"
-echo "| Music Download Directory             : $INST_FOLDER_USENET_COMPLETE"
+echo "| Music Download Directory             : $INST_FOLDER_USENET_COMPLETE/Music"
 echo "| Usenet Retention                     : $INST_NEWSSERVER_RETENTION"
 echo "| -------------------------"
 echo "| Save changes"
@@ -67,6 +67,12 @@ echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/role-edit.php?action=add
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
+
+if [ -f $DIR/launchctl/com.headphones.headphones.plist ] ; then
+    cp $DIR/launchctl/com.headphones.headphones.plist ~/Library/LaunchAgents/
+else
+fi
+launchctl load ~/Library/LaunchAgents/com.headphones.headphones.plist
 
 echo "#------------------------------------------------------------------------------"
 echo "# Installing Headphones - Complete"

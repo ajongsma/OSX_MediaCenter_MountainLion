@@ -45,13 +45,15 @@ command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { PHP=`command 
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
-  TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_powerline.conf"
+  #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_powerline.conf"
+  TMUX_CONF="~/.tmux/conf/tmux_powerline.conf"
 else
-  TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_bash.conf"
+  #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_bash.conf"
+  TMUX_CONF="~/.tmux/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
-if [ -f $TMUX_CONF ] ; then
+if [ -e $TMUX_CONF ]; then
 	echo "Found - config file: $TMUX_CONF"
 else
 	echo "Not found - config file: $TMUX_CONF"
