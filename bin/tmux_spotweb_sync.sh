@@ -68,6 +68,7 @@ else
 	printf "\033]0; $TMUX_SESSION\007\003\n"
 	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "Spinning up..." && $NICE -n 19 $PHP monitor.php'
 
+	tmux start-server
 	tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
 	#tmux attach-session -d -t Spotweb
 
