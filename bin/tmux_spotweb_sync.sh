@@ -5,6 +5,7 @@
 # tmux list-sessions
 
 # tmux source-file /absolute/path/to/your/.tmux.conf
+# source-file /Users/Andries/.tmux/conf/tmux_powerline.conf
 
 # Ctrl-b      : the prefix that sends a keybinding to tmux instead of to the shell or program running in tmux.
 # Ctrl-b c    : create a new window.
@@ -33,6 +34,7 @@ do
   TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
 done
 TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+unset SOURCE
 
 TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
 TMUX_SESSION="Spotweb"
@@ -46,14 +48,14 @@ command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not inst
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
   #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_powerline.conf"
-  TMUX_CONF="~/.tmux/conf/tmux_powerline.conf"
+  TMUX_CONF="$HOME/.tmux/conf/tmux_powerline.conf"
 else
   #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_bash.conf"
-  TMUX_CONF="~/.tmux/conf/tmux_bash.conf"
+  TMUX_CONF="$HOME/.tmux/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
-if [ -e $TMUX_CONF ]; then
+if [ -f $TMUX_CONF ]; then
 	echo "Found - config file: $TMUX_CONF"
 else
 	echo "Not found - config file: $TMUX_CONF"
@@ -64,8 +66,17 @@ fi
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
 	printf "\033]0; $TMUX_SESSION\007\003\n"
 	#$TMUX_CMD attach-session -t $TMUX_SESSION
+	echo "===> Has Session"
+	echo -e "\033]0; $TMUX_SESSION\007\003\n"
 else
+	echo "===> Doesn't Have Session"
+	echo -e "\033]0; $TMUX_SESSION\007\003\n"
+fi
+
+if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
 	printf "\033]0; $TMUX_SESSION\007\003\n"
+	#$TMUX_CMD attach-session -t $TMUX_SESSION
+else
 	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "Spinning up..." && $NICE -n 19 $PHP monitor.php'
 
 	tmux start-server
