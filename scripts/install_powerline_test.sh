@@ -3,6 +3,26 @@
 echo "#------------------------------------------------------------------------------"
 echo "# Installing Powerline - TEST"
 echo "#------------------------------------------------------------------------------"
+
+source ~/.bashrc
+
+cd ~/Github
+git clone https://github.com/Lokaltog/vim-powerline.git
+
+brew install --use-gcc https://raw.github.com/ummels/homebrew/fontforge/Library/Formula/fontforge.rb
+brew linkapps
+
+mkdir ~/.fonts
+cd ~/.fonts
+
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Library/Fonts/Verdana.ttf
+open Verdana-Powerline.ttf
+
+## ==>>> Suddenly seems to work for all fonts, how odd
+
+##-----------------------------------------------------------------------
+
+
 ### https://powerline.readthedocs.org/en/latest/overview.html#installation
 ### 
 ### Bash prompt
@@ -18,13 +38,13 @@ echo "#-------------------------------------------------------------------------
 ### /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/awesome/powerline.sh
 ### /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 
-. /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
-. /Users/Andries/Library/Python/2.7/bin/powerline
-source '/Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/tmux/powerline.conf'
+#. /Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+#. /Users/Andries/Library/Python/2.7/bin/powerline
+#source '/Users/Andries/Library/Python/2.7/lib/python/site-packages/powerline/bindings/tmux/powerline.conf'
 
-source ~/.bashrc
 
-pip install --user git+git://github.com/Lokaltog/powerline
+
+#pip install --user git+git://github.com/Lokaltog/powerline
 
 #curl -O http://www.fsd.it/fonts/imm/pr+/img/pragmatapro_screenshots.zip
 #cd /usr/local/share

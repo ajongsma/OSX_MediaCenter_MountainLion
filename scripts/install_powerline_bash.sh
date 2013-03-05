@@ -21,9 +21,10 @@ sudo git clone https://github.com/milkbikis/powerline-shell
 sudo ln -s /usr/local/share/powerline-shell.py /usr/local/bin/powerline-shell.py
 
 cat >> ~/.bashrc <<'EOF'
+
 ## powerline-shell
 function _update_ps1() {
-   export PS1="$(~/powerline-shell.py $?)"
+   export PS1="$(/usr/local/share/powerline-shell/powerline-shell.py $?)"
 }
 
 export PROMPT_COMMAND="_update_ps1"

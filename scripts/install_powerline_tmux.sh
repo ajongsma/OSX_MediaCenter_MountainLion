@@ -35,6 +35,7 @@ git clone git://github.com/erikw/tmux-powerline.git
 printf 'Copying default theme to mytheme ...\n'
 cd /usr/local/share/tmux-powerline/
 cp themes/default.sh themes/mytheme.sh
+cp themes/default.sh ~/.tmux/tmthemes/default.sh
 #subl /usr/local/share/tmux-powerline/themes/mytheme.sh
 
 if [ -e ~/.tmux.conf ] ; then

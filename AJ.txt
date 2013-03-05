@@ -46,6 +46,44 @@ tmux source-file ~/.tmux
 
 #= ERRORS - END ======================================================================
 
+#= 04-03-2013 ========================================================================
+
+#### ERR: Python
+## brew install --use-gcc fontforge
+####
+
+cd ~/Github
+git clone https://github.com/Lokaltog/vim-powerline.git
+
+brew install --use-gcc https://raw.github.com/ummels/homebrew/fontforge/Library/Formula/fontforge.rb
+brew linkapps
+
+mkdir ~/.fonts
+cd ~/.fonts
+
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Library/Fonts/Verdana.ttf
+
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/PragmataPro.ttf
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/PragmataPro-B.ttf
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/PragmataPro-I.ttf
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/PragmataPro-Z.ttf
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/
+#/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Users/Andries/Library/Fonts/
+
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro.ttf
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro-B.ttf
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro-I.ttf
+/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro-Z.ttf
+
+
+Monaco
+Inconsolata
+Droid Sans Mono
+
+
+
+
+
 #= 01-03-2013 ========================================================================
 
 PROCID=`ps -ef | grep Spotweb | cut -c9-15`
@@ -70,7 +108,7 @@ PROCID=`ps -elf | \
 	sed 's/-q /-q/g' | \
 	sed 's/.*/& /g' | \
 	grep " \-q$1 " | \
-	awk '{print $4}'`;;
+	awk '{print $4}'`
 echo $PROCID
 
 PROCID=`ps -ef | grep Spotweb | grep -v grep | awk '{print $2}'`
