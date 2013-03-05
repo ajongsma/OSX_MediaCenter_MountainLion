@@ -14,6 +14,7 @@ open /Users/Andries/Github/Solarized/osx-terminal.app-colors-solarized/xterm-256
 open /Users/Andries/Github/Solarized/iterm2-colors-solarized/Solarized\ Light.itermcolors
 open /Users/Andries/Github/Solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
 
+git clone https://github.com/seebi/tmux-colors-solarized.git ~/.tmux/tmux-colors-solarized/
 
 echo "#------------------------------------------------------------------------------"
 echo "# Installing Solarized - Complete"
