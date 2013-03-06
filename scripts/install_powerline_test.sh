@@ -15,7 +15,7 @@ brew linkapps
 mkdir ~/.fonts
 cd ~/.fonts
 
-/usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Library/Fonts/Verdana.ttf
+/usr/local/bin/fontforge -lang=py -script $HOME/Github/vim-powerline/fontpatcher/fontpatcher /Library/Fonts/Verdana.ttf
 open Verdana-Powerline.ttf
 
 ## ==>>> Suddenly seems to work for all fonts, how odd

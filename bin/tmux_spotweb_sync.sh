@@ -47,41 +47,24 @@ command -v php >/dev/null 2>&1 && export PHP=`command -v php` || { PHP=`command 
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed.  Aborting."; exit 1; } && TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
-  #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_powerline.conf"
   TMUX_CONF="$HOME/.tmux/conf/tmux_powerline.conf"
 else
-  #TMUX_CONF="$TMUX_CURRENT_DIR/../conf/tmux/tmux_bash.conf"
   TMUX_CONF="$HOME/.tmux/conf/tmux_bash.conf"
 fi
 #TMUX_CONF="~/.tmux.conf"
 
-if [ -f $TMUX_CONF ]; then
-	echo "Found - config file: $TMUX_CONF"
-else
-	echo "Not found - config file: $TMUX_CONF"
-fi
-
 #cd $TMUX_APP_PATH
 
+#tmux list-sessions
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
-	printf "\033]0; $TMUX_SESSION\007\003\n"
-	#$TMUX_CMD attach-session -t $TMUX_SESSION
-	echo "===> Has Session"
-	echo -e "\033]0; $TMUX_SESSION\007\003\n"
+	echo "Session found: $TMUX_SESSION"
+	$TMUX_CMD attach-session -t $TMUX_SESSION
 else
-	echo "===> Doesn't Have Session"
-	echo -e "\033]0; $TMUX_SESSION\007\003\n"
-fi
-
-if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
-	printf "\033]0; $TMUX_SESSION\007\003\n"
-	#$TMUX_CMD attach-session -t $TMUX_SESSION
-else
-	#$TMUX_CMD -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION 'cd bin && echo "Monitor Started" && echo "Spinning up..." && $NICE -n 19 $PHP monitor.php'
+	echo "Session not found: $TMUX_SESSION"
 
 	tmux start-server
 	tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
-	#tmux attach-session -d -t Spotweb
+	# tmux attach-session -d -t Spotweb
 
 	tmux select-pane -t 0
 	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_APP_PATH" C-m
@@ -90,16 +73,13 @@ else
 
 	tmux splitw -v -p 12
 	tmux select-pane -t 1
-	#tmux send-keys -t $TMUX_SESSION:0 'cd $TMUX_CURRENT_DIR; $TMUX_SH monitor_process.sh "tmux attach-session -d -t $TMUX_SESSION"' C-m
 	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_CURRENT_DIR" C-m
 	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_SH monitor_process_tmux.sh 'tmux attach-session -d -t $TMUX_SESSION'" C-m
-
-TMUX_POWERLINE_SEG_HOSTNAME_FORMAT="long"
 
 	## Create extra tab
 	#tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
 
 	## Attach session
-	#tmux select-window -t $TMUX_SESSION:0
-	#tmux attach-session -d -t $TMUX_SESSION
+	tmux select-window -t $TMUX_SESSION:0
+	tmux attach-session -d -t $TMUX_SESSION
 fi
