@@ -155,6 +155,16 @@ function install_homebrew () {
   fi
 }
 
+function noyes() {
+    read "a?$1 [y/N] "
+    if [[ $a == "N" || $a == "n" || $a = "" ]]; then
+        return 0
+    fi
+    return 1
+}
+#noyes "Do you want to bla bla bla?" || \
+#                  do_stuff
+
 ##-----------------------------------------------------------------------------
 ## Check OS
 ##-----------------------------------------------------------------------------

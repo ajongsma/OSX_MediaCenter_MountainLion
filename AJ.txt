@@ -75,14 +75,9 @@ cd ~/.fonts
 /usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro-I.ttf
 /usr/local/bin/fontforge -lang=py -script /Users/Andries/Github/vim-powerline/fontpatcher/fontpatcher /Volumes/Seagate/Installs/Fonts/PragmataPro/PragmataPro-Z.ttf
 
-
 Monaco
 Inconsolata
 Droid Sans Mono
-
-
-
-
 
 #= 01-03-2013 ========================================================================
 
@@ -225,10 +220,6 @@ bind-key a send-prefix
 
 # remap prefix to ctrl-a
 set -g prefix C-a
-----------------------------
--------------------------------------------------------------------------
-
-
 
 #= 26-02-2013 ========================================================================
 
@@ -252,7 +243,6 @@ https://gist.github.com/qrush/1595572
 Font: Inconsolata-dz-Powerline.otf
 Font: Menlo-Powerline.otf
 Font: mensch-Powerline.otf
-
 
 The values returned by these commands should be utf-8:
 set encoding?
@@ -284,10 +274,6 @@ Yet another terminal theme:
 #http://kimlindberg.com/blog/2012/10/13/my-osx-terminal-irssi-and-vim-setup
 
 http://kimlindberg.com/wp-content/uploads/2012/10/KimLindberg.terminal.zip
-
--------------------------------------------------------------------------
-
-
 
 #= 25-02-2013 ========================================================================
 
@@ -357,28 +343,6 @@ https://github.com/spotweb/spotweb/issues/1707
 => Heb het opgelost door een RewriteRule aan te maken in apache's config:
     RewriteRule details/([^/]+) spotweb/?page=getspot&messageid=$1 [L]
 
-#= 22-02-2013 ========================================================================
-
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>com.sickbeard.sickbeard</string>
-  <key>ProgramArguments</key>
-  <array>
-       <string>/usr/bin/python</string>
-       <string>/Applications/SickBeard.app/Contents/SickBeard.py</string>
-       <string>--pidfile=/Applications/SickBeard.app/Contents/sickbeard.pid</string>
-       <string>--datadir=/Applications/SickBeard.app/Contents</string>
-       <string>--quiet</string>
-       <string>--nolaunch</string>
-  </array>
-  <key>RunAtLoad</key>
-  <true/>
-</dict>
-</plist
-
 #= 21-02-2013 ========================================================================
 
 Auto release assembler suite:
@@ -389,7 +353,6 @@ ERR: Fatal error: Call to undefined function mb_internal_encoding() in C:\UniSer
 update_binaries
 automake_threaded
 update_releases
-
 
 -------------------------------------------------------------------------
 
