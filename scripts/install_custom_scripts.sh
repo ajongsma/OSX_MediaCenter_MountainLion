@@ -6,6 +6,8 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
+GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
+
 [ -d $HOME/.bin ] || mkdir $HOME/.bin
 
 if [ ! -f "$HOME/.bin/tmux_sync_newznab.sh" ] ; then
