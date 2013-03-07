@@ -75,7 +75,7 @@ else
 	tmux splitw -v -p 12
 	tmux select-pane -t 1
 	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_CURRENT_DIR" C-m
-	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_SH monitor_process_tmux.sh 'tmux attach-session -d -t $TMUX_SESSION'" C-m
+	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_SH tmux_process_monitor.sh 'tmux attach-session -d -t $TMUX_SESSION'" C-m
 
 	## Create extra tab
 	#tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
