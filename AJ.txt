@@ -45,6 +45,125 @@ OSX_NewBox / dotfiles / .exports
 https://github.com/yonchu/git-check.git
 https://github.com/cdracars/-git-multi-status.sh/blob/master/git-multi-status.sh
 
+-------------------------------------------------------------------------
+
+CONFIG_FILE=~/.dropbox_uploader
+
+#CHECKING FOR AUTH FILE
+if [ -f "$CONFIG_FILE" ]; then
+      
+    # Loading data...
+    APPKEY=$(sed -n 's/APPKEY:\([a-z A-Z 0-9]*\)/\1/p' "$CONFIG_FILE")
+    APPSECRET=$(sed -n 's/APPSECRET:\([a-z A-Z 0-9]*\)/\1/p' "$CONFIG_FILE")
+    ACCESS_LEVEL=$(sed -n 's/ACCESS_LEVEL:\([A-Z]*\)/\1/p' "$CONFIG_FILE")
+    OAUTH_ACCESS_TOKEN_SECRET=$(sed -n 's/OAUTH_ACCESS_TOKEN_SECRET:\([a-z A-Z 0-9]*\)/\1/p' "$CONFIG_FILE")
+    OAUTH_ACCESS_TOKEN=$(sed -n 's/OAUTH_ACCESS_TOKEN:\([a-z A-Z 0-9]*\)/\1/p' "$CONFIG_FILE")
+    
+    #Checking the loaded data
+    if [ -z "$APPKEY" -o -z "$APPSECRET" -o -z "$OAUTH_ACCESS_TOKEN_SECRET" -o -z "$OAUTH_ACCESS_TOKEN" ]; then
+        echo -ne "Error loading data from $CONFIG_FILE...\n"
+        echo -ne "It is recommended to run $0 unlink\n"
+        remove_temp_files
+        exit 1
+    fi
+    
+    #Back compatibility with previous Dropbox Uploader versions
+    if [ -z "$ACCESS_LEVEL" ]; then
+        ACCESS_LEVEL="dropbox"
+    fi
+
+#NEW SETUP...
+else
+
+    echo -ne "\n This is the first time you run this script.\n"
+    echo -ne " Please open this URL from your Browser, and access using your account:\n\n -> $APP_CREATE_URL\n"
+    echo -ne "\n If you haven't already done, click \"Create an App\" and fill in the\n"
+    echo -ne " form with the following data:\n\n"
+    echo -ne "  App name: MyUploader$RANDOM$RANDOM\n"
+    echo -ne "  Description: What do you want...\n"
+    echo -ne "  Access level: App folder or Full Dropbox\n\n"
+    echo -ne " Now, click on the \"Create\" button.\n\n"
+    
+    echo -ne " When your new App is successfully created, please type the\n"
+    echo -ne " App Key, App Secret and the Access level:\n\n"
+
+    #Getting the app key and secret from the user
+    while (true); do
+        
+        echo -n " # App key: "
+        read APPKEY
+
+        echo -n " # App secret: "
+        read APPSECRET
+
+        echo -n " # Access level you have chosen, App folder or Full Dropbox [a/f]: "
+        read ACCESS_LEVEL
+        
+        if [ "$ACCESS_LEVEL" == "a" ]; then
+            ACCESS_LEVEL="sandbox"
+            ACCESS_MSG="App Folder"
+        else
+            ACCESS_LEVEL="dropbox"
+            ACCESS_MSG="Full Dropbox"
+        fi
+        
+        echo -ne "\n > App key is $APPKEY, App secret is $APPSECRET and Access level is $ACCESS_MSG, it's ok? [y/n]"
+        read answer
+        if [ "$answer" == "y" ]; then
+            break;
+        fi
+    done
+
+    #TOKEN REQUESTS
+    echo -ne "\n > Token request... "
+    time=$(utime)
+    $CURL_BIN $CURL_ACCEPT_CERTIFICATES -s --show-error --globoff -i -o $RESPONSE_FILE --data "oauth_consumer_key=$APPKEY&oauth_signature_method=PLAINTEXT&oauth_signature=$APPSECRET%26&oauth_timestamp=$time&oauth_nonce=$RANDOM" "$API_REQUEST_TOKEN_URL"
+    OAUTH_TOKEN_SECRET=$(sed -n 's/oauth_token_secret=\([a-z A-Z 0-9]*\).*/\1/p' "$RESPONSE_FILE")
+    OAUTH_TOKEN=$(sed -n 's/.*oauth_token=\([a-z A-Z 0-9]*\)/\1/p' "$RESPONSE_FILE")
+
+    if [ -n "$OAUTH_TOKEN" -a -n "$OAUTH_TOKEN_SECRET" ]; then
+        echo -ne "OK\n"
+    else
+        echo -ne " FAILED\n\n Please, check your App key and secret...\n\n"
+        remove_temp_files
+        exit 1
+    fi
+
+    while (true); do
+        #USER AUTH
+        echo -ne "\n Please visit this URL from your Browser, and allow Dropbox Uploader\n"
+        echo -ne " to access your DropBox account:\n\n --> ${API_USER_AUTH_URL}?oauth_token=$OAUTH_TOKEN\n"
+        echo -ne "\nPress enter when done...\n"
+        read
+
+        #API_ACCESS_TOKEN_URL
+        echo -ne " > Access Token request... "
+        time=$(utime)
+        $CURL_BIN $CURL_ACCEPT_CERTIFICATES -s --show-error --globoff -i -o $RESPONSE_FILE --data "oauth_consumer_key=$APPKEY&oauth_token=$OAUTH_TOKEN&oauth_signature_method=PLAINTEXT&oauth_signature=$APPSECRET%26$OAUTH_TOKEN_SECRET&oauth_timestamp=$time&oauth_nonce=$RANDOM" "$API_ACCESS_TOKEN_URL"
+        OAUTH_ACCESS_TOKEN_SECRET=$(sed -n 's/oauth_token_secret=\([a-z A-Z 0-9]*\)&.*/\1/p' "$RESPONSE_FILE")
+        OAUTH_ACCESS_TOKEN=$(sed -n 's/.*oauth_token=\([a-z A-Z 0-9]*\)&.*/\1/p' "$RESPONSE_FILE")
+        OAUTH_ACCESS_UID=$(sed -n 's/.*uid=\([0-9]*\)/\1/p' "$RESPONSE_FILE")
+        
+        if [ -n "$OAUTH_ACCESS_TOKEN" -a -n "$OAUTH_ACCESS_TOKEN_SECRET" -a -n "$OAUTH_ACCESS_UID" ]; then
+            echo -ne "OK\n"
+            
+            #Saving data
+            echo "APPKEY:$APPKEY" > "$CONFIG_FILE"
+            echo "APPSECRET:$APPSECRET" >> "$CONFIG_FILE"
+            echo "ACCESS_LEVEL:$ACCESS_LEVEL" >> "$CONFIG_FILE"
+            echo "OAUTH_ACCESS_TOKEN:$OAUTH_ACCESS_TOKEN" >> "$CONFIG_FILE"
+            echo "OAUTH_ACCESS_TOKEN_SECRET:$OAUTH_ACCESS_TOKEN_SECRET" >> "$CONFIG_FILE"
+            
+            echo -ne "\n Setup completed!\n"
+            break
+        else
+            print " FAILED\n"
+        fi
+    done;
+    
+    remove_temp_files     
+    exit 0
+fi
 
 
 #= 04-03-2013 ========================================================================
