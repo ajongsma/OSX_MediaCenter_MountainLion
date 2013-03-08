@@ -40,6 +40,13 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 Updated - ToCheck
 OSX_NewBox / dotfiles / .exports
 
+-------------------------------------------------------------------------
+
+https://github.com/yonchu/git-check.git
+https://github.com/cdracars/-git-multi-status.sh/blob/master/git-multi-status.sh
+
+
+
 #= 04-03-2013 ========================================================================
 
 #### ERR: Python
