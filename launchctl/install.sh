@@ -113,3 +113,18 @@ else
 
     launchctl list | grep com.maraschino.maraschino
 fi
+
+plutil -lint com.tmux.spotweb.plist
+if [ -f ~/Library/LaunchAgents/com.tmux.spotweb.plist ] ; then
+    printf "$PRINTF_MASK" "com.tmux.spotweb.plist found" "$GREEN" "[OK]" "$RESET"
+
+    echo "PID   Status  Label"
+    launchctl list | grep com.tmux.spotweb
+else
+    printf "$PRINTF_MASK" "com.tmux.spotweb.plist not found" "$YELLOW" "[FAIL]" "$RESET"
+
+    cp com.tmux.spotweb.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.tmux.spotweb.plist
+
+    launchctl list | grep com.tmux.spotweb
+fi
