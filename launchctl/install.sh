@@ -128,3 +128,18 @@ else
 
     launchctl list | grep com.tmux.spotweb
 fi
+
+plutil -lint com.tmux.newznab.plist
+if [ -f ~/Library/LaunchAgents/com.tmux.newznab.plist ] ; then
+    printf "$PRINTF_MASK" "com.tmux.newznab.plist found" "$GREEN" "[OK]" "$RESET"
+
+    echo "PID   Status  Label"
+    launchctl list | grep com.tmux.newznab
+else
+    printf "$PRINTF_MASK" "com.tmux.newznab.plist not found" "$YELLOW" "[FAIL]" "$RESET"
+
+    cp com.tmux.newznab.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.tmux.newznab.plist
+
+    launchctl list | grep com.tmux.newznab
+fi
