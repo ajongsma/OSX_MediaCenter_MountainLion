@@ -17,10 +17,10 @@ case $( evalwidgets ) in
                 evalwidgets
                 defaults write com.apple.dashboard mcx-disabled -boolean YES;;
         !1 | !0 )
-                echo "this is the result of evalwidgets function..."
+                echo "Evalwidgets:"
                 evalwidgets
                 echo "..."
-                echo "sumpin aint workin";;
+                echo "An error occured";;
 esac
 
 #kill the dock to put the widget call in effect
