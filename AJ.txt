@@ -37,11 +37,6 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= 08-03-2013 ========================================================================
 
-Updated - ToCheck
-OSX_NewBox / dotfiles / .exports
-
--------------------------------------------------------------------------
-
 https://github.com/yonchu/git-check.git
 https://github.com/cdracars/-git-multi-status.sh/blob/master/git-multi-status.sh
 
@@ -165,7 +160,6 @@ else
     exit 0
 fi
 
-
 #= 04-03-2013 ========================================================================
 
 #### ERR: Python
@@ -198,43 +192,6 @@ cd ~/.fonts
 Monaco
 Inconsolata
 Droid Sans Mono
-
-#= 01-03-2013 ========================================================================
-
-PROCID=`ps -ef | grep Spotweb | cut -c9-15`
-echo $PROCID
-
-#cut -d” ” -f1. What it does is to break the line into columns (-d ” ” is delimiter) and sends back the first column to output.
-PROCID=`ps -ef | grep Spotweb | cut -d" " -f1-3`
-echo $PROCID
-
-PROCID=`ps auxwww | \
-	grep Spotweb | \
-	sed 's/  */ /g' | \
-	sed 's/-q /-q/g' | \
-	sed 's/.*/& /g' | \
-	grep " \-q$1 " | \
-	awk '{print $2}'`
-echo $PROCID
-
-PROCID=`ps -elf | \
-	grep Spotweb | \
-	sed 's/  */ /g' | \
-	sed 's/-q /-q/g' | \
-	sed 's/.*/& /g' | \
-	grep " \-q$1 " | \
-	awk '{print $4}'`
-echo $PROCID
-
-PROCID=`ps -ef | grep Spotweb | grep -v grep | awk '{print $2}'`
-echo $PROCID
-
-PROCID=`ps ax | grep " -Dcatalina.base=${appname} " | grep -v grep | awk '{print $1}'`
-echo $PROCID
-
--------------------------------------------------------------------------
-
-https://github.com/ajongsma/dotfile
 
 #= 27-02-2013 ========================================================================
 
