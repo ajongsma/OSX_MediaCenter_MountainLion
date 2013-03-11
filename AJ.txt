@@ -80,8 +80,13 @@ https://gist.github.com/mystix/661713
 * org.apache.tomcat.plist
 * tomcat
 
-
 -------------------------------------------------------------------------
+
+PLIST:
+  EnableGlobbing enables tilde and wildcard expansion for ProgramArguments
+
+<key>Debug</key>
+<false/>
 
 
 #= 06-03-2013 ========================================================================
