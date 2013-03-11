@@ -2,7 +2,7 @@
  
 # NOTE: this is an OSX launchd wrapper shell script for Spotweb (to be placed in $HOME/bin)
 
-SPOTWEB_HOME=$HOME/bin
+SPOTWEB_HOME=$HOME
  
 function shutdown() {
     date
@@ -12,7 +12,7 @@ function shutdown() {
  
 date
 echo "Starting Spotweb"
-export SPOTWEB_PID=/temp/$$
+export SPOTWEB_PID=/var/run/$$
  
 . $SPOTWEB_HOME/bin/spotweb.sh start
  
