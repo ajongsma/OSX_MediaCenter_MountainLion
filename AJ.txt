@@ -36,6 +36,8 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 #= HANDY's - END =====================================================================
 
 
+https://github.com/mlintern/scripts
+
 #= 08-03-2013 ========================================================================
 
 Command	Description	Example

@@ -12,8 +12,8 @@ function shutdown() {
  
 date
 echo "Starting Spotweb"
-export SPOTWEB_PID=/var/run/$$
- 
+SPOTWEB_PID=/tmp/$$
+
 . $SPOTWEB_HOME/bin/spotweb.sh start
  
 # Allow any signal which would kill a process to stop Spotweb

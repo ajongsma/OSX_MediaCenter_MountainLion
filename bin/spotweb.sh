@@ -10,13 +10,13 @@
 # Stop a service
 function stop {
   echo "Stopping $NAME"
-  sudo launchctl unload -w $HOME/Library/LaunchDaemons/$PLIST
+ launchctl unload -w $HOME/Library/LaunchAgents/$PLIST
 }
 
 # Starts the service
 function start {
   echo "Starting $NAME"
-  sudo launchctl load -w $HOME/Library/LaunchDaemons/$PLIST
+ launchctl load -w $HOME/Library/LaunchAgents/$PLIST
 }
 
 # Does a restart
@@ -38,9 +38,9 @@ function status {
 }
 
 ### MAIN
-NAME="Spotweb"
+NAME="spotweb"
 PLIST="com.tmux.spotweb.plist"
-PID_FILE="/var/run/$NAME.pid"
+PID_FILE="/tmp/$NAME.pid"
 
 case "$1" in
   start)
