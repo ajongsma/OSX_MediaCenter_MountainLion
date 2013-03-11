@@ -1,6 +1,6 @@
 #!/bin/bash
  
-# NOTE: this is an OSX launchd wrapper shell script for Tomcat (to be placed in $CATALINA_HOME/bin)
+# NOTE: this is an OSX launchd wrapper shell script for Spotweb (to be placed in $HOME/bin)
 
 SPOTWEB_HOME=$HOME/bin
  
@@ -16,7 +16,7 @@ export SPOTWEB_PID=/temp/$$
  
 . $SPOTWEB_HOME/bin/spotweb.sh start
  
-# Allow any signal which would kill a process to stop Tomcat
+# Allow any signal which would kill a process to stop Spotweb
 trap shutdown HUP INT QUIT ABRT KILL ALRM TERM TSTP
  
 echo "Waiting for `cat $SPOTWEB_PID`"
