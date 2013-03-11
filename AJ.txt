@@ -35,7 +35,46 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= HANDY's - END =====================================================================
 
+
 #= 08-03-2013 ========================================================================
+
+Command	Description	Example
+&	Run the previous command in the background	ls &
+&&	Logical AND	if [ "$foo" -ge "0" ] && [ "$foo" -le "9"]
+||	Logical OR	if [ "$foo" -lt "0" ] || [ "$foo" -gt "9" ] (not in Bourne shell)
+^	Start of line	grep "^foo"
+$	End of line	grep "foo$"
+=	String equality (cf. -eq)	if [ "$foo" = "bar" ]
+!	Logical NOT	if [ "$foo" != "bar" ]
+$$	PID of current shell	echo "my PID = $$"
+$!	PID of last background command	ls & echo "PID of ls = $!"
+$?	exit status of last command	ls ; echo "ls returned code $?"
+$0	Name of current command (as called)	echo "I am $0"
+$1	Name of current command's first parameter	echo "My first argument is $1"
+$9	Name of current command's ninth parameter	echo "My ninth argument is $9"
+$@	All of current command's parameters (preserving whitespace and quoting)	echo "My arguments are $@"
+$*	All of current command's parameters (not preserving whitespace and quoting)	echo "My arguments are $*"
+-eq	Numeric Equality	if [ "$foo" -eq "9" ]
+-ne	Numeric Inquality	if [ "$foo" -ne "9" ]
+-lt	Less Than	if [ "$foo" -lt "9" ]
+-le	Less Than or Equal	if [ "$foo" -le "9" ]
+-gt	Greater Than	if [ "$foo" -gt "9" ]
+-ge	Greater Than or Equal	if [ "$foo" -ge "9" ]
+-z	String is zero length	if [ -z "$foo" ]
+-n	String is not zero length	if [ -n "$foo" ]
+-nt	Newer Than	if [ "$file1" -nt "$file2" ]
+-d	Is a Directory	if [ -d /bin ]
+-f	Is a File	if [ -f /bin/ls ]
+-r	Is a readable file	if [ -r /bin/ls ]
+-w	Is a writable file	if [ -w /bin/ls ]
+-x	Is an executable file	if [ -x /bin/ls ]
+
+if [ ! -z "$TST_PID" ]; then
+    echo $! > $TST_PID
+fi
+
+
+#= 06-03-2013 ========================================================================
 
 https://github.com/yonchu/git-check.git
 https://github.com/cdracars/-git-multi-status.sh/blob/master/git-multi-status.sh
