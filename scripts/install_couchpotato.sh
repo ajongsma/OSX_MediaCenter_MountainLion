@@ -108,9 +108,11 @@ if [[ -z $INST_COUCHPOTATOD_API ]] ; then
     done
 fi
 
-if [ -f $DIR/launchctl/com.couchpotato.couchpotato.plist ] ; then
+if [ -f $DIR/conf/launchctl/com.couchpotato.couchpotato.plist ] ; then
+    echo "Copying Lauch Agent file:"
     cp $DIR/launchctl/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
 else
+    echo "Creating Lauch Agent file:"
     ### --- TESTING ---
     #echo "Creating Lauch Agent file:"
     #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
