@@ -153,35 +153,32 @@ fi
 #sudo python /Applications/Sick-Beard/sickbeard.py –d
 #sudo python /Applications/Sick-Beard/sickbeard.py -q --nolaunch
 
-if [ -f $DIR/conf/launchctl/com.sickbeard.sickbeard.plist ] ; then
-    echo "Copying Lauch Agent file:"
-    cp $DIR/launchctl/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+INST_FILE_LAUNCHAGENT="com.sickbeard.sickbeard.plist"
+if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
+    echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
+    cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
+    if [ "$?" != "0" ]; then
+        echo -e "${RED}  ============================================== ${RESET}"
+        echo -e "${RED} | ERROR ${RESET}"
+        echo -e "${RED} | Copy failed: ${RESET}"
+        echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+        echo -e "${RED} | --- press any key to continue --- ${RESET}"
+        echo -e "${RED}  ============================================== ${RESET}"
+        read -n 1 -s
+        exit 1
+    fi
 else
-    echo "Creating Lauch Agent file:"
-    cat >> /tmp/com.sickbeard.sickbeard.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-	<string>com.sickbeard.sickbeard</string>
-	<key>ProgramArguments</key>
-	<array>
-		<string>/usr/bin/python</string>
-		<string>/Applications/Sick-Beard/SickBeard.py</string>
-		<string>-q</string>
-	</array>
-	<key>RunAtLoad</key>
-	<true/>
-	<key>WorkingDirectory</key>
-	<string>/Applications/Sick-Beard</string>
-</dict>
-</plist>
-EOF
-    sudo mv /tmp/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+    echo -e "${RED}  ============================================== ${RESET}"
+    echo -e "${RED} | ERROR ${RESET}"
+    echo -e "${RED} | LaunchAgent file not found: ${RESET}"
+    echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+    echo -e "${RED} | --- press any key to continue --- ${RESET}"
+    echo -e "${RED}  ============================================== ${RESET}"
+    read -n 1 -s
+    sudo mv /tmp/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 fi
+launchctl load ~/Library/LaunchAgents/$INST_FILE_LAUNCHAGENT
 
-launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
 
 echo "#------------------------------------------------------------------------------"
 echo "# Installing Sick-Beard - Complete"
