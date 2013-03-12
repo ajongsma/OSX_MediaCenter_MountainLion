@@ -97,7 +97,7 @@ else
 </dict>
 </plist>
 EOF
-    sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
+    sudo mv /tmp/com.headphones.headphones.plist ~/Library/LaunchAgents/
 fi
 
 launchctl load ~/Library/LaunchAgents/com.headphones.headphones.plist
