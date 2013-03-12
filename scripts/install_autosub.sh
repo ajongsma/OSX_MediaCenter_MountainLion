@@ -44,8 +44,13 @@ end tell'
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.autosub.autosub.plist <<'EOF'
+
+if [ -f $DIR/conf/launchctl/com.autosub.autosub.plist ] ; then
+    echo "Copying Lauch Agent file:"
+    cp $DIR/launchctl/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+else
+    echo "Creating Lauch Agent file:"
+    cat >> /tmp/com.autosub.autosub.plist <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -66,8 +71,9 @@ cat >> /tmp/com.autosub.autosub.plist <<'EOF'
 </dict>
 </plist>
 EOF
+    sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
+fi
 
-sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.autosub.autosub.plist
 #launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
 
