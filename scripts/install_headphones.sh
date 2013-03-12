@@ -68,11 +68,6 @@ open http://localhost/newznab/admin/role-edit.php?action=add
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
-if [ -f $DIR/launchctl/com.headphones.headphones.plist ] ; then
-    cp $DIR/launchctl/com.headphones.headphones.plist ~/Library/LaunchAgents/
-else
-fi
-
 if [ -f $DIR/conf/launchctl/com.headphones.headphones.plist ] ; then
     echo "Copying Lauch Agent file:"
     cp $DIR/launchctl/com.headphones.headphones.plist ~/Library/LaunchAgents/
