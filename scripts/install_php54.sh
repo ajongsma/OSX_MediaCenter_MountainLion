@@ -50,16 +50,16 @@ fi
 
 if [ -f /usr/local/etc/php/5.4/php.ini ] ; then
     sudo mv /usr/local/etc/php/5.4/php.ini /usr/local/etc/php/5.4/php.ini.org
-    sudo cp $DIR/conf/php54.ini /usr/local/etc/php/5.4/php.ini
+    sudo cp $DIR/conf/app/php54.ini /usr/local/etc/php/5.4/php.ini
 else
-	sudo cp $DIR/conf/php54.ini /usr/local/etc/php/5.4/php.ini
+    sudo cp $DIR/conf/app/php54.ini /usr/local/etc/php/5.4/php.ini
 fi
 
 if [ -f /private/etc/php.ini ] ; then
     sudo mv /private/etc/php.ini /private/etc/php.ini.org
-    sudo cp $DIR/conf/php.ini /private/etc/php.ini
+    sudo cp $DIR/conf/app/php.ini /private/etc/php.ini
 else
-	sudo cp $DIR/conf/php.ini /private/etc/php.ini
+	sudo cp $DIR/conf/app/php.ini /private/etc/php.ini
 fi
 
 
