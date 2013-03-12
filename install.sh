@@ -255,6 +255,11 @@ for file in ~/.{bash_profile,extra,bash_prompt,exports,aliases,functions}; do
     #echo "~/$file not found. Copying..."
     printf "$PRINTF_MASK" "File ~/$file not found. Copying..." "$YELLOW" "[WAIT]" "$RESET"
     cp conf/user/$file ~/$file
+    if [ "$?" != "0" ]; then
+        printf "$PRINTF_MASK" "Copying file ~/$file failed!" "$RED" "[ERR]" "$RESET"
+    else
+        printf "$PRINTF_MASK" "File ~/$file copied." "$GREEN" "[OK]" "$RESET"
+    fi
   else
     #echo "~/$file found."
     printf "$PRINTF_MASK" "File ~/$file found" "$GREEN" "[OK]" "$RESET"
