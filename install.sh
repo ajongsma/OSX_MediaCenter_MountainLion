@@ -250,27 +250,18 @@ fi
 #------------------------------------------------------------------------------
 # Dotfiles
 #------------------------------------------------------------------------------
-## http://noiseandheat.com/blog/2011/12/os-x-lion-terminal-colours/
+for file in ~/.{bash_profile,extra,bash_prompt,exports,aliases,functions}; do
+  if [ ! -f ~/$file ] ; then
+    #echo "~/$file not found. Copying..."
+    printf "$PRINTF_MASK" "File ~/$file not found. Copying..." "$YELLOW" "[WAIT]" "$RESET"
+    cp conf/user/$file ~/$file
+  else
+    #echo "~/$file found."
+    printf "$PRINTF_MASK" "File ~/$file found" "$GREEN" "[OK]" "$RESET"
+  fi
+done
+unset file
 
-if [ ! -f ~/.bash_profile ] ; then
-    log "Creating default .bash_profile..."
-    #echo "Creating default .bash_profile..."
-
-    cp conf/bash_profile ~/.bash_profile
-else
-    echo
-    echo "File ~/.bash_profile found, please add the following manually:"
-    echo "------------ START ---------------"
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-    echo ""
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    echo "------------ END -----------------"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    nano ~/.bash_profile
-fi
 source ~/.bash_profile
 
 #------------------------------------------------------------------------------
