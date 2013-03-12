@@ -6,8 +6,9 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-cd ~/Library/Application\ Support/Plex\ Media Server/Plug-ins
+cd ~/Github
 git clone https://github.com/tester22/Plex-Trakt-Scrobbler
+cp -r Plex-Trakt-Scrobbler/Trakttv.bundle/ ~/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/
 
 if [[ -z $INST_TRAKT_KEY_API ]] || [[ $INST_TRAKT_PW == "" ]] || [[ $INST_TRAKT_KEY_API == "" ]]; then
     echo "-----------------------------------------------------------"
