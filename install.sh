@@ -250,11 +250,11 @@ fi
 #------------------------------------------------------------------------------
 # Dotfiles
 #------------------------------------------------------------------------------
-for file in ~/.{bash_profile,extra,bash_prompt,exports,aliases,functions}; do
+for file in ~/.{bash_profile,bashrc,extra,bash_prompt,exports,aliases,functions}; do
   if [ ! -f ~/$file ] ; then
     #echo "~/$file not found. Copying..."
     printf "$PRINTF_MASK" "File ~/$file not found. Copying..." "$YELLOW" "[WAIT]" "$RESET"
-    cp conf/user/$file ~/$file
+    cp $DIR/conf/user/$file ~/$file
     if [ "$?" != "0" ]; then
         printf "$PRINTF_MASK" "Copying file ~/$file failed!" "$RED" "[ERR]" "$RESET"
     else
@@ -583,21 +583,21 @@ echo "PATH=/usr/local/bin:/usr/local/sbin:$PATH"
 echo "# GNU coreutils"
 echo "PATH=/opt/local/libexec/gnubin/:$PATH"
 
-if [ ! -f ~/.bashrc ] ; then
-    echo "Copying default .bashrc..."
-    cp conf/bashrc ~/.bashrc
-else
-    echo "File ~/.bashrc found, please add the following manually..."
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-    echo ""
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    nano ~/.bashrc
-fi
-source ~/.bashrc
+#if [ ! -f ~/.bashrc ] ; then
+#    echo "Copying default .bashrc..."
+#    cp conf/bashrc ~/.bashrc
+#else
+#    echo "File ~/.bashrc found, please add the following manually..."
+#    echo "# Tell ls to be colourful"
+#    echo "export CLICOLOR=1"
+#    echo ""
+#    echo "# Tell grep to highlight matches"
+#    echo "export GREP_OPTIONS='--color=auto'"
+#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+#    read -n 1 -s
+#    nano ~/.bashrc
+#fi
+#source ~/.bashrc
 
 ##------------------------------------------------------------------------------
 ## Install MySQL
