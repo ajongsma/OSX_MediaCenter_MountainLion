@@ -48,6 +48,16 @@ INST_FILE_LAUNCHAGENT="com.autosub.autosub.plist"
 if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
     echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
     cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
+    if [ "$?" != "0" ]; then
+        echo -e "${RED}  ============================================== ${RESET}"
+        echo -e "${RED} | ERROR ${RESET}"
+        echo -e "${RED} | Copy failed: ${RESET}"
+        echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+        echo -e "${RED} | --- press any key to continue --- ${RESET}"
+        echo -e "${RED}  ============================================== ${RESET}"
+        read -n 1 -s
+        exit 1
+    fi
 else
     echo -e "${RED}  ============================================== ${RESET}"
     echo -e "${RED} | ERROR ${RESET}"
