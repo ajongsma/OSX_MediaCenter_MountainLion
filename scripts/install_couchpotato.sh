@@ -108,97 +108,32 @@ if [[ -z $INST_COUCHPOTATOD_API ]] ; then
     done
 fi
 
-if [ -f $DIR/conf/launchctl/com.couchpotato.couchpotato.plist ] ; then
-    echo "Copying Lauch Agent file:"
-    cp $DIR/launchctl/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+INST_FILE_LAUNCHAGENT="com.couchpotato.couchpotato.plist"
+if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
+    echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
+    cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
+    if [ "$?" != "0" ]; then
+        echo -e "${RED}  ============================================== ${RESET}"
+        echo -e "${RED} | ERROR ${RESET}"
+        echo -e "${RED} | Copy failed: ${RESET}"
+        echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+        echo -e "${RED} | --- press any key to continue --- ${RESET}"
+        echo -e "${RED}  ============================================== ${RESET}"
+        read -n 1 -s
+        exit 1
+    fi
 else
-    echo "Creating Lauch Agent file:"
-    ### --- TESTING ---
-    #echo "Creating Lauch Agent file:"
-    #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-    #<?xml version="1.0" encoding="UTF-8"?>
-    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    #<plist version="1.0">
-    #<dict>
-    #  <key>Label</key>
-    #  <string>com.couchpotato.couchpotato</string>
-    #  <key>ProgramArguments</key>
-    #  <array>
-    #      <string>/usr/local/bin/python</string>
-    #      <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-    #  </array>
-    #  <key>RunAtLoad</key>
-    #  <true/>
-    #</dict>
-    #</plist>
-    #EOF
-    
-    #cat >> /tmp/com.couchpotato.couchpotato.plist <<'EOF'
-    #<?xml version="1.0" encoding="UTF-8"?>
-    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    #<plist version="1.0">
-    #<dict>
-    #    <key>Label</key>
-    #    <string>com.couchpotato.couchpotato</string>
-    #    <key>ProgramArguments</key>
-    #    <array>
-    #        <string>/usr/bin/python</string>
-    #        <string>CouchPotato.py</string>
-    #        <string>--quiet</string>
-    #        <string>--daemon</string>
-    #    </array>
-    #    <key>RunAtLoad</key>
-    #    <true/>
-    #    <key>WorkingDirectory</key>
-    #    <string>/Applications/CouchPotato.app</string>
-    #</dict>
-    #</plist>
-    #EOF
-    
-    #
-    #<?xml version="1.0" encoding="UTF-8"?>
-    #<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    #<plist version="1.0">
-    #<dict>
-    #    <key>Label</key>
-    #    <string>com.couchpotato.couchpotato</string>
-    #    <key>OnDemand</key>
-    #    <false/>
-    #    <key>ProgramArguments</key>
-    #    <array>
-    #    <string>python</string>
-    #    <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-    #    </array>
-    #    <key>RunAtLoad</key>
-    #    <true/>
-    #    <key>WorkingDirectory</key>
-    #    <string>/Applications/CouchPotato.app/</string>
-    #    <key>ServiceDescription</key>
-    #    <string>CouchPotato</string>
-    #</dict>
-    #</plist>
-    
-    #<?xml version="1.0" encoding="UTF-8"?>
-    #<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    #<plist version="1.0">
-    #<dict>
-    #  <key>Label</key>
-    #  <string>com.couchpotato.couchpotato</string>
-    #  <key>ProgramArguments</key>
-    #  <array>
-    #     <string>/usr/local/bin/python</string>
-    #     <string>/Applications/CouchPotato.app/CouchPotato.py</string>
-    #  </array>
-    #  <key>RunAtLoad</key>
-    #  <true/>
-    #</dict>
-    #</plist>
-
-    #mv /tmp/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+    echo -e "${RED}  ============================================== ${RESET}"
+    echo -e "${RED} | ERROR ${RESET}"
+    echo -e "${RED} | LaunchAgent file not found: ${RESET}"
+    echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+    echo -e "${RED} | --- press any key to continue --- ${RESET}"
+    echo -e "${RED}  ============================================== ${RESET}"
+    read -n 1 -s
+    sudo mv /tmp/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 fi
+launchctl load ~/Library/LaunchAgents/$INST_FILE_LAUNCHAGENT
 
-launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
-#launchctl start ~/Library/LaunchAgents/com.couchpotatoserver.couchpotato.plist
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install CouchPotato - Complete"
