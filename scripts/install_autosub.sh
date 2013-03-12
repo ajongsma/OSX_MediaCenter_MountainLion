@@ -47,7 +47,7 @@ read -n 1 -s
 
 if [ -f $DIR/conf/launchctl/com.autosub.autosub.plist ] ; then
     echo "Copying Lauch Agent file:"
-    cp $DIR/launchctl/com.couchpotato.couchpotato.plist ~/Library/LaunchAgents/
+    cp $DIR/launchctl/com.autosub.autosub.plist ~/Library/LaunchAgents/
 else
     echo "Creating Lauch Agent file:"
     cat >> /tmp/com.autosub.autosub.plist <<'EOF'
