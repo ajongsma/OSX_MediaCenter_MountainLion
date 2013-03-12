@@ -123,33 +123,31 @@ open http://localhost/newznab/admin/site-edit.php
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
-if [ -f $DIR/conf/launchctl/com.sabnzbd.SABnzbd.plist ] ; then
-    echo "Copying Lauch Agent file:"
-    cp $DIR/launchctl/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
+INST_FILE_LAUNCHAGENT="com.sabnzbd.SABnzbd.plist"
+if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
+    echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
+    cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
+    if [ "$?" != "0" ]; then
+        echo -e "${RED}  ============================================== ${RESET}"
+        echo -e "${RED} | ERROR ${RESET}"
+        echo -e "${RED} | Copy failed: ${RESET}"
+        echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+        echo -e "${RED} | --- press any key to continue --- ${RESET}"
+        echo -e "${RED}  ============================================== ${RESET}"
+        read -n 1 -s
+        exit 1
+    fi
 else
-    echo "Creating Lauch Agent file:"
-    cat >> /tmp/com.sabnzbd.SABnzbd.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>com.sabnzbd.SABnzbd</string>
-  <key>ProgramArguments</key>
-  <array>
-     <string>/usr/bin/open</string>
-     <string>-a</string>
-      <string>/Applications/SABnzbd.app</string>
-  </array>
-  <key>RunAtLoad</key>
-  <true/>
-</dict>
-</plist>
-EOF
-    sudo mv /tmp/com.sabnzbd.SABnzbd.plist ~/Library/LaunchAgents/
+    echo -e "${RED}  ============================================== ${RESET}"
+    echo -e "${RED} | ERROR ${RESET}"
+    echo -e "${RED} | LaunchAgent file not found: ${RESET}"
+    echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+    echo -e "${RED} | --- press any key to continue --- ${RESET}"
+    echo -e "${RED}  ============================================== ${RESET}"
+    read -n 1 -s
+    sudo mv /tmp/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 fi
-
-launchctl load ~/Library/LaunchAgents/com.sabnzbd.SABnzbd.plist
+launchctl load ~/Library/LaunchAgents/$INST_FILE_LAUNCHAGENT
 
 echo "#------------------------------------------------------------------------------"
 echo "# Installation SabNZBD Complete"
