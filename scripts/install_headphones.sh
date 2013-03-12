@@ -72,6 +72,39 @@ if [ -f $DIR/launchctl/com.headphones.headphones.plist ] ; then
     cp $DIR/launchctl/com.headphones.headphones.plist ~/Library/LaunchAgents/
 else
 fi
+
+if [ -f $DIR/conf/launchctl/com.headphones.headphones.plist ] ; then
+    echo "Copying Lauch Agent file:"
+    cp $DIR/launchctl/com.headphones.headphones.plist ~/Library/LaunchAgents/
+else
+    echo "Creating Lauch Agent file:"
+    cat >> /tmp/com.headphones.headphones.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<true/>
+	</dict>
+	<key>Label</key>
+	<string>com.headphones.headphones</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/python</string>
+		<string>/Users/Headphones/Sites/headphones/Headphones.py</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>WorkingDirectory</key>
+	<string>/Users/Headphones/Sites/headphones</string>
+</dict>
+</plist>
+EOF
+    sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
+fi
+
 launchctl load ~/Library/LaunchAgents/com.headphones.headphones.plist
 
 echo "#------------------------------------------------------------------------------"
