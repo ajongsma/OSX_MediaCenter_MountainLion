@@ -1,4 +1,4 @@
-## Place holder for directoy sync ##
+## Place holder for directory sync ##
  --- 
 
 ~~~
