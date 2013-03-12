@@ -44,38 +44,21 @@ end tell'
 echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
-
-if [ -f $DIR/conf/launchctl/com.autosub.autosub.plist ] ; then
-    echo "Copying Lauch Agent file:"
-    cp $DIR/launchctl/com.autosub.autosub.plist ~/Library/LaunchAgents/
+INST_FILE_LAUNCHAGENT="com.autosub.autosub.plist"
+if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
+    echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
+    cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 else
-    echo "Creating Lauch Agent file:"
-    cat >> /tmp/com.autosub.autosub.plist <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.autosub.autosub</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/python</string>
-        <string>AutoSub.py</string>
-        <string>--config</string>
-        <string>/Applications/auto-sub/config.properties</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>WorkingDirectory</key>
-    <string>/Applications/auto-sub</string>
-</dict>
-</plist>
-EOF
-    sudo mv /tmp/com.autosub.autosub.plist ~/Library/LaunchAgents/
+    echo -e "${RED}  ============================================== ${RESET}"
+    echo -e "${RED} | ERROR ${RESET}"
+    echo -e "${RED} | LaunchAgent file not found: ${RESET}"
+    echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+    echo -e "${RED} | --- press any key to continue --- ${RESET}"
+    echo -e "${RED}  ============================================== ${RESET}"
+    read -n 1 -s
+    sudo mv /tmp/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 fi
-
-launchctl load ~/Library/LaunchAgents/com.autosub.autosub.plist
-#launchctl start ~/Library/LaunchAgents/com.autosub.autosub.plist
+launchctl load ~/Library/LaunchAgents/$INST_FILE_LAUNCHAGENT
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install Auto-Sub - Complete"
