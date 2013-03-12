@@ -1,10 +1,6 @@
-## WORK IN PROGRESS - PLEASE IGNORE FOR NOW ##
-
+## Place holder for directoy sync ##
  --- 
 
-===
-
 ~~~
-
 
 ...
