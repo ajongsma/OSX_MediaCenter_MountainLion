@@ -1324,6 +1324,15 @@ else
     printf 'Plex themes found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 
+#------------------------------------------------------------------------------
+# Install Trakt.TV scrobbler for Plex
+#------------------------------------------------------------------------------
+if [ ! -e /Applications/Plex.app ] ; then
+    printf 'Plex Client not installed\n' "$RED" $col '[FAIL]' "$RESET"
+else
+    printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
+    source "$DIR/scripts/install_plex_trakttv.sh"
+fi
 
 #==============================================================================
 #=== FORCED EXIT DUE TO TESTING ===============================================
