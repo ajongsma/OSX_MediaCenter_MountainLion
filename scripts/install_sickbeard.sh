@@ -153,40 +153,34 @@ fi
 #sudo python /Applications/Sick-Beard/sickbeard.py –d
 #sudo python /Applications/Sick-Beard/sickbeard.py -q --nolaunch
 
-
-#####
-## ??? Screen the SickBeard.py ???
-#####
-
-echo "Creating Lauch Agent file:"
-cat >> /tmp/com.sickbeard.sickbeard.plist <<'EOF'
+if [ -f $DIR/conf/launchctl/com.sickbeard.sickbeard.plist ] ; then
+    echo "Copying Lauch Agent file:"
+    cp $DIR/launchctl/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+else
+    echo "Creating Lauch Agent file:"
+    cat >> /tmp/com.sickbeard.sickbeard.plist <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>KeepAlive</key>
-    <dict>
-        <key>SuccessfulExit</key>
-        <false/>
-    </dict>
     <key>Label</key>
-    <string>com.sickbeard.sickbeard</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/python</string>
-        <string>SickBeard.py</string>
-        <string>-q</string>
-        <string>--nolaunch</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>WorkingDirectory</key>
-    <string>/Applications/Sick-Beard</string>
+	<string>com.sickbeard.sickbeard</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/python</string>
+		<string>/Applications/Sick-Beard/SickBeard.py</string>
+		<string>-q</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>WorkingDirectory</key>
+	<string>/Applications/Sick-Beard</string>
 </dict>
 </plist>
 EOF
+    sudo mv /tmp/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
+fi
 
-mv /tmp/com.sickbeard.sickbeard.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist
 
 echo "#------------------------------------------------------------------------------"
