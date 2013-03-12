@@ -55,35 +55,31 @@ echo "| Sphinx Binaries Path       : /usr/local/bin/"
 echo "-----------------------------------------------------------"
 open http://localhost/newznab/admin/site-edit.php
 
-if [ -f $DIR/launchctl/com.sphinxsearch.searchd.plist ] ; then
-    cp $DIR/launchctl/com.sphinxsearch.searchd.plist ~/Library/LaunchAgents/
+INST_FILE_LAUNCHAGENT="com.sphinxsearch.searchd.plist"
+if [ -f $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT ] ; then
+    echo "Copying Lauch Agent file: $INST_FILE_LAUNCHAGENT"
+    cp $DIR/launchctl/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
+    if [ "$?" != "0" ]; then
+        echo -e "${RED}  ============================================== ${RESET}"
+        echo -e "${RED} | ERROR ${RESET}"
+        echo -e "${RED} | Copy failed: ${RESET}"
+        echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+        echo -e "${RED} | --- press any key to continue --- ${RESET}"
+        echo -e "${RED}  ============================================== ${RESET}"
+        read -n 1 -s
+        exit 1
+    fi
 else
-    echo "Creating Lauch Agent file:"
-    cat >> /tmp/com.nnindexer.nnindexer.plist <<'EOF'
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-        <key>Label</key>
-        <string>com.nnindexer.nnindexer</string>
-        <key>ProgramArguments</key>
-        <array>
-            <string>/usr/bin/php</string>
-            <string>nnindexer.php</string>
-            <string>--daemon</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>WorkingDirectory</key>
-        <string>/Users/Newznab/Sites/newznab/misc/sphinx</string>
-    </dict>
-    </plist>
-    EOF
-    mv /tmp/com.sphinxsearch.searchd.plist ~/Library/LaunchAgents/
-    launchctl load ~/Library/LaunchAgents/com.sphinxsearch.searchd.plist
+    echo -e "${RED}  ============================================== ${RESET}"
+    echo -e "${RED} | ERROR ${RESET}"
+    echo -e "${RED} | LaunchAgent file not found: ${RESET}"
+    echo -e "${RED} | $DIR/conf/launchctl/$INST_FILE_LAUNCHAGENT  ${RESET}"
+    echo -e "${RED} | --- press any key to continue --- ${RESET}"
+    echo -e "${RED}  ============================================== ${RESET}"
+    read -n 1 -s
+    sudo mv /tmp/$INST_FILE_LAUNCHAGENT ~/Library/LaunchAgents/
 fi
-
-launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist
+launchctl load ~/Library/LaunchAgents/$INST_FILE_LAUNCHAGENT
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install Sphinx for NewzNAB complete."
