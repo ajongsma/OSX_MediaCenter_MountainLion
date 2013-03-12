@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Trakt for Sickbeard"
+echo "# Configuring Trakt.TV for Sickbeard"
 echo "#------------------------------------------------------------------------------"
 
 source ../config.sh
@@ -42,5 +42,5 @@ echo -e "${BLUE} --- press any key to continue --- ${RESET}"
 read -n 1 -s
 
 echo "#------------------------------------------------------------------------------"
-echo "# Configuring Trakt for Sickbeard - Complete"
+echo "# Configuring Trakt.TV for Sickbeard - Complete"
 echo "#------------------------------------------------------------------------------"
