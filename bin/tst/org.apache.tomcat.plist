@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><!-- NOTE: place this file in /Library/LaunchDaemons -->
+    <dict>
+        <key>Label</key>
+        <string>org.apache.tomcat</string>
+        <key>OnDemand</key>
+        <false/>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>EnvironmentVariables</key>
+        <dict>
+            <key>CATALINA_HOME</key>
+            <string>/Users/username/tomcat</string>
+            <key>JAVA_HOME</key>
+            <string>/Library/Java/Home</string>
+        </dict>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/Users/username/tomcat/bin/launchd_wrapper.sh</string>
+        </array>
+        <key>ServiceDescription</key>
+        <string>Tomcat</string>
+        <key>StandardErrorPath</key>
+        <string>/Users/username/tomcat/logs/launchd.stderr</string>
+        <key>StandardOutPath</key>
+        <string>/Users/username/tomcat/logs/launchd.stdout</string>
+        <key>UserName</key>
+        <string>root</string><!-- MUST be root in order to run tomcat on port 80 -->
+    </dict>
+</plist>
