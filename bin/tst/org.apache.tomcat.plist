@@ -3,15 +3,15 @@
 <plist version="1.0"><!-- NOTE: place this file in /Library/LaunchDaemons -->
     <dict>
         <key>Label</key>
-        <string>org.apache.tomcat</string>
+        <string>org.spotweb.sync</string>
         <key>OnDemand</key>
         <false/>
         <key>RunAtLoad</key>
         <true/>
         <key>EnvironmentVariables</key>
         <dict>
-            <key>SPOTWEB_HOME</key>
-            <string>/Users/username/tomcat</string>
+            <key>WRAPPED_HOME</key>
+            <string>/usr/local/bin</string>
         </dict>
         <key>ProgramArguments</key>
         <array>
