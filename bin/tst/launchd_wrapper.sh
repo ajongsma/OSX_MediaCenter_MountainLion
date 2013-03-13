@@ -17,6 +17,10 @@ function shutdown() {
     date
     echo "Shutting down $WRAPPED_NAME"
     $WRAPPED_ROOT/$WRAPPED_PRG stop
+    echo "done."
+
+    # Cleaning up the temporary file
+    rm -f $WRAPPED_PID
 }
  
 date
