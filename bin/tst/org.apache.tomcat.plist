@@ -10,22 +10,18 @@
         <true/>
         <key>EnvironmentVariables</key>
         <dict>
-            <key>CATALINA_HOME</key>
+            <key>SPOTWEB_HOME</key>
             <string>/Users/username/tomcat</string>
-            <key>JAVA_HOME</key>
-            <string>/Library/Java/Home</string>
         </dict>
         <key>ProgramArguments</key>
         <array>
-            <string>/Users/username/tomcat/bin/launchd_wrapper.sh</string>
+            <string>/usr/local/bin/launchd_wrapper.sh</string>
         </array>
         <key>ServiceDescription</key>
-        <string>Tomcat</string>
+        <string>Spotweb</string>
         <key>StandardErrorPath</key>
-        <string>/Users/username/tomcat/logs/launchd.stderr</string>
+        <string>/tmp/spotweb.stderr</string>
         <key>StandardOutPath</key>
-        <string>/Users/username/tomcat/logs/launchd.stdout</string>
-        <key>UserName</key>
-        <string>root</string><!-- MUST be root in order to run tomcat on port 80 -->
+        <string>/tmp/spotweb.stdout</string>
     </dict>
 </plist>
