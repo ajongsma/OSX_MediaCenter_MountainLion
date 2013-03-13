@@ -4,10 +4,11 @@
 #  https://gist.github.com/mystix/661713
 
 
-WRAPPED_NAME="Spotweb"
+WRAPPED_NAME="Spotweb Updater"
 WRAPPED_PRG="launch_tmux_sync_spotweb.sh"
 WRAPPED_BASE=/usr/local/bin
 
+## NOTE: We are inheriting WRAPPED_HOME from launchd.
 if [ -z "$WRAPPED_HOME" ] ; then
   WRAPPED_HOME="$WRAPPED_BASE"
 fi
@@ -28,9 +29,9 @@ function shutdown() {
 }
  
 date
-echo "Starting $WRAPPED_NAME Updater"
+echo "Starting $WRAPPED_NAME"
 WRAPPED_PID=/tmp/$$
- 
+
 . $WRAPPED_HOME/$WRAPPED_PRG start
  
 # Allow any signal which would kill process
