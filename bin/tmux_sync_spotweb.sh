@@ -52,6 +52,11 @@ if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
 else
 	echo "Session not found: $TMUX_SESSION"
 
+	if [ ! -f "$TMUX_PID_FILE" ]; then
+	  echo "Old PID $TMUX_PID_FILE found, deleting"
+	  rm -f $TMUX_PID_FILE
+	fi
+
 	tmux start-server
 	tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
 	if [ ! -z "$TMUX_PID_FILE" ]; then
