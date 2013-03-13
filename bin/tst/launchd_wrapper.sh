@@ -6,7 +6,7 @@
 
 WRAPPED_NAME="Spotweb"
 WRAPPED_PRG="launch_tmux_sync_spotweb.sh"
-WRAPPED_ROOT=/usr/local/share/bin
+WRAPPED_ROOT=/usr/local/bin
 
 if [ ! -d "$WRAPPED_ROOT" ]; then
   echo "Error! $WRAPPED_ROOT does not exist"
