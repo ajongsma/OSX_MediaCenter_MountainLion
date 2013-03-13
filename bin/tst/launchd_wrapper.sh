@@ -1,26 +1,32 @@
 #!/bin/bash
- 
-# NOTE: this is an OSX launchd wrapper shell script for Tomcat (to be placed in $CATALINA_HOME/bin)
- 
-CATALINA_HOME=/Users/username/tomcat
- 
+
+## NOTE: this is an OSX launchd wrapper shell script
+#  https://gist.github.com/mystix/661713
+
+
+WRAPPED_NAME="Spotweb"
+WRAPPED_PRG="launch_tmux_sync_spotweb.sh"
+WRAPPED_ROOT=/usr/local/share/bin
+
+if [ ! -d "$WRAPPED_ROOT" ]; then
+  echo "Error! $WRAPPED_ROOT does not exist"
+  exit 1
+fi
+
 function shutdown() {
     date
-    echo "Shutting down Tomcat"
-    $CATALINA_HOME/bin/catalina.sh stop
+    echo "Shutting down $WRAPPED_NAME"
+    $WRAPPED_ROOT/$WRAPPED_PRG stop
 }
  
 date
-echo "Starting Tomcat"
-export CATALINA_PID=/tmp/$$
+echo "Starting $WRAPPED_NAME Updater"
+WRAPPED_PID=/tmp/$$
  
-# Uncomment to increase Tomcat's maximum heap allocation
-# export JAVA_OPTS=-Xmx512M $JAVA_OPTS
+. $WRAPPED_ROOT/$WRAPPED_PRG start
  
-. $CATALINA_HOME/bin/catalina.sh start
- 
-# Allow any signal which would kill a process to stop Tomcat
+# Allow any signal which would kill process
 trap shutdown HUP INT QUIT ABRT KILL ALRM TERM TSTP
- 
-echo "Waiting for `cat $CATALINA_PID`"
-wait `cat $CATALINA_PID`
+
+echo "Waiting for `cat $WRAPPED_PID`"
+wait `cat $WRAPPED_PID`
