@@ -2,6 +2,7 @@
 
 ## NOTE: this is an OSX launchd wrapper shell script
 #  https://gist.github.com/mystix/661713
+#  http://www.joel.lopes-da-silva.com/2008/05/13/installing-tomcat-on-mac-os-x/
 
 
 WRAPPED_NAME="Spotweb Updater"
