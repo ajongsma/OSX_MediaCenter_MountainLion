@@ -53,8 +53,13 @@ else
 	echo "Session not found: $TMUX_SESSION"
 
 	if [ ! -f "$TMUX_PID_FILE" ]; then
-	  echo "Old PID $TMUX_PID_FILE found, deleting"
-	  rm -f $TMUX_PID_FILE
+		echo "Old PID $TMUX_PID_FILE found, deleting"
+		rm -f $TMUX_PID_FILE
+		if [ $? -ne 0 ]; then
+			echo "$0: Failed to remove file $TMUX_PID_FILE. Aborting."
+		        exit 1
+		fi
+	
 	fi
 
 	tmux start-server
@@ -71,6 +76,7 @@ else
 	tmux send-keys -t $TMUX_SESSION:0 "clear" C-m
 	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_NICE -n 19 $TMUX_SH $TMUX_APP" C-m
 
+	## Create another pane
 #	tmux splitw -v -p 12
 #	tmux select-pane -t 1
 #	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_CURRENT_DIR" C-m
