@@ -5,17 +5,28 @@
 #  http://www.joel.lopes-da-silva.com/2008/05/13/installing-tomcat-on-mac-os-x/
 
 
-WRAPPED_NAME="Spotweb Updater"
-WRAPPED_PRG="launch_tmux_sync_spotweb.sh"
-WRAPPED_BASE=/usr/local/bin
+#WRAPPED_HOME="/usr/local/bin"
+#WRAPPED_PRG="launch_tmux_sync_spotweb.sh"
+#WRAPPED_NAME="Spotweb Updater"
 
 ## NOTE: We are inheriting WRAPPED_HOME from launchd.
 if [ -z "$WRAPPED_HOME" ] ; then
-  WRAPPED_HOME="$WRAPPED_BASE"
+  echo "Error! $WRAPPED_HOME is not defined"
+  exit 1
+else
+	if [ ! -d "$WRAPPED_HOME" ]; then
+	  echo "Error! $WRAPPED_HOME does not exist"
+	  exit 1
+	fi
 fi
 
-if [ ! -d "$WRAPPED_HOME" ]; then
-  echo "Error! $WRAPPED_HOME does not exist"
+if [ -z "$WRAPPED_PRG" ] ; then
+  echo "Error! $WRAPPED_HOME is not defined"
+  exit 1
+fi
+
+if [ -z "$WRAPPED_NAME" ] ; then
+  echo "Error! $WRAPPED_HOME is not defined"
   exit 1
 fi
 

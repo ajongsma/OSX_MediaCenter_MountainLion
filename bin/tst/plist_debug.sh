@@ -38,12 +38,16 @@ else
   sudo launchctl log level debug
 
   echo "Restart service"
-  restart $1
+  stop $1
+  start $1
 
   echo "Start tailing the system.log"
   osascript -e 'tell app "Terminal"
     do script "tail -f /var/log/system.log"
   end tell'
+
+  echo -e "${BLUE} --- press any key to set launctl logging back to Error --- ${RESET}"
+  read -n 1 -s
 
   echo "Changing launchctl log level to Error"
   sudo launchctl log level error

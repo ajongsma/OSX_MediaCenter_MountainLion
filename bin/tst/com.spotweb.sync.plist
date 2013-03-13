@@ -3,7 +3,7 @@
 <plist version="1.0"><!-- NOTE: place this file in /Library/LaunchDaemons -->
     <dict>
         <key>Label</key>
-        <string>org.spotweb.sync</string>
+        <string>com.spotweb.sync</string>
         <key>OnDemand</key>
         <false/>
         <key>RunAtLoad</key>
@@ -12,10 +12,14 @@
         <dict>
             <key>WRAPPED_HOME</key>
             <string>/usr/local/bin</string>
+            <key>WRAPPED_PRG</key>
+            <string>launch_tmux_sync_spotweb.sh</string>
+            <key>WRAPPED_NAME</key>
+            <string>Spotweb Updater</string>
         </dict>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/local/bin/launchd_wrapper.sh</string>
+            <string>/usr/local/bin/launchd_wrapper_spotweb</string>
         </array>
         <key>ServiceDescription</key>
         <string>Spotweb</string>

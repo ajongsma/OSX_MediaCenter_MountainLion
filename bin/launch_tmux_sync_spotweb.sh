@@ -2,7 +2,7 @@
  
 # NOTE: this is an OSX launchd wrapper shell script for Spotweb (to be placed in $HOME/bin)
 
-SPOTWEB_HOME=$HOME
+SPOTWEB_HOME=$HOME/Github/OSX_NewBox/bin
  
 function shutdown() {
     date
@@ -11,10 +11,10 @@ function shutdown() {
 }
  
 date
-echo "Starting Spotweb"
-SPOTWEB_PID=/tmp/$$
+echo "Starting Spotweb - launch_tmux_spotweb.sh"
+#SPOTWEB_PID=/tmp/$$
 
-. $SPOTWEB_HOME/bin/spotweb.sh start
+. $SPOTWEB_HOME/spotweb.sh start
  
 # Allow any signal which would kill a process to stop Spotweb
 trap shutdown HUP INT QUIT ABRT KILL ALRM TERM TSTP
