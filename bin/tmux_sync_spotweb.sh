@@ -47,46 +47,46 @@ fi
 
 #tmux list-sessions
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
-	echo "Session found: $TMUX_SESSION"
-	$TMUX_CMD attach-session -t $TMUX_SESSION
+  echo "Session found: $TMUX_SESSION"
+  $TMUX_CMD attach-session -t $TMUX_SESSION
 else
-	echo "Session not found: $TMUX_SESSION"
+  echo "Session not found: $TMUX_SESSION"
 
-	if [ ! -f "$TMUX_PID_FILE" ]; then
-		echo "Old PID $TMUX_PID_FILE found, deleting"
-		rm -f $TMUX_PID_FILE
-		if [ $? -ne 0 ]; then
-			echo "$0: Failed to remove file $TMUX_PID_FILE. Aborting."
-		        exit 1
-		fi
-	
-	fi
+  if [ ! -f "$TMUX_PID_FILE" ]; then
+    echo "Old PID $TMUX_PID_FILE found, deleting"
+    rm -f $TMUX_PID_FILE
+    if [ $? -ne 0 ]; then
+      echo "$0: Failed to remove file $TMUX_PID_FILE. Aborting."
+      exit 1
+    fi
+  fi
 
-	tmux start-server
-	tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
-	if [ ! -z "$TMUX_PID_FILE" ]; then
-	    echo $$ > $TMUX_PID_FILE
-	fi
-	#echo $$
+  tmux start-server
+  tmux -f $TMUX_CONF new-session -d -s $TMUX_SESSION -n $TMUX_SESSION
+  if [ ! -z "$TMUX_PID_FILE" ]; then
+    echo $$ > $TMUX_PID_FILE
+  fi
+  #echo $$
 
-	# tmux attach-session -d -t Spotweb
+  # tmux attach-session -d -t Spotweb
 
-	tmux select-pane -t 0
-	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_APP_PATH" C-m
-	tmux send-keys -t $TMUX_SESSION:0 "clear" C-m
-	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_NICE -n 19 $TMUX_SH $TMUX_APP" C-m
+  tmux select-pane -t 0
+  tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_APP_PATH" C-m
+  tmux send-keys -t $TMUX_SESSION:0 "clear" C-m
+  tmux send-keys -t $TMUX_SESSION:0 "$TMUX_NICE -n 19 $TMUX_SH $TMUX_APP" C-m
 
-	## Create another pane
-#	tmux splitw -v -p 12
-#	tmux select-pane -t 1
-#	tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_CURRENT_DIR" C-m
-#	tmux send-keys -t $TMUX_SESSION:0 "$TMUX_SH tmux_process_monitor.sh 'tmux attach-session -d -t $TMUX_SESSION'" C-m
+  ## Create another pane
+#  tmux splitw -v -p 12
+#  tmux select-pane -t 1
+#  tmux send-keys -t $TMUX_SESSION:0 "cd $TMUX_CURRENT_DIR" C-m
+#  tmux send-keys -t $TMUX_SESSION:0 "$TMUX_SH tmux_process_monitor.sh 'tmux attach-session -d -t $TMUX_SESSION'" C-m
 
-	## Create extra tab
-	#tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
+  ## Create extra tab
+  #tmux new-window -t NewzNab:1 -n 'monitor' 'echo "Monitor ..."'
 
-	## Attach session
-	tmux select-window -t $TMUX_SESSION:0
-	tmux select-pane -t 0
-	tmux attach-session -d -t $TMUX_SESSION
+  ## Attach session
+  tmux select-window -t $TMUX_SESSION:0
+  tmux select-pane -t 0
+
+  tmux attach-session -d -t $TMUX_SESSION
 fi
