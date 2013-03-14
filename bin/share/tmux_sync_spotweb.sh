@@ -27,7 +27,7 @@ done
 TMUX_CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 unset SOURCE
 
-TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
+TMUX_APP_PATH="/usr/local/share/spotweb"
 TMUX_APP="spotweb_cycle.sh"
 TMUX_SESSION="Spotweb"
 TMUX_POWERLINE="false"
@@ -44,13 +44,16 @@ if [[ $TMUX_POWERLINE == "true" ]]; then
 else
   TMUX_CONF="$HOME/.tmux/conf/tmux_bash.conf"
 fi
+if [ ! -f "$TMUX_CONF" ]; then
+  echo "[$(date)] File $TMUX_CONF not found. Aborting..."
+  exit 1
+fi
 
 #tmux list-sessions
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
   echo "[$(date)] Tmux session $TMUX_SESSION detected  - [OK]"
   #$TMUX_CMD attach-session -t $TMUX_SESSION
 else
-  date
   echo "[$(date)] Tmux session $TMUX_SESSION not found. Spinning up..."
 
   if [ ! -f "$TMUX_PID_FILE" ]; then
