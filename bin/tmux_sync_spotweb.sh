@@ -51,10 +51,10 @@ if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
   #$TMUX_CMD attach-session -t $TMUX_SESSION
 else
   date
-  echo "Tmux session $TMUX_SESSION not found. Spinning up..."
+  echo "[$(date)] Tmux session $TMUX_SESSION not found. Spinning up..."
 
   if [ ! -f "$TMUX_PID_FILE" ]; then
-    echo "Old PID $TMUX_PID_FILE found, deleting"
+    echo "[$(date)] Obsolete PID $TMUX_PID_FILE found, deleting"
     rm -f $TMUX_PID_FILE
     if [ $? -ne 0 ]; then
       echo "$0: Failed to remove file $TMUX_PID_FILE. Aborting."
