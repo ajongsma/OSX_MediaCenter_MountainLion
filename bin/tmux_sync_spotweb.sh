@@ -30,7 +30,7 @@ unset SOURCE
 TMUX_APP_PATH="/Users/Spotweb/Sites/spotweb"
 TMUX_APP="spotweb_cycle.sh"
 TMUX_SESSION="Spotweb"
-TMUX_POWERLINE="true"
+TMUX_POWERLINE="false"
 TMUX_PID_FILE=/tmp/spotweb.pid
 
 command -v sh >/dev/null 2>&1 || { echo >&2 "[$(date)] SH required but it's not installed. Aborting."; exit 1; } && TMUX_SH=`command -v sh`
