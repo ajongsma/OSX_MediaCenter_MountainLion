@@ -38,6 +38,10 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 https://github.com/mlintern/scripts
 
+#= 14-03-2013 ========================================================================
+
+http://kirk.webfinish.com/2009/10/bash-shell-script-to-manage-pid-file-creationdeletion/
+
 #= 08-03-2013 ========================================================================
 
 Command	Description	Example
