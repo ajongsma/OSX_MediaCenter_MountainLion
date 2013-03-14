@@ -36,7 +36,7 @@ TMUX_PID_FILE=/tmp/spotweb.pid
 command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed. Aborting."; exit 1; } && TMUX_SH=`command -v sh`
 command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed. Aborting."; exit 1; } && TMUX_CMD=`command -v tmux`
 command -v nice >/dev/null 2>&1 || { echo >&2 "Nice required but it's not installed. Aborting."; exit 1; } && TMUX_NICE=`command -v nice`
-command -v php >/dev/null 2>&1 || { echo >&2 "Nice required but it's not installed. Aborting."; exit 1; } && TMUX_PHP=`command -v php` || { TMUX_PHP=`command -v php`; }
+command -v php >/dev/null 2>&1 || { echo >&2 "Php required but it's not installed. Aborting."; exit 1; } && TMUX_PHP=`command -v php` || { TMUX_PHP=`command -v php`; }
 command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed. Aborting."; exit 1; } && TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
