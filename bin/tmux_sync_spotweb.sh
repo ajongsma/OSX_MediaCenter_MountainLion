@@ -33,11 +33,11 @@ TMUX_SESSION="Spotweb"
 TMUX_POWERLINE="true"
 TMUX_PID_FILE=/tmp/spotweb.pid
 
-command -v sh >/dev/null 2>&1 || { echo >&2 "Sh required but it's not installed. Aborting."; exit 1; } && TMUX_SH=`command -v sh`
-command -v tmux >/dev/null 2>&1 || { echo >&2 "Tmux required but it's not installed. Aborting."; exit 1; } && TMUX_CMD=`command -v tmux`
-command -v nice >/dev/null 2>&1 || { echo >&2 "Nice required but it's not installed. Aborting."; exit 1; } && TMUX_NICE=`command -v nice`
-command -v php >/dev/null 2>&1 || { echo >&2 "Php required but it's not installed. Aborting."; exit 1; } && TMUX_PHP=`command -v php` || { TMUX_PHP=`command -v php`; }
-command -v mysql >/dev/null 2>&1 || { echo >&2 "MySQL required but it's not installed. Aborting."; exit 1; } && TMUX_MYSQL=`command -v mysql`
+command -v sh >/dev/null 2>&1 || { echo >&2 "[$(date)] SH required but it's not installed. Aborting."; exit 1; } && TMUX_SH=`command -v sh`
+command -v tmux >/dev/null 2>&1 || { echo >&2 "[$(date)] Tmux required but it's not installed. Aborting."; exit 1; } && TMUX_CMD=`command -v tmux`
+command -v nice >/dev/null 2>&1 || { echo >&2 "[$(date)] Nice required but it's not installed. Aborting."; exit 1; } && TMUX_NICE=`command -v nice`
+command -v php >/dev/null 2>&1 || { echo >&2 "[$(date)] PHP required but it's not installed. Aborting."; exit 1; } && TMUX_PHP=`command -v php` || { TMUX_PHP=`command -v php`; }
+command -v mysql >/dev/null 2>&1 || { echo >&2 "[$(date)] MySQL required but it's not installed. Aborting."; exit 1; } && TMUX_MYSQL=`command -v mysql`
 
 if [[ $TMUX_POWERLINE == "true" ]]; then
   TMUX_CONF="$HOME/.tmux/conf/tmux_powerline.conf"
@@ -47,7 +47,7 @@ fi
 
 #tmux list-sessions
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
-  echo "[$(date)] Tmux session $TMUX_SESSION detected."
+  echo "[$(date)] Tmux session $TMUX_SESSION detected  - [OK]"
   #$TMUX_CMD attach-session -t $TMUX_SESSION
 else
   date
