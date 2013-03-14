@@ -47,11 +47,11 @@ fi
 
 #tmux list-sessions
 if $TMUX_CMD -q has-session -t $TMUX_SESSION; then
-  echo "$(date): Tmux session $TMUX_SESSION detected."
+  echo "[$(date)] Tmux session $TMUX_SESSION detected."
   #$TMUX_CMD attach-session -t $TMUX_SESSION
 else
   date
-  echo "Tmux session $TMUX_SESSION not found. Starting up..."
+  echo "Tmux session $TMUX_SESSION not found. Spinning up..."
 
   if [ ! -f "$TMUX_PID_FILE" ]; then
     echo "Old PID $TMUX_PID_FILE found, deleting"
