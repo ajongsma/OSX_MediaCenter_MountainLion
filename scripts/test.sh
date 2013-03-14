@@ -1,30 +1,11 @@
+#!/usr/bin/env bash
 
 
-function log()  {
-	printf "$*\n" ;
-	return $? ;
-}
+for _file in `ls *.plist`; do
+  #t=`echo $_file | sed 's/\.xml$/.txt/'`; 
+  #mv $_file $t && echo "moved $x -> $t"
 
-function handle_error () {
-  if [ "$?" != "0" ]; then
-    log "${failure}$2 $1"
-    exit 1
-  fi
-}
-
-function fail() {
-	log "\nERROR: $*\n" ;
-	exit 1 ; 
-}
-
-function check_system() {
-    # Check for supported system
-    kernel=`uname -s`
-    case $kernel in
-        Linux) ;;
-        *) fail "Sorry, $kernel is not supported." ;;
-    
-    esac
-}
-
-check_system
+  echo "Found file: $_file"
+  [[ ! -z $_file ]] && echo "Checking availability of $_file: Ok"
+done
+unset _file
