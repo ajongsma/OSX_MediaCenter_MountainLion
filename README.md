@@ -32,6 +32,7 @@ Having the called install scripts functioning as intended is the current focus p
 * [Xquartz] (http://xquartz.macosforge.org/landing)
 * [OSX Server 2.0](https://itunes.apple.com/nl/app/os-x-server/id537441259?mt=12)
   * Apache
+  * PHP 5.3
 * [Sublime Text 2](http://www.sublimetext.com)
 * [iTerm 2](http://http://www.iterm2.com)
   * [Solarized for iTerm 2] (https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized)
@@ -41,6 +42,8 @@ Having the called install scripts functioning as intended is the current focus p
 * [Github for Mac](http://mac.github.com)
 * [Dropbox] (http://www.dropbox.com/download?plat=mac)
 * Powerline
+  * [Powerline Shell] (https://github.com/milkbikis/powerline-shell)
+  * [Powerline Tmux] (https://github.com/erikw/tmux-powerline)
 * PHP 5.4
 * Python
 * Pear
