@@ -79,10 +79,16 @@ Having the called install scripts functioning as intended is the current focus p
 * [Plex] (http://www.plexapp.com/)
   * [Plex Media Server] (http://plex.r.worldssl.net/PlexMediaServer/0.9.7.12.407-db37d6d/PlexMediaServer-0.9.7.12.407-db37d6d-OSX.dmg)
   * [Plex Media Center Client] (http://www.plexapp.com/download/plex-media-center.php)
-  * [Plex Mobile] (http://www.plexapp.com/ios.php)
   * [Plex Trakt.TV Scrobbler] (https://github.com/tester22/Plex-Trakt-Scrobbler)
+  * [Plex Mobile] (http://www.plexapp.com/ios.php)
   * Additional Plex themes
-
+     * [Aeon] (https://github.com/maverick214/PlexAeon)
+     * [Metropolis] (https://github.com/maverick214/Metropolis)
+     * [Retroplex] (https://github.com/gitSebastian/Retroplex)
+     * [Blur] (https://github.com/jaaps/skin.blur)
+     * [Quicksilver] (https://github.com/reddragon220/Quicksilver)
+     * [Carbon] (https://github.com/kevinlekiller/Newznab-Carbon-Theme)
+     
 
 # ADDENDUM
 
@@ -107,6 +113,10 @@ Having the called install scripts functioning as intended is the current focus p
 <hr>
 
 # TO CHECK OUT
+* [Plex theme - Alaska] (http://forums.plexapp.com/index.php/forum/49-alaska/)
+* [Plex theme - Refocus] (http://forums.plexapp.com/index.php/forum/65-refocus/)
+* [Plex theme - Simplex] (http://forums.plexapp.com/index.php/forum/102-simplex/)
+
 * [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * Powerline
