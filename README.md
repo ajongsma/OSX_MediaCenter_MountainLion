@@ -109,10 +109,8 @@ Having the called install scripts functioning as intended is the current focus p
 * [Article: The Text Triumvirate] (http://www.drbunsen.org/text-triumvirate.html#tmux)
 * [Article: Tmux and Vim, get married] (http://thedrearlight.com/blog/tmux-vim.html)
 * Powerline
-  * [Powerline - Tmux] (https://github.com/erikw/tmux-powerline)
   * [Powerline - Vim : Readme] (https://github.com/Lokaltog/vim-powerline/blob/develop/doc/Powerline.txt)
   * [Powerline - Vim] (https://github.com/Lokaltog/vim-powerline)
-  * [Powerline style prompt for Bash] (https://github.com/milkbikis/powerline-shell)
   * [Powerline - oh-my-zsh] (https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme)
 * [Solarized] (http://ethanschoonover.com/solarized)
   * [HowTo] (http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html)
