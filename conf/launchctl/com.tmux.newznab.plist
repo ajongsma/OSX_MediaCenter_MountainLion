@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EnableGlobbing</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/local/sbin:/bin:/usr/local/opt/coreutils/libexec/gnubin</string>
+	</dict>
 	<key>Label</key>
 	<string>com.tmux.newznab</string>
 	<key>LowPriorityIO</key>
@@ -10,11 +17,14 @@
 	<integer>1</integer>
 	<key>ProgramArguments</key>
 	<array>
-	    <string>/bin/sh</string>
-	    <string>-c</string>
-	    <string>exec $HOME/.bin/launch_tmux_sync_newznab.sh</string>
+		<string>/bin/sh</string>
+		<string>/usr/local/bin/tmux_sync_newznab.sh</string>
 	</array>
+	<key>StandardErrorPath</key>
+	<string>/var/log/newznab/tmux_sync.stderr</string>
+	<key>StandardOutPath</key>
+	<string>/var/log/newznab/tmux_sync.stdout</string>
 	<key>StartInterval</key>
-	<integer>300</integer>
+	<integer>1800</integer>
 </dict>
 </plist>
