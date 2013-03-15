@@ -10,7 +10,7 @@
 # Stop a service
 function stop {
   echo "Stopping $NAME"
- launchctl unload -w $HOME/Library/LaunchAgents/$PLIST
+ launchctl unload $HOME/Library/LaunchAgents/$PLIST
 }
 
 # Starts the service
