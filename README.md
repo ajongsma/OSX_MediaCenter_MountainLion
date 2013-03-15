@@ -79,16 +79,16 @@ Having the called install scripts functioning as intended is the current focus p
 * [Plex] (http://www.plexapp.com/)
   * [Plex Media Server] (http://plex.r.worldssl.net/PlexMediaServer/0.9.7.12.407-db37d6d/PlexMediaServer-0.9.7.12.407-db37d6d-OSX.dmg)
   * [Plex Media Center Client] (http://www.plexapp.com/download/plex-media-center.php)
-  * [Plex Trakt.TV Scrobbler] (https://github.com/tester22/Plex-Trakt-Scrobbler)
+  * [Plex Trakt.TV Scrobbler] (https://github.com/tester22/Plex-Trakt-Scrobbler) ([Trakt.TV] (https://trakt.tv/))
   * [Plex Mobile] (http://www.plexapp.com/ios.php)
   * Additional Plex themes
      * [Aeon] (https://github.com/maverick214/PlexAeon)
-     * [Metropolis] (https://github.com/maverick214/Metropolis)
-     * [Retroplex] (https://github.com/gitSebastian/Retroplex)
      * [Blur] (https://github.com/jaaps/skin.blur)
+     * [Carbon] (https://github.com/kevinlekiller/Newznab-Carbon-Theme)     
+     * [Metropolis] (https://github.com/maverick214/Metropolis)
      * [Quicksilver] (https://github.com/reddragon220/Quicksilver)
-     * [Carbon] (https://github.com/kevinlekiller/Newznab-Carbon-Theme)
-     
+     * [Retroplex] (https://github.com/gitSebastian/Retroplex)
+
 
 # ADDENDUM
 
