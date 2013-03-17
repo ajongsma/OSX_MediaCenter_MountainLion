@@ -35,6 +35,15 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= HANDY's - END =====================================================================
 
+### install dmg/pkg on os x via command line
+cd ~/Downloads
+curl -O http://darwinports.opendarwin.org/downloads/DarwinPorts-1.2-10.4.dmg
+hdiutil attach DarwinPorts-1.2-10.4.dmg
+cd /Volumes/DarwinPorts-1.2/
+sudo installer -pkg DarwinPorts-1.2.pkg -target "/"
+hditutil detach /Volumes/DarwinPorts-1.2/
+
+#= 15-03-2013 ========================================================================
 
 https://github.com/mlintern/scripts
 
