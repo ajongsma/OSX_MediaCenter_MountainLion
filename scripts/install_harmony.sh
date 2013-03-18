@@ -8,19 +8,6 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-brew install hg
-
-#echo "Download latest Auto-Sub from http://code.google.com/p/auto-sub/"
-#open http://code.google.com/p/auto-sub/downloads/list
-#
-#while ( [ ! -e ~/Downloads/auto-sub ] )
-#do
-#    printf 'Waiting for Auto-Sub to be downloaded…\n' "YELLOW" $col '[WAIT]' "$RESET"
-#    sleep 15
-#done
-#sleep 3
-#sudo mv ~/Downloads/auto-sub /Applications/
-
 echo "-----------------------------------------------------------"
 echo "| Login to Logitech My Harmony (http://myharmony.com)"
 echo "-----------------------------------------------------------"
@@ -35,7 +22,7 @@ open http://myharmony.com
         printf 'Waiting for Logitech Harmony Software to be downloaded…\n' "YELLOW" $col '[WAIT]' "$RESET"
         sleep 15
     done
-    printf 'Logitech Harmony installer found. Installing…\n' "YELLOW" $col '[WAIT]' "$RESET"
+    printf 'Logitech Harmony install found. Installing…\n' "YELLOW" $col '[WAIT]' "$RESET"
 
     hdiutil attach LogitechHarmonySoftware.dmg
     cd /Volumes/LogitechHarmonySoftware.pkg/
