@@ -34,6 +34,17 @@ open http://myharmony.com
 #    echo "Blabla found"
 #fi
 
+echo "-----------------------------------------------------------"
+echo "| On MyHarmony.com, select Add device:"
+echo "| Manufacturer                         : Plex"
+echo "| Model number                         : Plex Player"
+echo "| "
+echo "| Add an activity for Plex"
+echo "| -------------------------"
+echo "| Synchronize changes"
+echo "-----------------------------------------------------------"
+
+
 echo "#------------------------------------------------------------------------------"
 echo "# Install Logitech Harmony - Complete"
 echo "#------------------------------------------------------------------------------"
