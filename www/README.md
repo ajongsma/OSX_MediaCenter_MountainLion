@@ -6,4 +6,4 @@
 
 ~~~
 
-Inspired initially as a fork of /Users/Andries/Github/OSX_NewBox/conf/launchctl/README.md
+Inspired initially as a fork of https://github.com/Archigos/HTPCPortal
