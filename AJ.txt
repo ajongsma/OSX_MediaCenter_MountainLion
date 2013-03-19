@@ -35,6 +35,16 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= HANDY's - END =====================================================================
 
+#= 18-03-2013 ========================================================================
+
+Plex Player
+* Plex has built-in Harmony remote support. There's a "Plex Player" device profile in Logitech's database for it
+
+* Mac Mini HDMI Detection Woes
+  => http://www.1000klub.com/hdmireviver.zip (http://blog.1000klub.com/2009/04/mac-mini-hdmi-detection-woes.html)
+
+#= 16-03-2013 ========================================================================
+
 ### install dmg/pkg on os x via command line
 cd ~/Downloads
 curl -O http://darwinports.opendarwin.org/downloads/DarwinPorts-1.2-10.4.dmg
