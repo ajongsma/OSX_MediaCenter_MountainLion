@@ -121,6 +121,7 @@ $subshost													= $ini['subs'];
 $ssport														= $ini['ssport'];
 $CallHP_Subs												= $subshost . ":" . $ssport;
 
+
 function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
 }

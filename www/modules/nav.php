@@ -19,6 +19,24 @@ echo '<ul>';
 		echo writeAppURL($CallHP_Mara,Maraschino);
 		echo '</li>';
 	};
+
+	echo '<li>';
+		echo writeAppURL($CallHP_Indx,Indexers);
+		echo '<ul>';
+			if ($spothost!=="") {
+				echo '<li>';
+				echo writeAppFull($CallHP_Spot,SpotWeb);
+				echo '</li>';
+			};
+			if ($newzhost!=="") {
+				echo '<li>';
+				echo writeAppFull($CallHP_newz,NewzNAB);
+				echo '</li>';
+			};
+		echo '</ul>';
+	echo '</li>';
+
+
 	echo '<li>';
 		echo writeAppURL($CallHP_Mara,Downloaders);
 		echo '<ul>';
