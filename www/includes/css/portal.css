@@ -1,0 +1,461 @@
+@charset "utf-8";
+/* Notes for editing:
+ * 
+ * 
+ */
+
+/* Body */
+body {
+	background-color: #212121;
+}
+
+/* Left 'Panel' */
+#leftofframe {
+	z-index: 1;
+	float: left;
+	position: absolute;
+	margin: 0;
+	width: 210px;
+	border: 1px none #D0D0D0;
+	top: 3px;
+	left: 4px;
+}
+#logo {
+	padding: 0px 0px 0px 0px;
+	margin: 1px 0px -1px -5px;
+	width: 200px;
+	height: 24px;
+}
+#nav {
+	font: 11px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px 0px;
+	top: 24px;
+	width: 200px;
+	height: auto;
+	border: thin solid #4D4D4D;
+	left: 4px;
+}
+#nav strong {
+	color: #FFCE0D;
+	padding: 0 7px 0 7px;
+}
+
+/* RSS Feeds (displayed) */
+#rss {
+	font-size: 11px;
+	font-family: sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin-left: 0;
+	margin-right: 0px;
+	top: 24px;
+	width: 200px;
+	height: auto;
+	border: 1px solid #4D4D4D;
+	margin-top: 3px;
+	left: 4px;
+}
+#rss a {
+	color: #999;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-size: 11px;
+}
+.technology{
+	cursor: hand;
+	cursor: pointer;
+	font-family: Verdana, Geneva, sans-serif, "Arial Narrow";
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCE0D;
+	padding: 2px;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #393939;
+}
+.openlanguage{
+color: #FFCE0D;
+}
+.closedlanguage{
+color: #FFCE0D;
+}
+
+/* RSS Feeds (feed2js) */
+.rss-box {
+    width: 200px;
+    background-color: #212121;
+}
+.rss-title, rss-title a {
+    margin: 0px 0;
+    padding: 0;
+}
+.rss-items {
+    margin: 0;
+    padding: 0px;
+}
+.rss-item {
+	font-size: 10pt;
+	margin-bottom: 4px;
+	text-decoration: none;
+	background-color: #333333;
+	line-height: 12px;
+	display: compact;
+	font-weight: normal;
+	font-family: sans-serif;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 1px;
+	padding-left: 2px;
+	list-style-type: none;
+	overflow: hidden;
+}
+.rss-item a:link, .rss-item a:visited, .rss-item a:active {
+	background-color: #333333;
+	color: #B2B2B2;
+}
+.rss-item a:hover {
+    color: #FFCE0D;
+    font-weight: normal;
+}
+.rss-date {
+    font-size: xx-small;
+}
+
+/* 'Panel' Buttons */
+.classpanel {
+	background-color: #212121;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 1px;
+	border: 1px solid #4D4D4D;
+	display: inline-block;
+	color: #999;
+	padding: 2px 12px;
+	text-decoration: none;
+}
+.classpanel:hover {
+    background-color: #FFCE0D;
+    color: #333;
+}
+.classpanel:active {
+    position: relative;
+    top: 1px;
+}
+
+/* Top Navigation */
+#navi {
+    position: absolute;
+    z-index: 10000;
+    left: 220px;
+    top: 6px;
+}
+#navi ul {
+    font-size: 14px;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#navi ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+#navi ul li a {
+	display: block;
+	text-decoration: none;
+	color: #999;
+	white-space: nowrap;
+	background-color: #212121;
+	border: 1px solid #4d4d4d;
+	font: 11px sans-serif;
+	margin-right: 4px;
+	padding: 3px 7px 3px 7px;
+}
+#navi ul li a:hover {
+    background-color: #FFCE0D;
+    color: #333;
+}
+#navi li:hover ul {
+    display: block;
+    position: absolute;
+}
+#navi li:hover li {
+    float: none;
+    font-size: 11px;
+}
+#navi li:hover a {
+    color: #666;
+    background-color: #FFF;
+    border-width: 1px 1px 1px 1px;
+    border-style: none solid solid solid;
+    border-color: #999;
+    -webkit-box-shadow:  6px 6px 12px 4px rgba(0, 0, 0, .4);
+    box-shadow:  6px 6px 12px 4px rgba(0, 0, 0, .4);
+}
+#navi li:hover li a:hover {
+    background: #FFCE0D;
+}
+#navi li ul {
+    display: none;
+}
+
+/* iFrame Work Area */
+iframe#ifrm {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    border: 1px none #D0D0D0;
+}
+
+/* JSON Workaround */
+#commands {
+	font: 11px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	top: 24px;
+	width: 250px;
+	height: auto;
+	border: thin solid #4D4D4D;
+}
+#commands strong {
+	color: #FFCE0D;
+	padding: 0 7px 0 7px;
+}
+
+#json {
+    position: absolute;
+    z-index: 10009;
+    right: 2px;
+    top: 2px;
+}
+iframe#jsonresponse {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    border: 1px none #D0D0D0;
+    width: 75px;
+    height: 25px;
+}
+
+/* AJAX Panel */
+.ddajaxsidepanel {
+	z-index: 100000;
+	position: fixed;
+	top: 0;
+	visibility: hidden;
+	background: #212121;
+	-moz-box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
+	-webkit-box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
+	box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #B79300;
+}
+.ddajaxsidepanel .panelhandle {
+width: 24px;
+height: 100%;
+position: absolute;
+left: -14px;
+top: 0;
+cursor: pointer;
+background: transparent url(../images/ajaxpanel/handle.gif) center left no-repeat;
+}
+.ddajaxsidepanel .contentarea {
+height: 100%;
+padding: 10px;
+overflow: scroll;
+}
+
+/* For Creating "Keyboard" Keys */
+/*
+ * Original Author (of Keyboard related section only):  Michael Hüneburg
+ * Website: http://michaelhue.com/keyscss
+ */
+
+/* Base style, essential for every key. */
+kbd, .key {
+	display: inline;
+	display: inline-block;
+	min-width: 1em;
+	padding: .2em .3em;
+	font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
+	text-align: center;
+	text-decoration: none;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
+	border-radius: .3em;
+	border: none;
+	cursor: default;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+kbd[title], .key[title] {
+	cursor: help;
+}
+
+/* Dark style for display on light background. This is the default style. */
+kbd, kbd.dark, .dark-keys kbd, .key, .key.dark, .dark-keys .key {
+	background: rgb(80, 80, 80);
+	background: -moz-linear-gradient(top, rgb(60, 60, 60), rgb(80, 80, 80));
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(60, 60, 60)), to(rgb(80, 80, 80)));
+	color: rgb(250, 250, 250);
+	text-shadow: -1px -1px 0 rgb(70, 70, 70);
+	-moz-box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+	-webkit-box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+	box-shadow: inset 0 0 1px rgb(150, 150, 150), inset 0 -.05em .4em rgb(80, 80, 80), 0 .1em 0 rgb(30, 30, 30), 0 .1em .1em rgba(0, 0, 0, .3);
+}
+
+/* Light style for display on dark background. */
+kbd.light, .light-keys kbd, .key.light, .light-keys .key {
+	background: rgb(250, 250, 250);
+	background: -moz-linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
+	color:  rgb(50, 50, 50);
+	text-shadow: 0 0 2px rgb(255, 255, 255);
+	-moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+	-webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+	box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+}
+
+/* Configuration Page Specific */
+#configPageHeader {
+	font: 13px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	top: 24px;
+	height: auto;
+}
+#configPageHeader strong {
+	color: #FFCE0D;
+}
+
+#configPage {
+	font: 11px sans-serif;
+	color: #CCC;
+	padding: 5px;
+	margin: 3px 3px 3px -1px;
+	top: 24px;
+	width: 200px;
+	height: auto;
+	border: thin solid #4D4D4D;
+}
+#configPage strong {
+	color: #FFCE0D;
+}
+
+.configTable {
+	font-size: 11px;
+	color: #CCC;
+}
+.configTable tr {
+	
+}
+.configTable td {
+	
+}
+
+/* iDevice Specific */
+/* The section below is to automatically adjust the display on Apple iDevice's without the need of 
+ * their own dedicated 'mobile' pages. Anytime a tag's created above (for the normal page) and has
+ * a possibility of 'breaking' something on an iDevice (mainly 'width', 'margin', or 'padding') you
+ * can enter the same tag below with modified settings to fix the issue. You don't need to include 
+ * the entire tag, only fields that changed are required. (See #leftofframe and #nav for examples).
+ */
+/* iPhone 4 Retina (Portrait) */
+@media screen and (device-width:480px) and (orientation:portrait) {
+
+}
+/* iPhone 4 Retina (Landscape) */
+@media screen and (device-width:480px) and (orientation:landscape) {
+
+}
+/* iPad (Portrait) */
+@media screen and (device-width:768px) and (orientation:portrait) {
+
+}
+
+/* iPad (Landscape) */
+@media screen and (device-width:768px) and (orientation:landscape) {
+	/* Left 'Panel' */
+	#leftofframe {
+		height: 667px;
+		width: 180px;
+	}
+	#logo {
+		font: 10px sans-serif;
+		padding: 3px 0 0 3px;
+		margin: 3px 0 0 0;
+		top: 24px;
+		width: 175px;
+		height: auto;
+		border: thin solid #4D4D4D;
+		left: 4px;
+	}
+	#nav {
+		font: 10px sans-serif;
+		width: 175px;
+		padding: 2px;
+		margin: 3px 0px 0px 0px;
+		height: auto;
+		border: thin solid #4D4D4D;
+	}
+	#nav strong {
+		color: #FFCE0D;
+		padding: 0 7px 0 7px;
+	}
+	/* RSS Feeds (displayed) */
+	#rss {
+		font-size: 8px;
+		padding: 2px;
+		top: 4px;
+		width: 175px;
+		max-height: 577px;
+		left: 4px;
+		overflow: hidden;
+	}
+	#rss a {
+		font-size: 10px;
+	}
+	.technology{
+		font-size: 10px;
+		padding: 2px;
+		margin-top: 5px 0 0 0;
+	}
+	/* RSS Feeds (feed2js) */
+	.rss-box {
+		width: 178px;
+		max-height: 442px;
+		margin: 0px 0px 0px -3px;
+		overflow: hidden;
+	}
+	/* Top Navigation */
+	#navi {
+		left: 190px;
+	}
+	/* iFrame Work Area */
+	iframe#ifrm {
+		top: 35px;
+	}
+	/* Configuration Page Specific */
+	#configPageHeader {
+		font: 15px sans-serif;
+		top: 5px;
+	}
+	.configTable {
+		font-size: 12px;
+	}
+
+}

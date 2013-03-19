@@ -38,6 +38,7 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 #= 19-03-2013 ========================================================================
 
 https://github.com/Archigos/HTPCPortal
+sudo ln -s ~/Github/OSX_NewBox/www/ /Library/Server/Web/Data/Sites/Default/Portal
 
 #= 18-03-2013 ========================================================================
 

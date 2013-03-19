@@ -1,0 +1,18 @@
+# Ignore
+includes/required/feed2js/magpie/cache
+!includes/required/feed2js/magpie/cache/.gitignore
+includes/required/feed2js/magpie/cache_utf8
+!includes/required/feed2js/magpie/cache_utf8/.gitignore
+/Notes.md
+/settings.ini
+/settings-original.ini
+/createmaster.ps1
+/cleanup.ps1
+
+# Crap
+[Tt]humbs.db
+Desktop.ini
+.DS_Store*
+ehthumbs.db
+
+# Magpie Cache
