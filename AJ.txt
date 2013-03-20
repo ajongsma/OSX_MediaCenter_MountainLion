@@ -41,6 +41,13 @@ http://demo.sc.chinaz.com/Files/pic/icons/4282/Plex.png
 http://sickbeard.com/images/projects/newznab.png
 https://secure.gravatar.com/avatar/6f2f5c114cfbf06afba493705d82ba21?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png
 
+-------------------------------------------------------------------------
+
+undefined constant notices in threaded processes:
+    http://www.newznabforums.com/index.php?topic=368.0
+
+-------------------------------------------------------------------------
+
 
 #= 19-03-2013 ========================================================================
 
@@ -48,9 +55,6 @@ https://github.com/Archigos/HTPCPortal
 sudo ln -s ~/Github/OSX_NewBox/www/ /Library/Server/Web/Data/Sites/Default/Portal
 
 #= 18-03-2013 ========================================================================
-
-Plex Player
-* Plex has built-in Harmony remote support. There's a "Plex Player" device profile in Logitech's database for it
 
 * Mac Mini HDMI Detection Woes
   => http://www.1000klub.com/hdmireviver.zip (http://blog.1000klub.com/2009/04/mac-mini-hdmi-detection-woes.html)
