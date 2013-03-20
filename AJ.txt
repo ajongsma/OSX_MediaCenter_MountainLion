@@ -37,6 +37,9 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= 20-03-2013 ========================================================================
 
+https://github.com/nickbart/php-plex
+
+PNG:
 http://demo.sc.chinaz.com/Files/pic/icons/4282/Plex.png
 http://sickbeard.com/images/projects/newznab.png
 https://secure.gravatar.com/avatar/6f2f5c114cfbf06afba493705d82ba21?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png
