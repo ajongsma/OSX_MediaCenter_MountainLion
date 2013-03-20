@@ -1,5 +1,5 @@
-OSX_NewBox
-==========
+OSX New Box
+===========
 (Mac Mini media center)
  
 -----------
