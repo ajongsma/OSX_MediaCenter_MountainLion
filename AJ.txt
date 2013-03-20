@@ -35,6 +35,12 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= HANDY's - END =====================================================================
 
+#= 20-03-2013 ========================================================================
+
+http://demo.sc.chinaz.com/Files/pic/icons/4282/Plex.png
+http://sickbeard.com/images/projects/newznab.png
+
+
 #= 19-03-2013 ========================================================================
 
 https://github.com/Archigos/HTPCPortal
