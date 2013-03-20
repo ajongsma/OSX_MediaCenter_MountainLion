@@ -1,25 +1,31 @@
 <?php
 echo '<ul>';
 	echo '<li><a href="includes/panels/remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>';
-	if ($developer=="1") {
-		echo '<li>';
-		echo writeAppURL($CallHP_Mara,Int);
+	echo '<li>';
+	if ($xbmchost!=="" || $plexhost!=="") {
+		echo writeAppURL($CallHP_Mara,'Media Server');
 			echo '<ul>';
-				echo '<li>';
-				echo writeAppFull($CallHP_XBMC,XBMC);
-				echo '</li>';
+				if ($xbmchost!=="") {
+					echo '<li>';
+					echo writeAppFull($CallHP_XBMC,XBMC);
+					echo '</li>';
+				};
+				if ($plexhost!=="") {
 				echo '<li>';
 				echo writeAppFull($CallHP_Plex,Plex);
 				echo '</li>';
+				};
 			echo '</ul>';
 		echo '</li>';
 	};
+
 	if ($marahost!=="") {
 		echo '<li>';
 		echo writeAppURL($CallHP_Mara,Maraschino);
 		echo '</li>';
 	};
 
+	if ($spothost!=="" || $newzhost!=="") {
 	echo '<li>';
 		echo writeAppURL($CallHP_Indx,Indexers);
 		echo '<ul>';
@@ -35,7 +41,7 @@ echo '<ul>';
 			};
 		echo '</ul>';
 	echo '</li>';
-
+	};
 
 	echo '<li>';
 		echo writeAppURL($CallHP_Mara,Downloaders);
@@ -62,16 +68,19 @@ echo '<ul>';
 			};
 		echo '</ul>';
 	echo '</li>';
+
 	if ($sickhost!=="") {
 		echo '<li>';
 		echo writeAppURL($CallHP_Sick,SickBeard);
 		echo '</li>';
 	};
+
 	if ($couchost!=="") {
 		echo '<li>';
 		echo writeAppURL($CallHP_Couch,CouchPotato);
 		echo '</li>';
 	};
+
 	if ($headhost!=="" || $subshost!=="") {
 		echo '<li>';
 			echo writeAppURL($CallHP_Mara,Music);
@@ -89,6 +98,7 @@ echo '<ul>';
 			echo '</ul>';
 		echo '</li>';
 	};
+	
 	if ($aumohost!=="" || $tvhehost!=="") {
 		echo '<li>';
 			echo writeAppURL($CallHP_Mara,Other);

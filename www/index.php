@@ -72,9 +72,10 @@ require 'includes/required/header.php';
                 <li><a href="http://www.themoviedb.org/" target="_new">TheMovieDB</a></li>
                 <li><a href="http://thetvdb.com/" target="myiframe">TheTVDB</a></li>
                 <li><a href="http://www.joblo.com/blu-rays-dvds/release-dates/?" target="myiframe">DVD Releases</a></li>
-                <li><a href="http://www.movieweb.com/movies/2012" target="myiframe">2012 Movies</a></li>
                 <li><a href="http://www.rlslog.net/category/movies/hdrip/" target="myiframe">RlsLog.net</a></li>
                 <li><a href="http://www.rottentomatoes.com/news/" target="myiframe">Rotten Tomatoes</a></li>
+                <li><a href="http://www.movieweb.com/movies/2012" target="myiframe">Movieweb (2012 Movies)</a></li>
+                <li><a href="http://www.movieweb.com/movies/2013" target="myiframe">Movieweb (2013 Movies)</a></li>
             </ul>
         </li>
         <li><?php writeTopNav(Favorites); ?>

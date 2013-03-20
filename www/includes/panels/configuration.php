@@ -12,10 +12,6 @@ else {
 ?>
 <link rel="stylesheet" type="text/css" href="../css/portal.css" />
 
-<div id="configPageHeader"><strong>Welcome to the HTPCPortal Configuration page.</strong><br />
-This page does NOT currently create or alter your configuration and simply displays the information for you. This will hopefully change shortly after I'm happy with the overall layout and design.<br /><br />
-</div>
-
 <div id="nav">
 <?php
 $file = "..\..\settings.ini";
@@ -26,11 +22,10 @@ if (!(file_exists($file))) {
 	echo ("<strong>$filename</strong> File exists");
 }
 ?>
-</div>	
+</div>
 <table class="configTable" border="0">
 	<tr>
-    	<td colspan="7" align="center" id="nav"><strong>Media Servers</strong></td>
-        <td colspan="4" align="center" id="nav"><strong>NZB Sites</strong></td>
+    	<td colspan="11" align="center" id="nav"><strong>Media Servers</strong></td>
     </tr>
 	<tr>
     	<td width="75" height="65" rowspan="4" align="center"><img src="../images/apps/XBMC.png" title="XBMC" /></td>
@@ -41,33 +36,34 @@ if (!(file_exists($file))) {
         <td width="75">Hostname:</td>
         <td width="20%"><?php echo $ini['plex'] ?></td>
         <td rowspan="4"></td>
-    	<td width="75">Matrix User</td>
-        <td colspan="2"><?php echo $ini['matrixuser'] ?></td>
+    	<td width="75">&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
     </tr>
 	<tr>
         <td>Port:</td>
         <td><?php echo $ini['xport'] ?></td>
         <td>Port:</td>
         <td><?php echo $ini['plexport'] ?></td>
-        <td>Matrix API</td>
-        <td colspan="2"><?php echo $ini['matrixapi'] ?></td>
+        <td>&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
     </tr>
     <tr>
 		<td>User:</td>
         <td><?php echo $ini['xbmcuser'] ?></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>NZB.su</td>
-        <td colspan="2"><?php echo $ini['nzbsuapi'] ?></td>
-    </tr>
-    <tr>
-        <td>Pass:</td>
-        <td><?php echo $ini['xbmcpass'] ?></td>
-        <td>&nbsp;</td>
+        <td>Plex User:</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td colspan="2">&nbsp;</td>
     </tr>
+    <tr>
+        <td>Pass:</td>
+        <td><?php echo $ini['xbmcpass'] ?></td>
+        <td>Plex Pass:</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+
 	<tr>
     	<td colspan="11" align="center" id="nav"><strong>Management</strong></td>
     </tr>
@@ -108,6 +104,7 @@ if (!(file_exists($file))) {
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
+
 	<tr>
     	<td colspan="11" align="center" id="nav"><strong>Downloaders</strong></td>
     </tr>
@@ -148,6 +145,7 @@ if (!(file_exists($file))) {
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
+
 	<tr>
     	<td colspan="11" align="center" id="nav"><strong>Other</strong></td>
     </tr>
@@ -225,6 +223,47 @@ if (!(file_exists($file))) {
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
+
+    <tr>
+        <td colspan="11" align="center" id="nav"><strong>NZB Sites</strong></td>
+    </tr>
+    <tr>
+        <td width="75" height="65" rowspan="4" align="center"><img src="../images/apps/XBMC.png" title="XBMC" /></td>
+        <td width="75">Hostname:</td>
+        <td width="20%"><?php echo $ini['xbmc'] ?></td>
+        <td rowspan="4"></td>
+        <td width="75" height="65" rowspan="4" align="center"><img src="../images/apps/Plex.png" title="Plex" /></td>
+        <td width="75">Hostname:</td>
+        <td width="20%"><?php echo $ini['plex'] ?></td>
+        <td rowspan="4"></td>
+        <td width="75">Matrix User</td>
+        <td colspan="2"><?php echo $ini['matrixuser'] ?></td>
+    </tr>
+    <tr>
+        <td>Port:</td>
+        <td><?php echo $ini['xport'] ?></td>
+        <td>Port:</td>
+        <td><?php echo $ini['plexport'] ?></td>
+        <td>Matrix API</td>
+        <td colspan="2"><?php echo $ini['matrixapi'] ?></td>
+    </tr>
+    <tr>
+        <td>User:</td>
+        <td><?php echo $ini['xbmcuser'] ?></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>NZB.su</td>
+        <td colspan="2"><?php echo $ini['nzbsuapi'] ?></td>
+    </tr>
+    <tr>
+        <td>Pass:</td>
+        <td><?php echo $ini['xbmcpass'] ?></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+
 	<tr>
     	<td colspan="11" align="center" id="nav"><strong>RSS Info</strong></td>
 	</tr>

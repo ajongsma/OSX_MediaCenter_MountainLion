@@ -121,6 +121,19 @@ $subshost													= $ini['subs'];
 $ssport														= $ini['ssport'];
 $CallHP_Subs												= $subshost . ":" . $ssport;
 
+// Spotweb
+if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
+if (!isset($ini['swport'])) { $ini['swport']                = 80; }
+$spothost													= $ini['spotweb'];
+$spotport													= $ini['spotport'];
+$CallHP_Spot												= $spothost  . ":" . $spotport . "/spotweb/";
+
+// NewzNAB
+if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
+if (!isset($ini['nnport'])) { $ini['nnport']                = 80; }
+$newzhost													= $ini['newznab'];
+$newzport													= $ini['nnport'];
+$CallHP_newz												= $newzhost  . ":" . $newzport . "/newznab/";
 
 function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
