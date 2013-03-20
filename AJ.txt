@@ -48,6 +48,11 @@ undefined constant notices in threaded processes:
 
 -------------------------------------------------------------------------
 
+Just in case, check:
+  Sickbeard includes "http://", & a trailing "/" slash when setting up a new newznab provider.
+
+-------------------------------------------------------------------------
+
 
 #= 19-03-2013 ========================================================================
 
