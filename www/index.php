@@ -36,6 +36,7 @@ require 'includes/required/header.php';
 	<?php
 		require 'modules/nav.php';
 	?>
+        <!--
         <li><?php writeTopNav(Maxtrix); ?>
             <ul>
                 <li><a href="http://<?php echo $NZBMatrix ?>category=Movies" target="myiframe" title="Movies"><img src="includes/images/movies.png" width="104" height="104" /></a></li>
@@ -44,6 +45,8 @@ require 'includes/required/header.php';
                 <li><a href="http://<?php echo $NZBMatrix ?>cat=14" target="myiframe" title="Xbox"><img src="includes/images/xbox.png" width="104" height="104" /></a></li>
             </ul>
         </li>
+        -->
+        <!--
         <li><?php writeTopNav(NZB.su); ?>
             <ul>
                 <li><a href="http://nzb.su" target="myiframe" title="NZB.su"><img src="includes/images/nzbsu.png" width="104" height="104" /></a></li>
@@ -51,8 +54,12 @@ require 'includes/required/header.php';
                 <li><a href="http://nzb.su/browse?t=5000" target="myiframe" title="NZB.su TV"><img src="includes/images/nzbsut.png" width="104" height="104" /></a></li>
             </ul>
         </li>
+        -->
         <li><?php writeTopNav(Forums); ?>
             <ul>
+                <li><a href="http://forums.plexapp.com" target="myiframe"><img src="includes/images/plex.png" width="140" height="50" /></a></li>
+                <li><a href="http://http://www.newznabforums.com" target="myiframe"><img src="includes/images/newznab.png" width="140" height="50" /></a></li>
+                <li><a href="http://www.spotx.nu/forum/11-spotweb-forum" target="myiframe"><img src="includes/images/spotweb.png" width="140" height="50" /></a></li>
                 <li><a href="http://forum.xbmc.org/index.php" target="myiframe"><img src="includes/images/xbmc.png" width="140" height="50" /></a></li>
                 <li><a href="http://openelec.tv/forum/recent" target="myiframe"><img src="includes/images/openelec.png" width="140" height="50" /></a></li>
                 <li><a href="http://lime-technology.com/forum/index.php" target="myiframe"><img src="includes/images/unraid.png" width="140" height="50" /></a></li>
@@ -79,7 +86,7 @@ require 'includes/required/header.php';
                 <li><a href="http://www.youtube.com/" target="_new"><img src="includes/images/youtube.png" width="104" height="60" /></a></li>
             </ul> 
         </li>
-<!--
+        <!--
         <li><?php writeTopNav(Skynet); ?>
             <ul>
                 <li><a href="http://www.dropbox.com/" target="_new"><img src="includes/images/dropbox.png" width="104" height="60" /></a></li>
@@ -91,7 +98,7 @@ require 'includes/required/header.php';
                 <li><a href="http://en.wikipedia.org/" target="myiframe"><img src="includes/images/wikipedia.png" width="104" height="60" /></a></li>
             </ul>
         </li> 
--->
+        -->
 	</ul>
 </div>
 <!-- Top Navigation: End -->
