@@ -51,6 +51,7 @@ if [[ -z $INST_SICKBEARD_KEY_API_NEWZNAB ]]; then
     done
 fi
 
+####  Example of a full URL: http://<server>:<port>/ (e.g.: http://192.168.1.1:80/)
 echo "-----------------------------------------------------------"
 echo "| Menu, Config, Search Providers:"
 echo "| "
