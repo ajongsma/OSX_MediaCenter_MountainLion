@@ -246,40 +246,40 @@ iframe#jsonresponse {
 }
 
 /* AJAX Panel */
-.ddajaxsidepanel {
+.ddajaxsidepanel { /* Main Panel Container */
 	z-index: 100000;
-	position: fixed;
-	top: 0;
-	visibility: hidden;
+	position: fixed; /* keep this value as is */
+	top: 0; /* keep this value as is */
+	visibility: hidden; /* keep this value as is */
 	background: #212121;
-	-moz-box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
+	-moz-box-shadow: -10px 0 10px rgba(0,0,0, 0.8); /* CSS 3 box shadow */
 	-webkit-box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
 	box-shadow: -10px 0 10px rgba(0,0,0, 0.8);
-	-webkit-box-sizing: border-box;
+	-webkit-box-sizing: border-box;  /* Set .ddajaxsidepanel width so that any padding or borders are added inside this width, not in addition to */
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	border-left-width: 1px;
 	border-left-style: solid;
 	border-left-color: #B79300;
 }
-.ddajaxsidepanel .panelhandle {
-width: 24px;
-height: 100%;
-position: absolute;
-left: -14px;
-top: 0;
-cursor: pointer;
-background: transparent url(../images/ajaxpanel/handle.gif) center left no-repeat;
+.ddajaxsidepanel .panelhandle { /* CSS for Panel Handle DIV */
+	width: 24px;
+	height: 100%;
+	position: absolute;
+	left: -14px;
+	top: 0;
+	cursor: pointer;
+	background: transparent url(../images/ajaxpanel/handle.gif) center left no-repeat; /* path to "handle" gif */
 }
-.ddajaxsidepanel .contentarea {
-height: 100%;
-padding: 10px;
-overflow: scroll;
+.ddajaxsidepanel .contentarea { /* CSS for main content area DIV */
+	height: 100%;
+	padding: 10px;
+	overflow: scroll;
 }
 
 /* For Creating "Keyboard" Keys */
 /*
- * Original Author (of Keyboard related section only):  Michael Hüneburg
+ * Original Author (of Keyboard related section only):  Michael Hï¿½neburg
  * Website: http://michaelhue.com/keyscss
  */
 
