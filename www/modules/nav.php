@@ -1,6 +1,7 @@
 <?php
 echo '<ul>';
 	echo '<li><a href="includes/panels/remote.php" rel="ajaxpanel" data-loadtype="iframe">Remote</a></li>';
+	echo '<li><a href="includes/panels/plex.php" rel="ajaxpanel" data-loadtype="iframe">Plex</a></li>';
 	echo '<li>';
 	if ($xbmchost!=="" || $plexhost!=="") {
 		echo writeAppURL($CallHP_Mara,'Media Server');

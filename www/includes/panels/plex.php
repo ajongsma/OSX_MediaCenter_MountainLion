@@ -42,18 +42,6 @@ if (!(file_exists($file))) {
 	<tr>
     <td colspan="2" align="center" id="nav"><strong>Get items at the library level</strong></td>
   </tr>
-	<tr>
-    <td>getOnDeckItems</td>
-    <td>&nbsp;</td>
-    <td>getRecentlyAddedItems</td>
-    <td>&nbsp;</td>
-  </tr>
-	<tr>
-    <td><?php $server->getLibrary()->getOnDeckItems(); ?></td>
-    <td><?php echo $server->getLibrary()->getOnDeckItems(); ?></td>
-    <td><?php $server->getLibrary()->getRecentlyAddedItems(); ?></td>
-    <td><?php echo $server->getLibrary()->getRecentlyAddedItems(); ?></td>
-  </tr>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -61,7 +49,32 @@ if (!(file_exists($file))) {
     <td>&nbsp;</td>
   </tr>
   <tr>
+    <td><?php
+      $arrlength=count($server->getLibrary()->getOnDeckItems());
+      echo "<hr>";
+      for($x=0;$x<$arrlength;$x++)
+      {
+        echo "getOnDeckItems: " . $x . "/" . $arrlength . "<br>";
+        echo print_r($server->getLibrary()->getOnDeckItems()[$x]);
+        echo "<hr>";
+      }
+    ?></td>
     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td><?php
+      $arrlength=count($server->getLibrary()->getRecentlyAddedItems());
+      echo "<hr>";
+      for($x=0;$x<$arrlength;$x++)
+      {
+        echo "getRecentlyAddedItems: " . $x . "/" . $arrlength . "<br>";
+        echo print_r($server->getLibrary()->getRecentlyAddedItems()[$x]);
+        echo "<hr>";
+      }
+    ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>HTPC Portal v<?php echo $version ?></title>
+        <title>Portal v<?php echo $version ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $ini['charset'] ?>"/>
 			<?php
 			$css_external_path = FALSE;
