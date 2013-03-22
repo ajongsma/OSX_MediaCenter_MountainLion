@@ -37,6 +37,7 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= 22-03-2013 ========================================================================
 
+http://forums.plexapp.com/index.php/topic/23914-php-client-for-plex-media-server/
 https://github.com/ronan-gloo/Plex-Over
 
 #= 21-03-2013 ========================================================================
