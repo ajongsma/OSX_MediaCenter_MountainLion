@@ -2,6 +2,7 @@ php-plex
 ========
 
 A simple PHP library for interacting with the Plex (http://plexapp.com) HTTP Control API.
+[Forked] (https://github.com/nickbart/php-plex)
 
 Requirements
 ------------
