@@ -53,6 +53,7 @@ if (!(file_exists($file))) {
     foreach ($server->getLibrary()->getOnDeckItems() as $k => $v) {
       if (is_array($v)) {
       	echo print_r("==> 1 : " . $v)
+      	echo $k->Video['title'] . '<br>';
       } else {
       	echo print_r("==> 2 : " . $v)
       }
