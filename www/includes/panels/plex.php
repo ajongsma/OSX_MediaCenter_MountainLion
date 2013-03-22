@@ -50,6 +50,12 @@ if (!(file_exists($file))) {
   </tr>
   <tr>
     <td><?php
+    foreach ($server->getLibrary()->getOnDeckItems() as $k => $v) {
+      if (is_array($v)) {
+      	echo print_r("==> 1 : " . $v)
+      } else {
+      	echo print_r("==> 2 : " . $v)
+      }
       $arrlength=count($server->getLibrary()->getOnDeckItems());
       echo "<hr>";
       for($x=0;$x<$arrlength;$x++)
