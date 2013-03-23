@@ -40,9 +40,14 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 http://forums.plexapp.com/index.php/topic/23914-php-client-for-plex-media-server/
 https://github.com/ronan-gloo/Plex-Over
 
+------
+
 http://hybridlogic.co.uk/experiments/plex/
 https://github.com/Dachande663/Plex-Export/blob/master/index.html
 
+cd ~/Github
+git clone https://github.com/Dachande663/Plex-Export.git
+sudo ln -s ~/Github/Plex-Export/ /Library/Server/Web/Data/Sites/Default/Plex-Export
 
 #= 21-03-2013 ========================================================================
 

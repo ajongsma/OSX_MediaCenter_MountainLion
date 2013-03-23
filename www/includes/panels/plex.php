@@ -2,6 +2,7 @@
 require '../required/defaults.php';
 require '../required/header.php';
 
+/*
 $ini_ini_filename = '../../settings.ini';
 if (@is_readable($ini_ini_filename)) {
   $ini = parse_ini_file($ini_ini_filename, FALSE);
@@ -9,6 +10,7 @@ if (@is_readable($ini_ini_filename)) {
 else {
 	unset($ini);
 }
+*/
 
 require_once('../../plex/Plex.php');
 $servers = array(
@@ -21,7 +23,7 @@ $plex = new Plex();
 $plex->registerServers($servers);
 
 $server = $plex->getServer('localhost');
-$client = $plex->getClient('zoe');
+/* $client = $plex->getClient('clientname'); */
 
 ?>
 <link rel="stylesheet" type="text/css" href="../css/portal.css" />
@@ -50,10 +52,43 @@ if (!(file_exists($file))) {
   </tr>
   <tr>
     <td><?php
-    foreach ($server->getLibrary()->getOnDeckItems() as $k => $v) {
+
+
+    /*for ($row = 0; $row < 3; $row++)
+    {
+      echo "<li><b>The row number $row</b>";
+      foreach($server->getLibrary()->getRecentlyAddedItems()[$row] as $key => $value)
+      {
+          echo "<li>".$server->getLibrary()->getRecentlyAddedItems()[$row]."</li>";
+          echo "<li>".$key."</li>";
+          echo "<li>".$value."</li>";
+      }
+    }
+    */
+
+
+    echo "<hr>";
+
+    /*
+    $var=$server->getLibrary()->getRecentlyAddedItems();
+
+    echo $var;
+    echo print_r($server->getLibrary()->getRecentlyAddedItems()[0],true);
+    echo "<hr>";
+
+    foreach($var as $key => $value) {
+      echo "<li>key: ".print_r($key) . "<br>";
+      echo "<li>val: ".print_r($value);
+      echo "<hr>";
+      echo print_r($value,true);
+      echo "<hr>";
+    }
+    */
+
+    /* foreach ($server->getLibrary()->getOnDeckItems() as $k => $v) {
       if (is_array($v)) {
       	echo print_r("==> 1 : " . $v)
-      	echo $k->Video['title'] . '<br>';
+      	echo $k->Video['title'] . '<br>'; 
       } else {
       	echo print_r("==> 2 : " . $v)
       }
@@ -64,7 +99,7 @@ if (!(file_exists($file))) {
         echo "getOnDeckItems: " . $x . "/" . $arrlength . "<br>";
         echo print_r($server->getLibrary()->getOnDeckItems()[$x]);
         echo "<hr>";
-      }
+      } */
     ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -73,14 +108,17 @@ if (!(file_exists($file))) {
 
   <tr>
     <td><?php
+    /*
       $arrlength=count($server->getLibrary()->getRecentlyAddedItems());
       echo "<hr>";
       for($x=0;$x<$arrlength;$x++)
       {
         echo "getRecentlyAddedItems: " . $x . "/" . $arrlength . "<br>";
         echo print_r($server->getLibrary()->getRecentlyAddedItems()[$x]);
+        echo var_dump($server->getLibrary()->getRecentlyAddedItems()[$x]);
         echo "<hr>";
       }
+    */
     ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

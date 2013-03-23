@@ -125,15 +125,15 @@ $CallHP_Subs												= $subshost . ":" . $ssport;
 if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
 if (!isset($ini['swport'])) { $ini['swport']                = 80; }
 $spothost													= $ini['spotweb'];
-$spotport													= $ini['spotport'];
-$CallHP_Spot												= $spothost  . ":" . $spotport . "/spotweb/";
+$swport														= $ini['swport'];
+$CallHP_Spot												= $spothost  . ":" . $swport . "/spotweb/";
 
 // NewzNAB
 if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
 if (!isset($ini['nnport'])) { $ini['nnport']                = 80; }
 $newzhost													= $ini['newznab'];
-$newzport													= $ini['nnport'];
-$CallHP_newz												= $newzhost  . ":" . $newzport . "/newznab/";
+$nnport														= $ini['nnport'];
+$CallHP_newz												= $newzhost  . ":" . $nnport . "/newznab/";
 
 function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
@@ -157,14 +157,19 @@ $NZBsuAPI													= $ini['nzbsuapi'];
 // Advanced Settings
 if (!isset($ini['charset'])) { $ini['charset']              = 'windows-1251'; }					// NOT in $ini by default
 if (!isset($ini['external_css'])) { $ini['external_css']    = 'includes/css/portal.css'; }
+if (!isset($ini['description_filename'])) { $ini['description_filename']		= ''; }
+if (!isset($ini['cache_dir'])) { $ini['cache_dir']		= ''; }
 
 // Array containing list of filenames which should be omitted during directory loading. Wildcards aren't allowed.
 $ini['ignore_files'] = array('.', '..', $ini_ini_filename, $ini['description_filename'], $ini['cache_dir'], basename($_SERVER['SCRIPT_NAME']), '.htaccess', '.htpasswd', 'Thumbs.db', 'error_log', 'access_log', 'cgi-bin', '_notes');
 
 /** Modules Section */
 /// Developer Sections
+if (!isset($ini['developer'])) { $ini['developer']		= ''; }
 $developer	=	$ini['developer'];
+
 /// RSS Feeds
+if (!isset($ini['rss_on'])) { $ini['rss_on']		= ''; }
 $rsson		=	$ini['rss_on'];
 
 ?>

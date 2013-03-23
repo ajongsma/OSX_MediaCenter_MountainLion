@@ -7,6 +7,9 @@
 			<?php
 			$css_external_path = FALSE;
 			$css_external_path = $ini['external_css'];
+			if (!isset($css_is_external)) {
+				$css_is_external = FALSE;
+			}
 			if ('' != $css_external_path) {
 				if ( preg_match('|^https?://|i', $css_external_path) || 0 == substr_compare($css_external_path, '/', 0, 1) ) {
 					$css_is_external = TRUE;
