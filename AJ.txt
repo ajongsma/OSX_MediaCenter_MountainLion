@@ -37,6 +37,14 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= 22-03-2013 ========================================================================
 
+cd ~/Github
+git clone https://github.com/dbaines/Usenet-Intranet-PHP-Homepage.git
+sudo ln -s ~/Github/Usenet-Intranet-PHP-Homepage/ /Library/Server/Web/Data/Sites/Default/Usenet-Intranet-PHP-Homepage
+
+cd ~/Github
+git clone https://github.com/nick8888/mediafrontpage.git
+sudo ln -s ~/Github/mediafrontpage/ /Library/Server/Web/Data/Sites/Default/mediafrontpage
+
 http://forums.plexapp.com/index.php/topic/23914-php-client-for-plex-media-server/
 https://github.com/ronan-gloo/Plex-Over
 
