@@ -44,6 +44,7 @@ https://github.com/dbaines/shiznoid
 
 ------
 Slide Menu:
+https://github.com/callmekatootie/2094
 https://github.com/aldomatic/FB-Style-Page-Slide-Menu
 https://github.com/tegansnyder/JQuery-Mobile-Slide-Menu
 
