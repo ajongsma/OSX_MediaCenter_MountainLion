@@ -44,6 +44,7 @@ https://github.com/dbaines/shiznoid
 
 ------
 
+https://github.com/aldomatic/FB-Style-Page-Slide-Menu
 
 
 #= 22-03-2013 ========================================================================
