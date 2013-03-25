@@ -43,11 +43,26 @@ https://github.com/dbaines/shiznoid
 => var historyurl = "http://" + appData.values['sabIP'] + ":" + appData.values['sabPort'] + "/sabnzbd/api?mode=history&output=json&limit=15&apikey=" + appData.values['sabAPI'];
 
 ------
+
+sudo ln -s ~/Github/OSX_NewBox/www/_1/ /Library/Server/Web/Data/Sites/Default/_1
+sudo ln -s ~/Github/OSX_NewBox/www/_2/ /Library/Server/Web/Data/Sites/Default/_2
+sudo ln -s ~/Github/OSX_NewBox/www/_3/ /Library/Server/Web/Data/Sites/Default/_3
+
 Slide Menu:
 https://github.com/callmekatootie/2094
-https://github.com/aldomatic/FB-Style-Page-Slide-Menu
-https://github.com/tegansnyder/JQuery-Mobile-Slide-Menu
+cd ~/Github
+git clone https://github.com/callmekatootie/2094.git
+sudo ln -s ~/Github/2094/ /Library/Server/Web/Data/Sites/Default/slide_1
 
+https://github.com/aldomatic/FB-Style-Page-Slide-Menu
+cd ~/Github
+git clone https://github.com/aldomatic/FB-Style-Page-Slide-Menu.git
+sudo ln -s ~/Github/FB-Style-Page-Slide-Menu/ /Library/Server/Web/Data/Sites/Default/slide_2
+
+https://github.com/tegansnyder/JQuery-Mobile-Slide-Menu
+cd ~/Github
+git clone https://github.com/tegansnyder/JQuery-Mobile-Slide-Menu.git
+sudo ln -s ~/Github/JQuery-Mobile-Slide-Menu/ /Library/Server/Web/Data/Sites/Default/slide_3
 
 #= 22-03-2013 ========================================================================
 
