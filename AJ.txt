@@ -43,8 +43,9 @@ https://github.com/dbaines/shiznoid
 => var historyurl = "http://" + appData.values['sabIP'] + ":" + appData.values['sabPort'] + "/sabnzbd/api?mode=history&output=json&limit=15&apikey=" + appData.values['sabAPI'];
 
 ------
-
+Slide Menu:
 https://github.com/aldomatic/FB-Style-Page-Slide-Menu
+https://github.com/tegansnyder/JQuery-Mobile-Slide-Menu
 
 
 #= 22-03-2013 ========================================================================
