@@ -37,6 +37,8 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= 26-03-2013 ========================================================================
 
+http://newzbook.googlecode.com/svn-history/r76/trunk/webui/sabnzbd.php
+
 https://github.com/artberri/sidr
 cd ~/Github
 git clone https://github.com/artberri/sidr.git
