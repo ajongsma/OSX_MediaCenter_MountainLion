@@ -35,6 +35,15 @@ GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
 #= HANDY's - END =====================================================================
 
+#= 26-03-2013 ========================================================================
+
+https://github.com/artberri/sidr
+cd ~/Github
+git clone https://github.com/artberri/sidr.git
+sudo ln -s ~/Github/sidr/ /Library/Server/Web/Data/Sites/Default/slide_1
+
+http://srobbin.com/jquery-plugins/pageslide/
+
 #= 25-03-2013 ========================================================================
 
 https://github.com/dbaines/shiznoid
