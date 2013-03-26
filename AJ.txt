@@ -52,6 +52,7 @@ https://github.com/dbaines/shiznoid
 -> http://localhost:8080/sabnzbd/api?mode=qstatus&output=json&apikey=
 
 => var historyurl = "http://" + appData.values['sabIP'] + ":" + appData.values['sabPort'] + "/sabnzbd/api?mode=history&output=json&limit=15&apikey=" + appData.values['sabAPI'];
+-> http://localhost:8080/sabnzbd/api?mode=history&output=json&limit=15&apikey=062df8bae5c1b9434b51914ae0ac3684
 
 ------
 

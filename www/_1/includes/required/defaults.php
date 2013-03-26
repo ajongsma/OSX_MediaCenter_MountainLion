@@ -15,10 +15,10 @@ else {
  *		$zzzzhost		= The Host for AppName
  *		$zzzzport		= The Port for AppName
  *		$CallHP_zzzz	= Gives Host:Port format
- *		
+ *
  *		Additionals:
  *		$comingEpis		= SickBeard's ComingEpisodes
- *		
+ *
  */
 
 // Hosts and Ports
@@ -70,6 +70,7 @@ if (!isset($ini['sabapi'])) { $ini['sabapi']                = ''; }				// API Ke
 if (!isset($ini['sabgroup'])) { $ini['sabgroup']			= '0'; }
 $sabnhost													= $ini['sab'];
 $sabnport													= $ini['sabport'];
+$sabnapi													= $ini['sabapi'];
 $CallHP_Sab													= $sabnhost . ":" . $sabnport;
 
 // uTorrent
@@ -139,7 +140,7 @@ function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
 }
 function writeAppFull($AppURL,$ImageName) {
-	echo '<a class="classpanel" target="myiframe" href="http://' . $AppURL . '"><img src="includes/images/apps/' . $ImageName . '.png" /></a>';
+	echo '<a class="classpanel" target="myiframe" href="http://' . $AppURL . '"><img src="img/apps/' . $ImageName . '.png" /></a>';
 }
 function writeTopNav($AppName) {
 	echo '<a class="classpanel" href="#">' . $AppName . '</a>';
