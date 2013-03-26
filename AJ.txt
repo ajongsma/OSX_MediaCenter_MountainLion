@@ -49,6 +49,8 @@ http://srobbin.com/jquery-plugins/pageslide/
 https://github.com/dbaines/shiznoid
 *  https://github.com/dbaines/shiznoid/blob/master/pages/sabnzbd/sabnzbd.js
 => var statusurl = "http://" + appData.values['sabIP'] + ":" + appData.values['sabPort'] + "/sabnzbd/api?mode=qstatus&output=json&apikey="+ appData.values['sabAPI'];
+-> http://localhost:8080/sabnzbd/api?mode=qstatus&output=json&apikey=
+
 => var historyurl = "http://" + appData.values['sabIP'] + ":" + appData.values['sabPort'] + "/sabnzbd/api?mode=history&output=json&limit=15&apikey=" + appData.values['sabAPI'];
 
 ------

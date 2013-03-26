@@ -1,18 +1,25 @@
-# Ignore
-includes/required/feed2js/magpie/cache
-!includes/required/feed2js/magpie/cache/.gitignore
-includes/required/feed2js/magpie/cache_utf8
-!includes/required/feed2js/magpie/cache_utf8/.gitignore
-/Notes.md
-/settings.ini
-/settings-original.ini
-/createmaster.ps1
-/cleanup.ps1
+# Config files #
+#######################
+config.sh
+settings.ini
 
-# Crap
-[Tt]humbs.db
-Desktop.ini
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.htaccess
+.htpasswd
+*.lock
+.DS_Store
+.DS_Store?
 .DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+Icon?
 ehthumbs.db
-
-# Magpie Cache
+Thumbs.db
