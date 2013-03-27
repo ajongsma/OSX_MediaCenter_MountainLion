@@ -91,7 +91,8 @@
 <?php
 echo "php blaat<hr>";
 
-$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=qstatus&output=json&apikey=".$sabnapi;
+$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
+$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=qstatus&output=json&apikey=$sabnapi";
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
 
 echo "<hr>";
@@ -130,15 +131,6 @@ if (strtolower($state) == "downloading") {
 	echo "=>Check state: Else<br>";
 }
 
-
-//setup a few variables to use at the end
-$sab_last_warning = $contents['queue']['last_warning'];
-echo "<hr>sab_last_warning: ".$sab_last_warning;
-$sab_version = $contents['queue']['version'];
-echo "<hr>sab_version: ".$sab_version;
-$sab_loadavg = $contents['queue']['loadavg'];
-echo "<hr>sab_loadavg: ".$sab_loadavg;
-echo "<hr>";
 
 //use the array items from the json decoded object to create a basic status display
 echo "<span id='sizeleft'>".$contents['queue']['sizeleft']."</span>/<span id='size'>".$contents['queue']['size']."</span> remaining @ <span id='speed'>".$contents['queue']['speed']."</span>/sec | ETA: <span id='eta'>".$contents['queue']['eta']."</span> (<span id='timeleft'>".$contents['queue']['timeleft']."</span>)";
