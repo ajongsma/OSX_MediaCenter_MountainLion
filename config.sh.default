@@ -74,12 +74,14 @@ INST_POWERLINE_TMUX="true"
 # Install for Auto-Sub - (true/false)
 INST_AUTO_SUB="false"
 
-
 # Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
 INST_PERISCOPE="false"
 
 # Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
 INST_SUBLIMINAL="false"
+
+# Install for Maraschino - (true/false)
+INST_MARASCHINO="false"
 
 #-----------------------------------------------------------
 
