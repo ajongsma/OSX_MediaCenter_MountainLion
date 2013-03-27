@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DAVO</Machine>
+    <WindowsUser>Baines</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\sample-utils\sample-utils.css">
+      <PackagePath>sample-utils\sample-utils.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\default.html">
+      <PackagePath>default.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\1-DoNothing.html">
+      <PackagePath>html\1-DoNothing.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\2-AddFlyoutToCharm.html">
+      <PackagePath>html\2-AddFlyoutToCharm.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\3-IFrameSupport.html">
+      <PackagePath>html\3-IFrameSupport.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\4-BeforeAfterEvents.html">
+      <PackagePath>html\4-BeforeAfterEvents.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\5-ProgrammaticInvocation.html">
+      <PackagePath>html\5-ProgrammaticInvocation.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\4-SettingsFlyout-Game.html">
+      <PackagePath>html\4-SettingsFlyout-Game.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\2-SettingsFlyout-Help.html">
+      <PackagePath>html\2-SettingsFlyout-Help.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\3-SettingsFlyout-Legal.html">
+      <PackagePath>html\3-SettingsFlyout-Legal.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\html\5-SettingsFlyout-Settings.html">
+      <PackagePath>html\5-SettingsFlyout-Settings.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\sample-utils\footer.html">
+      <PackagePath>sample-utils\footer.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\sample-utils\header.html">
+      <PackagePath>sample-utils\header.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\sample-utils\scenario-select.html">
+      <PackagePath>sample-utils\scenario-select.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\placeholder-sdk.png">
+      <PackagePath>images\placeholder-sdk.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\windows-sdk.png">
+      <PackagePath>images\windows-sdk.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\microsoft-sdk.png">
+      <PackagePath>images\microsoft-sdk.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\tile-sdk.png">
+      <PackagePath>images\tile-sdk.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\smallTile-sdk.png">
+      <PackagePath>images\smallTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\splash-sdk.png">
+      <PackagePath>images\splash-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\squareTile-sdk.png">
+      <PackagePath>images\squareTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\images\storeLogo-sdk.png">
+      <PackagePath>images\storeLogo-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\4-BeforeAfterEvents.js">
+      <PackagePath>js\4-BeforeAfterEvents.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\5-ProgrammaticInvocation.js">
+      <PackagePath>js\5-ProgrammaticInvocation.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\1-DoNothing.js">
+      <PackagePath>js\1-DoNothing.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\2-AddFlyoutToCharm.js">
+      <PackagePath>js\2-AddFlyoutToCharm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\3-IFrameSupport.js">
+      <PackagePath>js\3-IFrameSupport.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\js\5-SettingsFlyout-Settings.js">
+      <PackagePath>js\5-SettingsFlyout-Settings.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\sample-utils\sample-utils.js">
+      <PackagePath>sample-utils\sample-utils.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\App settings sample\JavaScript\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\">
+      <Name>Microsoft.WinJS.1.0</Name>
+      <Version>1.0.9200.20512</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.1.0, MinVersion=1.0.9200.20512</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\Microsoft.WinJS.1.0.appx</AppxLocation>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+G:\Win8Apps\NZBCentral\App1\App1\bin\Debug\resources.pri
+G:\Win8Apps\NZBCentral\App1\App1\bin\Debug\AppxManifest.xml
+G:\Win8Apps\NZBCentral\App1\App1\bin\Debug\Shiznoid.build.appxrecipe
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\priconfig.xml.intermediate
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\layout.resfiles.intermediate
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\resources.resfiles.intermediate
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\pri.resfiles.intermediate
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\priconfig.xml
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\layout.resfiles
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\resources.resfiles
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\pri.resfiles
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\LanguageQualifiers.txt
+G:\Win8Apps\NZBCentral\App1\App1\bld\Debug\ProjectArchitectures.txt

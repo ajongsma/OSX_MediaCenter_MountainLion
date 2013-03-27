@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DAVO</Machine>
+    <WindowsUser>Baines</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>69D3A50BEC201EAD1E4738C36BFFE8241E5B9615341DDA18893CE50564F365A9</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>8fd37e02-b684-422f-8dc5-79db0859394f_1.0.0.0_neutral__xbkzbq3xetnet</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>8fd37e02-b684-422f-8dc5-79db0859394f_xbkzbq3xetnet!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>8fd37e02-b684-422f-8dc5-79db0859394f</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Baines</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="G:\Win8Apps\NZBCentral\App1\App1\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-12-23T06:14:06.681</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2012-12-23T03:23:37.279</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.css">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.css</PackagePath>
+      <Modified>2012-12-17T05:08:20.116</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpSoon\cpSoon.css">
+      <PackagePath>pages\couchpotato\cpSoon\cpSoon.css</PackagePath>
+      <Modified>2012-12-20T14:17:17.453</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.css">
+      <PackagePath>pages\couchpotato\couchpotato.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDownloaded\cpDownloaded.css">
+      <PackagePath>pages\couchpotato\cpDownloaded\cpDownloaded.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.css">
+      <PackagePath>pages\headphones\headphones.css</PackagePath>
+      <Modified>2012-12-20T14:17:07.528</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbAllShows\sbAllShows.css">
+      <PackagePath>pages\sickbeard\sbAllShows\sbAllShows.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.css">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.css</PackagePath>
+      <Modified>2012-12-17T05:08:20.116</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbEndDates\sbEndDates.css">
+      <PackagePath>pages\sickbeard\sbEndDates\sbEndDates.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbHistory\sbHistory.css">
+      <PackagePath>pages\sickbeard\sbHistory\sbHistory.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbStartDates\sbStartDates.css">
+      <PackagePath>pages\sickbeard\sbStartDates\sbStartDates.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.css">
+      <PackagePath>pages\sickbeard\sickbeard.css</PackagePath>
+      <Modified>2012-12-20T14:18:27.673</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.css">
+      <PackagePath>pages\itemDetail\itemDetail.css</PackagePath>
+      <Modified>2012-12-17T05:08:20.116</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.css">
+      <PackagePath>pages\groupDetail\groupDetail.css</PackagePath>
+      <Modified>2012-12-17T05:08:20.111</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.css">
+      <PackagePath>pages\groupedItems\groupedItems.css</PackagePath>
+      <Modified>2012-12-20T09:06:51.331</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.css">
+      <PackagePath>pages\sabnzbd\sabnzbd.css</PackagePath>
+      <Modified>2012-12-18T06:18:34.283</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\blank-couchpotato.png">
+      <PackagePath>images\blank-couchpotato.png</PackagePath>
+      <Modified>2012-12-21T15:12:00.703</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\logo.scale-100.png">
+      <PackagePath>images\logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-12-20T02:59:27.874</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\couch.png">
+      <PackagePath>images\services\couch.png</PackagePath>
+      <Modified>2012-04-05T14:03:07.980</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\headphones.png">
+      <PackagePath>images\services\headphones.png</PackagePath>
+      <Modified>2012-04-05T14:02:13.436</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\sab.png">
+      <PackagePath>images\services\sab.png</PackagePath>
+      <Modified>2012-04-07T02:38:36.605</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\sickbeard.png">
+      <PackagePath>images\services\sickbeard.png</PackagePath>
+      <Modified>2012-04-05T14:05:05.048</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\smalllogo.png">
+      <PackagePath>images\smalllogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-07-26T01:00:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-100.png">
+      <PackagePath>images\splashscreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-12-20T03:05:56.590</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-140.png">
+      <PackagePath>images\splashscreen.scale-140.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-12-20T05:46:17.245</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-180.png">
+      <PackagePath>images\splashscreen.scale-180.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-12-20T05:45:54.666</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\storelogo.png">
+      <PackagePath>images\storelogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-07-26T01:00:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\blank.gif">
+      <PackagePath>images\blank.gif</PackagePath>
+      <Modified>2012-12-21T15:09:43.138</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\data.js">
+      <PackagePath>js\data.js</PackagePath>
+      <Modified>2012-12-22T11:34:57.561</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+      <Modified>2012-12-21T11:45:53.008</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\jquery.js">
+      <PackagePath>js\jquery.js</PackagePath>
+      <Modified>2012-12-17T09:46:08.508</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\navigator.js">
+      <PackagePath>js\navigator.js</PackagePath>
+      <Modified>2012-12-17T05:08:20.138</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.js">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.js</PackagePath>
+      <Modified>2012-12-23T03:16:36.828</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpSoon\cpSoon.js">
+      <PackagePath>pages\couchpotato\cpSoon\cpSoon.js</PackagePath>
+      <Modified>2012-12-22T13:37:07.187</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpSoon\cpSoonData.js">
+      <PackagePath>pages\couchpotato\cpSoon\cpSoonData.js</PackagePath>
+      <Modified>2012-12-22T12:53:00.136</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.js">
+      <PackagePath>pages\couchpotato\couchpotato.js</PackagePath>
+      <Modified>2012-12-23T05:47:07.082</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpData.js">
+      <PackagePath>pages\couchpotato\cpData.js</PackagePath>
+      <Modified>2012-12-23T02:20:24.129</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDownloaded\cpDownloaded.js">
+      <PackagePath>pages\couchpotato\cpDownloaded\cpDownloaded.js</PackagePath>
+      <Modified>2012-12-22T13:36:55.231</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDownloaded\cpDownloadedData.js">
+      <PackagePath>pages\couchpotato\cpDownloaded\cpDownloadedData.js</PackagePath>
+      <Modified>2012-12-22T13:36:07.459</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.js">
+      <PackagePath>pages\headphones\headphones.js</PackagePath>
+      <Modified>2012-12-20T10:23:41.217</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\hpdata.js">
+      <PackagePath>pages\headphones\hpdata.js</PackagePath>
+      <Modified>2012-12-20T09:56:19.825</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\settings\services.js">
+      <PackagePath>pages\settings\services.js</PackagePath>
+      <Modified>2012-12-23T07:07:20.482</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbAllShows\sbAllShowsData.js">
+      <PackagePath>pages\sickbeard\sbAllShows\sbAllShowsData.js</PackagePath>
+      <Modified>2012-12-23T07:08:42.034</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbAllShows\sbAllShows.js">
+      <PackagePath>pages\sickbeard\sbAllShows\sbAllShows.js</PackagePath>
+      <Modified>2012-12-23T06:02:19.020</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.js">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.js</PackagePath>
+      <Modified>2012-12-23T06:55:15.233</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbEndDates\sbEndDates.js">
+      <PackagePath>pages\sickbeard\sbEndDates\sbEndDates.js</PackagePath>
+      <Modified>2012-12-23T06:54:44.826</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbEndDates\sbEndDatesData.js">
+      <PackagePath>pages\sickbeard\sbEndDates\sbEndDatesData.js</PackagePath>
+      <Modified>2012-12-23T06:56:36.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbHistory\sbHistoryData.js">
+      <PackagePath>pages\sickbeard\sbHistory\sbHistoryData.js</PackagePath>
+      <Modified>2012-12-23T05:54:10.649</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbHistory\sbHistory.js">
+      <PackagePath>pages\sickbeard\sbHistory\sbHistory.js</PackagePath>
+      <Modified>2012-12-23T05:53:16.380</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbStartDates\sbStartDatesData.js">
+      <PackagePath>pages\sickbeard\sbStartDates\sbStartDatesData.js</PackagePath>
+      <Modified>2012-12-23T06:15:29.590</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbStartDates\sbStartDates.js">
+      <PackagePath>pages\sickbeard\sbStartDates\sbStartDates.js</PackagePath>
+      <Modified>2012-12-23T06:14:50.374</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.js">
+      <PackagePath>pages\sickbeard\sickbeard.js</PackagePath>
+      <Modified>2012-12-23T06:59:20.516</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbdata.js">
+      <PackagePath>pages\sickbeard\sbdata.js</PackagePath>
+      <Modified>2012-12-23T05:38:47.240</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.js">
+      <PackagePath>pages\itemDetail\itemDetail.js</PackagePath>
+      <Modified>2012-12-17T05:08:20.143</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.js">
+      <PackagePath>pages\groupDetail\groupDetail.js</PackagePath>
+      <Modified>2012-12-17T05:08:20.131</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.js">
+      <PackagePath>pages\groupedItems\groupedItems.js</PackagePath>
+      <Modified>2012-12-22T06:53:25.872</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.js">
+      <PackagePath>pages\sabnzbd\sabnzbd.js</PackagePath>
+      <Modified>2012-12-21T11:54:14.877</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.html">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.html</PackagePath>
+      <Modified>2012-12-23T01:40:45.787</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpSoon\cpSoon.html">
+      <PackagePath>pages\couchpotato\cpSoon\cpSoon.html</PackagePath>
+      <Modified>2012-12-22T12:53:59.992</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.html">
+      <PackagePath>pages\couchpotato\couchpotato.html</PackagePath>
+      <Modified>2012-12-22T15:27:24.874</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDownloaded\cpDownloaded.html">
+      <PackagePath>pages\couchpotato\cpDownloaded\cpDownloaded.html</PackagePath>
+      <Modified>2012-12-22T13:22:03.996</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.html">
+      <PackagePath>pages\headphones\headphones.html</PackagePath>
+      <Modified>2012-12-21T03:16:24.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\settings\services.html">
+      <PackagePath>pages\settings\services.html</PackagePath>
+      <Modified>2012-12-22T13:57:49.260</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbAllShows\sbAllShows.html">
+      <PackagePath>pages\sickbeard\sbAllShows\sbAllShows.html</PackagePath>
+      <Modified>2012-12-23T06:02:47.192</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.html">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.html</PackagePath>
+      <Modified>2012-12-22T08:14:30.091</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbEndDates\sbEndDates.html">
+      <PackagePath>pages\sickbeard\sbEndDates\sbEndDates.html</PackagePath>
+      <Modified>2012-12-23T06:24:04.884</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbHistory\sbHistory.html">
+      <PackagePath>pages\sickbeard\sbHistory\sbHistory.html</PackagePath>
+      <Modified>2012-12-23T05:55:08.258</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbStartDates\sbStartDates.html">
+      <PackagePath>pages\sickbeard\sbStartDates\sbStartDates.html</PackagePath>
+      <Modified>2012-12-23T06:12:08.185</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.html">
+      <PackagePath>pages\sickbeard\sickbeard.html</PackagePath>
+      <Modified>2012-12-23T06:59:28.743</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.html">
+      <PackagePath>pages\itemDetail\itemDetail.html</PackagePath>
+      <Modified>2012-12-17T05:08:20.123</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.html">
+      <PackagePath>pages\groupDetail\groupDetail.html</PackagePath>
+      <Modified>2012-12-17T05:08:20.121</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.html">
+      <PackagePath>pages\groupedItems\groupedItems.html</PackagePath>
+      <Modified>2012-12-20T09:13:52.324</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\default.html">
+      <PackagePath>default.html</PackagePath>
+      <Modified>2012-12-21T09:37:55.371</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.html">
+      <PackagePath>pages\sabnzbd\sabnzbd.html</PackagePath>
+      <Modified>2012-12-23T07:28:53.422</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\readme.md">
+      <PackagePath>readme.md</PackagePath>
+      <Modified>2012-12-21T04:50:14.388</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2012-12-23T06:14:06.641</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\">
+      <Name>Microsoft.WinJS.1.0</Name>
+      <Version>1.0.9200.20512</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.1.0, MinVersion=1.0.9200.20512</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\Microsoft.WinJS.1.0.appx</AppxLocation>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

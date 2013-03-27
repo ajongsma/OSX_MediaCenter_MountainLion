@@ -1,0 +1,451 @@
+﻿/* =============================================
+    USENET STYLES
+
+    TO DO:  ----------------------------------------------------
+
+    #General
+    - Consistent spelling/capitalisation across the board for sab/sb/cp/hp
+    - Artwork for preloader, icons and such
+
+    #SABnzbd
+    - Download Queue
+    - Download History by Category
+    - Failed Downloads
+
+    #Sickbeard
+    - Launch Sickbeard button across all pages (manageShows/sbDetails/searchResults)
+    - Implement TV Today toggle
+    - Search Shows
+    - Add new shot
+
+    #CouchPotato
+    - Copy AppBar across all pages
+    - "Add New" caching issue
+    - Update titles across secondary pages
+
+    #Headphones
+    - details view - tracklisting
+    - view all artists
+    - album art using lastfm API?
+    - error message if not configured correctly
+
+    # New Hiearchy ----------------------------------------------------
+    * Index
+    - SABnzbd (Currently Downloading, Queue, History)
+        - History by Category
+        - Add NZB to Queue
+        - Pause/Resume Queue
+    - Sickbeard (Recently Downloaded, TV Today)
+        - Show Details
+        - All Shows
+        - Season Start Dates
+        - Season End Dates
+        - Add TV Show
+    - CouchPotato (Wanted movies)
+        - Movie Details
+        - Downloaded Movies
+        - Coming Soon
+        - Add Movie
+    - Headphones (Recent Downloads, Upcoming)
+        - Album Details (mark wanted/done)
+        - All Artists
+        - Artist Details
+        - Wanted Albums
+        - Add Artist
+
+    #Tiles
+    - SAB downloads (shows progress bar of what's currently downloading, number of items in queue. If not downloading, show latest download)
+    - TV Today
+
+=============================================*/
+
+.clear {
+    clear: both;
+}
+
+.item h4 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+body .groupeditemspage .groupeditemslist .item {
+    width: 450px;
+    height: 200px;
+    -ms-grid-rows: 1fr 50px;
+}
+
+body .groupeditemspage .groupeditemslist .item {
+    background: #808080 center no-repeat;
+}
+
+    body .groupeditemspage .groupeditemslist .item[title=SABnzbd] {
+        background-image: url("../images/services/sab.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=SickBeard] {
+        background-image: url("../images/services/sickbeard.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=CouchPotato] {
+        background-image: url("../images/services/couch.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=Headphones] {
+        background-image: url("../images/services/headphones.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=Gamez] {
+        background-image: url("../images/services/gamez.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=Mylar] {
+        background-image: url("../images/services/mylar.png");
+    }
+    body .groupeditemspage .groupeditemslist .item[title=Links] {
+        background-image: url("../images/services/links.png");
+    }
+
+header h1 button {
+    position: relative;
+    top: -10px;
+}
+
+/* =============================================
+    LISTVIEW OVER-RIDES
+=============================================*/
+#ListView_Sickbeard .item {
+    height: 274px;
+    width: 185px;
+    display: block;
+    background: #4d4d4d;
+}
+#ListView_CouchPotato .item {
+    height: 274px;
+    width: 185px;
+    display: block;
+    background: #4d4d4d;
+}
+#ListView_Headphones .item {
+    height: 160px;
+    width: 160px;
+    display: block;
+    background: #4d4d4d;
+}
+    #ListView_Sickbeard .item img,
+    #ListView_CouchPotato .item img,
+    #ListView_Headphones .item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 101%; /* some posters don't quite reach the full size */
+        min-height: 101%;
+        max-width: 102%;
+        height: auto;
+    }
+    #ListView_Sickbeard .item .item-overlay,
+    #ListView_CouchPotato .item .item-overlay,
+    #ListView_Headphones .item .item-overlay {
+        display: block;
+        padding: 6px 15px 2px 15px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 6px 15px 2px 15px;
+        z-index: 2;
+        background: rgba(0,0,0,0.8);
+    }
+        #ListView_Sickbeard .item .item-overlay .item-title,
+        #ListView_CouchPotato .item .item-overlay .item-title {
+            width: 155px;
+            height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #ListView_Headphones .item .item-overlay .item-title {
+            width: 130px;
+            height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #ListView_Sickbeard .item .item-overlay .item-title {}
+
+/* Add Movie Popup */
+#addNewMoviePopup {
+    text-align: left;
+    width: 450px;
+    height: auto;
+    max-height: 90%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    color: #fff;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    padding: 20px;
+}
+    #addNewMoviePopup .close-popup {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        color: #fff;
+        font-size: 150%;
+    }
+    #addNewMoviePopup h2 {
+        padding-bottom: 20px;
+    }
+    #addNewMoviePopup .result {
+        border-top: 1px solid rgba(255,255,255,0.4);
+        padding: 20px 0;
+    }
+        #addNewMoviePopup .result:first-child {
+            border-top: none;
+        }
+    #addNewMoviePopup .poster {
+        width: 50px;
+        float: left;
+    }
+    #addNewMoviePopup .resultDetails {
+        margin-left: 60px;
+    }
+    #addNewMoviePopup .addInfo {
+        margin-left: 60px;
+        display: none;
+    }
+        #addNewMoviePopup .addInfo .titlesBox,
+        #addNewMoviePopup .addInfo .profileBox {
+            width: 300px;
+        }
+        #addNewMoviePopup .addInfo .already-in-wanted {
+            padding: 8px 0;
+        }
+        #addNewMoviePopup .addInfo .submit-movie,
+        #addNewMoviePopup .addInfo .cancel-add {
+            width: 120px;
+        }
+        #addNewMoviePopup .addInfo .submit-movie {
+            margin-right: 10px;
+        }
+    #addNewMoviePopup .success,
+    #addNewMoviePopup .error {
+        margin-left: 60px;
+        display: none;
+    }
+
+/* =============================================
+    DETAIL VIEW STYLES
+=============================================*/
+
+/* Sick Beard */
+#Details_Sickbeard .poster {
+    width: 250px;
+    height: 372px;
+    float: left;
+}
+#Details_Sickbeard .item-content {
+    margin-left: 280px;
+}
+    #Details_Sickbeard .item-content .item-airs,
+    #Details_Sickbeard .item-content .item-nextepisode,
+    #Details_Sickbeard .item-content .item-network,
+    #Details_Sickbeard .item-content .item-quality {
+        padding-bottom: 10px;
+    }
+    #Details_Sickbeard .item-content .item-tvdblink,
+    #Details_Sickbeard .item-content .item-reload-info,
+    #Details_Sickbeard .item-content .item-rescan-files {
+        padding-top: 20px;
+    }
+
+.item-seasonlist {}
+    .item-seasonlist .season {
+        break-before: column;
+    }
+        .item-seasonlist .season h2 {
+            padding-bottom: 10px;
+        }
+
+    .item-seasonlist table {
+        width: 480px;
+    }
+
+    .item-seasonlist th {
+        font-weight: normal;
+        text-align: left;
+        border-bottom: 1px solid #444;
+        padding: 5px;
+        color: #a1a1a1;
+    }
+    .item-seasonlist .season-row td {
+        color: #a1a1a1;
+        padding: 5px;
+        border-bottom: 1px solid #444;
+        display: table-cell;
+        position: static;
+        vertical-align: top;
+    }
+        .item-seasonlist .season-row.Downloaded td,
+        .item-seasonlist .season-row.Snatched td,
+        .item-seasonlist .season-row.Archived td {
+            color: #fff;
+        }
+    .item-seasonlist th.epnum {
+        width: 15px;
+    }
+    .item-seasonlist th.name {
+        width: 245px;
+    }
+    .item-seasonlist th.date {
+        width: 100px;
+    }
+    .item-seasonlist th.status {
+        width: 90px;
+    }
+    .item-seasonlist th.search {
+        width: 30px;
+    }
+    .item-seasonlist td.search {
+        text-align: right;
+    }
+
+/* Couch Potato */
+#Details_CouchPotato article {
+    width: auto;
+    column-width: 580px !important;
+}
+    #Details_CouchPotato article .item-image {
+        width: 250px;
+        height: auto;
+        float: left;
+    }
+    #Details_CouchPotato article .item-content {
+        margin-left: 280px;
+        width: 550px;
+    }
+    #Details_CouchPotato article .item-content .item-genres,
+    #Details_CouchPotato article .item-content .item-starring,
+    #Details_CouchPotato article .item-content .item-theatre, 
+    #Details_CouchPotato article .item-content .item-dvd,
+    #Details_CouchPotato article .item-content .item-quality {
+        padding-top: 20px;
+    }
+    #Details_CouchPotato article .item-buttons {
+        width: 200px;
+        break-before: column;
+    }
+        #Details_CouchPotato article .item-buttons button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    #Details_CouchPotato article .item-edit-anchor {
+        margin: -10px 0 10px;
+    }
+    #Details_CouchPotato article .item-edit {
+        display: none;
+        background: rgba(0,0,0,0.8);
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 800px;
+    }
+        #Details_CouchPotato article .item-edit .item-edit-section {
+            float: left;
+            width: 200px;
+            margin-right: 20px;
+        }
+            #Details_CouchPotato article .item-edit .item-edit-section select {
+                width: 200px;
+            }
+        #Details_CouchPotato article .item-edit .item-edit-section-save {
+            float: left;
+            padding-top: 24px;
+        }
+
+/* =============================================
+    SETTINGS
+=============================================*/
+.win-settings-section {
+    border-top: 1px solid #ccc;
+}
+    .win-settings-section h3 {
+        padding-top: 30px;
+    }
+#programmaticInvocationSettingsFlyout .win-header {
+    background: #ae64df;
+}
+    .win-settings-section:first-child {
+        border-top: none;
+    }
+
+/* =============================================
+    DEFAULT WINDOWS 8 TEMPLATE STYLES
+=============================================*/
+
+#contenthost {
+    height: 100%;
+    width: 100%;
+}
+
+.fragment {
+    /* Define a grid with rows for a banner and a body */
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 128px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}
+
+    .fragment header[role=banner] {
+        /* Define a grid with columns for the back button and page title. */
+        -ms-grid-columns: 120px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+    }
+
+        .fragment header[role=banner] .win-backbutton {
+            margin-left: 39px;
+            margin-top: 59px;
+        }
+
+        .fragment header[role=banner] .titlearea {
+            -ms-grid-column: 2;
+            margin-top: 37px;
+        }
+
+            .fragment header[role=banner] .titlearea .pagetitle {
+                width: calc(100% - 20px);
+            }
+
+    .fragment section[role=main] {
+        -ms-grid-row: 2;
+        height: 100%;
+        width: 100%;
+    }
+
+@media screen and (-ms-view-state: snapped) {
+    .fragment header[role=banner] {
+        -ms-grid-columns: auto 1fr;
+        margin-left: 20px;
+    }
+
+        .fragment header[role=banner] .win-backbutton {
+            margin: 0;
+            margin-right: 10px;
+            margin-top: 76px;
+        }
+
+            .fragment header[role=banner] .win-backbutton:disabled {
+                display: none;
+            }
+
+        .fragment header[role=banner] .titlearea {
+            -ms-grid-column: 2;
+            margin-left: 0;
+            margin-top: 68px;
+        }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .fragment header[role=banner] {
+        -ms-grid-columns: 100px 1fr;
+    }
+
+        .fragment header[role=banner] .win-backbutton {
+            margin-left: 29px;
+        }
+}

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>cpDetails</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/couchpotato/cpDetails/cpDetails.css" rel="stylesheet" />
+    <script src="/js/jquery.js"></script>
+    <script src="/pages/couchpotato/cpdata.js"></script>
+    <script src="/pages/couchpotato/cpDetails/cpDetails.js"></script>
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="itemdetailpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">CouchPotato</span>
+            </h1>
+        </header>
+        <div class="content" aria-label="Main content" role="main" id="Details_CouchPotato">
+            <article>
+                <div>
+                    <header>
+                        <h2 class="item-title"></h2>
+                        <div class="item-edit-anchor">&#xe104; Edit</div>
+                        <div class="item-edit">
+                            <div class="item-edit-section">
+                                <h3>Title</h3>
+                                <div class="item-edit-title"></div>
+                            </div>
+                            <div class="item-edit-section">
+                                <h3>Quality</h3>
+                                <div class="item-edit-quality"></div>
+                            </div>
+                            <div class="item-edit-section-save">
+                                <button class="item-edit-save">Save</button>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </header>
+                    <img class="item-image poster expand-affected-item" src="#" />
+                    <div class="item-content expand-affected-item">
+                        <h3>Plot</h3>
+                        <div class="item-synopsis"></div>
+                        <div class="item-genres"><h3>Genres</h3><span></span></div>
+                        <div class="item-starring"><h3>Starring</h3><span></span></div>
+                        <div class="item-theatre"><h3>Theatre Date</h3><span></span></div>
+                        <div class="item-dvd"><h3>DVD Date</h3><span></span></div>
+                        <div class="item-quality"><h3>Quality</h3><span></span></div>
+                    </div>
+                    <div class="item-buttons">
+                        <button class="imdb">IMDB</button>
+                        <button class="reloadinfo">Reload Movie Info</button>
+                        <button class="delete-movie">Delete Movie</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

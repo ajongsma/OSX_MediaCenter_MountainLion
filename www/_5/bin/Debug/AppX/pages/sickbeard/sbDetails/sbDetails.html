@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>sbDetails</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/sickbeard/sbDetails/sbDetails.css" rel="stylesheet" />
+    <script src="/js/jquery.js"></script>
+    <script src="/pages/sickbeard/sbdata.js"></script>
+    <script src="/pages/sickbeard/sbDetails/sbDetails.js"></script>
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="itemdetailpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Sickbeard</span>
+                <button>Launch SickBeard</button>
+            </h1>
+        </header>
+        <div class="content" aria-label="Main content" role="main" id="Details_Sickbeard">
+            <article>
+                <div>
+                    <header>
+                        <h2 class="item-title"></h2>
+                    </header>
+                    <img class="item-image poster" src="#" />
+                    <div class="item-content">
+                        <div class="item-airs"><strong>Airs: </strong><span></span></div>
+                        <div class="item-nextepisode"><strong>Next Episode: </strong><span></span></div>
+                        <div class="item-network"><strong>Network: </strong><span></span></div>
+                        <div class="item-quality"><strong>Quality: </strong><span></span></div>
+                        <div class="item-status"><strong>Status: </strong><span></span></div>
+                        <div class="item-tvdblink"><button>thetvdb</button></div>
+                        <div class="item-reload-info"><button>Reload Show Info</button></div>
+                        <div class="item-rescan-files"><button>Rescan Files</button></div>
+                    </div>
+                    <div class="item-seasonlist"></div>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

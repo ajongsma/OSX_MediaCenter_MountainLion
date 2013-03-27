@@ -1,0 +1,80 @@
+﻿<!doctype HTML>
+<html>
+    <head>
+        <title>services</title>
+        <script src="/js/jquery.js"></script>
+        <script src="/pages/settings/services.js"></script>
+    </head>
+    <body>
+        <!-- BEGINSETTINGSFLYOUT -->
+        <div data-win-control="WinJS.UI.SettingsFlyout" id="programmaticInvocationSettingsFlyout" aria-label="App Settings Flyout" data-win-options="{settingsCommandId:'services',width:'wide'}">
+            <!-- Use either 'win-ui-light' or 'win-ui-dark' depending on the contrast between the header title and background color -->
+            <div class="win-ui-dark win-header">
+                <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+                <div class="win-label">Usenet Services</div>
+            </div>
+            <div class="win-content">
+                <div class="win-settings-section">
+                    <h3>SABnzbd</h3>
+                    <div id="sabToggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{checked:false}"></div>
+                    <div id="sabSettings">
+                        <label for="sabIP">SABnzbd IP</label>
+                        <input type="text" aria-label="IP" id="sabIP" name="sabIP" />
+                        <label for="sabPort">SABnzbd Port</label>
+                        <input type="text" aria-label="Port" id="sabPort" name="sabPort" />
+                        <label for="sabAPI">SABnzbd API</label>
+                        <input type="text" aria-label="API" id="sabAPI" name="sabAPI" />
+                    </div>
+                </div>
+                <div class="win-settings-section">
+                    <h3>Sickbeard</h3>
+                    <div id="sbToggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{checked:false}"></div>
+                    <div id="sbSettings">
+                        <label for="sbIP">Sickbeard IP</label>
+                        <input type="text" aria-label="IP" id="sbIP" name="sbIP" />
+                        <label for="sbPort">Sickbeard Port</label>
+                        <input type="text" aria-label="Port" id="sbPort" name="sbPort" />
+                        <label for="sbAPI">Sickbeard API</label>
+                        <input type="text" aria-label="API" id="sbAPI" name="sbAPI" />
+                        <label>"TV Today" Feed</label>
+                        <label><input id="sbTvToday_Today" name="sbTvToday" type="radio" value="today" checked />Today</label>
+                        <label><input id="sbTvToday_Missed" name="sbTvToday" type="radio" value="missed" />Missed</label>
+                        <label for="sbRecentShows">Number of Recent Shows</label>
+                        <input id="sbRecentShows" name="sbRecentShows" type="range" min="1" max="50" value="15" />
+                    </div>
+                </div>
+                <div class="win-settings-section" id="settings-couchpotato">
+                    <h3>CouchPotato</h3>
+                    <div id="cpToggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{checked:false}"></div>
+                    <div id="cpSettings">
+                        <label for="cpIP">CouchPotato IP</label>
+                        <input type="text" aria-label="IP" id="cpIP" name="cpIP" />
+                        <label for="cpPort">CouchPotato Port</label>
+                        <input type="text" aria-label="Port" id="cpPort" name="cpPort" />
+                        <label for="cpAPI">CouchPotato API</label>
+                        <input type="text" aria-label="API" id="cpAPI" name="cpAPI" />
+                        <div id="cpPastTheatre" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Show past theatre releases?', checked:false}"></div>
+                    </div>
+                </div>
+                <div class="win-settings-section">
+                    <h3>Headphones</h3>
+                    <div id="hpToggle" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{checked:false}"></div>
+                    <div id="hpSettings">
+                        <label for="hpIP">Headphones IP</label>
+                        <input type="text" aria-label="IP" id="hpIP" name="hpIP" />
+                        <label for="hpPort">Headphones Port</label>
+                        <input type="text" aria-label="Port" id="hpPort" name="hpPort" />
+                        <label for="hpAPI">Headphones API</label>
+                        <input type="text" aria-label="API" id="hpAPI" name="hpAPI" />
+                    </div>
+                </div>
+                <!--
+                <div class="win-settings-section">
+                    <h3>Links</h3>
+                </div>
+                -->
+            </div>
+        </div>
+        <!-- ENDSETTINGSFLYOUT -->
+    </body>
+</html>

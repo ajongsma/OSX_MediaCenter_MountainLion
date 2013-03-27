@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="8fd37e02-b684-422f-8dc5-79db0859394f" Version="1.0.0.0" Publisher="CN=Baines" />
+  <Properties>
+    <DisplayName>Shiznoid</DisplayName>
+    <PublisherDisplayName>David Baines</PublisherDisplayName>
+    <Logo>images\storelogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="Shiznoid" Logo="images\smalllogo.png" SmallLogo="images\smalllogo.png" Description="View your latest downloads and what's coming out soon!" ForegroundText="light" BackgroundColor="#af65e0">
+        <DefaultTile ShowName="allLogos" ShortName="Shiznoid" />
+        <SplashScreen Image="images\splashscreen.scale-180.png" BackgroundColor="#af65e0" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

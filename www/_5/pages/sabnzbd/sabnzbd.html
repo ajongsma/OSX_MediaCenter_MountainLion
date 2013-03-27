@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>itemDetailPage</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/sabnzbd/sabnzbd.css" rel="stylesheet" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/pages/sabnzbd/sabnzbd.js"></script>
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="itemdetailpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">SABnzbd</span>
+                <button>Launch SABnzbd</button>
+            </h1>
+        </header>
+        <div class="content" aria-label="Main content" role="main">
+            <article class="sab-current">
+                <div>
+                    <header>
+                        <h2 class="item-title">Currently Downloading</h2>
+                    </header>
+                    <div class="item-content">
+                        <div id="sabDownloading"></div>
+                    </div>
+                </div>
+            </article>
+            <article class="sab-recentlyfinished">
+                <div>
+                    <header>
+                        <h2 class="item-title">Recently Finished</h2>
+                    </header>
+                    <div class="item-content">
+                        <div id="sabHistory">
+                            <ul class="sab_recentdownloadlist"></ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'launchSabnzbd', label:'Launch SABnzbd', icon:'go'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'sbAddNZB', label:'Add NZB', icon:'add'}" type="button"></button>
+    </div>
+</body>
+</html>

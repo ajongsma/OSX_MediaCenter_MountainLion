@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DAVO</Machine>
+    <WindowsUser>Baines</WindowsUser>
+    <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="G:\Win8Apps\NZBCentral\App1\App1\bin\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.css">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.css">
+      <PackagePath>pages\headphones\headphones.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.css">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.css">
+      <PackagePath>pages\sickbeard\sickbeard.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.css">
+      <PackagePath>pages\couchpotato\couchpotato.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.css">
+      <PackagePath>pages\itemDetail\itemDetail.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.css">
+      <PackagePath>pages\groupDetail\groupDetail.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.css">
+      <PackagePath>pages\groupedItems\groupedItems.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.css">
+      <PackagePath>pages\sabnzbd\sabnzbd.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\blank.gif">
+      <PackagePath>images\blank.gif</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\logo.scale-100.png">
+      <PackagePath>images\logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\couch.png">
+      <PackagePath>images\services\couch.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\headphones.png">
+      <PackagePath>images\services\headphones.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\sab.png">
+      <PackagePath>images\services\sab.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\services\sickbeard.png">
+      <PackagePath>images\services\sickbeard.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\smalllogo.png">
+      <PackagePath>images\smalllogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-100.png">
+      <PackagePath>images\splashscreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-140.png">
+      <PackagePath>images\splashscreen.scale-140.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\splashscreen.scale-180.png">
+      <PackagePath>images\splashscreen.scale-180.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\images\storelogo.png">
+      <PackagePath>images\storelogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\data.js">
+      <PackagePath>js\data.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\jquery.js">
+      <PackagePath>js\jquery.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\js\navigator.js">
+      <PackagePath>js\navigator.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.js">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.js">
+      <PackagePath>pages\headphones\headphones.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\hpdata.js">
+      <PackagePath>pages\headphones\hpdata.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\settings\services.js">
+      <PackagePath>pages\settings\services.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.js">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.js">
+      <PackagePath>pages\sickbeard\sickbeard.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbdata.js">
+      <PackagePath>pages\sickbeard\sbdata.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.js">
+      <PackagePath>pages\couchpotato\couchpotato.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpdata.js">
+      <PackagePath>pages\couchpotato\cpdata.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.js">
+      <PackagePath>pages\itemDetail\itemDetail.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.js">
+      <PackagePath>pages\groupDetail\groupDetail.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.js">
+      <PackagePath>pages\groupedItems\groupedItems.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.js">
+      <PackagePath>pages\sabnzbd\sabnzbd.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\cpDetails\cpDetails.html">
+      <PackagePath>pages\couchpotato\cpDetails\cpDetails.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\headphones\headphones.html">
+      <PackagePath>pages\headphones\headphones.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\settings\services.html">
+      <PackagePath>pages\settings\services.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sbDetails\sbDetails.html">
+      <PackagePath>pages\sickbeard\sbDetails\sbDetails.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sickbeard\sickbeard.html">
+      <PackagePath>pages\sickbeard\sickbeard.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\couchpotato\couchpotato.html">
+      <PackagePath>pages\couchpotato\couchpotato.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\itemDetail\itemDetail.html">
+      <PackagePath>pages\itemDetail\itemDetail.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupDetail\groupDetail.html">
+      <PackagePath>pages\groupDetail\groupDetail.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\groupedItems\groupedItems.html">
+      <PackagePath>pages\groupedItems\groupedItems.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\default.html">
+      <PackagePath>default.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\pages\sabnzbd\sabnzbd.html">
+      <PackagePath>pages\sabnzbd\sabnzbd.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\readme.md">
+      <PackagePath>readme.md</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\Win8Apps\NZBCentral\App1\App1\bin\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\">
+      <Name>Microsoft.WinJS.1.0</Name>
+      <Version>1.0.9200.20512</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.1.0, MinVersion=1.0.9200.20512</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\Microsoft.WinJS.1.0.appx</AppxLocation>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
