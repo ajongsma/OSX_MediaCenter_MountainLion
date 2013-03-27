@@ -95,7 +95,7 @@ Having the called install scripts functioning as intended is the current focus p
 * If needed, the command line tools can be installed via:
   * Install Xcode via open [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
   * Enable command line Tools from within Xcode
-    * Preferences, Downloads, Command Line Tools
+      * Preferences, Downloads, Command Line Tools
 * Next, open terminal and type:
   ```
   mkdir ~/Github
@@ -103,6 +103,7 @@ Having the called install scripts functioning as intended is the current focus p
   git clone https://github.com/ajongsma/OSX_NewBox.git
   ```
 
+----
 
 
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
