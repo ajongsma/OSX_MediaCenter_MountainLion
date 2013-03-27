@@ -750,18 +750,6 @@ if [[ $INST_POWERLINE_SHELL == "true" ]]; then
     fi
 fi
 
-##------------------------------------------------------------------------------
-## Install Apache Frontpage
-##------------------------------------------------------------------------------
-if [[ $INST_APACHE_WWW_FRONTPAGE == "true" ]]; then
-    if [ ! -f $INST_APACHE_SYSTEM_WEB_ROOT/menubar.html ] ; then
-        printf 'Apache Frontpage not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-        source "$DIR/scripts/install_apache_frontpage.sh"
-    else
-        printf 'Apache Frontpage found\n' "$GREEN" $col '[OK]' "$RESET"
-    fi
-fi
-
 #------------------------------------------------------------------------------
 # Install NewzNAB
 #------------------------------------------------------------------------------
@@ -1334,6 +1322,41 @@ else
     source "$DIR/scripts/install_plex_trakttv.sh"
 fi
 
+##------------------------------------------------------------------------------
+## Install Apache Frontpage
+##------------------------------------------------------------------------------
+if [[ $INST_APACHE_WWW_FRONTPAGE == "true" ]]; then
+    if [ ! -f $INST_APACHE_SYSTEM_WEB_ROOT/menubar.html ] ; then
+        printf 'Apache Frontpage not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_apache_frontpage.sh"
+    else
+        printf 'Apache Frontpage found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+fi
+
+##------------------------------------------------------------------------------
+## Install Apache Frontpage
+##------------------------------------------------------------------------------
+echo " TODO: Check for specific variables"
+echo " Till then, forced run:"
+echo "   $DIR/scripts/install_logitech_harmony.sh"
+
+source "$DIR/scripts/install_logitech_harmony.sh"
+echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+read -n 1 -s
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if [[ $INST_HARMONY_PLEX == "true" ]]; then
+    if [ ! -f $INST_HARMONY_PATH/menubar.html ] ; then
+        printf 'Harmony Software not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_logitech_harmony.sh"
+    else
+        printf 'Harmony Software found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+fi
+
+
+
 #==============================================================================
 #=== FORCED EXIT DUE TO TESTING ===============================================
 exit
@@ -1373,7 +1396,6 @@ else
     echo "export GREP_OPTIONS='--color=auto'"
     subl ~/.bash_profile
 fi
-
 
 #------------------------------------------------------------------------------
 # Git config
