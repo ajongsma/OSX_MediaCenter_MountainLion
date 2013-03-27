@@ -71,6 +71,10 @@ INST_POWERLINE_SHELL="false"
 # Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
 INST_POWERLINE_TMUX="true"
 
+# Install for Auto-Sub - (true/false)
+INST_AUTO_SUB="false"
+
+
 # Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
 INST_PERISCOPE="false"
 
