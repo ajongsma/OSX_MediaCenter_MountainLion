@@ -281,6 +281,10 @@ if [ ! -e /Applications/Xcode.app ] ; then
         sleep 15
     done
     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+    echo -e "${BLUE} --- Enable command line tools via Xcode      --- ${RESET}"
+    echo -e "${BLUE} --- (or install seperate package)            --- ${RESET}"
+    read -n 1 -s
 else
     printf "$PRINTF_MASK" "Xcode found" "$GREEN" "[OK]" "$RESET"
 fi
