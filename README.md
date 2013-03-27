@@ -8,7 +8,7 @@ Main shell script is currently used as a guideline document and could generate e
 Having the called install scripts functioning as intended is the current focus point.  
 
 <hr>
-Git functionality is by default not installed on OSX. This functionality can be added vby installing the command line tools via:
+Git functionality is by default not installed on OS X. This functionality can be added by installing the command line tools via:
   * Install [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
   * And enable the command line Tools from within Xcode
     * Preferences, Downloads, Command Line Tools
@@ -21,8 +21,30 @@ Git functionality is by default not installed on OSX. This functionality can be 
     git clone https://github.com/ajongsma/OSX_NewBox.git
     ```
 
-Other considerations can be:
-Get the full version of NewzNAB
+Things to consider:
+---
+Get the [NewzNAB](http://www.newznab.com/download.html) Premium edition by donating a payment of 12GBP (approx 20USD). This will incorporate many additional features including:
+* Thumbnailing from available archive types
+* Memcache/apc support
+* Full rar archive file listings
+* Mediainfo integration
+* CMS type role limits
+* Sphinx MySql search support
+* Etc.
+
+Get the OS X Server v2.0. This will incorporate many additional and enhanced features including:
+* Server App
+* Virtual Private Network
+* Mail Services
+* Time Machine
+* File Sharing
+* Etc.
+
+Get the [Plex Mobile for IOS](http://www.plexapp.com/ios.php) to gain instant access to the entire media library wherever you are.
+* A Mobile Media Center in your Hand
+* A Remote
+
+
 <hr>
 
 # SETUP
