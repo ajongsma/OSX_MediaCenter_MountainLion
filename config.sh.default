@@ -48,10 +48,10 @@ INST_ITERM2="true"
 INST_SUBLIMETEXT="true"
 
 # Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
-INST_XLOG="true"
+INST_XLOG="false"
 
 # Install Mac Github (http://mac.github.com) - (true/false)
-INST_MACGITHUB="true"
+INST_MACGITHUB="false"
 
 # Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
 INST_DROPBOX="true"
