@@ -1015,18 +1015,19 @@ fi
 #------------------------------------------------------------------------------
 # Install Auto-Sub
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/auto-sub.app ] ; then
-    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_autosub.sh"
-    while ( [ ! -e /Applications/auto-sub.app ] )
-    do
-        echo "Waiting for Auto-Sub to be installed..."
-        sleep 15
-    done
-else
-    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_AUTO_SUB == "true" ]]; then
+	if [ ! -e /Applications/auto-sub.app ] ; then
+	    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+	    source "$DIR/scripts/install_autosub.sh"
+	    while ( [ ! -e /Applications/auto-sub.app ] )
+	    do
+	        echo "Waiting for Auto-Sub to be installed..."
+	        sleep 15
+	    done
+	else
+	    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+	fi
 fi
-
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
