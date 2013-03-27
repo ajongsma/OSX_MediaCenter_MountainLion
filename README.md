@@ -1,12 +1,28 @@
-OSX New Box
+OSX New Box (Mac Mini media center)
 ===========
-(Mac Mini media center)
+
  
 -----------
 Main shell script is currently used as a guideline document and could generate errors.
 
 Having the called install scripts functioning as intended is the current focus point.  
 
+<hr>
+Git functionality is by default not installed on OSX. This functionality can be added vby installing the command line tools via:
+  * Install [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
+  * And enable the command line Tools from within Xcode
+    * Preferences, Downloads, Command Line Tools
+    ![Command Line Tools](http://slashusr.files.wordpress.com/2012/07/downloads-2012-07-27-11-51.png)
+  * Next, open terminal and type:
+    ```bash
+
+    mkdir ~/Github
+    cd ~/Github
+    git clone https://github.com/ajongsma/OSX_NewBox.git
+    ```
+
+Other considerations can be:
+Get the full version of NewzNAB
 <hr>
 
 # SETUP
@@ -91,21 +107,6 @@ Having the called install scripts functioning as intended is the current focus p
 
 
 # ADDENDUM
-
-* If needed, the command line tools can be installed via:
-  * Install Xcode via open [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
-  * Enable command line Tools from within Xcode
-      * Preferences, Downloads, Command Line Tools
-* Next, open terminal and type:
-    ```bash
-
-    mkdir ~/Github
-    cd ~/Github
-    git clone https://github.com/ajongsma/OSX_NewBox.git
-    ```
-
-----
-
 
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
  * tmux 1.6 or newer is needed to runs these scripts. This script relies on tmux reporting that the "Pane is dead". That is how the script knows that is nothing running in that pane and to restart it for another loop. Seeing "Pane is dead" is normal and expected.
