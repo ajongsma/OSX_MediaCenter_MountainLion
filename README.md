@@ -97,11 +97,12 @@ Having the called install scripts functioning as intended is the current focus p
   * Enable command line Tools from within Xcode
       * Preferences, Downloads, Command Line Tools
 * Next, open terminal and type:
-  ```
-  mkdir ~/Github
-  cd ~/Github
-  git clone https://github.com/ajongsma/OSX_NewBox.git
-  ```
+    ```bash
+
+    mkdir ~/Github
+    cd ~/Github
+    git clone https://github.com/ajongsma/OSX_NewBox.git
+    ```
 
 ----
 
