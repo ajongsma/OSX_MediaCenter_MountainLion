@@ -12,7 +12,7 @@ Git functionality is by default not installed on OS X. This functionality can be
   * Install [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
   * And enable the command line Tools from within Xcode
     * Preferences, Downloads, Command Line Tools
-    ![Command Line Tools](http://slashusr.files.wordpress.com/2012/07/downloads-2012-07-27-11-51.png)
+    ![Command Line Tools](img/command_line_tools.png)
   * Next, open terminal and type:
     ```bash
 
