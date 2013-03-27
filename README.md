@@ -23,7 +23,7 @@ Git functionality is by default not installed on OS X. This functionality can be
 
 Things to consider:
 ---
-Get the [NewzNAB](http://www.newznab.com/download.html) Premium edition by donating a payment of 12GBP (approx 20USD). This will incorporate many additional features including:
+Get the [NewzNAB Premium](http://www.newznab.com/download.html) edition by donating a payment of 12GBP (approx 20USD). This will incorporate many additional features including:
 * Thumbnailing from available archive types
 * Memcache/apc support
 * Full rar archive file listings
