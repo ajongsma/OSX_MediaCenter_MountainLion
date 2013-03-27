@@ -1249,18 +1249,19 @@ fi
 #------------------------------------------------------------------------------
 # Install Maraschino
 #------------------------------------------------------------------------------
-if [ ! -d /Applications/maraschino ] ; then
-    printf 'Maraschino not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_marachino.sh"
-    while ( [ ! -d /Applications/maraschino ] )
-    do
-        echo "Waiting for Maraschino to be installed..."
-        sleep 15
-    done
-else
-    printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_MARASCHINO == "true" ]]; then
+	if [ ! -d /Applications/maraschino ] ; then
+	    printf 'Maraschino not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+	    source "$DIR/scripts/install_marachino.sh"
+	    while ( [ ! -d /Applications/maraschino ] )
+	    do
+	        echo "Waiting for Maraschino to be installed..."
+	        sleep 15
+	    done
+	else
+	    printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
+	fi
 fi
-
 #------------------------------------------------------------------------------
 # Install Plex Server
 #------------------------------------------------------------------------------
