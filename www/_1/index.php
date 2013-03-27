@@ -112,17 +112,7 @@ $sab_state = $contents['queue']['status'];
 echo "<hr>status: ".$sab_state;
 echo "\t\t<div id=\"sab-header\">\n";
 if (strtolower($state) == "downloading") {
-	/*
-	$ajaxurl = (!empty($_GET['style']) && ($_GET['style'] == "m") ? "index.php?w=wSabnzbd&" : "widgets/wSabnzbd.php?").(!empty($_GET['style']) ? "style=".$_GET['style']."&" : "")."c=".$count."&";
-	$pathtoimages = ((!empty($_GET['style']) && (($_GET['style'] == "m") || ($_GET['style'] == "s"))) ? "../" : "./");
-
-	$cmdPauseResume = $ajaxurl."cmd=pause";
-	if(!empty($_GET['style']) && ($_GET['style'] == "w")) {
-		echo "\t\t\t<p><a href=\"#\" onclick=\"cmdSabnzbd('".$cmdPauseResume."');\">$state</a>";
-	} else {
-		echo "\t\t\t<p><a href=\"".$cmdPauseResume."\" target=\"nothing\">$state</a>";
-	}
-	*/
+	echo "=>Check state: Downloading<br>";
 
 	//href link is the resume URL for all the queue
 	$sab_speed = $contents['queue']['speed'];
@@ -137,14 +127,7 @@ if (strtolower($state) == "downloading") {
 		echo "\t\t\t<div id=\"sab-total\" class=\"progressbar\"><div class=\"progress\" style=\"width:".$sab_percentageQ."%\"></div><div class=\"progresslabel\">".$contents['queue']['sizeleft']." / ".$contents['queue']['size']."</div></div>\n";
 	}
 } else {
-	//href link is the pause URL for all the queue
-	$cmdPauseResume = $ajaxurl."cmd=".((strtolower($state) == "paused") ? "resume" : "pause");
-	if(!empty($_GET['style']) && ($_GET['style'] == "w")) {
-		echo "\t\t\t<p><a href=\"#\" onclick=\"cmdSabnzbd('".$cmdPauseResume."');\">$state</a></p>\n";
-	} else {
-		echo "\t\t\t<p><a href=\"".$cmdPauseResume."\" target=\"nothing\">$state</a></p>\n";
-	}
-	echo "\t\t</div><!-- #sab-header -->\n";
+	echo "=>Check state: Else<br>";
 }
 
 
