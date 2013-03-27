@@ -32,7 +32,7 @@ Get the [NewzNAB](http://www.newznab.com/download.html) Premium edition by donat
 * Sphinx MySql search support
 * Etc.
 
-Get the OS X Server v2.0. This will incorporate many additional and enhanced features including:
+Get the [OS X Server v2.0](http://itunes.apple.com/us/app/os-x-server/id537441259?mt=12). This will incorporate many additional and enhanced features including:
 * Server App
 * Virtual Private Network
 * Mail Services
