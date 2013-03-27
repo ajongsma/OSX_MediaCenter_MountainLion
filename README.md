@@ -44,6 +44,17 @@ Get the [Plex Mobile for IOS](http://www.plexapp.com/ios.php) to gain instant ac
 * A Mobile Media Center in your Hand
 * A Remote
 
+Get a free account on  [Trakt.TV](http://http://trakt.tv). This makes it possible to:
+* Keep track of movie and tv series progress a scrobble mechanism.
+* Mark movies within Trakt.TV which are automatically downloaded by CouchPotato
+* Etc.
+
+Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to:
+* Publish your Plex Media Server for Personal Use
+* Share your private Sections with your Friends
+* Bookmark Videos for Later
+* Automatic Configuration
+* Etc.
 
 <hr>
 
