@@ -92,6 +92,19 @@ Having the called install scripts functioning as intended is the current focus p
 
 # ADDENDUM
 
+* If needed, the command line tools can be installed via:
+  * Install Xcode via open [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
+  * Enable command line Tools from within Xcode
+    * Preferences, Downloads, Command Line Tools
+* Next, open terminal and type:
+  ```
+  mkdir ~/Github
+  cd ~/Github
+  git clone https://github.com/ajongsma/OSX_NewBox.git
+  ```
+
+
+
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
  * tmux 1.6 or newer is needed to runs these scripts. This script relies on tmux reporting that the "Pane is dead". That is how the script knows that is nothing running in that pane and to restart it for another loop. Seeing "Pane is dead" is normal and expected.
  * [jonnyboy - Newznab-tmux](https://github.com/jonnyboy/newznab-tmux)
