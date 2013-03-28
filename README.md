@@ -1,7 +1,6 @@
 OSX New Box (Mac Mini media center)
-===========
+===================================
 
- 
 -----------
 Main shell script is currently used as a guideline document and could generate errors.
 
@@ -25,7 +24,8 @@ Git functionality is by default not installed on OS X. This functionality can be
     ```
 
 Things to consider:
----
+===================
+### NewzNAB ###
 Get the [NewzNAB Premium](http://www.newznab.com/download.html) edition by donating a payment of 12GBP (approx 20USD). This will incorporate many additional features including:
 * Thumbnailing from available archive types
 * Memcache/apc support
@@ -35,6 +35,7 @@ Get the [NewzNAB Premium](http://www.newznab.com/download.html) edition by donat
 * Sphinx MySql search support
 * Etc.
 
+### OS X Server ###
 Get the [OS X Server v2.0](http://itunes.apple.com/us/app/os-x-server/id537441259?mt=12). This will incorporate many additional and enhanced features including:
 * Server App
 * Virtual Private Network
@@ -43,15 +44,18 @@ Get the [OS X Server v2.0](http://itunes.apple.com/us/app/os-x-server/id53744125
 * File Sharing
 * Etc.
 
+### Plex Mobile ###
 Get the [Plex Mobile for IOS](http://www.plexapp.com/ios.php) to gain instant access to the entire media library wherever you are.
 * A Mobile Media Center in your Hand
 * A Remote
 
+### Trakt.TV ###
 Get a free account on  [Trakt.TV](http://http://trakt.tv). This makes it possible to:
 * Keep track of movie and tv series progress via a scrobble mechanism.
 * Mark movies within Trakt.TV which are automatically downloaded by CouchPotato
 * Etc.
 
+### MyPlex ###
 Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to:
 * Publish your Plex Media Server for Personal Use
 * Share your private Sections with your Friends
