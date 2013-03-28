@@ -28,6 +28,9 @@
 
 	<script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
 
+	<!--TESTING -->
+	<link rel="stylesheet" href="css/test.css" />
+
 	<!--JQM SlideMenu-->
 	<link rel="stylesheet" href="css/jqm.slidemenu.css" />
 	<script src="js/jqm.slidemenu.js"></script>
@@ -89,22 +92,24 @@
 		<div data-role="content">
 			Something Something Bla Bla Bla
 <?php
-echo "php blaat<hr>";
+
 
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=qstatus&output=json&apikey=$sabnapi";
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
 
-echo "<hr>";
-echo "url :" . $url;
-echo "<hr>";
-
 $json = file_get_contents($url); $data = json_decode($json, TRUE);
-
 $contents = file_get_contents($url);
+
+/* DOWNLOAD PAUSED 
+$contents = '{"queue":{"active_lang":"en","session":"062df8bae5c1b9434b51914ae0ac3684","slots":[{"status":"Checking","index":0,"eta":"unknown","missing":0,"avg_age":"68d","script":"nzbToSickBeard.py","msgid":"","verbosity":"","mb":"13361.82","sizeleft":"9.3 GB","filename":"jF7HBtfIY3CG","priority":"Normal","cat":"tv","mbleft":"9502.00","timeleft":"0:00:00","percentage":"28","nzo_id":"SABnzbd_nzo_bxZEoR","unpackopts":"3","size":"13.0 GB"}],"speed":"0 ","size":"13.0 GB","limit":0,"start":0,"diskspacetotal2":"464.96","darwin":true,"last_warning":"2013-03-26 20:08:56,360\nWARNING:\nAPI Key missing, please enter the api key from Config->General into your 3rd party program: ::1>??","have_warnings":"13","noofslots":1,"newzbin_url":"www.newzbin2.es","pause_int":"0","categories":["*","anime","apps","books","consoles","games","movies","music","pda","tv"],"diskspacetotal1":"464.96","mb":"13361.82","loadavg":"","cache_max":"209715200","speedlimit":"","webdir":"","left_quota":"0 ","uniconfig":"/Applications/SABnzbd.app/Contents/Resources/interfaces/Config/templates","paused":true,"isverbose":false,"restart_req":false,"power_options":true,"helpuri":"http://wiki.sabnzbd.org/","uptime":"2d","refresh_rate":"","my_home":"/Users/Andries","version":"0.7.11","my_lcldata":"/Users/Andries/Library/Application Support/SABnzbd","color_scheme":"Gold","new_release":"","nt":false,"status":"Paused","finish":0,"cache_art":"0","paused_all":false,"finishaction":null,"sizeleft":"9.3 GB","quota":"0 ","cache_size":"0 B","mbleft":"9502.00","diskspace2":"254.50","diskspace1":"254.50","scripts":["None","autoProcessMovie.py","autoProcessTV.py","nzbToCouchPotato.py","nzbToMediaEnv.py","nzbToSickBeard.py","TorrentToMedia.py"],"timeleft":"0:00:00","have_quota":false,"nzb_quota":"","eta":"unknown","kbpersec":"0.00","new_rel_url":"","queue_details":"0"}}';
+*/
+
+/* DOWNLOAD ACTIVE 
+$contents = '{"queue":{"active_lang":"en","session":"062df8bae5c1b9434b51914ae0ac3684","slots":[{"status":"Checking","index":0,"eta":"unknown","missing":0,"avg_age":"68d","script":"nzbToSickBeard.py","msgid":"","verbosity":"","mb":"13361.82","sizeleft":"7.8 GB","filename":"jF7HBtfIY3CG","priority":"Normal","cat":"tv","mbleft":"7945.56","timeleft":"0:00:00","percentage":"40","nzo_id":"SABnzbd_nzo_bxZEoR","unpackopts":"3","size":"13.0 GB"}],"speed":"5 K","size":"13.0 GB","limit":0,"start":0,"diskspacetotal2":"464.96","darwin":true,"last_warning":"2013-03-26 20:08:56,360\nWARNING:\nAPI Key missing, please enter the api key from Config->General into your 3rd party program: ::1>??","have_warnings":"13","noofslots":1,"newzbin_url":"www.newzbin2.es","pause_int":"0","categories":["*","anime","apps","books","consoles","games","movies","music","pda","tv"],"diskspacetotal1":"464.96","mb":"13361.82","loadavg":"","cache_max":"209715200","speedlimit":"","webdir":"","left_quota":"0 ","uniconfig":"/Applications/SABnzbd.app/Contents/Resources/interfaces/Config/templates","paused":false,"isverbose":false,"restart_req":false,"power_options":true,"helpuri":"http://wiki.sabnzbd.org/","uptime":"2d","refresh_rate":"","my_home":"/Users/Andries","version":"0.7.11","my_lcldata":"/Users/Andries/Library/Application Support/SABnzbd","color_scheme":"Gold","new_release":"","nt":false,"status":"Downloading","finish":0,"cache_art":"0","paused_all":false,"finishaction":null,"sizeleft":"7.8 GB","quota":"0 ","cache_size":"0 B","mbleft":"7945.56","diskspace2":"254.50","diskspace1":"254.50","scripts":["None","autoProcessMovie.py","autoProcessTV.py","nzbToCouchPotato.py","nzbToMediaEnv.py","nzbToSickBeard.py","TorrentToMedia.py"],"timeleft":"459:08:51","have_quota":false,"nzb_quota":"","eta":"00:17 Wed 17 Apr","kbpersec":"4.92","new_rel_url":"","queue_details":"0"}}'
+*/
+
 $contents = json_decode($contents, true);
-echo print_r($contents);
-echo "<hr>";
 
 echo var_dump($contents);
 echo "<hr>";
@@ -142,6 +147,19 @@ echo "</a><br />";
 echo "<a id='pgrefresh'>Refresh Page</a>";
 echo "<span id='responsemessage' class='warningmessage' style='display:none;'></span><a id='responsemessage_hide' style='border-bottom:1px dotted red;display:none;font-size:80%;'>Clear</a>";
 
+
+
+echo "<div class='downloadFrame clearfix'>";
+echo "	<div class='downloadPage downloadPageCurrent'>";
+echo "		<h2>" . $sab_state . "</h2>";
+echo "		<span class='currentdl'>jF7HBtfIY3CG</span>";
+echo "		<progress value='3903' max='" . $sab_totalQ . " 13361.8150358'></progress><span class='stats'>3903mb / " . $sab_totalQ . "13361mb (29%) @ " . $sab_speed . "6.4 M</span>";
+echo "	</div>";
+echo "	<div class='downloadPage downloadPageHistory'>";
+echo "		<h2>Recently Finished</h2>";
+echo "		<ul><li>tv - Arrow.S01E18.HDTV.x264-LOL.nzb</li><li>tv - Banshee.S01E10.REPACK.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E09.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E08.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E07.HDTV.x264-EVOLVE.nzb</li></ul>";
+echo "	</div>";
+echo "</div>";
 
 ?>
 

@@ -1,0 +1,69 @@
+
+.clearLeft {clear: left;}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+/* =========================================================
+
+	DOWNLOAD DETAILS
+
+========================================================= */
+.downloadFrame {float: left; margin: 30px 0 20px; width: 450px; overflow-x: hidden;}
+
+.downloadPage {float: left; width: 450px; position: relative;}
+.downloadPage .go {position: absolute; top: 0; right: 0; padding: 5px 9px; margin-right: 0;}
+
+.currentdl {display: block; color: #535353;}
+.stats {color: #888; font-size: 85%; padding-top: 5px; display: block;}
+
+progress {background-color: #bfbfbf !important; height: 4px; width: 100%; box-shadow: 0 1px 0 rgba(255,255,255,0.5); border: 0;}
+progress::-webkit-progress-value {background: #4ba0d5;}
+progress::-webkit-progress-bar {background: #bfbfbf;}
+progress::-moz-progress-bar {background: #4ba0d5;}
+
+.downloadPage ul,
+.downloadPage li {list-style: none; padding: 0; margin: 0;}
+.downloadPage ul {padding-bottom: 5px;}
+.downloadPage li {font-size: 85%;}
+
+/* =========================================================
+
+	SICKBEARD LIST
+
+========================================================= */
+.sickbeardShows {float: right; width: 205px; padding-bottom: 10px; margin-top: -35px;}
+.sickbeardShows h3 {padding-bottom: 10px;}
+.sickbeardShows ul,
+.sickbeardShows li,
+.seasonStarts ul,
+.seasonStarts li {list-style: none; padding: 0; margin: 0;}
+.sickbeardShows li,
+.seasonStarts li {padding: 10px 0; border-top: 1px solid rgba(0,0,0,0.1); position: relative;}
+.sickbeardShows .showep {font-size: 80%;}
+
+.showPopup {position: absolute; width: auto; left: -146px; top: -72px; background: rgba(0,0,0,0.9); display: none; box-shadow: 0 0 20px rgba(0,0,0,0.2); z-index: 5;}
+.showPopup:after {content: ""; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid rgba(0,0,0,0.9); position: absolute; margin-top: -5px; top: 50%; right: -10px; display: block;}
+.showPopupBlurb {color: #fff; text-shadow: none; font-size: 85%; padding: 10px; display: block;}
+.sickbeardShows li:hover .showPopup,
+.seasonStarts li:hover .showPopup {display: block;}
+.showposter {height: 180px; padding: 5px; float: left;}
+
+.snatchedShows li {background: url("images/tick.png") left no-repeat; padding-left: 25px;}
+.snatchedShows strong {color: #346d90; font-weight: normal;}
+.snatchedShows .showPopup {top: -80px;}
+
+/* If we know what quality was snatched, show a relevant icon */
+.snatchedShows li.sd {background-image: url("images/sd.png");}
+.snatchedShows li.hd {background-image: url("images/hd.png");}
+
+/* Season Start Date specific */
+.seasonStarts li {min-height: 112px;}
+.seaonStarts strong {font-size: 120%;}
+.showbanner {float: right; width: 600px;
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	-ms-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	-o-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}

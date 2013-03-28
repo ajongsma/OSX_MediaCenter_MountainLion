@@ -64,6 +64,8 @@ https://github.com/dbaines/shiznoid
 sudo ln -s ~/Github/OSX_NewBox/www/_1/ /Library/Server/Web/Data/Sites/Default/_1
 sudo ln -s ~/Github/OSX_NewBox/www/_2/ /Library/Server/Web/Data/Sites/Default/_2
 sudo ln -s ~/Github/OSX_NewBox/www/_3/ /Library/Server/Web/Data/Sites/Default/_3
+sudo ln -s ~/Github/OSX_NewBox/www/_4/ /Library/Server/Web/Data/Sites/Default/_4
+sudo ln -s ~/Github/OSX_NewBox/www/_5/ /Library/Server/Web/Data/Sites/Default/_5
 
 Slide Menu:
 https://github.com/callmekatootie/2094
