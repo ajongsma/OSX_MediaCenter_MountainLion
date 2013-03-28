@@ -23,8 +23,9 @@ Git functionality is by default not installed on OS X. This functionality can be
     git clone https://github.com/ajongsma/OSX_NewBox.git
     ```
 
-Things to consider:
-===================
+-----------------------
+# Things to consider: #
+-----------------------
 ### NewzNAB ###
 Get the [NewzNAB Premium](http://www.newznab.com/download.html) edition by donating a payment of 12GBP (approx 20USD). This will incorporate many additional features including:
 * Thumbnailing from available archive types
@@ -63,9 +64,9 @@ Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to
 * Automatic Configuration
 * Etc.
 
-<hr>
-
-# SETUP
+---------
+# SETUP #
+---------
 * OS X Mountain Lion
   * Updated GNU core utilities (coreutils)
   * apple-gcc42
@@ -145,9 +146,9 @@ Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to
      * [Quicksilver] (https://github.com/reddragon220/Quicksilver)
      * [Retroplex] (https://github.com/gitSebastian/Retroplex)
 
-
-# ADDENDUM
-
+------------
+# ADDENDUM #
+------------
 * NewzNAB processing: https://github.com/jonnyboy/newznab-tmux
  * tmux 1.6 or newer is needed to runs these scripts. This script relies on tmux reporting that the "Pane is dead". That is how the script knows that is nothing running in that pane and to restart it for another loop. Seeing "Pane is dead" is normal and expected.
  * [jonnyboy - Newznab-tmux](https://github.com/jonnyboy/newznab-tmux)
@@ -158,17 +159,18 @@ Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to
     cd /User/Newznab/Sites/newznab/update_scripts/nix-scripts/tmux/ && ./start.sh
     ```
 
-# OTHER INFO
-
+--------------
+# OTHER INFO #
+--------------
 * If needed, backup the MySQL database:
  
   ```bash
   mysqldump --opt -u root -p <password> ~/mysql_backup.sql
   ```
 
-<hr>
-
-# TO CHECK OUT
+----------------
+# TO CHECK OUT #
+----------------
 * [Plex theme - Alaska] (http://forums.plexapp.com/index.php/forum/49-alaska/)
 * [Plex theme - Refocus] (http://forums.plexapp.com/index.php/forum/65-refocus/)
 * [Plex theme - Simplex] (http://forums.plexapp.com/index.php/forum/102-simplex/)
