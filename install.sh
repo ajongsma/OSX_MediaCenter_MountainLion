@@ -370,10 +370,11 @@ else
     printf "$PRINTF_MASK" "Please enable:" "$YELLOW" "[WAIT]" "$RESET"
     printf "$PRINTF_MASK" "- Websites…" "$YELLOW" "[WAIT]" "$RESET"
     printf "$PRINTF_MASK" "- PHP Web Applications…" "$YELLOW" "[WAIT]" "$RESET"
-    open /Applications/Server.app
 
     echo -e "${BLUE} --- press any key to abort --- ${RESET}"
     read -n 1 -s
+
+    open /Applications/Server.app
     exit 1
 fi
 
