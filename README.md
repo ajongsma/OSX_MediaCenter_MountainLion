@@ -9,10 +9,13 @@ Having the called install scripts functioning as intended is the current focus p
 
 <hr>
 Git functionality is by default not installed on OS X. This functionality can be added by installing the command line tools via:
-  * Install [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12)
-  * And enable the command line Tools from within Xcode
-    * Preferences, Downloads, Command Line Tools
-    ![Command Line Tools](img/command_line_tools.png)
+  * Install [Xcode](http://itunes.apple.com/nl/app/xcode/id497799835?mt=12). After clicking on “View in Mac App Store” it should automatically launch the “App Store” app on your Mac and take you the Xcode page.
+  * Click on the “Free” button, then click on “Install App”.
+  * Once the installation is complete, go to your Applications folder and double-click on Xcode, then install any required components if asked to.
+  * Go to Xcode’s Preferences via the menu bar, or by pressing the command and comma keys.
+    ![Xcode Preferences](http://www.moncefbelyamani.com/images/xcode-prefs.jpg)
+  * Click on the Downloads icon, then click on the “Install” button next to “Command Line Tools”.
+    ![Xcode Command Line Tools](img/command_line_tools.png)
   * Next, open terminal and type:
     ```bash
 
