@@ -27,7 +27,7 @@ if [ $HOSTNAME != "pooky.local"]; then
       rm config.sh
     fi
 else
-    echo "=> Pooky"
+    echo "=> Pooky found"
 fi
 
 if [ ! -f config.sh ]; then
