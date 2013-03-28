@@ -33,6 +33,9 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
 
 GIT_ROOT=$(readlink -f ./$(git rev-parse --show-cdup))
 
+Screenshots:
+http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/
+
 #= HANDY's - END =====================================================================
 
 #= 26-03-2013 ========================================================================
