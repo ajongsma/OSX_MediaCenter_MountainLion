@@ -254,7 +254,7 @@ for file in ~/.{bash_profile,bashrc,extra,bash_prompt,exports,aliases,functions}
   if [ ! -f ~/$file ] ; then
     #echo "~/$file not found. Copying..."
     printf "$PRINTF_MASK" "File ~/$file not found. Copying..." "$YELLOW" "[WAIT]" "$RESET"
-    cp $DIR/conf/user/$file ~/$file
+    cp $DIR/conf/user/$file $HOME/$file
     if [ "$?" != "0" ]; then
         printf "$PRINTF_MASK" "Copying file ~/$file failed!" "$RED" "[ERR]" "$RESET"
     else
