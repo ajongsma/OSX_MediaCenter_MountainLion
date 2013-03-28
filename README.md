@@ -202,3 +202,5 @@ Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to
   ``` Add - Category SD (Ordinal 5): /^(RE\: |)\[.*?\](\-\[FULL\]|)\-\[\#.*?\](\-\[FULL\]|)\-\[(?P<name>.*?(HDTV.[a-zA-Z]264).*?)\]( |)\-\[(?P<parts>\d{1,3}\/\d{1,3})\]/ ```
   * Blacklist:
   ``` fina|wrestling|nba|mma|Croatian|Spanish|Turkish|TNA|NFL|WWE|EPL|National.Geographic|wtcc|nba|olympics|xxx|german|danish|flemish|dutch|french|swedish|swesub|deutsch|nl\.?sub|norwegian|\.ita\. FR|DE|ITA|sie|seit|ihn|ihm|haben|besitzen|sein|kriegen|nehmen|welche|jenes|von|auf|gegen|nach|das|sein|der|und|fuer|ersten|leicht|meinem|zum|aus|dem|blitzlicht|alle|grosse|zed|ich|sed|blitzen|NCAA Basketball ```
+* Dashboard
+  * [statusdashboard](https://github.com/obazoud/statusdashboard)
