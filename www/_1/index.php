@@ -90,37 +90,71 @@
 			<h1>Main page</h1>
 		</div>
 		<div data-role="content">
-			Something Something Bla Bla Bla
 <?php
-
-
+/* 
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
 $url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=qstatus&output=json&apikey=$sabnapi";
-$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=queue&output=json&apikey=$sabnapi";
-
-$json = file_get_contents($url); $data = json_decode($json, TRUE);
-$contents = file_get_contents($url);
+$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=history&limit=50&output=json&apikey=$sabnapi";
+*/
 
 /* DOWNLOAD PAUSED 
 $contents = '{"queue":{"active_lang":"en","session":"062df8bae5c1b9434b51914ae0ac3684","slots":[{"status":"Checking","index":0,"eta":"unknown","missing":0,"avg_age":"68d","script":"nzbToSickBeard.py","msgid":"","verbosity":"","mb":"13361.82","sizeleft":"9.3 GB","filename":"jF7HBtfIY3CG","priority":"Normal","cat":"tv","mbleft":"9502.00","timeleft":"0:00:00","percentage":"28","nzo_id":"SABnzbd_nzo_bxZEoR","unpackopts":"3","size":"13.0 GB"}],"speed":"0 ","size":"13.0 GB","limit":0,"start":0,"diskspacetotal2":"464.96","darwin":true,"last_warning":"2013-03-26 20:08:56,360\nWARNING:\nAPI Key missing, please enter the api key from Config->General into your 3rd party program: ::1>??","have_warnings":"13","noofslots":1,"newzbin_url":"www.newzbin2.es","pause_int":"0","categories":["*","anime","apps","books","consoles","games","movies","music","pda","tv"],"diskspacetotal1":"464.96","mb":"13361.82","loadavg":"","cache_max":"209715200","speedlimit":"","webdir":"","left_quota":"0 ","uniconfig":"/Applications/SABnzbd.app/Contents/Resources/interfaces/Config/templates","paused":true,"isverbose":false,"restart_req":false,"power_options":true,"helpuri":"http://wiki.sabnzbd.org/","uptime":"2d","refresh_rate":"","my_home":"/Users/Andries","version":"0.7.11","my_lcldata":"/Users/Andries/Library/Application Support/SABnzbd","color_scheme":"Gold","new_release":"","nt":false,"status":"Paused","finish":0,"cache_art":"0","paused_all":false,"finishaction":null,"sizeleft":"9.3 GB","quota":"0 ","cache_size":"0 B","mbleft":"9502.00","diskspace2":"254.50","diskspace1":"254.50","scripts":["None","autoProcessMovie.py","autoProcessTV.py","nzbToCouchPotato.py","nzbToMediaEnv.py","nzbToSickBeard.py","TorrentToMedia.py"],"timeleft":"0:00:00","have_quota":false,"nzb_quota":"","eta":"unknown","kbpersec":"0.00","new_rel_url":"","queue_details":"0"}}';
 */
 
 /* DOWNLOAD ACTIVE 
-$contents = '{"queue":{"active_lang":"en","session":"062df8bae5c1b9434b51914ae0ac3684","slots":[{"status":"Checking","index":0,"eta":"unknown","missing":0,"avg_age":"68d","script":"nzbToSickBeard.py","msgid":"","verbosity":"","mb":"13361.82","sizeleft":"7.8 GB","filename":"jF7HBtfIY3CG","priority":"Normal","cat":"tv","mbleft":"7945.56","timeleft":"0:00:00","percentage":"40","nzo_id":"SABnzbd_nzo_bxZEoR","unpackopts":"3","size":"13.0 GB"}],"speed":"5 K","size":"13.0 GB","limit":0,"start":0,"diskspacetotal2":"464.96","darwin":true,"last_warning":"2013-03-26 20:08:56,360\nWARNING:\nAPI Key missing, please enter the api key from Config->General into your 3rd party program: ::1>??","have_warnings":"13","noofslots":1,"newzbin_url":"www.newzbin2.es","pause_int":"0","categories":["*","anime","apps","books","consoles","games","movies","music","pda","tv"],"diskspacetotal1":"464.96","mb":"13361.82","loadavg":"","cache_max":"209715200","speedlimit":"","webdir":"","left_quota":"0 ","uniconfig":"/Applications/SABnzbd.app/Contents/Resources/interfaces/Config/templates","paused":false,"isverbose":false,"restart_req":false,"power_options":true,"helpuri":"http://wiki.sabnzbd.org/","uptime":"2d","refresh_rate":"","my_home":"/Users/Andries","version":"0.7.11","my_lcldata":"/Users/Andries/Library/Application Support/SABnzbd","color_scheme":"Gold","new_release":"","nt":false,"status":"Downloading","finish":0,"cache_art":"0","paused_all":false,"finishaction":null,"sizeleft":"7.8 GB","quota":"0 ","cache_size":"0 B","mbleft":"7945.56","diskspace2":"254.50","diskspace1":"254.50","scripts":["None","autoProcessMovie.py","autoProcessTV.py","nzbToCouchPotato.py","nzbToMediaEnv.py","nzbToSickBeard.py","TorrentToMedia.py"],"timeleft":"459:08:51","have_quota":false,"nzb_quota":"","eta":"00:17 Wed 17 Apr","kbpersec":"4.92","new_rel_url":"","queue_details":"0"}}'
+$contents = '{"queue":{"active_lang":"en","session":"062df8bae5c1b9434b51914ae0ac3684","slots":[{"status":"Checking","index":0,"eta":"unknown","missing":0,"avg_age":"68d","script":"nzbToSickBeard.py","msgid":"","verbosity":"","mb":"13361.82","sizeleft":"7.8 GB","filename":"FILENAME","priority":"Normal","cat":"tv","mbleft":"7945.56","timeleft":"0:00:00","percentage":"40","nzo_id":"SABnzbd_nzo_bxZEoR","unpackopts":"3","size":"13.0 GB"}],"speed":"5 K","size":"13.0 GB","limit":0,"start":0,"diskspacetotal2":"464.96","darwin":true,"last_warning":"2013-03-26 20:08:56,360\nWARNING:\nAPI Key missing, please enter the api key from Config->General into your 3rd party program: ::1>??","have_warnings":"13","noofslots":1,"newzbin_url":"www.newzbin2.es","pause_int":"0","categories":["*","anime","apps","books","consoles","games","movies","music","pda","tv"],"diskspacetotal1":"464.96","mb":"13361.82","loadavg":"","cache_max":"209715200","speedlimit":"","webdir":"","left_quota":"0 ","uniconfig":"/Applications/SABnzbd.app/Contents/Resources/interfaces/Config/templates","paused":false,"isverbose":false,"restart_req":false,"power_options":true,"helpuri":"http://wiki.sabnzbd.org/","uptime":"2d","refresh_rate":"","my_home":"/Users/Andries","version":"0.7.11","my_lcldata":"/Users/Andries/Library/Application Support/SABnzbd","color_scheme":"Gold","new_release":"","nt":false,"status":"Downloading","finish":0,"cache_art":"0","paused_all":false,"finishaction":null,"sizeleft":"7.8 GB","quota":"0 ","cache_size":"0 B","mbleft":"7945.56","diskspace2":"254.50","diskspace1":"254.50","scripts":["None","autoProcessMovie.py","autoProcessTV.py","nzbToCouchPotato.py","nzbToMediaEnv.py","nzbToSickBeard.py","TorrentToMedia.py"],"timeleft":"459:08:51","have_quota":false,"nzb_quota":"","eta":"00:17 Wed 17 Apr","kbpersec":"4.92","new_rel_url":"","queue_details":"0"}}';
 */
 
+
+/* DOWNLOAD ACTIVE
+$contents = '{"have_warnings":"0","pp_active":false,"noofslots":1,"paused":true,"pause_int":"0","mbleft":1605.749349,"diskspace2":243.016285,"diskspace1":243.016285,"jobs":[{"timeleft":"0:00:00","mb":1788.982698,"msgid":"","filename":"Arrow S01E18 1080p WEB-DL DD5 1 H 264-BS","mbleft":1605.749349,"id":"SABnzbd_nzo_pGJoAs"}],"speed":"0 ","timeleft":"0:00:00","mb":1788.982698,"state":"Paused","loadavg":"","kbpersec":0.000000}';
+*/
+
+/* DOWNLOAD PAUSED 
+$contents = 
+'{"have_warnings":"0","pp_active":false,"noofslots":1,"paused":false,"pause_int":"0","mbleft":1462.141112,"diskspace2":243.016376,"diskspace1":243.016376,"jobs":[{"timeleft":"69:58:35","mb":1788.982698,"msgid":"","filename":"Arrow S01E18 1080p WEB-DL DD5 1 H 264-BS","mbleft":1462.141112,"id":"SABnzbd_nzo_pGJoAs"}],"speed":"6 K","timeleft":"69:58:35","mb":1788.982698,"state":"Downloading","loadavg":"","kbpersec":5.943388}';
+*/
+
+$url = "http://$sabnhost:$sabnport/sabnzbd/api?mode=qstatus&output=json&apikey=$sabnapi";
+$json = file_get_contents($url);
+$data = json_decode($json, TRUE);
+$contents = file_get_contents($url);
 $contents = json_decode($contents, true);
 
-echo var_dump($contents);
+/* download status ('Completed', 'Paused', 'Queued, 'Failed', 'Verifying', 'Downloading', 'Extracting') */
+$sab_state = $contents['state'];
+if (strtolower($sab_state) == "idle") {
+	echo "==>Check state: idle<br>";
+
+} else {
+	$sab_Speed = $contents['speed'];
+	$sab_filename = $contents['jobs']['0']['filename'];
+	
+	if($sab_filename) {
+		$sab_QueueMBTotal = round($contents['mb']);                            # Get size of queue
+		$sab_QueueMBLeft = round($contents['mbleft']);                    # Get how much is left of queue
+		$sab_QueueMBDone = round($sab_QueueMBTotal - $sab_QueueMBLeft);                 # Calculate how much has been downloaded
+		$sab_QueueProgress = round((($sab_QueueMBDone / $sab_QueueMBTotal) * 100),2);  # Calculate percentage downloaded
+	}
+
+	echo "<div class='downloadFrame clearfix'>";
+	echo "	<div class='downloadPage downloadPageCurrent'>";
+	echo "		<h2>" . $sab_state . "</h2>";
+	echo "		<span class='currentdl'>" . $sab_filename . "</span>";
+	echo "		<progress value='".$sab_QueueMBDone."' max='".$sab_QueueMBTotal."'></progress><span class='stats'>".$sab_QueueMBDone." / ".$sab_QueueMBTotal."mb (".$sab_QueueProgress."%) @ ".$sab_Speed."M</span>";
+	echo "	</div>";
+	echo "</div>";
+}
+
 echo "<hr>";
 
-$sab_state = $contents['queue']['status'];
-echo "<hr>status: ".$sab_state;
+/*
 echo "\t\t<div id=\"sab-header\">\n";
 if (strtolower($state) == "downloading") {
 	echo "=>Check state: Downloading<br>";
 
 	//href link is the resume URL for all the queue
+	$sab_filename = $contents['queue']['filename'];
 	$sab_speed = $contents['queue']['speed'];
 	$sab_timeleft = $contents['queue']['timeleft'];
 	echo " - Speed: ".$sab_speed." - Timeleft: ".$sab_timeleft."</p>\n";
@@ -136,7 +170,6 @@ if (strtolower($state) == "downloading") {
 	echo "=>Check state: Else<br>";
 }
 
-
 //use the array items from the json decoded object to create a basic status display
 echo "<span id='sizeleft'>".$contents['queue']['sizeleft']."</span>/<span id='size'>".$contents['queue']['size']."</span> remaining @ <span id='speed'>".$contents['queue']['speed']."</span>/sec | ETA: <span id='eta'>".$contents['queue']['eta']."</span> (<span id='timeleft'>".$contents['queue']['timeleft']."</span>)";
 echo "<br />";
@@ -146,20 +179,10 @@ if($contents['queue']['paused']){ echo "Resume"; } else { echo "Pause"; }
 echo "</a><br />";
 echo "<a id='pgrefresh'>Refresh Page</a>";
 echo "<span id='responsemessage' class='warningmessage' style='display:none;'></span><a id='responsemessage_hide' style='border-bottom:1px dotted red;display:none;font-size:80%;'>Clear</a>";
+/*
 
 
 
-echo "<div class='downloadFrame clearfix'>";
-echo "	<div class='downloadPage downloadPageCurrent'>";
-echo "		<h2>" . $sab_state . "</h2>";
-echo "		<span class='currentdl'>jF7HBtfIY3CG</span>";
-echo "		<progress value='3903' max='" . $sab_totalQ . " 13361.8150358'></progress><span class='stats'>3903mb / " . $sab_totalQ . "13361mb (29%) @ " . $sab_speed . "6.4 M</span>";
-echo "	</div>";
-echo "	<div class='downloadPage downloadPageHistory'>";
-echo "		<h2>Recently Finished</h2>";
-echo "		<ul><li>tv - Arrow.S01E18.HDTV.x264-LOL.nzb</li><li>tv - Banshee.S01E10.REPACK.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E09.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E08.HDTV.x264-2HD.nzb</li><li>tv - Banshee.S01E07.HDTV.x264-EVOLVE.nzb</li></ul>";
-echo "	</div>";
-echo "</div>";
 
 ?>
 
