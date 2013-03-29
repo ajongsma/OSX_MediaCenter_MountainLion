@@ -22,21 +22,20 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.structure.min.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="js/jquery.animate-enhanced.min.js"></script>
-	
+
 	<!--JQM globals you can edit or remove file entirely... note it needs to be loaded before jquerymobile js -->
 	<script src="js/jqm.globals.js"></script>
-	
+
 	<script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+
+	<!--TESTING -->
+	<link rel="stylesheet" href="css/test.css" />
 
 	<!--JQM SlideMenu-->
 	<link rel="stylesheet" href="css/jqm.slidemenu.css" />
 	<script src="js/jqm.slidemenu.js"></script>
-
-	<!--TESTING -->
-	<link rel="stylesheet" href="css/test.css" />
 </head>
 <body>
-
 	<div id="slidemenu">
 
 		<div id="profile">
@@ -44,12 +43,11 @@
 		</div>
 
 		<h3>MENU</h3>
-
 		<ul>
 			<li><a href="#main_page"><img src="img/menu_star.png">Home</a></li>
-			<li><a href="#another_page"><img src="img/menu_person.png">1</a></li>
-			<li><a href="#another_page2"><img src="img/menu_config.png">2</a></li>
-			<li><a href="#another_page3"><img src="img/menu_heart.png">3</a></li>
+			<li><a href="#main_page"><img src="img/menu_person.png">Something</a></li>
+			<li><a href="#main_page"><img src="img/menu_config.png">Something</a></li>
+			<li><a href="#main_page" rel="external"><img src="img/menu_heart.png">Something</a></li>
 		</ul>
 
 		<h3>INDEXERS</h3>
@@ -82,54 +80,21 @@
 		<ul>
 			<li><a href="#Plex"><img src="img/menu_star.png">Plex</a></li>
 		</ul>
+
 	</div>
+
 
 	<div data-role="page" id="main_page" data-theme="a">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-update-page-padding="false">
 			<a href="#" data-slidemenu="#slidemenu" data-slideopen="false" data-icon="smico" data-corners="false" data-iconpos="notext">Menu</a>
-			<h1>Slide Menu</h1>
+			<h1>Main page</h1>
 		</div>
-
 		<div data-role="content">
 			<?php require 'includes/widgets/sabnzbd_download.php'; ?>
 			<?php require 'includes/widgets/sabnzbd_history.php'; ?>
 		</div>
 	</div>
-	
-	<div data-role="page" id="another_page" data-theme="a">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-update-page-padding="false">
-			<a href="#" data-slidemenu="#slidemenu" data-slideopen="false" data-icon="smico" data-corners="false" data-iconpos="notext">Menu</a>
-			<h1>Slide Menu</h1>
-		</div>
-		<div data-role="content">
-		
-			<h2>This is an example of another page loaded</h2>
-			<p>Something Something 1</p>
-		</div>
-	</div>
 
-	<div data-role="page" id="another_page2" data-theme="a">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-update-page-padding="false">
-			<a href="#" data-slidemenu="#slidemenu" data-slideopen="false" data-icon="smico" data-corners="false" data-iconpos="notext">Menu</a>
-			<h1>Slide Menu</h1>
-		</div>
-		<div data-role="content">
-			<h2>Lookie HERE!</h2>
-			<p>Something Something 2</p>
-		</div>
-	</div>
-	
-	<div data-role="page" id="another_page3" data-theme="a">
-		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-update-page-padding="false">
-			<a href="#" data-slidemenu="#slidemenu" data-slideopen="false" data-icon="smico" data-corners="false" data-iconpos="notext">Menu</a>
-			<h1>Slide Menu</h1>
-		</div>
-		<div data-role="content">
-			<h2>Some stuff and stuff</h2>
-			<p>Something Something 3</p>
-		</div>
-	</div>
-	
 	<div data-role="page" id="NewzNAB" data-theme="a">
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-update-page-padding="false">
 			<a href="#" data-slidemenu="#slidemenu" data-slideopen="false" data-icon="smico" data-corners="false" data-iconpos="notext">Menu</a>
@@ -147,7 +112,7 @@
 			<h1>Indexers</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1/spotweb" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost/spotweb" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
@@ -158,7 +123,7 @@
 			<h1>Download</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1:8080" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost:8080" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
@@ -169,7 +134,7 @@
 			<h1>TV Shows</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1:8081" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost:8081" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
@@ -180,7 +145,7 @@
 			<h1>Movies</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1:8082" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost:8082" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
@@ -191,7 +156,7 @@
 			<h1>Music</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1:8084" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost:8085" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
@@ -202,10 +167,9 @@
 			<h1>Music</h1>
 		</div>
 		<div data-role="content">
-			<iframe src="http://127.0.0.1:32400/web" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
+			<iframe src="http://localhost:32400/web" width="100%" height="700" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;">
 			</iframe>
 		</div>
 	</div>
-	
 </body>
 </html>
