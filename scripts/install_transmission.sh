@@ -21,6 +21,8 @@ hdiutil attach Transmission-2.77.dmg
 sudo cp -r /Volumes/Transmission/Transmission.app /Applications
 hdiutil detach /Volumes/Transmission/
 
+open /Applications/Transmission.app
+
 echo "#------------------------------------------------------------------------------"
 echo "# Install Transmission - Complete"
 echo "#------------------------------------------------------------------------------"
