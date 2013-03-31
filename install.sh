@@ -506,6 +506,19 @@ if [[ $INST_DROPBOX == "true" ]]; then
     fi
 fi
 
+#------------------------------------------------------------------------------
+# Check for Transmission
+#------------------------------------------------------------------------------
+if [[ $INST_TRANSMISSION == "true" ]]; then
+
+    if [ ! -e /Applications/Transmission.app ] ; then
+        printf 'Transmission not found, please install…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_transmission.sh"
+    else
+        printf 'Transmission found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+fi
+
 ##------------------------------------------------------------------------------
 ## Install HomeBrew
 ##------------------------------------------------------------------------------

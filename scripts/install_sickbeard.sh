@@ -105,8 +105,10 @@ if [[ -z $INST_SICKBEARD_KEY_API ]]; then
     done
 fi
 
-#####
-## sudo cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
+
+sudo cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
+
+###
 #autoProcessTV.cfg.sample
 #autoProcessTV.py
 #hellaToSickBeard.py

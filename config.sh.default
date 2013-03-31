@@ -56,6 +56,9 @@ INST_MACGITHUB="false"
 # Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
 INST_DROPBOX="true"
 
+# Install Transmission (http://www.transmissionbt.com) - (true/false)
+INST_TRANSMISSION="true"
+
 # Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
 INST_MYSQL_WORKBENCH="true"
 
