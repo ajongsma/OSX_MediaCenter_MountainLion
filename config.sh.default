@@ -22,7 +22,11 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 INST_OSX_UPDATES="false"
 
 #-----------------------------------------------------------
-## Folders
+## OSX Settings
+ENABLE_MOUSE_TAPTOCLICK="true"
+
+#-----------------------------------------------------------
+## Generic Folders locations
 INST_FOLDER_USENET_WATCH="$HOME/Downloads/Usenet/Watch"
 INST_FOLDER_USENET_INCOMPLETE="$HOME/Downloads/Usenet/InComplete"
 INST_FOLDER_USENET_COMPLETE="$HOME/Downloads/Usenet/Complete"
@@ -34,7 +38,6 @@ INST_FOLDER_MUSIC_COMPLETE="$HOME/Music"
 INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 
 #-----------------------------------------------------------
-
 # Trakt.tv integration (http://http://trakt.tv) - (true/false)
 INST_INTEGRATION_TRAKT="true"
 

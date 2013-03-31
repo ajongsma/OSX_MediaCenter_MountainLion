@@ -209,6 +209,13 @@ check_system
 chflags nohidden ~/Library
 
 #------------------------------------------------------------------------------
+# Enable Tap to Click for this user and for the login screen
+#------------------------------------------------------------------------------
+if [[ $ENABLE_MOUSE_TAPTOCLICK == "true" ]]; then
+    source "$DIR/scripts/osx_mouse_taptoclick_enable.sh"
+fi
+
+#------------------------------------------------------------------------------
 # Checking existence directories
 #------------------------------------------------------------------------------
 if [ ! -d ~/Sites/ ] ; then
@@ -510,7 +517,6 @@ fi
 # Check for Transmission
 #------------------------------------------------------------------------------
 if [[ $INST_TRANSMISSION == "true" ]]; then
-
     if [ ! -e /Applications/Transmission.app ] ; then
         printf 'Transmission not found, please install…\n' "$RED" $col '[FAIL]' "$RESET"
         source "$DIR/scripts/install_transmission.sh"
