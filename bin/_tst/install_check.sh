@@ -73,12 +73,13 @@ if [ -e APACHE2_CONF ] ; then
 	echo "======================"
 	echo "APACHE2 => ${APACHE2_CONF}"
 	echo "----------------------"
-	echo "Check :$(/usr/local/apache2/bin/httpd -S)"
+	echo "Check : $ (/usr/sbin/httpd -S)"
+	echo "Check : $ sudo serveradmin settings web"
 	echo "----------------------"
 	cat $APACHE2_CONF | grep "mod_rewrite.so"
 	cat $APACHE2_CONF | grep "proxy_http_module"
 	cat $APACHE2_CONF | grep "proxy_module"
-	/opt/local/apache2/bin/httpd -t
+	/usr/sbin/httpd -t
 else
 	echo "Missing file : ${APACHE2_CONF}   [ERR]"
 fi
@@ -87,7 +88,7 @@ echo '======================'
 echo 'PHP'
 echo '----------------------'
 echo php -v
-echo php -my
+echo php --ini
 echo '----------------------'
 echo 'Add/Change the following lines:'
 echo 'include_path = ".:/opt/share/pear"'
