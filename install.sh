@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 ######## PLAY TIME ##############
 ### Exit the script if any statement returns a non-true return value.
 #set -o errexit
@@ -10,7 +9,6 @@
 ##set -o nounset
 #
 ######## PLAY TIME - END ########
-
 
 SOURCE="${BASH_SOURCE[0]}"
 DIR="$( dirname "$SOURCE" )"
@@ -77,7 +75,6 @@ function colorize(){
     echo -en "$2"; tput sgr0
 }
 ######## PLAY TIME - END ########
-
 
 NOTICE=$RESET$BOLD$BLUE
 SUCCESS=$RESET$BOLD$GREEN
@@ -183,11 +180,11 @@ check_system
 # Keep-alive: update existing sudo time stamp until finished
 #------------------------------------------------------------------------------
 # Ask for the administrator password upfront
-echo "----------------------------------"
-echo "| Please enter root password     |"
-echo "----------------------------------"
+echo "--------------------------------------"
+echo "| Please enter the root password     |"
+echo "--------------------------------------"
 sudo -v
-echo "----------------------------------"
+echo "--------------------------------------"
 
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -196,12 +193,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Checking if system is up-to-date
 #------------------------------------------------------------------------------
 ## Run software update and reboot
-#if [[ $INST_OSX_UPDATES == "true" ]]; then
-#    sudo softwareupdate --list
-#    sudo softwareupdate --install --all
-#fi
-
-check_system
+if [[ $INST_OSX_UPDATES == "true" ]]; then
+    sudo softwareupdate --list
+    sudo softwareupdate --install --all
+fi
 
 #------------------------------------------------------------------------------
 # Show the ~/Library folder
@@ -388,7 +383,6 @@ fi
 #------------------------------------------------------------------------------
 # Copy original libphp5 file
 #------------------------------------------------------------------------------
-#sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
 if [ ! -e /usr/libexec/apache2/libphp5.so.org ] ; then
     printf "$PRINTF_MASK" "Backup file libphp5.org not found, copying file…" "$YELLOW" "[WAIT]" "$RESET"
     sudo cp /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so.org
@@ -417,6 +411,8 @@ if [[ $INST_ITERM2 == "true" ]]; then
     else
         printf "$PRINTF_MASK" "iTerm found" "$GREEN" "[OK]" "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "iTerm 2 excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -457,12 +453,13 @@ if [[ $INST_SUBLIMETEXT == "true" ]]; then
     else
         printf "$PRINTF_MASK" "Sublime Text link found" "$GREEN" "[OK]" "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Sublime Text excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Check for Xlog
 #------------------------------------------------------------------------------
-#https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12
 if [[ $INST_XLOG == "true" ]]; then
     if [ ! -e /Applications/Xlog.app ] ; then
         printf "$PRINTF_MASK" "Xlog not found, please install…" "$RED" "[FAIL]" "$RESET"
@@ -476,6 +473,8 @@ if [[ $INST_XLOG == "true" ]]; then
     else
         printf "$PRINTF_MASK" "Xlog found" "$GREEN" "[OK]" "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Xlog excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -494,6 +493,8 @@ if [[ $INST_MACGITHUB == "true" ]]; then
     else
         printf "$PRINTF_MASK" "GitHub found" "$GREEN" "[OK]" "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "GitHub excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -511,6 +512,8 @@ if [[ $INST_DROPBOX == "true" ]]; then
     else
         printf "$PRINTF_MASK" "Dropbox found" "$GREEN" "[OK]" "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Dropbox excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -523,6 +526,8 @@ if [[ $INST_TRANSMISSION == "true" ]]; then
     else
         printf 'Transmission found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Transmission excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -604,7 +609,7 @@ done
 
 brew linkapps
 
-echo "Don’t forget to check $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+echo "Don’t forget to check $(brew --prefix coreutils)/libexec/gnubin in \$PATH."
 echo "# homebrew"
 echo "PATH=/usr/local/bin:/usr/local/sbin:$PATH"
 echo "# GNU coreutils"
@@ -654,6 +659,8 @@ if [[ $INST_MYSQL_WORKBENCH == "true" ]]; then
     else
         printf 'MySQL Workbench found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "MySQL Workbench excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -681,6 +688,8 @@ if [[ $INST_PGADMIN == "true" ]]; then
     else
         printf 'pgAdmin found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "pgAdmin excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -700,6 +709,8 @@ if [[ $INST_INDUCTIONAPP == "true" ]]; then
     else
         printf 'Induction found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "InductionApp excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -762,6 +773,8 @@ if [[ $INST_POWERLINE_TMUX == "true" ]]; then
     else
         printf 'Powerline found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Powerline Tmux excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -774,6 +787,8 @@ if [[ $INST_POWERLINE_SHELL == "true" ]]; then
     else
         printf 'Powerline for Bash found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Powerline Bash excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -787,6 +802,8 @@ if [[ $INST_NEWZNAB == "true" ]]; then
     else
         printf 'NewzNAB found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -808,6 +825,8 @@ if [[ $$INST_NEWZNAB_THEMES == "true" ]]; then
     else
         printf 'NewzNAB themes found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB Themes excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -820,6 +839,8 @@ if [[ $INST_NEWZNAB == "true" ]]; then
     else
         printf 'NewzNAB Sphinx config found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Sphinx configuration for NewzNAB excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -832,6 +853,8 @@ if [[ $INST_NEWZNAB == "true" ]]; then
     else
         printf 'NewzNAB jonnyboy Tmux scripts found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB Newznab-Tmux scripts excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -850,6 +873,8 @@ if [[ $INST_NEWZNAB == "true" ]]; then
     osascript -e 'tell app "Terminal"
         do script "$INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh"
     end tell'
+else
+    printf "$PRINTF_MASK" "NewzNAB Custom scripts excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -862,6 +887,8 @@ if [[ $INST_NEWZNAB_NEWZDASH == "true" ]]; then
     else
         printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "NewzDash excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -879,6 +906,8 @@ if [[ $INST_SABNZBD == "true" ]]; then
     else
         printf 'SABnzbd found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "SABnzbd excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -896,6 +925,8 @@ if [[ $INST_SABNZBD_NZBTOMEDIA == "true" ]]; then
     else
         printf 'SABnzbd+ nzbToMedia found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "SABnzbd nzbToMedia excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -912,6 +943,8 @@ if [[ $INST_SPOTWEB == "true" ]]; then
     osascript -e 'tell app "Terminal"
         do script "php $INST_SPOTWEB_PATH/retrieve.php"
     end tell'
+else
+    printf "$PRINTF_MASK" "Spotweb excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -929,6 +962,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     else
         printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Cheetah for Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -955,6 +990,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     else
         printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -980,6 +1017,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     else
         printf 'Sick-Beard: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1007,6 +1046,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
             printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1034,6 +1075,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
             printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB for Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1051,6 +1094,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
             printf 'Spotweb as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "Spotweb for Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1070,6 +1115,8 @@ if [[ $INST_SICKBEARD == "true" ]]; then
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
     fi
+else
+    printf "$PRINTF_MASK" "Trackt.TV for Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
@@ -1087,7 +1134,10 @@ if [[ $INST_AUTO_SUB == "true" ]]; then
     else
         printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Auto-Sub excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
+
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
@@ -1103,6 +1153,8 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
     else
         printf 'CouchPotato found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1120,6 +1172,8 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
             printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "nzbToMedia for CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1145,6 +1199,8 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
     else
         printf 'Configuring SABnzbd for CouchPotato - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "SabNZBD Post-processing for CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1172,6 +1228,8 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
         #    printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
         #fi
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB for CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1189,6 +1247,8 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
             printf 'Spotweb as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "Spotweb for CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1207,17 +1267,19 @@ if [[ $INST_COUCHPOTATO == "true" ]]; then
         read -n 1 -s
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     fi
-fi
 
-#if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-#    printf 'CouchPotato support for Trakt.TV is not configured\n' "$RED" $col '[FAIL]' "$RESET"
-#    source "$DIR/scripts/install_couchpotato_trakttv.sh"
-#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-#    read -n 1 -s
-#    exit    
-#else
-#    printf 'CouchPotato support for Trakt.TV is configured\n' "$GREEN" $col '[OK]' "$RESET"
-#fi
+    #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+    #    printf 'CouchPotato support for Trakt.TV is not configured\n' "$RED" $col '[FAIL]' "$RESET"
+    #    source "$DIR/scripts/install_couchpotato_trakttv.sh"
+    #    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    #    read -n 1 -s
+    #    exit    
+    #else
+    #    printf 'CouchPotato support for Trakt.TV is configured\n' "$GREEN" $col '[OK]' "$RESET"
+    #fi
+else
+    printf "$PRINTF_MASK" "Trakt.TV for CouchPotato excluded from install" "$GREY" "[SKIP]" "$RESET"
+fi
 
 #------------------------------------------------------------------------------
 # Install Headphones
@@ -1234,6 +1296,8 @@ if [[ $INST_HEADPHONES == "true" ]]; then
     else
         printf 'Headphones found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Headphones excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------"
@@ -1268,7 +1332,10 @@ if [[ $INST_HEADPHONES == "true" ]]; then
         #fi
         fi
     fi
+else
+    printf "$PRINTF_MASK" "NewzNAB for Headphones excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
+
 #------------------------------------------------------------------------------"
 # Configuring Headphones for SABnzbd - nzbToMedia"
 # "
@@ -1297,6 +1364,8 @@ if [[ $INST_HEADPHONES == "true" ]]; then
             printf 'Headphones: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
         fi
     fi
+else
+    printf "$PRINTF_MASK" "SABnzbd for Headphones excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -1314,6 +1383,8 @@ if [[ $INST_PERISCOPE == "true" ]]; then
     else
         printf 'Periscope found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Periscope excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -1337,78 +1408,97 @@ fi
 # Install Maraschino
 #------------------------------------------------------------------------------
 if [[ $INST_MARASCHINO == "true" ]]; then
-	if [ ! -d /Applications/maraschino ] ; then
-	    printf 'Maraschino not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_marachino.sh"
-	    while ( [ ! -d /Applications/maraschino ] )
-	    do
-	        echo "Waiting for Maraschino to be installed..."
-	        sleep 15
-	    done
-	else
-	    printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -d /Applications/maraschino ] ; then
+        printf 'Maraschino not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_marachino.sh"
+        while ( [ ! -d /Applications/maraschino ] )
+        do
+            echo "Waiting for Maraschino to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Maraschino found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+else
+    printf "$PRINTF_MASK" "Maraschino excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
+
 #------------------------------------------------------------------------------
 # Install Plex Server
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/Plex\ Media\ Server.app ] ; then
-    printf 'Plex Server not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_plex_server.sh"
-    while ( [ ! -e /Applications/Plex\ Media\ Server.app ] )
-    do
-        echo "Waiting for Plex Server to be installed..."
-        sleep 15
-    done
+if [[ $INST_PLEX_SERVER == "true" ]]; then
+    if [ ! -e /Applications/Plex\ Media\ Server.app ] ; then
+        printf 'Plex Server not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_plex_server.sh"
+        while ( [ ! -e /Applications/Plex\ Media\ Server.app ] )
+        do
+            echo "Waiting for Plex Server to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Plex Server found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 else
-    printf 'Plex Server found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Plex Server excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Install Plex Client
 #------------------------------------------------------------------------------
-## http://wiki.plexapp.com/index.php/Keyboard
-if [ ! -e /Applications/Plex.app ] ; then
-    printf 'Plex Client not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_plex_client.sh"
-    while ( [ ! -d /Applications/Plex.app ] )
-    do
-        echo "Waiting for Plex Client to be installed..."
-        sleep 15
-    done
+if [[ $INST_PLEX_CLIENT == "true" ]]; then
+    ## http://wiki.plexapp.com/index.php/Keyboard
+    if [ ! -e /Applications/Plex.app ] ; then
+        printf 'Plex Client not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_plex_client.sh"
+        while ( [ ! -d /Applications/Plex.app ] )
+        do
+            echo "Waiting for Plex Client to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 else
-    printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Plex Client excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Install Plex Themes
 #------------------------------------------------------------------------------
-for another_plex_theme in \
-    ~/Library/Application\ Support/Plex/addons/Blur \
-    ~/Library/Application\ Support/Plex/addons/Carbon \
-    ~/Library/Application\ Support/Plex/addons/Metropolis \
-    ~/Library/Application\ Support/Plex/addons/PlexAeon \
-    ~/Library/Application\ Support/Plex/addons/Quicksilver \
-    ~/Library/Application\ Support/Plex/addons/Retroplex
-do
-    [[ -e $another_plex_theme ]] && echo "Found theme: $another_plex_theme" && [[ $INST_PLEX_THEMES != "false" ]] && export INST_PLEX_THEMES="true" || export INST_PLEX_THEMES="true"
-done
-
-if [[ $INST_PLEX_THEMES == "true" ]]; then
-    printf 'Plex themes not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_plex_themes.sh"
+if [[ $INST_PLEX_CLIENT == "true" ]]; then
+    for another_plex_theme in \
+        ~/Library/Application\ Support/Plex/addons/Blur \
+        ~/Library/Application\ Support/Plex/addons/Carbon \
+        ~/Library/Application\ Support/Plex/addons/Metropolis \
+        ~/Library/Application\ Support/Plex/addons/PlexAeon \
+        ~/Library/Application\ Support/Plex/addons/Quicksilver \
+        ~/Library/Application\ Support/Plex/addons/Retroplex
+    do
+        [[ -e $another_plex_theme ]] && echo "Found theme: $another_plex_theme" && [[ $INST_PLEX_THEMES != "false" ]] && export INST_PLEX_THEMES="true" || export INST_PLEX_THEMES="true"
+    done
+    
+    if [[ $INST_PLEX_THEMES == "true" ]]; then
+        printf 'Plex themes not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_plex_themes.sh"
+    else
+        printf 'Plex themes found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 else
-    printf 'Plex themes found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf "$PRINTF_MASK" "Plex Client Themes excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
 # Install Trakt.TV scrobbler for Plex
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/Plex.app ] ; then
-    printf 'Plex Client not installed\n' "$RED" $col '[FAIL]' "$RESET"
+if [[ $INST_PLEX_CLIENT == "true" ]]; then
+    if [ ! -e /Applications/Plex.app ] ; then
+        printf 'Plex Client not installed\n' "$RED" $col '[FAIL]' "$RESET"
+    else
+        printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
+        source "$DIR/scripts/install_plex_trakttv.sh"
+    fi
 else
-    printf 'Plex Client found\n' "$GREEN" $col '[OK]' "$RESET"
-    source "$DIR/scripts/install_plex_trakttv.sh"
+    printf "$PRINTF_MASK" "Trakt.TV integration for Plex Client excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
@@ -1421,33 +1511,36 @@ if [[ $INST_APACHE_WWW_FRONTPAGE == "true" ]]; then
     else
         printf 'Apache Frontpage found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Apache Frontpage excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 ##------------------------------------------------------------------------------
-## Install Apache Frontpage
+## Install Logitech Harmony for Plex
 ##------------------------------------------------------------------------------
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_logitech_harmony.sh"
-
-source "$DIR/scripts/install_logitech_harmony.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 if [[ $INST_HARMONY_PLEX == "true" ]]; then
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_logitech_harmony.sh"
+    
+    source "$DIR/scripts/install_logitech_harmony.sh"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
     if [ ! -f $INST_HARMONY_PATH/menubar.html ] ; then
         printf 'Harmony Software not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
         source "$DIR/scripts/install_logitech_harmony.sh"
     else
         printf 'Harmony Software found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
+else
+    printf "$PRINTF_MASK" "Harmony Plex configuration excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
-
-
 #==============================================================================
-#=== FORCED EXIT DUE TO TESTING ===============================================
+#=== FORCED EXIT FOR TO TESTING ===============================================
 exit
 #==============================================================================
 
@@ -1461,30 +1554,6 @@ exit
 #else
 #    echo "Directory /var/log/devicemgr/                    [OK]"
 #fi
-
-#------------------------------------------------------------------------------
-# Colourize terminal
-#------------------------------------------------------------------------------
-http://blog.likewise.org/2012/04/how-to-set-up-solarized-color-scheme.html
-if [ ! -e ~/.bash_profile ] ; then
-    echo "Creating default .bash_profile..."
-cat >> ~/.bash_profile <<'EOF'
-# Tell ls to be colourful
-export CLICOLOR=1
-
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=auto'
-EOF
-else
-    echo ".bash_profile found, please add the following:"
-
-    echo "# Tell ls to be colourful"
-    echo "export CLICOLOR=1"
-
-    echo "# Tell grep to highlight matches"
-    echo "export GREP_OPTIONS='--color=auto'"
-    subl ~/.bash_profile
-fi
 
 #------------------------------------------------------------------------------
 # Git config
@@ -1508,7 +1577,6 @@ git config -l | grep user.email
 #else
 #    echo "OK"
 #fi
-
 
 #------------------------------------------------------------------------------
 # Set computer name (as done via System Preferences → Sharing)
