@@ -51,7 +51,7 @@ Get the [Plex Mobile for IOS](http://www.plexapp.com/ios.php) to gain instant ac
 * A Remote
 
 ### Trakt.TV ###
-Get a free account on  [Trakt.TV](http://http://trakt.tv). This makes it possible to:
+Get a free account on  [Trakt.TV](http://trakt.tv). This makes it possible to:
 * Keep track of movie and tv series progress via a scrobble mechanism.
 * Mark movies within Trakt.TV which are automatically downloaded by CouchPotato
 * Etc.
