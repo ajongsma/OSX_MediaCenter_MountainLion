@@ -40,8 +40,11 @@ INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 #-----------------------------------------------------------
 
 #--- IMPLEMENTING - START
-# Install NewzNAB (http://www.newznab.com/) - (true/false)
+# Install NewzNAB (http://www.newznab.com) - (true/false)
 INST_NEWZNAB="true"
+
+# Install NewzDash (https://github.com/AlienXAXS/newzdash) - (true/false)
+INST_NEWZNAB_NEWZDASH="true"
 
 #--- IMPLEMENTING - END
 
