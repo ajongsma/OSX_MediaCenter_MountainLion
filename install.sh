@@ -859,7 +859,7 @@ fi
 #------------------------------------------------------------------------------
 # Install NewzDash
 #------------------------------------------------------------------------------
-if [[ $INST_NEWZDASH == "true" ]]; then
+if [[ $INST_NEWZNAB_NEWZDASH == "true" ]]; then
 	if [ ! -d /Library/Server/Web/Data/Sites/Default/newzdash ] ; then
 	    printf 'NewzDash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
 	    source "$DIR/scripts/install_newzdash.sh"
