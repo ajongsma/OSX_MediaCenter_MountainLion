@@ -39,6 +39,11 @@ INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 
 #-----------------------------------------------------------
 
+#--- IMPLEMENTING - START
+# Install NewzNAB (http://www.newznab.com/) - (true/false)
+INST_NEWZNAB="true"
+
+#--- IMPLEMENTING - END
 
 # Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
 INST_MYSQL_WORKBENCH="true"
@@ -49,14 +54,16 @@ INST_PGADMIN="true"
 # Install for InductionApp (http://inductionapp.com) - (true/false)
 INST_INDUCTIONAPP="false"
 
+# Install for Maraschino - (true/false)
+INST_MARASCHINO="false"
+
+#-----------------------------------------------------------
+
 # Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
 INST_POWERLINE_SHELL="false"
 
 # Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
 INST_POWERLINE_TMUX="true"
-
-# Install for Maraschino - (true/false)
-INST_MARASCHINO="false"
 
 # ===========================================================
 # | Utilities                                               |
