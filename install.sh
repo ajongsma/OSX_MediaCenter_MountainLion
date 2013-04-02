@@ -571,6 +571,7 @@ brew tap homebrew/dupes
 #brew install xvid
 #brew install ffmpeg
 #brew install mediainfo
+#brew install macvim --env-std --override-system-vim
 
 check_command_dependency brew
 
@@ -585,7 +586,6 @@ INSTALL="apple-gcc42 \
         wget \
         ack \
         ifstat \
-        'macvim --env-std --override-system-vim' \
         texi2html \
         yasm \
         x264 \
@@ -705,7 +705,6 @@ fi
 ##------------------------------------------------------------------------------
 ## Install PHP 5.4
 ##------------------------------------------------------------------------------
-
 if [ ! -d /usr/local/etc/php/5.4 ] ; then
     printf 'PHP 5.4 not installed, please install…\n' "$RED" $col '[FAIL]' "$RESET"
     source "$DIR/scripts/install_php54.sh"
@@ -931,6 +930,7 @@ if [[ $INST_SICKBEARD == "true" ]]; then
         printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
+
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
@@ -1006,6 +1006,7 @@ if [[ $INST_SICKBEARD == "true" ]]; then
         printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
     fi
 fi
+
 #------------------------------------------------------------------------------"
 # Configuring NewzNAB as provider for Sickbeard"
 #------------------------------------------------------------------------------"
@@ -1068,6 +1069,7 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     
     fi
 fi
+
 #------------------------------------------------------------------------------
 # Install Auto-Sub
 #------------------------------------------------------------------------------
@@ -1171,30 +1173,36 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring Spotweb as provider for CouchPotato"
 #------------------------------------------------------------------------------"
-if [[ -z $INST_SPOTWEB_KEY_API_COUCHPOTATO ]]; then
-    printf 'Spotweb as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_couchpotato_spotweb.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit    
-else
-    printf 'Spotweb as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    if [[ $INST_SPOTWEB == "true" ]]; then
+        if [[ -z $INST_SPOTWEB_KEY_API_COUCHPOTATO ]]; then
+            printf 'Spotweb as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_couchpotato_spotweb.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'Spotweb as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring CouchPotato to support Trakt.TV"
 #------------------------------------------------------------------------------"
-if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
-
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    echo " TODO: Check for specific variables"
-    echo " Till then, forced run:"
-    echo "   $DIR/scripts/install_couchpotato_trakttv.sh"
-
-    source "$DIR/scripts/install_couchpotato_trakttv.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
+    
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_couchpotato_trakttv.sh"
+    
+        source "$DIR/scripts/install_couchpotato_trakttv.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fi
 fi
 
 #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
