@@ -552,7 +552,8 @@ fi
 ##------------------------------------------------------------------------------
 ### Consider amending your PATH so that /usr/local/bin occurs before /usr/bin in your PATH.
 
-#brew tap homebrew/dupes
+brew tap homebrew/dupes
+
 #brew install apple-gcc42
 #brew install gnu-sed
 #brew install coreutils
@@ -598,7 +599,8 @@ INSTALL="apple-gcc42 \
 
 #brew install --use-gcc fontforge
 #brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
-#brew install 
+#brew install
+
 brew linkapps
 
 for i in $INSTALL
