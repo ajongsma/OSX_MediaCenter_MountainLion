@@ -585,8 +585,7 @@ INSTALL="apple-gcc42 \
         wget \
         ack \
         ifstat \
-        macvim --env-std --override-system-vim \
-        --use-gcc fontforge \
+        'macvim --env-std --override-system-vim' \
         texi2html \
         yasm \
         x264 \
@@ -596,10 +595,6 @@ INSTALL="apple-gcc42 \
         ffmpeg \
         mediainfo \
         "
-
-#brew install --use-gcc fontforge
-#brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
-#brew install
 
 brew linkapps
 
