@@ -888,16 +888,18 @@ fi
 #------------------------------------------------------------------------------
 # Install SABnzbd+ - nzbToMedia
 #------------------------------------------------------------------------------
-if [[ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ]]; then
-    printf 'SABnzbd nzbToMedia not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sabnzbd_nzbtomedia.sh"
-    while ( [ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ] )
-    do
-        echo "Waiting for SABnzbd+ nzbToMediato be installed..."
-        sleep 15
-    done
-else
-    printf 'SABnzbd+ nzbToMedia found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SABNZBD_NZBTOMEDIA == "true" ]]; then
+    if [[ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ]]; then
+        printf 'SABnzbd nzbToMedia not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sabnzbd_nzbtomedia.sh"
+        while ( [ ! -a ~/Library/Application\ Support/SABnzbd/scripts/*.sh ] )
+        do
+            echo "Waiting for SABnzbd+ nzbToMediato be installed..."
+            sleep 15
+        done
+    else
+        printf 'SABnzbd+ nzbToMedia found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
