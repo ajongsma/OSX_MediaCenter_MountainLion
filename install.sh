@@ -785,87 +785,87 @@ fi
 #------------------------------------------------------------------------------
 ## http://mar2zz.tweakblogs.net/blog/6947/newznab.html#more
 if [[ $INST_NEWZNAB == "true" ]]; then
-	if [ ! -d /Users/Newznab/Sites/newznab ] ; then
-	    printf 'NewzNAB not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newznab.sh"
-	else
-	    printf 'NewzNAB found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -d /Users/Newznab/Sites/newznab ] ; then
+        printf 'NewzNAB not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newznab.sh"
+    else
+        printf 'NewzNAB found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
 # Installing additional NewzNAB themes
 #------------------------------------------------------------------------------
 if [[ $INST_NEWZNAB == "true" ]]; then
-	for another_newznab_theme in \
-	    $INST_NEWZNAB_PATH/www/templates/simple \
-	    $INST_NEWZNAB_PATH/www/templates/bootstrapped \
-	    $INST_NEWZNAB_PATH/www/templates/carbon \
-	    $INST_NEWZNAB_PATH/www/templates/dusplic
-	do
-	    [[ -e $another_newznab_theme ]] && echo "Found theme: $another_newznab_theme" && [[ $INST_NEWZNAB_THEMES != "false" ]] && export INST_NEWZNAB_THEMES="true" || export INST_NEWZNAB_THEMES="true"
-	done
-	
-	if [[ $INST_NEWZNAB_THEMES == "true" ]]; then
-	    printf 'NewzNAB thems not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newznab_themes.sh"
-	else
-	    printf 'NewzNAB themes found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    for another_newznab_theme in \
+        $INST_NEWZNAB_PATH/www/templates/simple \
+        $INST_NEWZNAB_PATH/www/templates/bootstrapped \
+        $INST_NEWZNAB_PATH/www/templates/carbon \
+        $INST_NEWZNAB_PATH/www/templates/dusplic
+    do
+        [[ -e $another_newznab_theme ]] && echo "Found theme: $another_newznab_theme" && [[ $INST_NEWZNAB_THEMES != "false" ]] && export INST_NEWZNAB_THEMES="true" || export INST_NEWZNAB_THEMES="true"
+    done
+    
+    if [[ $INST_NEWZNAB_THEMES == "true" ]]; then
+        printf 'NewzNAB thems not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newznab_themes.sh"
+    else
+        printf 'NewzNAB themes found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
 # Configure Sphinx for NewzNAB
 #------------------------------------------------------------------------------
 if [[ $INST_NEWZNAB == "true" ]]; then
-	if [ ! -f $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then
-	    printf 'NewzNAB Sphinx config found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newznab_sphinx.sh"
-	else
-	    printf 'NewzNAB Sphinx config found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -f $INST_NEWZNAB_PATH/db/sphinxdata/sphinx.conf ] ; then
+        printf 'NewzNAB Sphinx config found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newznab_sphinx.sh"
+    else
+        printf 'NewzNAB Sphinx config found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
 # Install NewzNAB - jonnyboy/newznab-tmux
 #------------------------------------------------------------------------------
 if [[ $INST_NEWZNAB == "true" ]]; then
-	if [ ! -d $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux ] ; then
-	    printf 'NewzNAB jonnyboy Tmux not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newznab_tmux.sh"
-	else
-	    printf 'NewzNAB jonnyboy Tmux scripts found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -d $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/tmux ] ; then
+        printf 'NewzNAB jonnyboy Tmux not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newznab_tmux.sh"
+    else
+        printf 'NewzNAB jonnyboy Tmux scripts found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
 # Install NewzNAB - Custom Scripts
 #------------------------------------------------------------------------------
 if [[ $INST_NEWZNAB == "true" ]]; then
-	if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
-	    printf 'NewzNAB Custom Scripts not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newznab_script_custom.sh"
-	else
-	    printf 'NewzNAB Custom Scripts found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
-	
-	## open -a iTerm.app $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh
-	
-	osascript -e 'tell app "Terminal"
-	    do script "$INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh"
-	end tell'
+    if [ ! -d $INST_NEWZNAB_PATH/misc/custom ] ; then
+        printf 'NewzNAB Custom Scripts not found, installing...\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newznab_script_custom.sh"
+    else
+        printf 'NewzNAB Custom Scripts found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+    
+    ## open -a iTerm.app $INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh
+    
+    osascript -e 'tell app "Terminal"
+        do script "$INST_NEWZNAB_PATH/misc/update_scripts/nix_scripts/newznab_local.sh"
+    end tell'
 fi
 
 #------------------------------------------------------------------------------
 # Install NewzDash
 #------------------------------------------------------------------------------
 if [[ $INST_NEWZNAB_NEWZDASH == "true" ]]; then
-	if [ ! -d /Library/Server/Web/Data/Sites/Default/newzdash ] ; then
-	    printf 'NewzDash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_newzdash.sh"
-	else
-	    printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -d /Library/Server/Web/Data/Sites/Default/newzdash ] ; then
+        printf 'NewzDash not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_newzdash.sh"
+    else
+        printf 'NewzDash found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
