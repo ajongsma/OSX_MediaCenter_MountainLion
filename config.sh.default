@@ -53,6 +53,12 @@ INST_COUCHPOTATO=="true"
 ## Install Headphones (https://github.com/rembo10/headphones) - (true/false)
 $INST_HEADPHONES=="true"
 
+## Install Plex Server (http://www.plexapp.com/getplex) - (true/false)
+$INST_PLEX_SERVER=="true"
+
+## Install Plex Client (http://www.plexapp.com/download/plex-media-center.php) - (true/false)
+$INST_PLEX_CLIENT=="true"
+
 # ===========================================================
 # | DB UTILITIES                                            |
 # ===========================================================
