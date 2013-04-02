@@ -960,105 +960,114 @@ fi
 #------------------------------------------------------------------------------"
 # Configuring Sickbeard for SABnzbd - nzbToMedia"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_sickbeard_nzbtomedia.sh"
-
-source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'Sick-Beard: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_sickbeard_nzbtomedia.sh"
+    
     source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
-    exit    
-else
-    printf 'Sick-Beard: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        printf 'Sick-Beard: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sickbeard_nzbtomedia.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        exit    
+    else
+        printf 'Sick-Beard: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring SABnzbd for Sickbeard - post-processing"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_sabnzbd_sickbeard.sh"
-
-source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'Configuring SABnzbd for Sickbeard - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_sabnzbd_sickbeard.sh"
+    
     source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
-    exit    
-else
-    printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        printf 'Configuring SABnzbd for Sickbeard - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        exit    
+    else
+        printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
-
 #------------------------------------------------------------------------------"
 # Configuring NewzNAB as provider for Sickbeard"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_sickbeard_newznab.sh"
-
-source "$DIR/scripts/install_sickbeard_newznab.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'NewzNAB as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sickbeard_newznab.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit    
-else
-    printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    if [[ $INST_NEWZNAB == "true" ]]; then
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_sickbeard_newznab.sh"
+        
+        source "$DIR/scripts/install_sickbeard_newznab.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+            printf 'NewzNAB as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_sickbeard_newznab.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'NewzNAB as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring Spotweb as provider for Sickbeard"
 #------------------------------------------------------------------------------"
-if [[ -z $INST_SPOTWEB_KEY_API_SICKBEARD ]]; then
-    printf 'Spotweb as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sickbeard_spotweb.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit    
-else
-    printf 'Spotweb as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    if [[ $INST_SPOTWEB == "true" ]]; then
+        if [[ -z $INST_SPOTWEB_KEY_API_SICKBEARD ]]; then
+            printf 'Spotweb as provider for Sickbeard not configured\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_sickbeard_spotweb.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'Spotweb as provider for Sickbeard configured\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring Sickbeard to support Trakt.TV"
 #------------------------------------------------------------------------------"
-if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
-
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    echo " TODO: Check for specific variables"
-    echo " Till then, forced run:"
-    echo "   $DIR/scripts/install_sickbeard_trakttv.sh"
-
-    source "$DIR/scripts/install_sickbeard_trakttv.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+if [[ $INST_SICKBEARD == "true" ]]; then
+    if [[ $INST_INTEGRATION_TRAKT == "true" ]]; then
+    
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_sickbeard_trakttv.sh"
+    
+        source "$DIR/scripts/install_sickbeard_trakttv.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    fi
 fi
-
 #------------------------------------------------------------------------------
 # Install Auto-Sub
 #------------------------------------------------------------------------------
