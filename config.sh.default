@@ -89,7 +89,7 @@ INST_DROPBOX="true"
 INST_TRANSMISSION="true"
 
 # -----------------------------------------------------------
-# | Subtitles
+# | SUBTITLES
 # -----------------------------------------------------------
 # Install for Auto-Sub - (true/false)
 INST_AUTO_SUB="false"
@@ -100,9 +100,10 @@ INST_PERISCOPE="false"
 # Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
 INST_SUBLIMINAL="false"
 
-#-----------------------------------------------------------
+# -----------------------------------------------------------
+# | SCROBBLING
+# -----------------------------------------------------------
 # Trakt.TV integration (http://http://trakt.tv) - (true/false)
-
 INST_INTEGRATION_TRAKT="true"
 
 #-----------------------------------------------------------
@@ -134,6 +135,7 @@ INST_NEWSSERVER_SERVER_PW=''
 INST_NEWSSERVER_SERVER_PORT=''
 INST_NEWSSERVER_SERVER_PORT_SSL='563'
 INST_NEWSSERVER_RETENTION='876'
+
 #-----------------------------------------------------------
 
 ## SpotWeb
