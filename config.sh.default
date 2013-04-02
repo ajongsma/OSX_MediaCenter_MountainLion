@@ -52,6 +52,9 @@ INST_SABNZBD="true"
 # Install SabNZBD (https://github.com/clinton-hall/nzbToMedia) - (true/false)
 INST_SABNZBD_NZBTOMEDIA=="true"
 
+# Install SpotWeb (https://github.com/spotweb/spotweb) - (true/false)
+INST_SPOTWEB=="true"
+
 
 #--- IMPLEMENTING - END
 
@@ -122,6 +125,17 @@ SED="/usr/local/bin/gsed"
 
 #-----------------------------------------------------------
 
+## News Server Provider
+INST_NEWSSERVER_NAME='XsNews'
+INST_NEWSSERVER_SERVER='reader.xsnews.nl'
+INST_NEWSSERVER_SERVER_UID=''
+INST_NEWSSERVER_SERVER_PW=''
+INST_NEWSSERVER_SERVER_PORT=''
+INST_NEWSSERVER_SERVER_PORT_SSL='563'
+INST_NEWSSERVER_RETENTION='876'
+
+#-----------------------------------------------------------
+
 ## NewzNAB
 INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 INST_NEWZNAB_SVN_UID=""
@@ -133,17 +147,6 @@ INST_NEWZNAB_KEY_API=""
 INST_NEWZNAB_KEY_API_SICKBEARD=""
 INST_NEWZNAB_KEY_API_COUCHPOTATO=""
 INST_NEWZNAB_KEY_API_HEADPHONES=""
-
-#-----------------------------------------------------------
-
-## News Server Provider
-INST_NEWSSERVER_NAME='XsNews'
-INST_NEWSSERVER_SERVER='reader.xsnews.nl'
-INST_NEWSSERVER_SERVER_UID=''
-INST_NEWSSERVER_SERVER_PW=''
-INST_NEWSSERVER_SERVER_PORT=''
-INST_NEWSSERVER_SERVER_PORT_SSL='563'
-INST_NEWSSERVER_RETENTION='876'
 
 #-----------------------------------------------------------
 
