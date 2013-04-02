@@ -44,7 +44,7 @@ INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 INST_NEWZNAB="true"
 
 # Install NewzDash (https://github.com/AlienXAXS/newzdash) - (true/false)
-INST_NEWZNAB_NEWZDASH="true"
+INST_NEWZNAB_NEWZDASH="false"
 
 #--- IMPLEMENTING - END
 
