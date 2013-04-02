@@ -871,16 +871,18 @@ fi
 #------------------------------------------------------------------------------
 # Install SABnzbd+
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/SABnzbd.app ] ; then
-    printf 'SABnzbd not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sabnzbd.sh"
-    while ( [ ! -e /Applications/SABnzbd.app ] )
-    do
-        echo "Waiting for SABnzbd to be installed..."
-        sleep 15
-    done
-else
-    printf 'SABnzbd found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SABNZBD == "true" ]]; then
+    if [ ! -e /Applications/SABnzbd.app ] ; then
+        printf 'SABnzbd not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sabnzbd.sh"
+        while ( [ ! -e /Applications/SABnzbd.app ] )
+        do
+            echo "Waiting for SABnzbd to be installed..."
+            sleep 15
+        done
+    else
+        printf 'SABnzbd found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------
