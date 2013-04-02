@@ -7,7 +7,7 @@ echo "#-------------------------------------------------------------------------
 ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 if [ ! -e /usr/local/bin/brew ] ; then
     printf 'HomeBrew failed installing\n' "$RED" $col '[FAIL]' "$RESET"
-    exit
+    exit 1
 else
     printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
