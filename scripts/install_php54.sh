@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo "#------------------------------------------------------------------------------"
+echo "# Installing PHP 5.4"
+echo "#------------------------------------------------------------------------------"
+
 ## The php.ini file can be found in:
 ##    /usr/local/etc/php/5.4/php.ini
 ## If PEAR complains about permissions, 'fix' the default PEAR permissions and config:
@@ -18,9 +22,7 @@
 ##    /usr/local/opt/memcached/bin/memcached
 
 ## brew unlink php53 && brew link php54
-
 #?? error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
-
 #command -v brew >/dev/null 2>&1|| { echo >&2 "I require Homebrew but it's not installed.  Aborting."; exit 1; }
 
 brew tap josegonzalez/homebrew-php
@@ -62,13 +64,12 @@ else
 	sudo cp $DIR/conf/app/php.ini /private/etc/php.ini
 fi
 
-
-echo "Change as soon as possible:"
+echo "Change after extended test runs:"
 echo "File:"
 echo "/private/etc/php.ini"
 echo "/usr/local/etc/php/5.4/php.ini"
 echo "  display_startup_errors = On"
-echo "  to"
+echo " to"
 echo "  display_startup_errors = Off"
 
 ## echo "Add/Change the following lines:"
@@ -138,15 +139,15 @@ echo "  display_startup_errors = Off"
 ## #EOF
 ## #PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
-echo "Don’t forget to add the PATH:"
+echo "Don’t forget to check PATH variable:"
 echo "PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH.""
 
-cat >> ~/.bashrc <<'EOF'
-# PHP 5.4
-PATH="$(brew --prefix josegonzalez/php/php54)/bin":$PATH
-EOF
-source ~/.bashrc
-
+## cat >> ~/.bashrc <<'EOF'
+## # PHP 5.4
+## PATH="$(brew --prefix josegonzalez/php/php54)/bin":$PATH
+## EOF
+## source ~/.bashrc
+ 
 sudo mv /usr/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp53.so
 sudo ln -sv /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so /usr/libexec/apache2/libphp5.so
 
@@ -165,8 +166,6 @@ sudo apachectl restart
 
 open http://localhost/php_info.php
 
-echo "Install PHP 5.4 complete.\n"
-
-
-
-
+echo "#------------------------------------------------------------------------------"
+echo "# Install PHP 5.4 - Complete"
+echo "#------------------------------------------------------------------------------"
