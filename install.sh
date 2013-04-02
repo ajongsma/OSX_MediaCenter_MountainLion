@@ -905,16 +905,18 @@ fi
 #------------------------------------------------------------------------------
 # Install Spotweb
 #------------------------------------------------------------------------------
-if [ ! -d /Users/Spotweb/Sites/spotweb ] ; then
-    printf 'Spotweb not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_spotweb.sh"
-else
-    printf 'Spotweb found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SPOTWEB == "true" ]]; then
+    if [ ! -d /Users/Spotweb/Sites/spotweb ] ; then
+        printf 'Spotweb not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_spotweb.sh"
+    else
+        printf 'Spotweb found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
+    
+    osascript -e 'tell app "Terminal"
+        do script "php $INST_SPOTWEB_PATH/retrieve.php"
+    end tell'
 fi
-
-osascript -e 'tell app "Terminal"
-    do script "php $INST_SPOTWEB_PATH/retrieve.php"
-end tell'
 
 #------------------------------------------------------------------------------
 # Install Cheetah
