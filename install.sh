@@ -1222,72 +1222,82 @@ fi
 #------------------------------------------------------------------------------
 # Install Headphones
 #------------------------------------------------------------------------------
-if [ ! -d $INST_HEADPHONES_PATH ] ; then
-    printf 'Headphones not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_headphones.sh"
-    while ( [ ! -d $INST_HEADPHONES_PATH ] )
-    do
-        echo "Waiting for Headphones to be installed..."
-        sleep 15
-    done
-else
-    printf 'Headphones found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_HEADPHONES == "true" ]]; then
+    if [ ! -d $INST_HEADPHONES_PATH ] ; then
+        printf 'Headphones not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_headphones.sh"
+        while ( [ ! -d $INST_HEADPHONES_PATH ] )
+        do
+            echo "Waiting for Headphones to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Headphones found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring NewzNAB as provider for Headphones"
 #------------------------------------------------------------------------------"
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_headphones_newznab.sh"
-
-source "$DIR/scripts/install_headphones_newznab.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# /Users/Headphones/Sites/headphones/config.ini
-#  [SABnzbd]
-#  sab_host = http://localhost/8080
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-#if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-#    printf 'NewzNAB as provider for Headphones not configured\n' "$RED" $col '[FAIL]' "$RESET"
-#    source "$DIR/scripts/install_headphones_newznab.sh"
-#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-#    read -n 1 -s
-#    exit    
-#else
-#    printf 'NewzNAB as provider for Headphones configured\n' "$GREEN" $col '[OK]' "$RESET"
-#fi
-
+if [[ $INST_HEADPHONES == "true" ]]; then
+    if [[ $INST_NEWZNAB == "true" ]]; then
+        if [ ! -d $INST_HEADPHONES_PATH ] ; then
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_headphones_newznab.sh"
+        
+        source "$DIR/scripts/install_headphones_newznab.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # /Users/Headphones/Sites/headphones/config.ini
+        #  [SABnzbd]
+        #  sab_host = http://localhost/8080
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        #    printf 'NewzNAB as provider for Headphones not configured\n' "$RED" $col '[FAIL]' "$RESET"
+        #    source "$DIR/scripts/install_headphones_newznab.sh"
+        #    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        #    read -n 1 -s
+        #    exit    
+        #else
+        #    printf 'NewzNAB as provider for Headphones configured\n' "$GREEN" $col '[OK]' "$RESET"
+        #fi
+        fi
+    fi
+fi
 #------------------------------------------------------------------------------"
-# Configuring Headphones for SABnzbd"
+# Configuring Headphones for SABnzbd - nzbToMedia"
 # "
 # Perhaps even:"
-# Configuring Headphones for SABnzbd - nzbToMedia"
+# Configuring Headphones for SABnzbd"
 #------------------------------------------------------------------------------"
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_headphones_nzbtomedia.sh"
-
-source "$DIR/scripts/install_headphones_nzbtomedia.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'Headphones: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_headphones_nzbtomedia.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit    
-else
-    printf 'Headphones: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_HEADPHONES == "true" ]]; then
+    if [[ $INST_SABNZBD == "true" ]]; then
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_headphones_nzbtomedia.sh"
+        
+        source "$DIR/scripts/install_headphones_nzbtomedia.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+            printf 'Headphones: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_headphones_nzbtomedia.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'Headphones: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
+    fi
 fi
-
 
 ##------------------------------------------------------------------------------
 ## Install Periscope
