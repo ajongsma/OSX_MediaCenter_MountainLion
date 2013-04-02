@@ -596,15 +596,15 @@ INSTALL="apple-gcc42 \
         mediainfo \
         "
 
-brew linkapps
-
 for i in $INSTALL
 do
         # command -v will return >0 when the $i is not found
     homebrew_checkinstall_recipe $i || { echo "$i command not found."; exit 1; }
 done
 
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+brew linkapps
+
+echo "Don’t forget to check $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 echo "# homebrew"
 echo "PATH=/usr/local/bin:/usr/local/sbin:$PATH"
 echo "# GNU coreutils"
