@@ -65,7 +65,7 @@ INST_PGADMIN="true"
 ## Install for InductionApp (http://inductionapp.com) - (true/false)
 INST_INDUCTIONAPP="false"
 
-## Install for Maraschino - (true/false)
+## Install for Maraschino (http://www.maraschinoproject.com)- (true/false)
 INST_MARASCHINO="false"
 
 # ===========================================================
