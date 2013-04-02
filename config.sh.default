@@ -58,6 +58,10 @@ INST_SPOTWEB=="true"
 # Install Sick-Beard (http://sickbeard.com) - (true/false)
 INST_SICKBEARD=="true"
 
+# Install CouchPotato (https://couchpota.to) - (true/false)
+INST_COUCHPOTATO=="true"
+
+
 #--- IMPLEMENTING - END
 
 # Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
