@@ -37,100 +37,115 @@ INST_FOLDER_MUSIC_COMPLETE="$HOME/Music"
 #INST_APACHE_SYSTEM_WEB_ROOT='/Library/WebServer/Documents/'
 INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 
-#-----------------------------------------------------------
-
-#--- IMPLEMENTING - START
-# Install NewzNAB (http://www.newznab.com) - (true/false)
+# ===========================================================
+# | INSTALLS                                                |
+# ===========================================================
+## Install NewzNAB (http://www.newznab.com) - (true/false)
 INST_NEWZNAB="true"
 
-# Install NewzDash (https://github.com/AlienXAXS/newzdash) - (true/false)
+## Install NewzDash (https://github.com/AlienXAXS/newzdash) - (true/false)
 INST_NEWZNAB_NEWZDASH="false"
 
-# Install SabNZBD (http://sabnzbd.org) - (true/false)
+## Install SabNZBD (http://sabnzbd.org) - (true/false)
 INST_SABNZBD="true"
 
-# Install SabNZBD (https://github.com/clinton-hall/nzbToMedia) - (true/false)
+## Install SabNZBD (https://github.com/clinton-hall/nzbToMedia) - (true/false)
 INST_SABNZBD_NZBTOMEDIA=="true"
 
-# Install SpotWeb (https://github.com/spotweb/spotweb) - (true/false)
+## Install SpotWeb (https://github.com/spotweb/spotweb) - (true/false)
 INST_SPOTWEB=="true"
 
-# Install Sick-Beard (http://sickbeard.com) - (true/false)
+## Install Sick-Beard (http://sickbeard.com) - (true/false)
 INST_SICKBEARD=="true"
 
-# Install CouchPotato (https://couchpota.to) - (true/false)
+## Install CouchPotato (https://couchpota.to) - (true/false)
 INST_COUCHPOTATO=="true"
 
+## Install Headphones (https://github.com/rembo10/headphones) - (true/false)
+$INST_HEADPHONES=="true"
 
-#--- IMPLEMENTING - END
-
-# Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
+# ===========================================================
+# | DB UTILITIES                                            |
+# ===========================================================
+## Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
 INST_MYSQL_WORKBENCH="true"
 
-#Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
+## Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
 INST_PGADMIN="true"
 
-# Install for InductionApp (http://inductionapp.com) - (true/false)
+## Install for InductionApp (http://inductionapp.com) - (true/false)
 INST_INDUCTIONAPP="false"
 
-# Install for Maraschino - (true/false)
+## Install for Maraschino - (true/false)
 INST_MARASCHINO="false"
 
-#-----------------------------------------------------------
-
-# Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
+# ===========================================================
+# | POWERLINE                                               |
+# ===========================================================
+## Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
 INST_POWERLINE_SHELL="false"
 
-# Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
+## Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
 INST_POWERLINE_TMUX="false"
 
 # ===========================================================
 # | UTILITIES                                               |
 # ===========================================================
-
-# Install iTerm 2 (http://www.iterm2.com) - (true/false)
+## Install iTerm 2 (http://www.iterm2.com) - (true/false)
 INST_ITERM2="true"
 
-# Install Sublime Text (http://www.sublimetext.com) - (true/false)
+## Install Sublime Text (http://www.sublimetext.com) - (true/false)
 INST_SUBLIMETEXT="true"
 
-# Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
+## Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
 INST_XLOG="false"
 
-# Install Mac Github (http://mac.github.com) - (true/false)
+## Install Mac Github (http://mac.github.com) - (true/false)
 INST_MACGITHUB="false"
 
-# Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
+## Install Dropbox (https://www.dropbox.com/download?plat=mac) - (true/false)
 INST_DROPBOX="true"
 
-# Install Transmission (http://www.transmissionbt.com) - (true/false)
+## Install Transmission (http://www.transmissionbt.com) - (true/false)
 INST_TRANSMISSION="true"
 
-# -----------------------------------------------------------
-# | SUBTITLES
-# -----------------------------------------------------------
-# Install for Auto-Sub - (true/false)
+# ===========================================================
+# | SUBTITLES                                               |
+# ===========================================================
+## Install for Auto-Sub - (true/false)
 INST_AUTO_SUB="false"
 
-# Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
+## Install for Periscope (http://code.google.com/p/periscope/) - (true/false)
 INST_PERISCOPE="false"
 
-# Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
+## Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
 INST_SUBLIMINAL="false"
 
-# -----------------------------------------------------------
-# | SCROBBLING
-# -----------------------------------------------------------
-# Trakt.TV integration (http://http://trakt.tv) - (true/false)
+# ===========================================================
+# | SCROBBLING                                              |
+# ===========================================================
+## Trakt.TV integration (http://http://trakt.tv) - (true/false)
 INST_INTEGRATION_TRAKT="true"
 
-#-----------------------------------------------------------
+# ===========================================================
+# | WWW FRONTPAGE                                           |
+# ===========================================================
+INST_APACHE_WWW_FRONTPAGE="false"
 
-#Specify your SED binary
+# ===========================================================
+# | LOGITECH HARMONY                                        |
+# ===========================================================
+INST_HARMONY_PLEX="false"
+
+# ===========================================================
+# | BINARIES                                                |
+# ===========================================================
+## Specify your SED binary
 SED="/usr/local/bin/gsed"
 
-#-----------------------------------------------------------
-
+# ===========================================================
+# | SETTINGS                                                |
+# ===========================================================
 ## News Server Provider
 INST_NEWSSERVER_NAME='XsNews'
 INST_NEWSSERVER_SERVER='reader.xsnews.nl'
@@ -140,9 +155,9 @@ INST_NEWSSERVER_SERVER_PORT=''
 INST_NEWSSERVER_SERVER_PORT_SSL='563'
 INST_NEWSSERVER_RETENTION='876'
 
-#-----------------------------------------------------------
-
-## NewzNAB
+# -----------------------------------------------------------
+# | NewzNAB
+# -----------------------------------------------------------
 INST_NEWZNAB_PATH="/Users/Newznab/Sites/newznab"
 INST_NEWZNAB_SVN_UID=""
 INST_NEWZNAB_SVN_PW=""
@@ -154,9 +169,9 @@ INST_NEWZNAB_KEY_API_SICKBEARD=""
 INST_NEWZNAB_KEY_API_COUCHPOTATO=""
 INST_NEWZNAB_KEY_API_HEADPHONES=""
 
-#-----------------------------------------------------------
-
-## SpotWeb
+# -----------------------------------------------------------
+# | SpotWeb
+# -----------------------------------------------------------
 INST_SPOTWEB_PATH="/Users/Spotweb/Sites/spotweb"
 INST_SPOTWEB_UID="spotweb"
 INST_SPOTWEB_PSQL_DB="spotweb_db"
@@ -166,43 +181,43 @@ INST_SPOTWEB_KEY_API_SICKBEARD=""
 INST_SPOTWEB_KEY_API_COUCHPOTATO=""
 #INST_SPOTWEB_KEY_API_HEADPHONES=""
 
-#-----------------------------------------------------------
-
-## SABnzbd
+# -----------------------------------------------------------
+# | SABnzbd
+# -----------------------------------------------------------
 INST_SABNZBD_UID="sabnzbd"
 INST_SABNZBD_PW="mini_sabnzbd"
 INST_SABNZBD_PORT="8080"
 INST_SABNZBD_KEY_API=""
 INST_SABNZBD_KEY_NZB=""
 
-#-----------------------------------------------------------
-
-## Sick-Beard
+# -----------------------------------------------------------
+# | Sick-Beard
+# -----------------------------------------------------------
 INST_SICKBEARD_UID="sickbeard"
 INST_SICKBEARD_PW="mini_sickbeard"
 INST_SICKBEARD_PORT="8081"
 INST_SICKBEARD_KEY_API=""
 
-#-----------------------------------------------------------
-
-## Couchpotato
+# -----------------------------------------------------------
+# | Couchpotato
+# -----------------------------------------------------------
 INST_COUCHPOTATO_UID="couchpotato"
 INST_COUCHPOTATO_PW="mini_couchpotato"
 INST_COUCHPOTATO_PORT="8082"
 INST_COUCHPOTATOD_KEY_API=""
 
-#-----------------------------------------------------------
-
-## Headphones
+# -----------------------------------------------------------
+# | Headphones
+# -----------------------------------------------------------
 INST_HEADPHONES_PATH="/Users/Headphones/Sites/headphones"
 INST_HEADPHONES_UID="headphones"
 INST_HEADPHONES_PW="mini_headphones"
 INST_HEADPHONES_PORT="8084"
 INST_HEADPHONES_KEY_API=""
 
-#-----------------------------------------------------------
-
-## Trakt
+# -----------------------------------------------------------
+# | Trakt
+# -----------------------------------------------------------
 INST_TRAKT_UID=""
 INST_TRAKT_PW=""
 INST_TRAKT_KEY_API=""
@@ -214,16 +229,6 @@ INST_GIT_FULL_NAME='Andries Jongsma'
 
 ## E-mail address for GIT
 INST_GIT_EMAIL='a.jongsma@gmail.com'
-
-#-----------------------------------------------------------
-
-## WWW Frontpage
-INST_APACHE_WWW_FRONTPAGE="false"
-
-#-----------------------------------------------------------
-
-## Harmony Plex profile
-INST_HARMONY_PLEX="false"
 
 ############################################################
 
