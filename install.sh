@@ -1072,95 +1072,104 @@ fi
 # Install Auto-Sub
 #------------------------------------------------------------------------------
 if [[ $INST_AUTO_SUB == "true" ]]; then
-	if [ ! -e /Applications/auto-sub.app ] ; then
-	    printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-	    source "$DIR/scripts/install_autosub.sh"
-	    while ( [ ! -e /Applications/auto-sub.app ] )
-	    do
-	        echo "Waiting for Auto-Sub to be installed..."
-	        sleep 15
-	    done
-	else
-	    printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
-	fi
+    if [ ! -e /Applications/auto-sub.app ] ; then
+        printf 'Auto-Sub not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_autosub.sh"
+        while ( [ ! -e /Applications/auto-sub.app ] )
+        do
+            echo "Waiting for Auto-Sub to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Auto-Sub found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 #------------------------------------------------------------------------------
 # Install CouchPotato
 #------------------------------------------------------------------------------
-if [ ! -e /Applications/CouchPotato.app ] ; then
-    printf 'CouchPotato not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_couchpotato.sh"
-    while ( [ ! -e /Applications/CouchPotato.app ] )
-    do
-        echo "Waiting for CouchPotato to be installed..."
-        sleep 15
-    done
-else
-    printf 'CouchPotato found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    if [ ! -e /Applications/CouchPotato.app ] ; then
+        printf 'CouchPotato not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_couchpotato.sh"
+        while ( [ ! -e /Applications/CouchPotato.app ] )
+        do
+            echo "Waiting for CouchPotato to be installed..."
+            sleep 15
+        done
+    else
+        printf 'CouchPotato found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring CouchPotato for SABnzbd - nzbToMedia"
 #------------------------------------------------------------------------------"
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    exit    
-else
-    printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        exit    
+    else
+        printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring SABnzbd for CouchPotato - post-processing"
 #------------------------------------------------------------------------------"
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_sabnzbd_couchpotato.sh"
-
-source "$DIR/scripts/install_sabnzbd_couchpotato.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-    printf 'Configuring SABnzbd for CouchPotato - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO: Check for specific variables"
+    echo " Till then, forced run:"
+    echo "   $DIR/scripts/install_sabnzbd_couchpotato.sh"
+    
     source "$DIR/scripts/install_sabnzbd_couchpotato.sh"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
-    exit    
-else
-    printf 'Configuring SABnzbd for CouchPotato - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        printf 'Configuring SABnzbd for CouchPotato - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sabnzbd_couchpotato.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        exit    
+    else
+        printf 'Configuring SABnzbd for CouchPotato - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
 # Configuring NewzNAB as provider for CouchPotato"
 #------------------------------------------------------------------------------"
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO: Check for specific variables"
-echo " Till then, forced run:"
-echo "   $DIR/scripts/install_couchpotato_newznab.sh"
-
-source "$DIR/scripts/install_sickbeard_newznab.sh"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-#if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-#    printf 'NewzNAB as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
-#    source "$DIR/scripts/install_couchpotato_newznab.sh"
-#    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-#    read -n 1 -s
-#    exit    
-#else
-#    printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
-#fi
+if [[ $INST_COUCHPOTATO == "true" ]]; then
+    if [[ $INST_NEWZNAB == "true" ]]; then
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_couchpotato_newznab.sh"
+        
+        source "$DIR/scripts/install_sickbeard_newznab.sh"
+        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        #if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+        #    printf 'NewzNAB as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
+        #    source "$DIR/scripts/install_couchpotato_newznab.sh"
+        #    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        #    read -n 1 -s
+        #    exit    
+        #else
+        #    printf 'NewzNAB as provider for CouchPotato configured\n' "$GREEN" $col '[OK]' "$RESET"
+        #fi
+    fi
+fi
 
 #------------------------------------------------------------------------------"
-# Configuring CouchPotato as provider for Sickbeard"
+# Configuring Spotweb as provider for CouchPotato"
 #------------------------------------------------------------------------------"
 if [[ -z $INST_SPOTWEB_KEY_API_COUCHPOTATO ]]; then
     printf 'Spotweb as provider for CouchPotato not configured\n' "$RED" $col '[FAIL]' "$RESET"
