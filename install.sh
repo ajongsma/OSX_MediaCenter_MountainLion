@@ -918,40 +918,43 @@ fi
 #------------------------------------------------------------------------------
 # Install Cheetah
 #------------------------------------------------------------------------------
-if [ ! -e /usr/local/bin/cheetah ] ; then
-    printf 'SABnzbd not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_cheetah.sh"
-    while ( [ ! -e /usr/local/bin/cheetah ] )
-    do
-        echo "Waiting for Cheetah to be installed..."
-        sleep 15
-    done
-else
-    printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    if [ ! -e /usr/local/bin/cheetah ] ; then
+        printf 'Cheetah not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_cheetah.sh"
+        while ( [ ! -e /usr/local/bin/cheetah ] )
+        do
+            echo "Waiting for Cheetah to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Cheetah found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
-
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO:"
-echo " - Autostart Python Sickbeard script via Screen ??"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ??? TODO: Screen the Sickbeard.py ???
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -d /Applications/Sick-Beard ] ; then
-    printf 'Sick-Beard not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sickbeard"
-    while ( [ ! -d /Applications/Sick-Beard ] )
-    do
-        echo "Waiting for Sick-Beard to be installed..."
-        sleep 15
-    done
-else
-    printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo " TODO:"
+    echo " - Autostart Python Sickbeard script via Screen ??"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # ??? TODO: Screen the Sickbeard.py ???
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    if [ ! -d /Applications/Sick-Beard ] ; then
+        printf 'Sick-Beard not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+        source "$DIR/scripts/install_sickbeard"
+        while ( [ ! -d /Applications/Sick-Beard ] )
+        do
+            echo "Waiting for Sick-Beard to be installed..."
+            sleep 15
+        done
+    else
+        printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
+    fi
 fi
 
 #------------------------------------------------------------------------------"
