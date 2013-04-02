@@ -9,7 +9,7 @@ if [ ! -e /usr/local/bin/brew ] ; then
     printf 'HomeBrew failed installing\n' "$RED" $col '[FAIL]' "$RESET"
     exit
 else
-    printf 'Dropbox found\n' "$GREEN" $col '[OK]' "$RESET"
+    printf 'HomeBrew found\n' "$GREEN" $col '[OK]' "$RESET"
 fi
 # Make sure we’re using the latest Homebrew
 brew update
