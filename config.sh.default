@@ -46,6 +46,13 @@ INST_NEWZNAB="true"
 # Install NewzDash (https://github.com/AlienXAXS/newzdash) - (true/false)
 INST_NEWZNAB_NEWZDASH="false"
 
+# Install SabNZBD (http://sabnzbd.org) - (true/false)
+INST_SABNZBD="true"
+
+# Install SabNZBD (https://github.com/clinton-hall/nzbToMedia) - (true/false)
+INST_SABNZBD_NZBTOMEDIA=="true"
+
+
 #--- IMPLEMENTING - END
 
 # Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
@@ -69,10 +76,9 @@ INST_POWERLINE_SHELL="false"
 INST_POWERLINE_TMUX="true"
 
 # ===========================================================
-# | Utilities                                               |
+# | UTILITIES                                               |
 # ===========================================================
 
-## Install optional software
 # Install iTerm 2 (http://www.iterm2.com) - (true/false)
 INST_ITERM2="true"
 
