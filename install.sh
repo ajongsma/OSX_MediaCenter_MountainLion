@@ -796,17 +796,17 @@ fi
 #------------------------------------------------------------------------------
 # Installing additional NewzNAB themes
 #------------------------------------------------------------------------------
-if [[ $INST_NEWZNAB == "true" ]]; then
+if [[ $$INST_NEWZNAB_THEMES == "true" ]]; then
     for another_newznab_theme in \
         $INST_NEWZNAB_PATH/www/templates/simple \
         $INST_NEWZNAB_PATH/www/templates/bootstrapped \
         $INST_NEWZNAB_PATH/www/templates/carbon \
         $INST_NEWZNAB_PATH/www/templates/dusplic
     do
-        [[ -e $another_newznab_theme ]] && echo "Found theme: $another_newznab_theme" && [[ $INST_NEWZNAB_THEMES != "false" ]] && export INST_NEWZNAB_THEMES="true" || export INST_NEWZNAB_THEMES="true"
+        [[ -e $another_newznab_theme ]] && echo "Found theme: $another_newznab_theme" && [[ $INST_NEWZNAB_THEME != "false" ]] && export INST_NEWZNAB_THEME="true" || export INST_NEWZNAB_THEME="true"
     done
     
-    if [[ $INST_NEWZNAB_THEMES == "true" ]]; then
+    if [[ $INST_NEWZNAB_THEME == "true" ]]; then
         printf 'NewzNAB thems not all installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
         source "$DIR/scripts/install_newznab_themes.sh"
     else
