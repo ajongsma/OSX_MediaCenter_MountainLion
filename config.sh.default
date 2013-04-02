@@ -55,6 +55,8 @@ INST_SABNZBD_NZBTOMEDIA=="true"
 # Install SpotWeb (https://github.com/spotweb/spotweb) - (true/false)
 INST_SPOTWEB=="true"
 
+# Install Sick-Beard (http://sickbeard.com) - (true/false)
+INST_SICKBEARD=="true"
 
 #--- IMPLEMENTING - END
 
@@ -76,7 +78,7 @@ INST_MARASCHINO="false"
 INST_POWERLINE_SHELL="false"
 
 # Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
-INST_POWERLINE_TMUX="true"
+INST_POWERLINE_TMUX="false"
 
 # ===========================================================
 # | UTILITIES                                               |
