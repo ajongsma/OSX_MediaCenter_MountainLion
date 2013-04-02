@@ -90,6 +90,7 @@ INST_POWERLINE_TMUX="false"
 INST_ITERM2="true"
 
 ## Install Sublime Text (http://www.sublimetext.com) - (true/false)
+## Please note that the defined editor from called scripts are currently using this editor. If set to false, many errors will occur.
 INST_SUBLIMETEXT="true"
 
 ## Install Xlog (https://itunes.apple.com/nl/app/xlog/id430304898?l=en&mt=12) - (true/false)
