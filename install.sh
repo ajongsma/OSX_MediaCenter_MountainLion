@@ -986,24 +986,26 @@ fi
 # Configuring SABnzbd for Sickbeard - post-processing"
 #------------------------------------------------------------------------------"
 if [[ $INST_SICKBEARD == "true" ]]; then
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    echo " TODO: Check for specific variables"
-    echo " Till then, forced run:"
-    echo "   $DIR/scripts/install_sabnzbd_sickbeard.sh"
-    
-    source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
-    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-    read -n 1 -s
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-        printf 'Configuring SABnzbd for Sickbeard - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+    if [[ $INST_SABNZBD == "true" ]]; then
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        echo " TODO: Check for specific variables"
+        echo " Till then, forced run:"
+        echo "   $DIR/scripts/install_sabnzbd_sickbeard.sh"
+        
         source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
         echo -e "${BLUE} --- press any key to continue --- ${RESET}"
         read -n 1 -s
-        exit    
-    else
-        printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+            printf 'Configuring SABnzbd for Sickbeard - post-processing not configured\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_sabnzbd_sickbeard.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'Configuring SABnzbd for Sickbeard - post-processing - Completed\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
     fi
 fi
 
@@ -1107,14 +1109,16 @@ fi
 # Configuring CouchPotato for SABnzbd - nzbToMedia"
 #------------------------------------------------------------------------------"
 if [[ $INST_COUCHPOTATO == "true" ]]; then
-    if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
-        printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
-        source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
-        echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-        read -n 1 -s
-        exit    
-    else
-        printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+    if [[ $INST_SABNZBD == "true" ]]; then
+        if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/autoProcessMedia.cfg ] ; then
+            printf 'CouchPotato: SABnzbd - nzbToMedia not installed\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_couchpotato_nzbtomedia.sh"
+            echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+            read -n 1 -s
+            exit    
+        else
+            printf 'CouchPotato: SABnzbd - nzbToMedia configured\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
     fi
 fi
 
