@@ -38,10 +38,29 @@ INST_FOLDER_MUSIC_COMPLETE="$HOME/Music"
 INST_APACHE_SYSTEM_WEB_ROOT="/Library/Server/Web/Data/Sites/Default"
 
 #-----------------------------------------------------------
-# Trakt.tv integration (http://http://trakt.tv) - (true/false)
-INST_INTEGRATION_TRAKT="true"
 
-#-----------------------------------------------------------
+
+# Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
+INST_MYSQL_WORKBENCH="true"
+
+#Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
+INST_PGADMIN="true"
+
+# Install for InductionApp (http://inductionapp.com) - (true/false)
+INST_INDUCTIONAPP="false"
+
+# Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
+INST_POWERLINE_SHELL="false"
+
+# Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
+INST_POWERLINE_TMUX="true"
+
+# Install for Maraschino - (true/false)
+INST_MARASCHINO="false"
+
+# ===========================================================
+# | Utilities                                               |
+# ===========================================================
 
 ## Install optional software
 # Install iTerm 2 (http://www.iterm2.com) - (true/false)
@@ -62,21 +81,9 @@ INST_DROPBOX="true"
 # Install Transmission (http://www.transmissionbt.com) - (true/false)
 INST_TRANSMISSION="true"
 
-# Install MySQL Workbench (http://dev.mysql.com/downloads/workbench) - (true/false)
-INST_MYSQL_WORKBENCH="true"
-
-#Install pgAdmin (http://www.pgadmin.org/download/macosx.php) - (true/false)
-INST_PGADMIN="true"
-
-# Install for InductionApp (http://inductionapp.com) - (true/false)
-INST_INDUCTIONAPP="false"
-
-# Install for Powerline Shell (https://github.com/milkbikis/powerline-shell) - (true/false)
-INST_POWERLINE_SHELL="false"
-
-# Install for Powerline Tmux (https://github.com/milkbikis/powerline-shell) - (true/false)
-INST_POWERLINE_TMUX="true"
-
+# -----------------------------------------------------------
+# | Subtitles
+# -----------------------------------------------------------
 # Install for Auto-Sub - (true/false)
 INST_AUTO_SUB="false"
 
@@ -86,8 +93,10 @@ INST_PERISCOPE="false"
 # Install for Subliminal (https://github.com/Diaoul/subliminal) - (true/false)
 INST_SUBLIMINAL="false"
 
-# Install for Maraschino - (true/false)
-INST_MARASCHINO="false"
+#-----------------------------------------------------------
+# Trakt.TV integration (http://http://trakt.tv) - (true/false)
+
+INST_INTEGRATION_TRAKT="true"
 
 #-----------------------------------------------------------
 
