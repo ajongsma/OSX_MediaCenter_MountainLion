@@ -10,7 +10,7 @@ source ../config.sh
 [ -d ~/Github ] || mkdir -p ~/Github
 
 cd ~/Github/
-git clone https://github.com/clinton-hall/nzbToMedia
+git clone https://github.com/clinton-hall/nzbToMedia.git
 cp -R ~/Github/nzbToMedia/* ~/Library/Application\ Support/SABnzbd/scripts/
 #cp /Applications/Sick-Beard/autoProcessTV/* ~/Library/Application\ Support/SABnzbd/scripts/
 
