@@ -32,9 +32,6 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
 /private/etc/apache2/httpd.conf
 /private/etc/apache2/original/httpd.conf
 
-
-
-
 #= ERRORS - END ======================================================================
 
 #= HANDY's ===========================================================================
@@ -45,6 +42,21 @@ Screenshots:
 http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/
 
 #= HANDY's - END =====================================================================
+
+#= 02-04-2013 ========================================================================
+
+subl /private/etc/apache2/httpd.conf
+
+Change:
+# Virtual hosts
+#Include /private/etc/apache2/extra/httpd-vhosts.conf
+To:
+# Virtual hosts
+Include /private/etc/apache2/extra/httpd-vhosts.conf
+
+sudo cp /private/etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-vhosts.conf.org
+subl /private/etc/apache2/extra/httpd-vhosts.conf
+
 
 #= 26-03-2013 ========================================================================
 
