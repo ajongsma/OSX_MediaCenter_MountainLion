@@ -969,7 +969,6 @@ fi
 #------------------------------------------------------------------------------
 # Install Sick-Beard
 #------------------------------------------------------------------------------
-<<<<<<< HEAD
 if [[ $INST_SICKBEARD == "true" ]]; then
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     echo " TODO:"
@@ -991,27 +990,6 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     else
         printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-echo " TODO:"
-echo " - Autostart Python Sickbeard script via Screen ??"
-echo -e "${BLUE} --- press any key to continue --- ${RESET}"
-read -n 1 -s
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ??? TODO: Screen the Sickbeard.py ???
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if [ ! -d /Applications/Sick-Beard ] ; then
-    printf 'Sick-Beard not installed, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sickbeard.sh"
-    while ( [ ! -d /Applications/Sick-Beard ] )
-    do
-        echo "Waiting for Sick-Beard to be installed..."
-        sleep 15
-    done
->>>>>>> Added Sick-Beard to SABnzbd scripts
-else
-    printf "$PRINTF_MASK" "Sickbeard excluded from install" "$GREY" "[SKIP]" "$RESET"
 fi
 
 #------------------------------------------------------------------------------
