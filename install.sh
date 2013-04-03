@@ -995,11 +995,15 @@ fi
 #------------------------------------------------------------------------------
 # Install default Sick-Beard to SABnzbd scripts
 #------------------------------------------------------------------------------
-if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/sabToSickBeard.py ] ; then
-    printf 'Default Sick-Beard to SABnzbd scripts, installing…\n' "$RED" $col '[FAIL]' "$RESET"
-    source "$DIR/scripts/install_sickbeard_sabscripts.sh"
-else
-    printf 'Default Sick-Beard to SABnzbd scripts found\n' "$GREEN" $col '[OK]' "$RESET"
+if [[ $INST_SICKBEARD == "true" ]]; then
+    if [[ $INST_SABNZBD == "true" ]]; then
+        if [ ! -f ~/Library/Application\ Support/SABnzbd/scripts/sabToSickBeard.py ] ; then
+            printf 'Default Sick-Beard to SABnzbd scripts, installing…\n' "$RED" $col '[FAIL]' "$RESET"
+            source "$DIR/scripts/install_sickbeard_sabscripts.sh"
+        else
+            printf 'Default Sick-Beard to SABnzbd scripts found\n' "$GREEN" $col '[OK]' "$RESET"
+        fi
+    fi
 fi
 
 #------------------------------------------------------------------------------"
