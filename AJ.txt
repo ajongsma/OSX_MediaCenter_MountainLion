@@ -76,6 +76,9 @@ sudo ln -s ~/Github/OSX_NewBox/www/_4/ /Library/Server/Web/Data/Sites/Default/_4
 sudo ln -s ~/Github/OSX_NewBox/www/_5/ /Library/Server/Web/Data/Sites/Default/_5
 sudo ln -s ~/Github/OSX_NewBox/www/_6/ /Library/Server/Web/Data/Sites/Default/_6
 
+sudo rm /Library/Server/Web/Data/Sites/Default/test2
+sudo ln -s /Users/test2/ /Library/Server/Web/Data/Sites/Default/test2
+
 Slide Menu:
 https://github.com/callmekatootie/2094
 cd ~/Github

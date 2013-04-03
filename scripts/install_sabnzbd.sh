@@ -7,9 +7,9 @@ echo "#-------------------------------------------------------------------------
 
 source ../config.sh
 
-mkdir -p ~/Downloads/Usenet/Incomplete
-mkdir -p ~/Downloads/Usenet/Complete
-mkdir -p ~/Downloads/Usenet/Watch
+mkdir -p $INST_FOLDER_USENET_INCOMPLETE
+mkdir -p $INST_FOLDER_USENET_COMPLETE
+mkdir -p $INST_FOLDER_USENET_WATCH
 
 if [ ! -e /Applications/SABnzbd.app ] ; then
     echo "SABnzbd not installed, please install..."
@@ -46,10 +46,10 @@ open /Applications/SABnzbd.app
 mkdir /Users/Andries/Library/Application\ Support/scripts
 echo "-----------------------------------------------------------"
 echo "| Folders:"
-echo "| Temporary Download Folder               : ~/Downloads/Usenet/Incomplete"
+echo "| Temporary Download Folder               : $INST_FOLDER_USENET_INCOMPLETE"
 echo "| Minimum Free Space                      : 1G"
-echo "| Completed Download Folder               : ~/Downloads/Usenet/Complete"
-echo "| Watched Folder                          : ~/Downloads/Usenet/Watch"
+echo "| Completed Download Folder               : $INST_FOLDER_USENET_COMPLETE"
+echo "| Watched Folder                          : $INST_FOLDER_USENET_WATCH"
 echo "| Watched Folder Scan Speed               : 300"
 echo "| Post Processing Folder                  : ~/Library/Application Support/SABnzbd/scripts"
 echo "-----------------------------------------------------------"
