@@ -991,7 +991,7 @@ if [[ $INST_SICKBEARD == "true" ]]; then
     else
         printf 'Sick-Beard found\n' "$GREEN" $col '[OK]' "$RESET"
     fi
-=======
+
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo " TODO:"
 echo " - Autostart Python Sickbeard script via Screen ??"
