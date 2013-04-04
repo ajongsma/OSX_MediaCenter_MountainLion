@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-7"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+            <string>org.sabnzbd</string>
+    <key>displayName</key>
+            <string>SABnzbd app at /sabnzbd</string>
+    <key>launchKeys</key>
+            <array/>
+    <key>installationIndicatorFilePath</key>
+            <string>/Applications/SABnzbd.app/Contents/Resources/SABnzbd.py</string>
+    <key>includeFiles</key>
+            <array/>
+    <key>proxies</key>      <!-- ProxyPass/ProxyPassReverse directives are activated when webapp is started -->
+            <dict>
+                    <key>/sabnzbd</key>            <!-- Sets up a reverse proxy -->
+                    <dict>
+                    <key>keysAndValues</key>
+                            <string></string>
+                    <key>path</key>
+                            <string>/sabnzbd</string>
+                    <key>urls</key>         <!-- URLs comprise a proxy_balancer group -->
+                            <array>
+                                    <string>http://localhost:8080</string>
+                            </array>
+                    </dict>
+            </dict>
+    <key>requiredModuleNames</key>
+            <array/>
+</dict>
+</plist>

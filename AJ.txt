@@ -29,9 +29,6 @@ WARNING :: Could not retrieve number of columns settings. Defaulting to 3.
 
 -------------------------------------------------------------------------
 
-/private/etc/apache2/httpd.conf
-/private/etc/apache2/original/httpd.conf
-
 #= ERRORS - END ======================================================================
 
 #= HANDY's ===========================================================================
@@ -43,7 +40,77 @@ http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac
 
 #= HANDY's - END =====================================================================
 
+#= 03-04-2013 ========================================================================
+http://serverfault.com/questions/441722/apache-2-2-on-mountain-lion-ignoring-proxypass-and-sending-request-to-documentro
+
+
+/Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist
+
+<?xml version="1.0" encoding="UTF-7"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+            <string>org.sabnzbd</string>
+    <key>displayName</key>
+            <string>SABnzbd app at /sabnzbd</string>
+    <key>launchKeys</key>
+            <array/>
+    <key>installationIndicatorFilePath</key>
+            <string>/Applications/SABnzbd.app/Contents/Resources/SABnzbd.py</string>
+    <key>includeFiles</key>
+            <array/>
+    <key>proxies</key>      <!-- ProxyPass/ProxyPassReverse directives are activated when webapp is started -->
+            <dict>
+                    <key>/sabnzbd</key>            <!-- Sets up a reverse proxy -->
+                    <dict>
+                    <key>keysAndValues</key>
+                            <string></string>
+                    <key>path</key>
+                            <string>/sabnzbd</string>
+                    <key>urls</key>         <!-- URLs comprise a proxy_balancer group -->
+                            <array>
+                                    <string>http://localhost:8080</string>
+                            </array>
+                    </dict>
+            </dict>
+    <key>requiredModuleNames</key>
+            <array/>
+</dict>
+</plist>
+
+sudo webappctl start org.sabnzbd
+
+
 #= 02-04-2013 ========================================================================
+
+/private/etc/apache2/httpd.conf
+/private/etc/apache2/original/httpd.conf
+
+<VirtualHost *:80>                                                                      
+    # Rewrite engine needed – a2enmod rewrite
+    RewriteEngine On
+
+    # XBMC Reverse Proxy (XBMC listening on localhost:8081)
+    # Redirect subrequests GET /foo/bar to GET /xbmc/foo/bar
+    RewriteCond %{HTTP_REFERER} ^https?://[^/]+/xbmc
+    RewriteCond %{REQUEST_URI} !^/xbmc
+    RewriteCond %{THE_REQUEST} ^GET
+    RewriteRule ^/(.*) /xbmc/$1 [QSA,R]
+
+    # Rewrite subrequests POST /foo/bar to POST /xbmc/foo/bar
+    RewriteCond %{HTTP_REFERER} ^https?://[^/]+/xbmc
+    RewriteCond %{REQUEST_URI} !^/xbmc
+    RewriteCond %{THE_REQUEST} ^POST
+    RewriteRule ^/(.*) /xbmc/$1 [QSA,PT]
+
+    ProxyPass /xbmc/ http://localhost:8081/
+    ProxyPassReverse /xbmc/ http://localhost:8081/
+    # now you can replace each “xbmc” string with “couchpotato” or “sickbeard” etc
+    # and modify the listening port accordingly
+</VirtualHost>
+
+#= 01-04-2013 ========================================================================
 
 subl /private/etc/apache2/httpd.conf
 
