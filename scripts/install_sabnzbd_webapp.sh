@@ -8,7 +8,7 @@ source ../config.sh
 
 if [ -d /Library/Server/Web/Config/apache2/webapps ] ; then
     printf 'Apache WebApp directory found. Copying SABnzbd webapp config file...\n' "YELLOW" $col '[WAIT]' "$RESET"
-    cp conf/webapps/org.sabnzbd.plist /Library/Server/Web/Config/apache2/webapps/
+    sudo cp conf/webapps/org.sabnzbd.plist /Library/Server/Web/Config/apache2/webapps/
     if [ ! -f /Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist ] ; then
         printf 'SABnzbd webapp config file found. Enabling...\n' "YELLOW" $col '[WAIT]' "$RESET"
         sudo webappctl start /Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist
