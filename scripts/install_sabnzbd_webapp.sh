@@ -17,6 +17,7 @@ if [ -d /Library/Server/Web/Config/apache2/webapps ] ; then
     else
     	printf 'SABnzbd webapp config file not found. Failed!\n' "RED" $col '[ERR]' "$RESET"
         echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+        read -n 1 -s
     fi
 fi
 
