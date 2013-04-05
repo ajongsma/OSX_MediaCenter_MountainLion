@@ -11,7 +11,7 @@ if [ -d /Library/Server/Web/Config/apache2/webapps ] ; then
     sudo cp -iv conf/webapps/org.sabnzbd.plist /Library/Server/Web/Config/apache2/webapps/
     if [ ! -f /Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist ] ; then
         printf 'SABnzbd webapp config file found. Enabling...\n' "YELLOW" $col '[WAIT]' "$RESET"
-        sudo webappctl start /Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist
+        sudo webappctl start /Library/Server/Web/Config/apache2/webapps/org.sabnzbd
     else
     	printf 'SABnzbd webapp config file not found. Failed!\n' "RED" $col '[ERR]' "$RESET"
         echo -e "${BLUE} --- press any key to continue --- ${RESET}"
