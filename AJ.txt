@@ -154,6 +154,7 @@ sudo ln -s ~/Github/OSX_NewBox/www/_3/ /Library/Server/Web/Data/Sites/Default/_3
 sudo ln -s ~/Github/OSX_NewBox/www/_4/ /Library/Server/Web/Data/Sites/Default/_4
 sudo ln -s ~/Github/OSX_NewBox/www/_5/ /Library/Server/Web/Data/Sites/Default/_5
 sudo ln -s ~/Github/OSX_NewBox/www/_6/ /Library/Server/Web/Data/Sites/Default/_6
+sudo ln -s ~/Github/OSX_NewBox/www/_7/ /Library/Server/Web/Data/Sites/Default/_7
 
 sudo rm /Library/Server/Web/Data/Sites/Default/test2
 sudo ln -s /Users/test2/ /Library/Server/Web/Data/Sites/Default/test2
