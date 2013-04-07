@@ -49,10 +49,11 @@ $CallHP_Mara												= $marahost . ":" . $maraport;
 
 // SickBeard
 if (!isset($ini['sick'])) { $ini['sick']                    = 'localhost'; }
-if (!isset($ini['sbport'])) { $ini['sbport']                = 8080; }
-if (!isset($ini['sbapi'])) { $ini['sbapi']                  = ''; }				// API Key
+if (!isset($ini['sickport'])) { $ini['sickport']            = 8081; }
+if (!isset($ini['sbapi'])) { $ini['sbapi']                  = 'empty'; }				// API Key
 $sickhost													= $ini['sick'];
 $sickport													= $ini['sbport'];
+$sickapi													= $ini['sbapi'];
 $CallHP_Sick												= $sickhost . ":" . $sickport;
 $comingEpis													= 'http://' . $sickhost . ":" . $sickport . '/comingEpisodes/';
 
