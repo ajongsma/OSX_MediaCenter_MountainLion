@@ -1,5 +1,6 @@
 # Config files #
 #######################
+config.sh
 settings.ini
 
 # Logs and databases #
