@@ -40,9 +40,13 @@ http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac
 
 #= HANDY's - END =====================================================================
 
+#= 07-04-2013 ========================================================================
+
+https://github.com/elit3ge/sickbeard_viewer
+https://github.com/ThomasDK81/Sickbeard4Friends
+
 #= 03-04-2013 ========================================================================
 http://serverfault.com/questions/441722/apache-2-2-on-mountain-lion-ignoring-proxypass-and-sending-request-to-documentro
-
 
 /Library/Server/Web/Config/apache2/webapps/org.sabnzbd.plist
 
@@ -81,7 +85,6 @@ http://serverfault.com/questions/441722/apache-2-2-on-mountain-lion-ignoring-pro
 
 sudo webappctl start org.sabnzbd
 
-
 #= 02-04-2013 ========================================================================
 
 /private/etc/apache2/httpd.conf
@@ -112,8 +115,6 @@ sudo webappctl start org.sabnzbd
 
 #= 01-04-2013 ========================================================================
 
-subl /private/etc/apache2/httpd.conf
-
 Change:
 # Virtual hosts
 #Include /private/etc/apache2/extra/httpd-vhosts.conf
@@ -124,16 +125,10 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 sudo cp /private/etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-vhosts.conf.org
 subl /private/etc/apache2/extra/httpd-vhosts.conf
 
-
 #= 26-03-2013 ========================================================================
 
 http://newzbook.googlecode.com/svn-history/r76/trunk/webui/sabnzbd.php
-
 https://github.com/artberri/sidr
-cd ~/Github
-git clone https://github.com/artberri/sidr.git
-sudo ln -s ~/Github/sidr/ /Library/Server/Web/Data/Sites/Default/slide_1
-
 http://srobbin.com/jquery-plugins/pageslide/
 
 #= 25-03-2013 ========================================================================
@@ -221,7 +216,6 @@ Just in case, check:
   Sickbeard includes "http://", & a trailing "/" slash when setting up a new newznab provider.
 
 -------------------------------------------------------------------------
-
 
 #= 19-03-2013 ========================================================================
 
