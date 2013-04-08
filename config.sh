@@ -1,1 +1,0 @@
-/Users/Andries/Github/config.sh
