@@ -14,9 +14,9 @@ else {
 }
 
 // SickBeard
-if (!isset($ini['sickbeard_host'])) { $ini['sickbeard_host']	= 'localhost'; }
-if (!isset($ini['sickbeard_port'])) { $ini['sickbeard_port']	= 8081; }
-if (!isset($ini['sickbeard_api'])) { $ini['sickbeard_api']		= 'empty'; }				// API Key
+if (!isset($ini['sickbeard_host'])) { $ini['sickbeard_host']    = 'localhost'; }
+if (!isset($ini['sickbeard_port'])) { $ini['sickbeard_port']    = 8081; }
+if (!isset($ini['sickbeard_api'])) { $ini['sickbeard_api']      = 'empty'; }				// API Key
 $sickbeard_host													= $ini['sickbeard_host'];
 $sickbeard_port													= $ini['sickbeard_port'];
 $sickbeard_api													= $ini['sickbeard_api'];
