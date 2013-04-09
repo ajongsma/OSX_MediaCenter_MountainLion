@@ -16,14 +16,13 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
-	<title>Sick-Beard v<?php echo $version ?></title>
+	<title><?php echo $site_name . " v" . $version ?></title>
 	<link rel="shortcut icon" href="../../img/favicon.ico" />
 	<LINK href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id='site_content'>
 <?php
-
 
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
 echo $apiURL."<br>";
@@ -36,20 +35,17 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 #============ (1 START) ----------------------------------------------------
 
 	// Show URL
-	    $apiURL_sbSeasonList = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasonlist&tvdbid=".$showid."&sort=asc";
-	    $apiURL_sbShow = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
-	    $apiURL_TraktTV = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
+  $apiURL_sbSeasonList = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasonlist&tvdbid=".$showid."&sort=asc";
+  $apiURL_sbShow = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
+  $apiURL_TraktTV = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
 
-	// fetch trakt api
-	if ($trakt_enabled == "1")
-	{
+	// Fetch TraktTV api
+	if ($trakt_enabled == "true") {
 		$sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
 		$tvdata = json_decode(file_get_contents($apiURL_sbShow));
 		
 		$trakt = json_decode(file_get_contents($apiURL_TraktTV));
-	}
-	else
-	{
+	} else {
 		$sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
 		$tvdata = json_decode(file_get_contents($apiURL_sbShow));
 	}
@@ -57,41 +53,31 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 	// Grab Show Title
 	$title = $tvdata->{data}->{show_name};
 
-	//Display Browser Title
-	echo "<title>".$title." | ".$site_name."</title>";
 	echo "<center>";
-	// What are you!?
 	echo "<h1>(1) ".$title."</h1>";
 
-	// trakt.tv banner intragration
-	if ($trakt_enabled == "1")
-	{
-		if ($trakt->{status} == "failure")
-		{
-			// Display SickBeard Banner as trakt returned an error
-			printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
-		}
-		else
-		{
-			// Display trakt.tv Bannger
-			printf("<img src=".$trakt->{show}->{images}->{banner}."><br><br>");
-		}
-	}
-	else
-	{
-		// Display SickBeard Banner
-		printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
-	}
-
-	if ($trakt_enabled == "1")
-	{
+  if ($display_img_banners == "true") {	
+    // trakt.tv banner intragration
+  	if ($trakt_enabled == "true") {
+  		if ($trakt->{status} == "failure") {
+  			// Display SickBeard Banner as trakt returned an error
+  			printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
+  		} else {
+  			// Display trakt.tv Bannger
+  			printf("<img src=".$trakt->{show}->{images}->{banner}."><br><br>");
+  		}
+  	} else {
+  		// Display SickBeard Banner
+  		printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
+  	}
+  }
+  
+	if ($trakt_enabled == "1") {
 		echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}."<br>";
 		echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins<br>";
 		echo "<b>Runs:</b> ".$trakt->{show}->{air_day}.", ".$trakt->{show}->{air_time}."<br>";
 		echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>";
-	}
-	else
-	{
+	} else {
 	// Fix Next Ep
 	if ($tvdata->{data}->{next_ep_airdate} == "")
 		{
