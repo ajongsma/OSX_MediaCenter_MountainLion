@@ -72,31 +72,31 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
         }
     }
   
-    if ($trakt_enabled == "true") {
-    	echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}."<br>";
-    	echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins<br>";
-    	echo "<b>Runs:</b> ".$trakt->{show}->{air_day}.", ".$trakt->{show}->{air_time}."<br>";
-    	echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>";
-    } else {
-        // Show Sickbeard Next Episode
-        if ($tvdata->{data}->{next_ep_airdate} == "") {
-        	$next_ep = "N/A";
-        } else {
-        	$next_ep = $tvdata->{data}->{next_ep_airdate};
-        }
-        // Show Details Next Episode
-        echo "Network: ".$tvdata->{data}->{network}.", Airs: ".$tvdata->{data}->{airs}.", Next Ep: ".$next_ep.", Show Status: ".$tvdata->{data}->{status}."<br><br>";
-    }
+	if ($trakt_enabled == "true") {
+		echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}."<br>";
+		echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins<br>";
+		echo "<b>Runs:</b> ".$trakt->{show}->{air_day}.", ".$trakt->{show}->{air_time}."<br>";
+		echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>";
+	} else {
+	// Show Sickbeard Next Episode
+		if ($tvdata->{data}->{next_ep_airdate} == "") {
+			$next_ep = "N/A";
+		} else {
+			$next_ep = $tvdata->{data}->{next_ep_airdate};
+		}
+	// Show Details Next Episode
+		echo "Network: ".$tvdata->{data}->{network}.", Airs: ".$tvdata->{data}->{airs}.", Next Ep: ".$next_ep.", Show Status: ".$tvdata->{data}->{status}."<br><br>";
+	}
 
 	// Run through each feed item
 	foreach($sbJSON->{data} as $show) {
-
-        // Show Details
-        if ($show == '0') {
-            echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Specials </a><br />";
-        } else {
-            echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Season ".$show." </a><br />";
-        }
+	
+	// Show Details
+	if ($show == '0') {
+		echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Specials </a><br />";
+	} else {
+		echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Season ".$show." </a><br />";
+	}
 
 #============ (2 START) ------------------------------------------------------
         $seasonid = $show;
@@ -130,11 +130,11 @@ echo "    </td>";
 echo "  </tr>";
 echo "  <tr>";
 
-		// Define episode counter
-		$counter = "1";
+	// Define episode counter
+	$counter = "1";
 
-		// Run through each feed item
-		foreach($sbJSON->{data} as $show) {
+	// Run through each feed item
+	foreach($sbJSON->{data} as $show) {
       // Show Details
 echo "    <td>";
 echo "      <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'><b>Episode:</b> " . $counter . "</a><br />";
