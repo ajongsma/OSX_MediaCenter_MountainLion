@@ -1,7 +1,7 @@
 <?php
 $version = 0.1;
 
-/* Verify 'settings.ini' is available, if not, attempt to use defaults below; */
+/* Verify 'settings.ini' is available. If not exists, use default settings */
 $ini_ini_filename = 'settings.ini';
 if (@is_readable($ini_ini_filename)) {
   $ini = parse_ini_file($ini_ini_filename, FALSE);
@@ -26,7 +26,7 @@ $plex_host            = $ini['_plex_host'];
 $plex_port            = $ini['_plex_port'];
 $plex_api             = $ini['_plex_api'];
 $CallHP_PlexApi       = $plexhost  . ":" . $plexport . "/api/" . $plex_api;
-$CallHP_PlexSvr       = $plexhost  . ":" . $plexport . "/manage/index.html";
+$URL_PlexSvr          = 'http://' . $plexhost  . ":" . $plexport . "/manage/index.html";
 
 // SabNZBd+
 if (!isset($ini['_sabnzbd_host'])) { $ini['_sabnzbd_host']  = 'localhost'; }
@@ -46,7 +46,7 @@ $sickbeard_port       = $ini['_sickbeard_port'];
 $sickbeard_api        = $ini['_sickbeard_api'];
 $CallHP_Sickbeard     = $sickbeard_host . ":" . $sickbeard_port;
 $CallHP_SickbeardApi  = $sickbeard_host  . ":" . $sickbeard_port . "/api/" . $sickbeard_api;
-$sickbeard_comingEpis = 'http://' . $sickbeard_host . ":" . $sickbeard_port . '/comingEpisodes/';
+$URL_comingEpis       = 'http://' . $sickbeard_host . ":" . $sickbeard_port . '/comingEpisodes/';
 
 // CouchPotato
 if (!isset($ini['_couchpotato_host'])) { $ini['_couchpotato_host']  = 'localhost'; }
@@ -66,44 +66,35 @@ $headphones_port      = $ini['_headphones_port'];
 $headphones_api       = $ini['_headphones_api'];
 $CallHP_Headphones    = $headphones_host . ":" . $headphones_port;
 
-
 // Spotweb
 if (!isset($ini['_spotweb_host'])) { $ini['_spotweb_host']  = 'localhost'; }
 if (!isset($ini['_spotweb_port'])) { $ini['_spotweb_port']  = 80; }
+if (!isset($ini['_spotweb_api'])) { $ini['_spotweb_api']    = 'no_api_key'; }
 $spotweb_host         = $ini['_spotweb_host'];
 $spotweb_port         = $ini['_spotweb_port'];
-$CallHP_Spot												= $spotweb_host  . ":" . $spotweb_port . "/spotweb/";
+$spotweb_api          = $ini['_spotweb_api'];
+$CallHP_Spotweb       = $spotweb_host  . ":" . $spotweb_port . "/spotweb/";
 
 // NewzNAB
-if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
-if (!isset($ini['nnport'])) { $ini['nnport']                = 80; }
-$newzhost													= $ini['newznab'];
-$nnport														= $ini['nnport'];
-$CallHP_newz												= $newzhost  . ":" . $nnport . "/newznab/";
-
-
+if (!isset($ini['_newznab_host'])) { $ini['_newznab_host']  = 'localhost'; }
+if (!isset($ini['_newznab_port'])) { $ini['_newznab_port']  = 80; }
+$newznab_host         = $ini['_newznab_host'];
+$newznab_port         = $ini['_newznab_port'];
+$CallHP_Newznab       = $newznab_host  . ":" . $newznab_port . "/newznab/";
 
 // Maraschino
-if (!isset($ini['mara'])) { $ini['mara']                    = 'localhost'; }
-if (!isset($ini['maraport'])) { $ini['maraport']            = 7000; }
-$marahost													= $ini['mara'];
-$maraport													= $ini['maraport'];
-$CallHP_Mara												= $marahost . ":" . $maraport;
-
-// uTorrent
-if (!isset($ini['utor'])) { $ini['utor']                    = 'localhost'; }
-if (!isset($ini['utport'])) { $ini['utport']                = 32459; }
-$utorhost													= $ini['utor'];
-$utorport													= $ini['utport'];
-$CallHP_uTor												= $utorhost . ":" . $utorport . "/gui/";
+if (!isset($ini['_maraschino_host'])) { $ini['_maraschino_host']  = 'localhost'; }
+if (!isset($ini['_maraschino_port'])) { $ini['_maraschino_port']  = 7000; }
+$maraschino_host      = $ini['_maraschino_host'];
+$maraschino_port      = $ini['_maraschino_port'];
+$CallHP_Maraschino    = $maraschino_host . ":" . $maraschino_port;
 
 // Transmission
-if (!isset($ini['transmission'])) { $ini['transmission']    = 'localhost'; }
-if (!isset($ini['tranport'])) { $ini['tranport']            = 51413; }
-$tranhost													= $ini['transmission'];
-$tranport													= $ini['tranport'];
-$CallHP_Tran												= $tranhost . ":" . $tranport;
-
+if (!isset($ini['_transmission_host'])) { $ini['_transmission_host']  = 'localhost'; }
+if (!isset($ini['_transmission_port'])) { $ini['_transmission_port']  = 51413; }
+$transmission_host    = $ini['_transmission_host'];
+$transmission_port    = $ini['_transmission_port'];
+$CallHP_Transmission  = $transmission_host . ":" . $transmission_port;
 
 function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
