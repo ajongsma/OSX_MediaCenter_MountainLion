@@ -1,6 +1,6 @@
 <?php
   require_once('functions.php');
-  require('includes/rquired/defaults.php');
+  require('includes/required/defaults.php');
 ?>
 <html lang="en">
 <head>
