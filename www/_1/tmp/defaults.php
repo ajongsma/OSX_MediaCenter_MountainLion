@@ -24,13 +24,13 @@ else {
 // Hosts and Ports
 
 // TraktTV
-if (!isset($ini['_trakt_api'])) { $ini['_trakt_api']                = 'no_api_key'; }
+if (!isset($ini['_trakt_api'])) { $ini['_trakt_api']  = 'no_api_key'; }
 $trakt_api            = $ini['_trakt_api'];
 
 // Plex Media Server
-if (!isset($ini['_plex_host'])) { $ini['_plex_host']                = 'localhost'; }
-if (!isset($ini['_plex_port'])) { $ini['_plex_port']                = 32400; }
-if (!isset($ini['_plex_api'])) { $ini['_plex_api']                  = 'no_api_key'; }
+if (!isset($ini['_plex_host'])) { $ini['_plex_host']  = 'localhost'; }
+if (!isset($ini['_plex_port'])) { $ini['_plex_port']  = 32400; }
+if (!isset($ini['_plex_api'])) { $ini['_plex_api']    = 'no_api_key'; }
 $plex_host            = $ini['_plex_host'];
 $plex_port            = $ini['_plex_port'];
 $plex_api             = $ini['_plex_api'];
@@ -38,18 +38,18 @@ $CallHP_PlexApi       = $plexhost  . ":" . $plexport . "/api/" . $plex_api;
 $CallHP_PlexSvr       = $plexhost  . ":" . $plexport . "/manage/index.html";
 
 // SabNZBd+
-if (!isset($ini['_sabnzbd_host'])) { $ini['_sabnzbd_host']          = 'localhost'; }
-if (!isset($ini['_sabnzbd_port'])) { $ini['_sabnzbd_port']          = 8080; }
-if (!isset($ini['_sabnzbd_api'])) { $ini['_sabnzbd_api']            = 'no_api_key'; }    		// API Key
+if (!isset($ini['_sabnzbd_host'])) { $ini['_sabnzbd_host']  = 'localhost'; }
+if (!isset($ini['_sabnzbd_port'])) { $ini['_sabnzbd_port']  = 8080; }
+if (!isset($ini['_sabnzbd_api'])) { $ini['_sabnzbd_api']    = 'no_api_key'; }    		// API Key
 $sabnzbd_host         = $ini['_sabnzbd_host'];
 $sabnzbd_port         = $ini['_sabnzbd_port'];
 $sabnzbd_api          = $ini['_sabnzbd_api'];
 $CallHP_Sabnzbd       = $sabnzbd_host . ":" . $sabnzbd_port;
 
 // SickBeard
-if (!isset($ini['_sickbeard_host'])) { $ini['_sickbeard_host']      = 'localhost'; }
-if (!isset($ini['_sickbeard_port'])) { $ini['_sickbeard_port']      = 8081; }
-if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']        = 'no_api_key'; }  			// API Key
+if (!isset($ini['_sickbeard_host'])) { $ini['_sickbeard_host']  = 'localhost'; }
+if (!isset($ini['_sickbeard_port'])) { $ini['_sickbeard_port']  = 8081; }
+if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']    = 'no_api_key'; }  			// API Key
 $sickbeard_host       = $ini['_sickbeard_host'];
 $sickbeard_port       = $ini['_sickbeard_port'];
 $sickbeard_api        = $ini['_sickbeard_api'];
@@ -113,20 +113,6 @@ if (!isset($ini['amport'])) { $ini['amport']				= 8087; }
 $aumohost													= $ini['autom'];
 $aumoport													= $ini['amport'];
 $CallHP_AutoM												= $aumohost . ":" . $aumoport;
-
-// TVHeadend
-if (!isset($ini['tvhe'])) { $ini['tvhe']					= 'localhost'; }
-if (!isset($ini['tvhport'])) { $ini['tvhport']				= 9981; }
-$tvhehost													= $ini['tvhe'];
-$tvheport													= $ini['tvhport'];
-$CallHP_TVHe												= $tvhehost . ":" . $tvheport;
-
-// SubSonic
-if (!isset($ini['subs'])) { $ini['subs']					= 'localhost'; }
-if (!isset($ini['ssport'])) { $ini['ssport']				= 4040; }
-$subshost													= $ini['subs'];
-$ssport														= $ini['ssport'];
-$CallHP_Subs												= $subshost . ":" . $ssport;
 
 // Spotweb
 if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
