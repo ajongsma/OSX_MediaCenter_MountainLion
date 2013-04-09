@@ -15,7 +15,7 @@
   
   <title><?php echo $site_name . " v" . $version ?></title>
   <link rel="shortcut icon" href="../../img/favicon.ico" />
-  <LINK href="style.css" rel="stylesheet" type="text/css">
+  <LINK href="includes/css/default_sb.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id='site_content'>
