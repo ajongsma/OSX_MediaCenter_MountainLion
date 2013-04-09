@@ -4,24 +4,6 @@ require_once('functions.php');
 require('defaults.php');
 
 $version = 0.1;
-
-/* Verify 'settings.ini' is available, if not, attempt to use defaults below; */
-$ini_ini_filename = '../settings.ini';
-if (@is_readable($ini_ini_filename)) {
-	$ini = parse_ini_file($ini_ini_filename, FALSE);
-}
-else {
-	unset($ini);
-}
-
-// SickBeard
-if (!isset($ini['sickbeard_host'])) { $ini['sickbeard_host']    = 'localhost'; }
-if (!isset($ini['sickbeard_port'])) { $ini['sickbeard_port']    = 8081; }
-if (!isset($ini['sickbeard_api'])) { $ini['sickbeard_api']      = 'no_api_key'; }				// API Key
-$sickbeard_host   = $ini['sickbeard_host'];
-$sickbeard_port   = $ini['sickbeard_port'];
-$sickbeard_api    = $ini['sickbeard_api'];
-
 ## http://pooky.local:8081/api/404d0302b924328464f83a593a7d155c/?cmd=show.seasons&tvdbid=74608
 
 
