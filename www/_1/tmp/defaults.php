@@ -9,17 +9,8 @@ if (@is_readable($ini_ini_filename)) {
 else {
 	unset($ini);
 }
-/* Variables to set if value is missing from settings
- *  Around the site, use the following Syntax for calling your links:
- *		'zzzz' is 4 character abbreviation for AppName
- *		$zzzzhost		= The Host for AppName
- *		$zzzzport		= The Port for AppName
- *		$CallHP_zzzz	= Gives Host:Port format
- *
- *		Additionals:
- *		$comingEpis		= SickBeard's ComingEpisodes
- *
- */
+
+/* Variables to set if value is missing from settings */
 
 // Hosts and Ports
 
@@ -49,7 +40,7 @@ $CallHP_Sabnzbd       = $sabnzbd_host . ":" . $sabnzbd_port;
 // SickBeard
 if (!isset($ini['_sickbeard_host'])) { $ini['_sickbeard_host']  = 'localhost'; }
 if (!isset($ini['_sickbeard_port'])) { $ini['_sickbeard_port']  = 8081; }
-if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']    = 'no_api_key'; }  			// API Key
+if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']    = 'no_api_key'; }  		// API Key
 $sickbeard_host       = $ini['_sickbeard_host'];
 $sickbeard_port       = $ini['_sickbeard_port'];
 $sickbeard_api        = $ini['_sickbeard_api'];
@@ -60,7 +51,7 @@ $sickbeard_comingEpis = 'http://' . $sickbeard_host . ":" . $sickbeard_port . '/
 // CouchPotato
 if (!isset($ini['_couchpotato_host'])) { $ini['_couchpotato_host']  = 'localhost'; }
 if (!isset($ini['_couchpotato_port'])) { $ini['_couchpotato_port']  = 8082; }
-if (!isset($ini['_couchpotato_api'])) { $ini['_couchpotato_api']    = 'no_api_key'; }    		// API Key
+if (!isset($ini['_couchpotato_api'])) { $ini['_couchpotato_api']    = 'no_api_key'; }    	// API Key
 $couchpotato_host     = $ini['_couchpotato_host'];
 $couchpotato_port     = $ini['_couchpotato_port'];
 $couchpotato_api      = $ini['_couchpotato_api'];
@@ -77,11 +68,11 @@ $CallHP_Headphones    = $headphones_host . ":" . $headphones_port;
 
 
 // Spotweb
-if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
-if (!isset($ini['swport'])) { $ini['swport']                = 80; }
-$spothost													= $ini['spotweb'];
-$swport														= $ini['swport'];
-$CallHP_Spot												= $spothost  . ":" . $swport . "/spotweb/";
+if (!isset($ini['_spotweb_host'])) { $ini['_spotweb_host']  = 'localhost'; }
+if (!isset($ini['_spotweb_port'])) { $ini['_spotweb_port']  = 80; }
+$spotweb_host         = $ini['_spotweb_host'];
+$spotweb_port         = $ini['_spotweb_port'];
+$CallHP_Spot												= $spotweb_host  . ":" . $spotweb_port . "/spotweb/";
 
 // NewzNAB
 if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
