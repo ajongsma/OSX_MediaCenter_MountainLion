@@ -5,7 +5,7 @@ require_once('functions.php');
 $version = 0.1;
 
 /* Verify 'settings.ini' is available, if not, attempt to use defaults below; */
-$ini_ini_filename = '../../settings.ini';
+$ini_ini_filename = '../settings.ini';
 if (@is_readable($ini_ini_filename)) {
 	$ini = parse_ini_file($ini_ini_filename, FALSE);
 }
