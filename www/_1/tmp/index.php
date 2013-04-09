@@ -1,5 +1,4 @@
 <?php
-  require_once('functions.php');
   require('includes/required/defaults.php');
 ?>
 <html lang="en">
