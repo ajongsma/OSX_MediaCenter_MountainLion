@@ -59,7 +59,7 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
             // Show SickBeard Banner if trakt returned an error
             printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
           } else {
-            // Show trakt.tv Bannger
+            // Show trakt.tv Banner
             printf("<img src=".$trakt->{show}->{images}->{banner}."><br><br>");
           }
       } else {
@@ -86,13 +86,6 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
 	// Run through each feed item
 	foreach($sbJSON->{data} as $show) {
-	
-  	// Show Details
-  	if ($show == '0') {
-  		echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Specials </a><br />";
-  	} else {
-  		echo "<a href='episode.php?showid=".$showid."&seasonid=".$show."'>Season ".$show." </a><br />";
-  	}
 
 #============ (2 START) ------------------------------------------------------
     $seasonid = $show;
@@ -120,11 +113,20 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     
 echo "<table>";
 echo "  <tr>";
-echo "    <td>";
-echo "      <h1>".$title." Season ".$seasonid."</h1>";
-echo "    </td>";
+echo "    <th";
+
+    if ($seasonid == '0') {
+      echo "      <h1> (1) =>".$title." Specials</h1>";
+    } else {
+      echo "      <h1> (2) =>".$title." Season ".$seasonid."</h1>";
+    }
+
+echo "    </th>";
+echo "    <th>Episode</th>";
+echo "    <th>Name</th>";
+echo "    <th>Aired</th>";
+echo "    <th>Status</th>";
 echo "  </tr>";
-echo "  <tr>";
 
     // Define episode counter
     $counter = "1";
@@ -132,41 +134,43 @@ echo "  <tr>";
     // Run through each feed item
     foreach($sbJSON->{data} as $show) {
       // Show Details
+echo "  <tr>";
+echo "    <td>&nbsp;</td>";
 echo "    <td>";
-echo "      <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'><b>Episode:</b> " . $counter . "</a><br />";
+echo "      <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
 echo "    </td>";
 echo "    <td>";
-            echo "<b>Name:</b> " . $show->{name} . "<br />";
+            echo $show->{name};
 echo "    </td>";
 echo "    <td>";
-            echo "<b>Aired:</b> " . $show->{airdate} . "<br />";
+            echo $show->{airdate};
 echo "    </td>";
 echo "    <td>";
             if ($show->{status} == "Archived")
             {
-              echo "<font color='#41A317'><b>Status:</b> Collected </font><br /><br />";
+              echo "<font color='#41A317'>Collected </font>";
             } 
             elseif ($show->{status} == "Snatched")
             {
-              echo "<font color='#41A317'><b>Status:</b> Downloading... </font><br /><br />";
+              echo "<font color='#41A317'>Downloading... </font>";
             }
             elseif ($show->{status} == "Downloaded")
             {
-              echo "<font color='#41A317'><b>Status:</b> Collected </font><br /><br />";
+              echo "<font color='#41A317'>Collected </font>";
             }
             elseif ($show->{status} == "Wanted")
             {
-              echo "<font color='#306EFF'><b>Status:</b> Wanted </font><br /><br />";
+              echo "<font color='#306EFF'>Wanted </font>";
             } 
             else
             {
-              echo "<font color='#F62817'><b>Status:</b> Not Collected </font><br /><br />";
+              echo "<font color='#F62817'>Not Collected </font>";
             }
             $counter = $counter + "1";
-        }
-
 echo "    </td>";
 echo "  </tr>";
+        }
+
 echo "</table>";
 #============ (2 END) ------------------------------------------------------
     }
