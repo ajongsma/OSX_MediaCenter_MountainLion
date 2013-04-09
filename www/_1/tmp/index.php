@@ -29,6 +29,8 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
 	/* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
 
+echo " === DEBUG VARs =====> " . $trakt_enabled;
+
 #============ (1 START) ----------------------------------------------------
 
     // Show URL
@@ -51,7 +53,6 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   $title = $tvdata->{data}->{show_name};
   
   echo "<h1>(1) ".$title."</h1>";
-
   if ($display_img_banners == "true") {	
   // Show Trakt.TV banner
       if ($trakt_enabled == "true") {

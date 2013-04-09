@@ -12,16 +12,24 @@ else {
 
 /* Variables to set if value is missing from settings */
 
-// Hosts and Ports
+// GENERIC SETTINGS
+if (!isset($ini['display_img_banners'])) { $ini['display_img_banners']  = 'true'; }
+$display_img_banners            = $ini['display_img_banners'];
 
+
+// HOSTS AND PORTS
 // TraktTV
+if (!isset($ini['trakt_enabled'])) { $ini['trakt_enabled']  = 'true'; }
 if (!isset($ini['_trakt_api'])) { $ini['_trakt_api']  = 'no_api_key'; }
+$trakt_enabled        = $ini['trakt_enabled'];
 $trakt_api            = $ini['_trakt_api'];
 
 // Plex Media Server
+if (!isset($ini['plex_enabled'])) { $ini['plex_enabled']  = 'true'; }
 if (!isset($ini['_plex_host'])) { $ini['_plex_host']  = 'localhost'; }
 if (!isset($ini['_plex_port'])) { $ini['_plex_port']  = 32400; }
 if (!isset($ini['_plex_api'])) { $ini['_plex_api']    = 'no_api_key'; }
+$plex_enabled         = $ini['plex_enabled'];
 $plex_host            = $ini['_plex_host'];
 $plex_port            = $ini['_plex_port'];
 $plex_api             = $ini['_plex_api'];
