@@ -1,9 +1,6 @@
 <?php
   require_once('functions.php');
   require('defaults.php');
-
-## http://pooky.local:8081/api/404d0302b924328464f83a593a7d155c/?cmd=show.seasons&tvdbid=74608
-
 ?>
 <html lang="en">
 <head>
