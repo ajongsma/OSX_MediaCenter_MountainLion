@@ -1,6 +1,7 @@
 <?php
 
 require_once('functions.php');
+require 'defaults.php';
 
 $version = 0.1;
 
@@ -16,10 +17,10 @@ else {
 // SickBeard
 if (!isset($ini['sickbeard_host'])) { $ini['sickbeard_host']    = 'localhost'; }
 if (!isset($ini['sickbeard_port'])) { $ini['sickbeard_port']    = 8081; }
-if (!isset($ini['sickbeard_api'])) { $ini['sickbeard_api']      = 'empty'; }				// API Key
-$sickbeard_host													= $ini['sickbeard_host'];
-$sickbeard_port													= $ini['sickbeard_port'];
-$sickbeard_api													= $ini['sickbeard_api'];
+if (!isset($ini['sickbeard_api'])) { $ini['sickbeard_api']      = 'no_api_key'; }				// API Key
+$sickbeard_host   = $ini['sickbeard_host'];
+$sickbeard_port   = $ini['sickbeard_port'];
+$sickbeard_api    = $ini['sickbeard_api'];
 
 ## http://pooky.local:8081/api/404d0302b924328464f83a593a7d155c/?cmd=show.seasons&tvdbid=74608
 
