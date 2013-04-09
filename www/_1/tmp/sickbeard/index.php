@@ -1,7 +1,7 @@
 <?php
 
 require_once('functions.php');
-require 'defaults.php';
+require('defaults.php');
 
 $version = 0.1;
 
