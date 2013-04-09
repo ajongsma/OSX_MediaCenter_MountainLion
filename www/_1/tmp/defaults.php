@@ -76,6 +76,19 @@ $headphones_api       = $ini['_headphones_api'];
 $CallHP_Headphones    = $headphones_host . ":" . $headphones_port;
 
 
+// Spotweb
+if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
+if (!isset($ini['swport'])) { $ini['swport']                = 80; }
+$spothost													= $ini['spotweb'];
+$swport														= $ini['swport'];
+$CallHP_Spot												= $spothost  . ":" . $swport . "/spotweb/";
+
+// NewzNAB
+if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
+if (!isset($ini['nnport'])) { $ini['nnport']                = 80; }
+$newzhost													= $ini['newznab'];
+$nnport														= $ini['nnport'];
+$CallHP_newz												= $newzhost  . ":" . $nnport . "/newznab/";
 
 
 
@@ -100,33 +113,6 @@ $tranhost													= $ini['transmission'];
 $tranport													= $ini['tranport'];
 $CallHP_Tran												= $tranhost . ":" . $tranport;
 
-// jDownloader
-if (!isset($ini['jDown'])) { $ini['jDown']					= 'localhost'; }
-if (!isset($ini['jDport'])) { $ini['jDport']				= 10025; }
-$jDown														= $ini['jDown'];
-$jDport														= $ini['jDport'];
-$CallHP_JDown												= $jDown . ":" . $jDport;
-
-// AutoMovies
-if (!isset($ini['autom'])) { $ini['autom']					= 'localhost'; }
-if (!isset($ini['amport'])) { $ini['amport']				= 8087; }
-$aumohost													= $ini['autom'];
-$aumoport													= $ini['amport'];
-$CallHP_AutoM												= $aumohost . ":" . $aumoport;
-
-// Spotweb
-if (!isset($ini['spotweb'])) { $ini['spotweb']              = 'localhost'; }
-if (!isset($ini['swport'])) { $ini['swport']                = 80; }
-$spothost													= $ini['spotweb'];
-$swport														= $ini['swport'];
-$CallHP_Spot												= $spothost  . ":" . $swport . "/spotweb/";
-
-// NewzNAB
-if (!isset($ini['newznab'])) { $ini['newznab']              = 'localhost'; }
-if (!isset($ini['nnport'])) { $ini['nnport']                = 80; }
-$newzhost													= $ini['newznab'];
-$nnport														= $ini['nnport'];
-$CallHP_newz												= $newzhost  . ":" . $nnport . "/newznab/";
 
 function writeAppURL($AppCall,$AppName) {
 	echo '<a class="classpanel" target="myiframe" href="http://' . $AppCall . '">' . $AppName . '</a>';
