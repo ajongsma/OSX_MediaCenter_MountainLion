@@ -21,6 +21,10 @@
     <center>
 <?php
 
+if(empty($sickbeard_api)){
+	echo "<hr><h1><font color='#F62817'><b>ERROR: Sick-Beard API value not provided</b></font></h1><hr>";
+}
+
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
 echo $apiURL."<br>";
 $sbJSON_Shows = json_decode(file_get_contents($apiURL),true);
