@@ -35,7 +35,12 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   $apiURL_sbSeasonList = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasonlist&tvdbid=".$showid."&sort=asc";
   $apiURL_sbShow = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
   $apiURL_TraktTV = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
-
+  if ($debug == "true") {
+        echo "apiURL_sbSeasonList : ".$apiURL_sbSeasonList."<br>";
+        echo "apiURL_sbShow       : ".$apiURL_sbShow."<br>";
+        echo "apiURL_TraktTV      : ".$apiURL_TraktTV."<br>";
+  }
+  
   // Fetch TraktTV api
   if ($trakt_enabled == "true") {
       $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
@@ -93,11 +98,10 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     $feed3_1 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
     $feed3_2 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
     $feed3_3 = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
-    
     if ($debug == "true") {
-        echo $feed3_1."<br>";
-        echo $feed3_2."<br>";
-        echo $feed3_3."<br>";
+        echo "feed3_1 : ".$feed3_1."<br>";
+        echo "feed3_2 : ".$feed3_2."<br>";
+        echo "feed3_3 : ".$feed3_3."<br>";
     }
   
     // fetch trakt api
