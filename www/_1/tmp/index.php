@@ -26,7 +26,10 @@ if(empty($sickbeard_api)){
 }
 
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
-echo $apiURL."<br>";
+if ($debug == "true") {
+	echo $apiURL."<br>";
+}
+
 $sbJSON_Shows = json_decode(file_get_contents($apiURL),true);
 foreach ($sbJSON_Shows['data'] as $key => $values) {
 	$showid = $values['tvdbid'];
