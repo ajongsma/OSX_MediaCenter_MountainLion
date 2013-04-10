@@ -21,8 +21,11 @@
     <center>
 <?php
 
-if(empty($sickbeard_api)){
-	echo "<hr><h1><font color='#F62817'><b>ERROR: Sick-Beard API value not provided</b></font></h1><hr>";
+if(empty($sickbeard_api)) {
+	echo "<hr><h1><font color='#F62817'><b>ERROR: Sick-Beard API value is not provided</b></font></h1><hr>";
+}
+if(($trakt_enabled == "true") && empty($trakt_api)) {
+	echo "<hr><h1><font color='#F62817'><b>ERROR: Trakt is enabled but the API value is not provided</b></font></h1><hr>";
 }
 
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
