@@ -128,21 +128,23 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     $title = $tvdata->{data}->{show_name};
     
 echo "<table>";
-echo "  <tr>";
-echo "    <th";
+echo "  <thead>";
+echo "    <tr>";
+echo "      <th";
 
     if ($seasonid == '0') {
-      echo "      <h1> (1) =>".$title." Specials</h1>";
+      echo "        <h1> (1) =>".$title." Specials</h1>";
     } else {
-      echo "      <h1> (2) =>".$title." Season ".$seasonid."</h1>";
+      echo "        <h1> (2) =>".$title." Season ".$seasonid."</h1>";
     }
 
-echo "    </th>";
-echo "    <th>Episode</th>";
-echo "    <th>Name</th>";
-echo "    <th>Aired</th>";
-echo "    <th>Status</th>";
-echo "  </tr>";
+echo "      </th>";
+echo "      <th>Episode</th>";
+echo "      <th>Name</th>";
+echo "      <th>Aired</th>";
+echo "      <th>Status</th>";
+echo "    </tr>";
+echo "  </thead>";
 
     // Define episode counter
     $counter = "1";
@@ -150,18 +152,20 @@ echo "  </tr>";
     // Run through each feed item
     foreach($sbJSON->{data} as $show) {
       // Show Details
-echo "  <tr>";
-echo "    <td>&nbsp;</td>";
-echo "    <td>";
-echo "      <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
-echo "    </td>";
-echo "    <td>";
+
+echo "  <tbody>";      
+echo "    <tr>";
+echo "      <td>&nbsp;</td>";
+echo "      <td>";
+echo "        <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
+echo "      </td>";
+echo "      <td>";
             echo $show->{name};
-echo "    </td>";
-echo "    <td>";
+echo "      </td>";
+echo "      <td>";
             echo $show->{airdate};
-echo "    </td>";
-echo "    <td>";
+echo "      </td>";
+echo "      <td>";
             if ($show->{status} == "Archived")
             {
               echo "<font color='#41A317'>Collected </font>";
@@ -183,10 +187,10 @@ echo "    <td>";
               echo "<font color='#F62817'>Not Collected </font>";
             }
             $counter = $counter + "1";
-echo "    </td>";
-echo "  </tr>";
+echo "      </td>";
+echo "    </tr>";
         }
-
+echo "  <tbody>";
 echo "</table>";
 #============ (2 END) ------------------------------------------------------
     }
