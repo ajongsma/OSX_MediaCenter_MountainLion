@@ -116,7 +116,7 @@ function writeTopNav($AppName) {
 
 // NZB Sites
 $NZBMatrix													= 'nzbmatrix.com/nzb.php?';
-if (!isset($ini['matrixuser'])) { $ini['matrixuser']		= ''; }
+if (!isset($ini['matrixuser'])) { $ini['matrixuser']        = ''; }
 $NZBMatrixUser												= $ini['matrixuser'];
 if (!isset($ini['matrixapi'])) { $ini['matrixapi']          = ''; }
 $NZBMatrixAPI 												= $ini['matrixapi'];
@@ -127,18 +127,22 @@ $NZBsuAPI													= $ini['nzbsuapi'];
 if (!isset($ini['charset'])) { $ini['charset']              = 'windows-1251'; }					// NOT in $ini by default
 if (!isset($ini['external_css'])) { $ini['external_css']    = 'includes/css/portal.css'; }
 if (!isset($ini['description_filename'])) { $ini['description_filename']		= ''; }
-if (!isset($ini['cache_dir'])) { $ini['cache_dir']		= ''; }
+if (!isset($ini['cache_dir'])) { $ini['cache_dir']          = ''; }
 
 // Array containing list of filenames which should be omitted during directory loading. Wildcards aren't allowed.
 $ini['ignore_files'] = array('.', '..', $ini_ini_filename, $ini['description_filename'], $ini['cache_dir'], basename($_SERVER['SCRIPT_NAME']), '.htaccess', '.htpasswd', 'Thumbs.db', 'error_log', 'access_log', 'cgi-bin', '_notes');
 
 /** Modules Section */
 /// Developer Sections
-if (!isset($ini['developer'])) { $ini['developer']		= ''; }
+if (!isset($ini['developer'])) { $ini['developer']          = ''; }
 $developer	=	$ini['developer'];
 
 /// RSS Feeds
-if (!isset($ini['rss_on'])) { $ini['rss_on']		= ''; }
+if (!isset($ini['rss_on'])) { $ini['rss_on']                = ''; }
 $rsson		=	$ini['rss_on'];
+
+// DEBUG SETTINGS
+if (!isset($ini['debug'])) { $ini['debug']                  = 'false'; }
+$debug          = $ini['debug'];
 
 ?>
