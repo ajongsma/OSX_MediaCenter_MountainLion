@@ -16,6 +16,11 @@ else {
 if (!isset($ini['display_img_banners'])) { $ini['display_img_banners']  = 'true'; }
 $display_img_banners            = $ini['display_img_banners'];
 
+if (!isset($ini['display_Sickbeard_StatsTotal'])) { $ini['display_Sickbeard_StatsTotal']  = 'true'; }
+$display_Sickbeard_StatsTotal            = $ini['display_Sickbeard_StatsTotal'];
+
+if (!isset($ini['display_Sickbeard_StatsShow'])) { $ini['display_Sickbeard_StatsShow']  = 'true'; }
+$display_Sickbeard_StatsShow            = $ini['display_Sickbeard_StatsShow'];
 
 // HOSTS AND PORTS
 // TraktTV

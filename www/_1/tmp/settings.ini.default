@@ -13,6 +13,8 @@ version               = "0.1"
 
 [Options]
 display_img_banners   = "true"
+display_Sickbeard_StatsTotal	= "true"
+display_Sickbeard_StatsShow	= "true"
 
 [SpotWeb]
 spotweb_enabled       = "true"

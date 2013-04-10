@@ -14,7 +14,8 @@
   
   <title><?php echo $site_name . " v" . $version ?></title>
   <link rel="shortcut icon" href="../../img/favicon.ico" />
-  <LINK href="includes/css/default_sb.css" rel="stylesheet" type="text/css">
+  <link href="includes/css/default_sb.css" rel="stylesheet" type="text/css">
+  <link href="includes/css/table.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id='site_content'>
@@ -28,6 +29,13 @@ if(($trakt_enabled == "true") && empty($trakt_api)) {
 	echo "<hr><h1><font color='#F62817'><b>ERROR: Trakt is enabled but the API value is not provided</b></font></h1><hr>";
 }
 
+if ($display_Sickbeard_StatsTotal == "true") {
+  $apiURL_sbStatsTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows.stats";
+  echo "apiURL_sbStatsTotal : ".$apiURL_sbStatsTotal;
+  $sbJSON_StatsTotal = json_decode(file_get_contents($apiURL_sbStatsTotal));
+  echo "<br>Eps Downloaded: ".$sbJSON_StatsTotal->{data}->{ep_downloaded}." of ".$sbJSON_StatsTotal->{data}->{ep_total}." == Shows Active: ".$sbJSON_StatsTotal->{data}->{shows_active}." of ".$sbJSON_StatsTotal->{data}->{shows_total}."<br><br>";
+}
+
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
 if ($debug == "true") {
 	echo $apiURL."<br>";
@@ -38,6 +46,24 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 	$showid = $values['tvdbid'];
 
 	/* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
+
+  if ($display_Sickbeard_StatsShow == "true") {
+    $apiURL_sbShowTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.stats&tvdbid=".$showid;
+    echo "apiURL_sbShowTotal : ".$apiURL_sbShowTotal."<br>";
+
+    $sbJSON_ShowTotal = json_decode(file_get_contents($apiURL_sbShowTotal));
+    echo "<hr>";
+    echo "Total      : ".$sbJSON_ShowTotal->{data}->{total}."<br>";
+    echo "Archived   : ".$sbJSON_ShowTotal->{data}->{archived}."<br>";
+    echo "ignored    : ".$sbJSON_ShowTotal->{data}->{ignored}."<br>";
+    echo "skipped    : ".$sbJSON_ShowTotal->{data}->{skipped}."<br>";
+    echo "unaired    : ".$sbJSON_ShowTotal->{data}->{unaired}."<br>";
+    echo "wanted     : ".$sbJSON_ShowTotal->{data}->{wanted}."<br>";
+    echo "downloaded : ".$sbJSON_ShowTotal->{data}->{downloaded}->{total}."<br>";
+    echo "snatched   : ".$sbJSON_ShowTotal->{data}->{snatched}->{total}."<br>";
+    echo "<hr>";
+
+  }
 
 #============ (1 START) ----------------------------------------------------
 
@@ -69,24 +95,24 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
       if ($trakt_enabled == "true") {
           if ($trakt->{status} == "failure") {
             // Show SickBeard Banner if trakt returned an error
-            printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
+            printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
           } else {
             // Show trakt.tv Banner
-            printf("<img src=".$trakt->{show}->{images}->{banner}."><br><br>");
+            printf("<img src=".$trakt->{show}->{images}->{banner}."><br>");
           }
       } else {
           // Show SickBeard Banner
-          printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
+          printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
       }
   } else {
       echo "<h1>(1) ".$title."</h1>";
   }
   
   if ($trakt_enabled == "true") {
-    echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}."<br>";
-    echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins<br>";
+    echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}." | ";
+    echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins | ";
     echo "<b>Runs:</b> ".$trakt->{show}->{air_day}.", ".$trakt->{show}->{air_time}."<br>";
-    echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>";
+    /* echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>"; */
   } else {
     // Show Sickbeard Next Episode
     if ($tvdata->{data}->{next_ep_airdate} == "") {
@@ -95,7 +121,7 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
       $next_ep = $tvdata->{data}->{next_ep_airdate};
     }
     // Show Details Next Episode
-    echo "Network: ".$tvdata->{data}->{network}.", Airs: ".$tvdata->{data}->{airs}.", Next Ep: ".$next_ep.", Show Status: ".$tvdata->{data}->{status}."<br><br>";
+    echo "Network: ".$tvdata->{data}->{network}." | Airs: ".$tvdata->{data}->{airs}." | Next Ep: ".$next_ep." | Show Status: ".$tvdata->{data}->{status}."<br><br>";
   }
 
 	// Run through each feed item
@@ -127,24 +153,24 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     // Grab Show Title
     $title = $tvdata->{data}->{show_name};
     
-echo "<table>";
-echo "  <thead>";
-echo "    <tr>";
-echo "      <th";
+echo '<table class="display" id="episodes_table">';
+echo '  <thead>';
+echo '    <tr>';
+echo '      <th id="name_show">';
 
     if ($seasonid == '0') {
-      echo "        <h1> (1) =>".$title." Specials</h1>";
+      echo ''.$title.' - Specials';
     } else {
-      echo "        <h1> (2) =>".$title." Season ".$seasonid."</h1>";
+      echo ''.$title.' - Season '.$seasonid;
     }
 
-echo "      </th>";
-echo "      <th>Episode</th>";
-echo "      <th>Name</th>";
-echo "      <th>Aired</th>";
-echo "      <th>Status</th>";
-echo "    </tr>";
-echo "  </thead>";
+echo '      </th>';
+echo '      <th id="episode">Episode</th>';
+echo '      <th id="name_episode">Name</th>';
+echo '      <th id="airdate">Aired</th>';
+echo '      <th id="status">Status</th>';
+echo '    </tr>';
+echo '  </thead>';
 
     // Define episode counter
     $counter = "1";
@@ -153,19 +179,19 @@ echo "  </thead>";
     foreach($sbJSON->{data} as $show) {
       // Show Details
 
-echo "  <tbody>";      
-echo "    <tr>";
-echo "      <td>&nbsp;</td>";
-echo "      <td>";
+echo '  <tbody>';      
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
 echo "        <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
-echo "      </td>";
-echo "      <td>";
+echo '      </td>';
+echo '      <td id="name_episode">';
             echo $show->{name};
-echo "      </td>";
-echo "      <td>";
+echo '      </td>';
+echo '      <td id="airdate">';
             echo $show->{airdate};
-echo "      </td>";
-echo "      <td>";
+echo '      </td>';
+echo '      <td id="status">';
             if ($show->{status} == "Archived")
             {
               echo "<font color='#41A317'>Collected </font>";
@@ -187,11 +213,11 @@ echo "      <td>";
               echo "<font color='#F62817'>Not Collected </font>";
             }
             $counter = $counter + "1";
-echo "      </td>";
-echo "    </tr>";
+echo '      </td>';
+echo '    </tr>';
         }
-echo "  <tbody>";
-echo "</table>";
+echo '  <tbody>';
+echo '</table>';
 #============ (2 END) ------------------------------------------------------
     }
 
