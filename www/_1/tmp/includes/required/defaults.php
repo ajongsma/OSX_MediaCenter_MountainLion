@@ -20,7 +20,7 @@ $display_img_banners            = $ini['display_img_banners'];
 // HOSTS AND PORTS
 // TraktTV
 if (!isset($ini['trakt_enabled'])) { $ini['trakt_enabled']  = 'true'; }
-if (!isset($ini['_trakt_api'])) { $ini['_trakt_api']  = 'no_api_key'; }
+if (!isset($ini['_trakt_api'])) { $ini['_trakt_api']  = ''; }
 $trakt_enabled        = $ini['trakt_enabled'];
 $trakt_api            = $ini['_trakt_api'];
 
@@ -28,7 +28,7 @@ $trakt_api            = $ini['_trakt_api'];
 if (!isset($ini['plex_enabled'])) { $ini['plex_enabled']  = 'true'; }
 if (!isset($ini['_plex_host'])) { $ini['_plex_host']  = 'localhost'; }
 if (!isset($ini['_plex_port'])) { $ini['_plex_port']  = 32400; }
-if (!isset($ini['_plex_api'])) { $ini['_plex_api']    = 'no_api_key'; }
+if (!isset($ini['_plex_api'])) { $ini['_plex_api']    = ''; }
 $plex_enabled         = $ini['plex_enabled'];
 $plex_host            = $ini['_plex_host'];
 $plex_port            = $ini['_plex_port'];
@@ -39,7 +39,7 @@ $URL_PlexSvr          = 'http://' . $plexhost  . ":" . $plexport . "/manage/inde
 // SabNZBd+
 if (!isset($ini['_sabnzbd_host'])) { $ini['_sabnzbd_host']  = 'localhost'; }
 if (!isset($ini['_sabnzbd_port'])) { $ini['_sabnzbd_port']  = 8080; }
-if (!isset($ini['_sabnzbd_api'])) { $ini['_sabnzbd_api']    = 'no_api_key'; }    		// API Key
+if (!isset($ini['_sabnzbd_api'])) { $ini['_sabnzbd_api']    = ''; }    		// API Key
 $sabnzbd_host         = $ini['_sabnzbd_host'];
 $sabnzbd_port         = $ini['_sabnzbd_port'];
 $sabnzbd_api          = $ini['_sabnzbd_api'];
@@ -48,7 +48,7 @@ $CallHP_Sabnzbd       = $sabnzbd_host . ":" . $sabnzbd_port;
 // SickBeard
 if (!isset($ini['_sickbeard_host'])) { $ini['_sickbeard_host']  = 'localhost'; }
 if (!isset($ini['_sickbeard_port'])) { $ini['_sickbeard_port']  = 8081; }
-if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']    = 'no_api_key'; }  		// API Key
+if (!isset($ini['_sickbeard_api'])) { $ini['_sickbeard_api']    = ''; }  		// API Key
 $sickbeard_host       = $ini['_sickbeard_host'];
 $sickbeard_port       = $ini['_sickbeard_port'];
 $sickbeard_api        = $ini['_sickbeard_api'];
@@ -59,7 +59,7 @@ $URL_comingEpis       = 'http://' . $sickbeard_host . ":" . $sickbeard_port . '/
 // CouchPotato
 if (!isset($ini['_couchpotato_host'])) { $ini['_couchpotato_host']  = 'localhost'; }
 if (!isset($ini['_couchpotato_port'])) { $ini['_couchpotato_port']  = 8082; }
-if (!isset($ini['_couchpotato_api'])) { $ini['_couchpotato_api']    = 'no_api_key'; }    	// API Key
+if (!isset($ini['_couchpotato_api'])) { $ini['_couchpotato_api']    = ''; }    	// API Key
 $couchpotato_host     = $ini['_couchpotato_host'];
 $couchpotato_port     = $ini['_couchpotato_port'];
 $couchpotato_api      = $ini['_couchpotato_api'];
@@ -68,7 +68,7 @@ $CallHP_Couchpotato   = $couchpotato_host . ":" . $couchpotato_port;
 // Headphones
 if (!isset($ini['_headphones_host'])) { $ini['_headphones_host']    = 'localhost'; }
 if (!isset($ini['_headphones_port'])) { $ini['_headphones_port']    = 8184; }
-if (!isset($ini['_headphones_api'])) { $ini['_headphones_api']      = 'no_api_key'; }      	// API Key
+if (!isset($ini['_headphones_api'])) { $ini['_headphones_api']      = ''; }      	// API Key
 $headphones_host      = $ini['_headphones_host'];
 $headphones_port      = $ini['_headphones_port'];
 $headphones_api       = $ini['_headphones_api'];
@@ -77,7 +77,7 @@ $CallHP_Headphones    = $headphones_host . ":" . $headphones_port;
 // Spotweb
 if (!isset($ini['_spotweb_host'])) { $ini['_spotweb_host']  = 'localhost'; }
 if (!isset($ini['_spotweb_port'])) { $ini['_spotweb_port']  = 80; }
-if (!isset($ini['_spotweb_api'])) { $ini['_spotweb_api']    = 'no_api_key'; }
+if (!isset($ini['_spotweb_api'])) { $ini['_spotweb_api']    = ''; }
 $spotweb_host         = $ini['_spotweb_host'];
 $spotweb_port         = $ini['_spotweb_port'];
 $spotweb_api          = $ini['_spotweb_api'];
