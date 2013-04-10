@@ -54,10 +54,8 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
   // Grab Show Title
   $title = $tvdata->{data}->{show_name};
-  
-  echo "<h1>(1) ".$title."</h1>";
   if ($display_img_banners == "true") {	
-  // Show Trakt.TV banner
+      // Show Trakt.TV banner
       if ($trakt_enabled == "true") {
           if ($trakt->{status} == "failure") {
             // Show SickBeard Banner if trakt returned an error
@@ -70,6 +68,8 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
           // Show SickBeard Banner
           printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br><br>");
       }
+  } else {
+      echo "<h1>(1) ".$title."</h1>";
   }
   
   if ($trakt_enabled == "true") {
