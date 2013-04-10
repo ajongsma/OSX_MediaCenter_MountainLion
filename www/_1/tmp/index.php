@@ -93,9 +93,12 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     $feed3_1 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
     $feed3_2 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
     $feed3_3 = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
-    echo $feed3_1."<br>";
-    echo $feed3_2."<br>";
-    echo $feed3_3."<br>";
+    
+    if ($debug == "true") {
+        echo $feed3_1."<br>";
+        echo $feed3_2."<br>";
+        echo $feed3_3."<br>";
+    }
   
     // fetch trakt api
     if ($trakt_enabled == "true") {
