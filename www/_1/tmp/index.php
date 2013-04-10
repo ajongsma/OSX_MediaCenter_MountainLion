@@ -29,8 +29,6 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
 	/* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
 
-echo " === DEBUG VARs =====> " . $trakt_enabled;
-
 #============ (1 START) ----------------------------------------------------
 
     // Show URL
