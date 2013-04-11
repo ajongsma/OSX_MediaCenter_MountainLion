@@ -109,8 +109,10 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   }
   
   if ($trakt_enabled == "true") {
-    echo "<b>Year:</b> ".$trakt->{show}->{year}." | <b>Country:</b> ".$trakt->{show}->{country}." | ";
-    echo "<b>Network:</b> ".$trakt->{show}->{network}." | <b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins | ";
+    echo "<b>Year:</b> ".$trakt->{show}->{year}." | ";
+    echo "<b>Country:</b> ".$trakt->{show}->{country}." | ";
+    echo "<b>Network:</b> ".$trakt->{show}->{network}." | ";
+    echo "<b>Run Time:</b> ".$trakt->{show}->{runtime}." Mins | ";
     echo "<b>Runs:</b> ".$trakt->{show}->{air_day}.", ".$trakt->{show}->{air_time}."<br>";
     /* echo "<b>Overview:</b> ".$trakt->{show}->{overview}."<br><br>"; */
   } else {
@@ -121,7 +123,10 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
       $next_ep = $tvdata->{data}->{next_ep_airdate};
     }
     // Show Details Next Episode
-    echo "Network: ".$tvdata->{data}->{network}." | Airs: ".$tvdata->{data}->{airs}." | Next Ep: ".$next_ep." | Show Status: ".$tvdata->{data}->{status}."<br><br>";
+    echo "Network: ".$tvdata->{data}->{network}." | ";
+    echo "Airs: ".$tvdata->{data}->{airs}." | ";
+    echo "Next Ep: ".$next_ep." | ";
+    echo "Show Status: ".$tvdata->{data}->{status}."<br>";
   }
 
 	// Run through each feed item
