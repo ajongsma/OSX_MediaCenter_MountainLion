@@ -132,7 +132,61 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 	// Run through each feed item
 	foreach($sbJSON->{data} as $show) {
 
-#============ (2 START) ------------------------------------------------------
+#============ (2.1 START) ------------------------------------------------------
+
+echo "<hr>";
+
+$apiURL_sbSeason = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
+echo "apiURL_sbSeason : ".$apiURL_sbSeason."<br>";
+
+$sbJSON_sbSeason = json_decode(file_get_contents($apiURL_sbSeason));
+
+    // Define episode counter
+    $counter = "1";
+    
+    // Run through each feed item
+    foreach($sbJSON_sbSeason->{data} as $sbEpisode) {
+      // Show Details
+
+echo "        <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $sbEpisode->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $sbEpisode->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+            if ($sbEpisode->{status} == "Archived")
+            {
+              echo "<font color='#41A317'>Collected </font>";
+            } 
+            elseif ($sbEpisode->{status} == "Snatched")
+            {
+              echo "<font color='#41A317'>Downloading... </font>";
+            }
+            elseif ($sbEpisode->{status} == "Downloaded")
+            {
+              echo "<font color='#41A317'>Collected </font>";
+            }
+            elseif ($sbEpisode->{status} == "Wanted")
+            {
+              echo "<font color='#306EFF'>Wanted </font>";
+            } 
+            else
+            {
+              echo "<font color='#F62817'>Not Collected </font>";
+            }
+            $counter = $counter + "1";
+echo '      </td>';
+echo '    </tr>';
+        }
+
+echo "<hr>";
+
+#============ (2.1 END) --------------------------------------------------------
+
+#============ (2.2 START) ------------------------------------------------------
     $seasonid = $show;
     
     // Check if username is available, set URL
@@ -223,7 +277,7 @@ echo '    </tr>';
         }
 echo '  <tbody>';
 echo '</table>';
-#============ (2 END) ------------------------------------------------------
+#============ (2.2 END) ------------------------------------------------------
     }
 
 #============ (1 END) ---------------------------------------------------
