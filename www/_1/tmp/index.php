@@ -131,7 +131,7 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
 	// Run through each feed item
 	foreach($sbJSON->{data} as $show) {
-
+    $seasonid = $show;
 #============ (2.1 START) ------------------------------------------------------
 
 echo "<hr>";
@@ -143,6 +143,8 @@ $sbJSON_sbSeason = json_decode(file_get_contents($apiURL_sbSeason));
 
     // Define episode counter
     $counter = "1";
+
+    $countArchived = "0";
     
     // Run through each feed item
     foreach($sbJSON_sbSeason->{data} as $sbEpisode) {
@@ -160,6 +162,7 @@ echo '      <td id="status">';
             if ($sbEpisode->{status} == "Archived")
             {
               echo "<font color='#41A317'>Collected </font>";
+              $countArchived = $countArchived + "1";
             } 
             elseif ($sbEpisode->{status} == "Snatched")
             {
@@ -187,7 +190,7 @@ echo "<hr>";
 #============ (2.1 END) --------------------------------------------------------
 
 #============ (2.2 START) ------------------------------------------------------
-    $seasonid = $show;
+    
     
     // Check if username is available, set URL
     $feed3_1 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
