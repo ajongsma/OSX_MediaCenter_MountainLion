@@ -40,6 +40,11 @@ http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac
 
 #= HANDY's - END =====================================================================
 
+#= 12-04-2013 ========================================================================
+
+Enrich JSON data with JSON data
+http://stackoverflow.com/questions/12767695/merge-multiple-json-into-single-object
+
 #= 07-04-2013 ========================================================================
 
 https://github.com/elit3ge/sickbeard_viewer
