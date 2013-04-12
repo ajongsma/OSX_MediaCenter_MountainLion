@@ -23,33 +23,38 @@
 <?php
 
 if(empty($sickbeard_api)) {
-	echo "<hr><h1><font color='#F62817'><b>ERROR: Sick-Beard API value is not provided</b></font></h1><hr>";
+  echo "<hr><h1><font color='#F62817'><b>ERROR: Sick-Beard API value is not provided</b></font></h1><hr>";
 }
 if(($trakt_enabled == "true") && empty($trakt_api)) {
-	echo "<hr><h1><font color='#F62817'><b>ERROR: Trakt is enabled but the API value is not provided</b></font></h1><hr>";
+  echo "<hr><h1><font color='#F62817'><b>ERROR: Trakt is enabled but the API value is not provided</b></font></h1><hr>";
 }
 
 if ($display_Sickbeard_StatsTotal == "true") {
   $apiURL_sbStatsTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows.stats";
-  echo "apiURL_sbStatsTotal : ".$apiURL_sbStatsTotal;
+  echo "<hr>";
+  echo "<b>apiURL_sbStatsTotal</b> : ".$apiURL_sbStatsTotal;
+  echo "<hr>";
+  
   $sbJSON_StatsTotal = json_decode(file_get_contents($apiURL_sbStatsTotal));
   echo "<br>Eps Downloaded: ".$sbJSON_StatsTotal->{data}->{ep_downloaded}." of ".$sbJSON_StatsTotal->{data}->{ep_total}." == Shows Active: ".$sbJSON_StatsTotal->{data}->{shows_active}." of ".$sbJSON_StatsTotal->{data}->{shows_total}."<br><br>";
 }
 
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
-if ($debug == "true") {
-	echo $apiURL."<br>";
-}
+echo "<hr>";
+echo "<b>apiURL</b> :".$apiURL."<br>";
+echo "<hr>";
 
 $sbJSON_Shows = json_decode(file_get_contents($apiURL),true);
 foreach ($sbJSON_Shows['data'] as $key => $values) {
-	$showid = $values['tvdbid'];
+  $showid = $values['tvdbid'];
 
-	/* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
+  /* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
 
   if ($display_Sickbeard_StatsShow == "true") {
     $apiURL_sbShowTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.stats&tvdbid=".$showid;
-    echo "apiURL_sbShowTotal : ".$apiURL_sbShowTotal."<br>";
+    echo "<hr>";
+    echo "<b>apiURL_sbShowTotal</b> : ".$apiURL_sbShowTotal."<br>";
+    echo "<hr>";
 
     $sbJSON_ShowTotal = json_decode(file_get_contents($apiURL_sbShowTotal));
     echo "<hr>";
@@ -62,7 +67,6 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     echo "downloaded : ".$sbJSON_ShowTotal->{data}->{downloaded}->{total}."<br>";
     echo "snatched   : ".$sbJSON_ShowTotal->{data}->{snatched}->{total}."<br>";
     echo "<hr>";
-
   }
 
 #============ (1 START) ----------------------------------------------------
@@ -71,41 +75,42 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   $apiURL_sbSeasonList = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasonlist&tvdbid=".$showid."&sort=asc";
   $apiURL_sbShow = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
   $apiURL_TraktTV = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
-  if ($debug == "true") {
-        echo "apiURL_sbSeasonList : ".$apiURL_sbSeasonList."<br>";
-        echo "apiURL_sbShow       : ".$apiURL_sbShow."<br>";
-        echo "apiURL_TraktTV      : ".$apiURL_TraktTV."<br>";
+  echo "<hr>";
+  echo "<b>apiURL_sbSeasonList</b> : ".$apiURL_sbSeasonList."<br>";
+  echo "<b>apiURL_sbShow</b>       : ".$apiURL_sbShow."<br>";
+  echo "<b>apiURL_TraktTV</b>      : ".$apiURL_TraktTV."<br>";
+  echo "<hr>";
   }
   
   // Fetch TraktTV api
   if ($trakt_enabled == "true") {
-      $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
-      $tvdata = json_decode(file_get_contents($apiURL_sbShow));
+    $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
+    $tvdata = json_decode(file_get_contents($apiURL_sbShow));
       
-      $trakt = json_decode(file_get_contents($apiURL_TraktTV));
+    $trakt = json_decode(file_get_contents($apiURL_TraktTV));
   } else {
-      $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
-      $tvdata = json_decode(file_get_contents($apiURL_sbShow));
+    $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
+    $tvdata = json_decode(file_get_contents($apiURL_sbShow));
   }
 
   // Grab Show Title
   $title = $tvdata->{data}->{show_name};
   if ($display_img_banners == "true") {	
-      // Show Trakt.TV banner
-      if ($trakt_enabled == "true") {
-          if ($trakt->{status} == "failure") {
-            // Show SickBeard Banner if trakt returned an error
+    // Show Trakt.TV banner
+    if ($trakt_enabled == "true") {
+      if ($trakt->{status} == "failure") {
+        // Show SickBeard Banner if trakt returned an error
             printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
-          } else {
-            // Show trakt.tv Banner
-            printf("<img src=".$trakt->{show}->{images}->{banner}."><br>");
-          }
       } else {
-          // Show SickBeard Banner
-          printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
+        // Show trakt.tv Banner
+        printf("<img src=".$trakt->{show}->{images}->{banner}."><br>");
       }
+    } else {
+      // Show SickBeard Banner
+      printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
+    }
   } else {
-      echo "<h1>(1) ".$title."</h1>";
+    echo "<h1>(1) ".$title."</h1>";
   }
   
   if ($trakt_enabled == "true") {
@@ -129,17 +134,17 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     echo "Show Status: ".$tvdata->{data}->{status}."<br>";
   }
 
-	// Run through each feed item
-	foreach($sbJSON->{data} as $show) {
+  // Run through each feed item
+  foreach($sbJSON->{data} as $show) {
     $seasonid = $show;
 #============ (2.1 START) ------------------------------------------------------
 
-echo "<hr>";
+    $apiURL_sbSeason = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
+    echo "<hr>";
+    echo "<b>apiURL_sbSeason</b> : ".$apiURL_sbSeason."<br>";
+    echo "<hr>";
 
-$apiURL_sbSeason = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
-echo "apiURL_sbSeason : ".$apiURL_sbSeason."<br>";
-
-$sbJSON_sbSeason = json_decode(file_get_contents($apiURL_sbSeason));
+    $sbJSON_sbSeason = json_decode(file_get_contents($apiURL_sbSeason));
 
     // Define episode counter
     $counter = "1";
@@ -197,9 +202,11 @@ echo "<hr>";
     $feed3_2 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
     $feed3_3 = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
     if ($debug == "true") {
+    	echo "<hr>";
         echo "feed3_1 : ".$feed3_1."<br>";
         echo "feed3_2 : ".$feed3_2."<br>";
         echo "feed3_3 : ".$feed3_3."<br>";
+        echo "<hr>";
     }
   
     // fetch trakt api
