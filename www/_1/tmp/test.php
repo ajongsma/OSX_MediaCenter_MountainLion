@@ -35,6 +35,10 @@ echo "<b>apiURL_sbStatsTotal</b> : ".$apiURL_sbStatsTotal;
 echo "<hr>";
 
 $sbJSON_StatsTotal = json_decode(file_get_contents($apiURL_sbStatsTotal));
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
+var_dump($sbJSON_StatsTotal);
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
+
 echo "<br>Eps Downloaded: ".$sbJSON_StatsTotal->{data}->{ep_downloaded}." of ".$sbJSON_StatsTotal->{data}->{ep_total}." == Shows Active: ".$sbJSON_StatsTotal->{data}->{shows_active}." of ".$sbJSON_StatsTotal->{data}->{shows_total}."<br><br>";
 
 #============ (1 END) -----------------------------------------------------
@@ -47,6 +51,9 @@ echo "<b>apiURL_sbShows</b> :".$apiURL_sbShows."<br>";
 echo "<hr>";
 
 $sbJSON_Shows = json_decode(file_get_contents($apiURL_sbShows),true);
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
+var_dump($sbJSON_Shows);
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
 foreach ($sbJSON_Shows['data'] as $key => $values) {
   $showid = $values['tvdbid'];
 
@@ -58,6 +65,9 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   echo "<hr>";
 
   $sbJSON_ShowTotal = json_decode(file_get_contents($apiURL_sbShowTotal));
+  echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
+  var_dump($sbJSON_ShowTotal);
+  echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>";
 
 # ?????
 
@@ -70,6 +80,12 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
   $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
   $tvdata = json_decode(file_get_contents($apiURL_sbShow));
+
+  echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ";
+  var_dump($sbJSON);
+  echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ";
+  var_dump($tvdata);
+  echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ";
   
   foreach($sbJSON->{data} as $show) {
     $seasonid = $show;
