@@ -18,6 +18,9 @@
   <link href="includes/css/table.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <hr>
+  http://stackoverflow.com/questions/12767695/merge-multiple-json-into-single-object
+  <hr>
   <div id='site_content'>
 <?php
 
