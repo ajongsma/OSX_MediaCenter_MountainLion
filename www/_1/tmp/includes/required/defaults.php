@@ -17,10 +17,23 @@ if (!isset($ini['display_img_banners'])) { $ini['display_img_banners']  = 'true'
 $display_img_banners            = $ini['display_img_banners'];
 
 if (!isset($ini['display_Sickbeard_StatsTotal'])) { $ini['display_Sickbeard_StatsTotal']  = 'true'; }
-$display_Sickbeard_StatsTotal            = $ini['display_Sickbeard_StatsTotal'];
+$display_Sickbeard_StatsTotal   = $ini['display_Sickbeard_StatsTotal'];
 
 if (!isset($ini['display_Sickbeard_StatsShow'])) { $ini['display_Sickbeard_StatsShow']  = 'true'; }
-$display_Sickbeard_StatsShow            = $ini['display_Sickbeard_StatsShow'];
+$display_Sickbeard_StatsShow    = $ini['display_Sickbeard_StatsShow'];
+
+if (!isset($ini['show_episode_archived'])) { $ini['show_episode_archived']  = 'false'; }
+$show_episode_archived          = $ini['show_episode_archived'];
+
+if (!isset($ini['show_episode_snatched'])) { $ini['show_episode_snatched']  = 'true'; }
+$show_episode_snatched          = $ini['show_episode_snatched'];
+
+if (!isset($ini['show_episode_downloaded'])) { $ini['show_episode_downloaded']  = 'true'; }
+$show_episode_downloaded        = $ini['show_episode_downloaded'];
+
+if (!isset($ini['show_episode_wanted'])) { $ini['show_episode_wanted']  = 'true'; }
+$show_episode_wanted            = $ini['show_episode_wanted'];
+
 
 // HOSTS AND PORTS
 // TraktTV

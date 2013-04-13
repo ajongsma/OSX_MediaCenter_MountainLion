@@ -31,18 +31,15 @@ if(($trakt_enabled == "true") && empty($trakt_api)) {
 
 if ($display_Sickbeard_StatsTotal == "true") {
   $apiURL_sbStatsTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows.stats";
-  echo "<hr>";
-  echo "<b>apiURL_sbStatsTotal</b> : ".$apiURL_sbStatsTotal;
-  echo "<hr>";
-  
+  echo "apiURL_sbStatsTotal : ".$apiURL_sbStatsTotal;
   $sbJSON_StatsTotal = json_decode(file_get_contents($apiURL_sbStatsTotal));
   echo "<br>Eps Downloaded: ".$sbJSON_StatsTotal->{data}->{ep_downloaded}." of ".$sbJSON_StatsTotal->{data}->{ep_total}." == Shows Active: ".$sbJSON_StatsTotal->{data}->{shows_active}." of ".$sbJSON_StatsTotal->{data}->{shows_total}."<br><br>";
 }
 
 $apiURL = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=shows&sort=name&paused=0";
-echo "<hr>";
-echo "<b>apiURL</b> :".$apiURL."<br>";
-echo "<hr>";
+if ($debug == "true") {
+  echo $apiURL."<br>";
+}
 
 $sbJSON_Shows = json_decode(file_get_contents($apiURL),true);
 foreach ($sbJSON_Shows['data'] as $key => $values) {
@@ -50,24 +47,7 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
 
   /* echo '<a href="seasonlist.php?showid=' . $values['tvdbid'] . '">' . $key . '</a><br />'; */
 
-  if ($display_Sickbeard_StatsShow == "true") {
-    $apiURL_sbShowTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.stats&tvdbid=".$showid;
-    echo "<hr>";
-    echo "<b>apiURL_sbShowTotal</b> : ".$apiURL_sbShowTotal."<br>";
-    echo "<hr>";
 
-    $sbJSON_ShowTotal = json_decode(file_get_contents($apiURL_sbShowTotal));
-    echo "<hr>";
-    echo "Total      : ".$sbJSON_ShowTotal->{data}->{total}."<br>";
-    echo "Archived   : ".$sbJSON_ShowTotal->{data}->{archived}."<br>";
-    echo "ignored    : ".$sbJSON_ShowTotal->{data}->{ignored}."<br>";
-    echo "skipped    : ".$sbJSON_ShowTotal->{data}->{skipped}."<br>";
-    echo "unaired    : ".$sbJSON_ShowTotal->{data}->{unaired}."<br>";
-    echo "wanted     : ".$sbJSON_ShowTotal->{data}->{wanted}."<br>";
-    echo "downloaded : ".$sbJSON_ShowTotal->{data}->{downloaded}->{total}."<br>";
-    echo "snatched   : ".$sbJSON_ShowTotal->{data}->{snatched}->{total}."<br>";
-    echo "<hr>";
-  }
 
 #============ (1 START) ----------------------------------------------------
 
@@ -75,42 +55,41 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
   $apiURL_sbSeasonList = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasonlist&tvdbid=".$showid."&sort=asc";
   $apiURL_sbShow = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
   $apiURL_TraktTV = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
-  echo "<hr>";
-  echo "<b>apiURL_sbSeasonList</b> : ".$apiURL_sbSeasonList."<br>";
-  echo "<b>apiURL_sbShow</b>       : ".$apiURL_sbShow."<br>";
-  echo "<b>apiURL_TraktTV</b>      : ".$apiURL_TraktTV."<br>";
-  echo "<hr>";
+  if ($debug == "true") {
+        echo "apiURL_sbSeasonList : ".$apiURL_sbSeasonList."<br>";
+        echo "apiURL_sbShow       : ".$apiURL_sbShow."<br>";
+        echo "apiURL_TraktTV      : ".$apiURL_TraktTV."<br>";
   }
   
   // Fetch TraktTV api
   if ($trakt_enabled == "true") {
-    $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
-    $tvdata = json_decode(file_get_contents($apiURL_sbShow));
+      $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
+      $tvdata = json_decode(file_get_contents($apiURL_sbShow));
       
-    $trakt = json_decode(file_get_contents($apiURL_TraktTV));
+      $trakt = json_decode(file_get_contents($apiURL_TraktTV));
   } else {
-    $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
-    $tvdata = json_decode(file_get_contents($apiURL_sbShow));
+      $sbJSON = json_decode(file_get_contents($apiURL_sbSeasonList));
+      $tvdata = json_decode(file_get_contents($apiURL_sbShow));
   }
 
   // Grab Show Title
   $title = $tvdata->{data}->{show_name};
-  if ($display_img_banners == "true") {	
-    // Show Trakt.TV banner
-    if ($trakt_enabled == "true") {
-      if ($trakt->{status} == "failure") {
-        // Show SickBeard Banner if trakt returned an error
+  if ($display_img_banners == "true") { 
+      // Show Trakt.TV banner
+      if ($trakt_enabled == "true") {
+          if ($trakt->{status} == "failure") {
+            // Show SickBeard Banner if trakt returned an error
             printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
+          } else {
+            // Show trakt.tv Banner
+            printf("<img src=".$trakt->{show}->{images}->{banner}."><br>");
+          }
       } else {
-        // Show trakt.tv Banner
-        printf("<img src=".$trakt->{show}->{images}->{banner}."><br>");
+          // Show SickBeard Banner
+          printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
       }
-    } else {
-      // Show SickBeard Banner
-      printf("<img src=http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.getbanner&tvdbid=".$showid."><br>");
-    }
   } else {
-    echo "<h1>(1) ".$title."</h1>";
+      echo "<h1>".$title."</h1>";
   }
   
   if ($trakt_enabled == "true") {
@@ -134,89 +113,53 @@ foreach ($sbJSON_Shows['data'] as $key => $values) {
     echo "Show Status: ".$tvdata->{data}->{status}."<br>";
   }
 
+  if ($display_Sickbeard_StatsShow == "true") {
+    $apiURL_sbShowTotal = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.stats&tvdbid=".$showid;
+    if ($debug == "true") {
+      echo "apiURL_sbShowTotal : ".$apiURL_sbShowTotal."<br>";
+    }
+
+    $sbJSON_ShowTotal = json_decode(file_get_contents($apiURL_sbShowTotal));
+    echo "<hr>";
+    echo "<b>Total      :</b> ".$sbJSON_ShowTotal->{data}->{total}." | ";
+    echo "<b>Archived   :</b> ".$sbJSON_ShowTotal->{data}->{archived}." | ";
+    echo "<b>Ignored    :</b> ".$sbJSON_ShowTotal->{data}->{ignored}." | ";
+    echo "<b>Skipped    :</b> ".$sbJSON_ShowTotal->{data}->{skipped}." | ";
+    echo "<b>Unaired    :</b> ".$sbJSON_ShowTotal->{data}->{unaired}." | ";
+    echo "<b>Wanted     :</b> ".$sbJSON_ShowTotal->{data}->{wanted}." | ";
+    echo "<b>Downloaded :</b> ".$sbJSON_ShowTotal->{data}->{downloaded}->{total}." | ";
+    echo "<b>Snatched   :</b> ".$sbJSON_ShowTotal->{data}->{snatched}->{total}."";
+    echo "<hr>";
+  }
+
+if ($sbJSON_ShowTotal->{data}->{total} == $sbJSON_ShowTotal->{data}->{archived}) {
+  echo '<h1><font color="#41A317">Archiving Completed</font></h1>';
+} else {
+
   // Run through each feed item
   foreach($sbJSON->{data} as $show) {
+
+#============ (2 START) ------------------------------------------------------
     $seasonid = $show;
-#============ (2.1 START) ------------------------------------------------------
-
-    $apiURL_sbSeason = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
-    echo "<hr>";
-    echo "<b>apiURL_sbSeason</b> : ".$apiURL_sbSeason."<br>";
-    echo "<hr>";
-
-    $sbJSON_sbSeason = json_decode(file_get_contents($apiURL_sbSeason));
-
-    // Define episode counter
-    $counter = "1";
-
-    $countArchived = "0";
-    
-    // Run through each feed item
-    foreach($sbJSON_sbSeason->{data} as $sbEpisode) {
-      // Show Details
-
-echo "        <a href='epdata.php?showid=".$showid."&seasonid=".$seasonid."&ep=".$counter."'>" . $counter . "</a>";
-echo '      </td>';
-echo '      <td id="name_episode">';
-            echo $sbEpisode->{name};
-echo '      </td>';
-echo '      <td id="airdate">';
-            echo $sbEpisode->{airdate};
-echo '      </td>';
-echo '      <td id="status">';
-            if ($sbEpisode->{status} == "Archived")
-            {
-              echo "<font color='#41A317'>Collected </font>";
-              $countArchived = $countArchived + "1";
-            } 
-            elseif ($sbEpisode->{status} == "Snatched")
-            {
-              echo "<font color='#41A317'>Downloading... </font>";
-            }
-            elseif ($sbEpisode->{status} == "Downloaded")
-            {
-              echo "<font color='#41A317'>Collected </font>";
-            }
-            elseif ($sbEpisode->{status} == "Wanted")
-            {
-              echo "<font color='#306EFF'>Wanted </font>";
-            } 
-            else
-            {
-              echo "<font color='#F62817'>Not Collected </font>";
-            }
-            $counter = $counter + "1";
-echo '      </td>';
-echo '    </tr>';
-        }
-
-echo "<hr>";
-
-#============ (2.1 END) --------------------------------------------------------
-
-#============ (2.2 START) ------------------------------------------------------
-    
     
     // Check if username is available, set URL
     $feed3_1 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show.seasons&tvdbid=".$showid."&season=".$seasonid;
     $feed3_2 = "http://".$sickbeard_host.":".$sickbeard_port."/api/".$sickbeard_api."/?cmd=show&tvdbid=".$showid;
     $feed3_3 = "http://api.trakt.tv/show/episode/summary.json/".$trakt_api."/".$showid."/1/1";
     if ($debug == "true") {
-    	echo "<hr>";
         echo "feed3_1 : ".$feed3_1."<br>";
         echo "feed3_2 : ".$feed3_2."<br>";
         echo "feed3_3 : ".$feed3_3."<br>";
-        echo "<hr>";
     }
   
     // fetch trakt api
     if ($trakt_enabled == "true") {
-    	$sbJSON = json_decode(file_get_contents($feed3_1));
-    	$tvdata = json_decode(file_get_contents($feed3_2));
-    	$trakt = json_decode(file_get_contents($feed3_3));
+      $sbJSON = json_decode(file_get_contents($feed3_1));
+      $tvdata = json_decode(file_get_contents($feed3_2));
+      $trakt = json_decode(file_get_contents($feed3_3));
     } else {
-    	$sbJSON = json_decode(file_get_contents($feed3_1));
-    	$tvdata = json_decode(file_get_contents($feed3_2));
+      $sbJSON = json_decode(file_get_contents($feed3_1));
+      $tvdata = json_decode(file_get_contents($feed3_2));
     }
 
     // Grab Show Title
@@ -228,9 +171,9 @@ echo '    <tr>';
 echo '      <th id="name_show">';
 
     if ($seasonid == '0') {
-      echo ''.$title.' - Specials';
+      echo 'Specials';
     } else {
-      echo ''.$title.' - Season '.$seasonid;
+      echo 'Season '.$seasonid;
     }
 
 echo '      </th>';
@@ -244,11 +187,147 @@ echo '  </thead>';
     // Define episode counter
     $counter = "1";
     
+echo '  <tbody>';      
+
+
     // Run through each feed item
     foreach($sbJSON->{data} as $show) {
       // Show Details
 
-echo '  <tbody>';      
+      if (($show->{status} == "Archived") && ($show_episode_archived  == "true")) {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#41A317'>Archived</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+      if ($show->{status} == "Ignored") {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#990066'>Ignored</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+
+      if ($show->{status} == "Skipped") {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#FF6633'>Skipped</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+      if ($show->{status} == "Unaired") {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#B8B8B8'>Unaired</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+      if (($show->{status} == "Wanted") && ($show_episode_wanted  == "true")) {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#306EFF'>Wanted </font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+      if (($show->{status} == "Downloaded") && ($show_episode_downloaded  == "true")) {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#41A317'>Downloaded</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+      if (($show->{status} == "Snatched") && ($show_episode_snatched  == "true")) {
+echo '    <tr class="gradeZ">';
+echo '      <td>&nbsp;</td>';
+echo '      <td id="episode">';
+echo "        <a href='http://".$sickbeard_host.":".$sickbeard_port."/home/displayShow?show=".$showid."' target=_blank>" . $counter . "</a>";
+echo '      </td>';
+echo '      <td id="name_episode">';
+            echo $show->{name};
+echo '      </td>';
+echo '      <td id="airdate">';
+            echo $show->{airdate};
+echo '      </td>';
+echo '      <td id="status">';
+              echo "<font color='#41A317'>Snatched</font>";
+echo '      </td>';
+echo '    </tr>';
+      }
+
+
+
+
+
+
+
+/*
 echo '    <tr class="gradeZ">';
 echo '      <td>&nbsp;</td>';
 echo '      <td id="episode">';
@@ -263,15 +342,15 @@ echo '      </td>';
 echo '      <td id="status">';
             if ($show->{status} == "Archived")
             {
-              echo "<font color='#41A317'>Collected </font>";
+              echo "<font color='#41A317'>Archived </font>";
             } 
             elseif ($show->{status} == "Snatched")
             {
-              echo "<font color='#41A317'>Downloading... </font>";
+              echo "<font color='#41A317'>Snatched</font>";
             }
             elseif ($show->{status} == "Downloaded")
             {
-              echo "<font color='#41A317'>Collected </font>";
+              echo "<font color='#41A317'>Downloaded </font>";
             }
             elseif ($show->{status} == "Wanted")
             {
@@ -281,15 +360,17 @@ echo '      <td id="status">';
             {
               echo "<font color='#F62817'>Not Collected </font>";
             }
-            $counter = $counter + "1";
 echo '      </td>';
 echo '    </tr>';
-        }
+
+*/           
+            $counter = $counter + "1";
+    }
 echo '  <tbody>';
 echo '</table>';
-#============ (2.2 END) ------------------------------------------------------
-    }
-
+#============ (2 END) ------------------------------------------------------
+  }
+}
 #============ (1 END) ---------------------------------------------------
 }
 
