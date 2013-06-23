@@ -20,7 +20,7 @@ do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-if [ $HOSTNAME != "pooky.local"]; then
+if [ $HOSTNAME != "pooky.local" ]; then
     if [ -L config.sh ]; then
       rm config.sh
     fi
