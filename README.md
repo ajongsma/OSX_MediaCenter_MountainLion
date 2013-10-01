@@ -136,7 +136,7 @@ Get a free account on [MyPlex](http://my.plexapp.com). This makes it possible to
 * [Plex] (http://www.plexapp.com/)
   * [Plex Media Server] (http://plex.r.worldssl.net/PlexMediaServer/0.9.7.12.407-db37d6d/PlexMediaServer-0.9.7.12.407-db37d6d-OSX.dmg)
   * [Plex Media Center Client] (http://www.plexapp.com/download/plex-media-center.php)
-  * [Plex Trakt.TV Scrobbler] (https://github.com/tester22/Plex-Trakt-Scrobbler) ([Trakt.TV] (https://trakt.tv/))
+  * [Plex Trakt.TV Scrobbler] (https://github.com/tester22/Plex-Trakt-Scrobbler) ([Trakt.TV] (https://trakt.tv/)) CURRENTLY NOT WORKING WHILE SUPPORT HAS BEEN DROPPED!
   * [Plex Mobile] (http://www.plexapp.com/ios.php)
   * Additional Plex themes
      * [Aeon] (https://github.com/maverick214/PlexAeon)
