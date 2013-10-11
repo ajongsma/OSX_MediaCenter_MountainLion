@@ -3,6 +3,7 @@
 echo "#------------------------------------------------------------------------------"
 echo "# Install plexWebWatch for Plex Media Server"
 echo "#------------------------------------------------------------------------------"
+# https://github.com/ecleese/plexWatchWeb
 
 source ../config.sh
 
