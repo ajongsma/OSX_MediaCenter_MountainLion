@@ -9,21 +9,28 @@ source ../config.sh
 
 if [ -e /Applications/Plex\ Media\ Server.app ] ; then
     printf 'Plex Server found\n' "$GREEN" $col '[OK]' "$RESET"
-
-    [ -d /Users/PlexWatch/Sites/plexwatch ] || mkdir -p /Users/PlexWatch/Sites/plexwatch
-    sudo chown `whoami` /Users/PlexWatch/Sites/plexwatch
-    sudo ln -s /Users/PlexWatch/Sites/plexwatch /Library/Server/Web/Data/Sites/Default/plexwatch
-
-    cd /Users/PlexWatch/Sites/plexwatch
-    git clone https://github.com/ecleese/plexWatchWeb
-
-
 else
     printf 'Plex Server not installed, something went wrong\n' "$RED" $col '[FAIL]' "$RESET"
     echo -e "${BLUE} --- press any key to continue --- ${RESET}"
     read -n 1 -s
     exit
 fi
+
+if [ -d /Users/PlexWatch/plexWatch ] ; then
+    printf 'PlexWatch found\n' "$GREEN" $col '[OK]' "$RESET"
+else
+    printf 'PlexWatch not installed, something went wrong\n' "$RED" $col '[FAIL]' "$RESET"
+    echo -e "${BLUE} --- press any key to continue --- ${RESET}"
+    read -n 1 -s
+    exit
+fi
+
+[ -d /Users/PlexWatch/Sites/plexWatchWeb ] || mkdir -p /Users/PlexWatch/Sites/plexWatchWeb
+sudo chown `whoami` /Users/PlexWatch/Sites/plexWatchWeb
+sudo ln -s /Users/PlexWatch/Sites/plexWatchWeb /Library/Server/Web/Data/Sites/Default/plexwatch
+
+cd /Users/PlexWatch/Sites/plexWatchWeb
+git clone https://github.com/ecleese/plexWatchWeb
 
 echo "#------------------------------------------------------------------------------"
 echo "# Install plexWebWatch for Plex Media Server - Complete"
