@@ -32,6 +32,15 @@ sudo ln -s /Users/PlexWatch/Sites/plexWatchWeb /Library/Server/Web/Data/Sites/De
 cd /Users/PlexWatch/Sites/plexWatchWeb
 git clone https://github.com/ecleese/plexWatchWeb
 
+# PlexWatch
+sudo cpan install Time::Duration
+sudo cpan install Time::ParseDate
+sudo cpan install Net::Twitter::Lite::WithAPIv1_1
+sudo cpan install Net::OAuth
+sudo cpan install Mozilla::CA
+sudo cpan install JSON
+
+
 echo "#------------------------------------------------------------------------------"
 echo "# Install plexWebWatch for Plex Media Server - Complete"
 echo "#------------------------------------------------------------------------------"
