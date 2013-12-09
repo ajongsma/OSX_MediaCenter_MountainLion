@@ -1,0 +1,12 @@
+
+## https://github.com/Diaoul/subliminal
+
+cd /Users/Plex/
+git clone https://github.com/Diaoul/subliminal.git
+cd subliminal
+sudo python setup.py install
+
+## /usr/local/bin/subliminal
+## subliminal -l en -- The.Big.Bang.Theory.S05E18.HDTV.x264-LOL.mp4
+
+
